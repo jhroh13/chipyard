@@ -6,7 +6,7 @@
 
 TINY NPU 는 4-core RV64 Rocket 시스템에 연결할 MXFP4(E2M1) × OCP MXINT8 matmul 가속기이다. RoCC 는 제어, 전용 AXI DMA 와 banked SRAM 은 행렬 데이터 이동을 담당한다. Host L1I/L1D·공유 L2 는 CPU 실행용이며 A/B/scale/C 의 NPU 데이터 경로에 포함하지 않는다.
 
-P0 요구는 **지속 10 TOPS 이상**이다. 과거 10.24 TOPS 피크/2 MiB/유효 10GB/s 구성은 현재 C-resident schedule 에서 P0 를 만족하지 못한다. 따라서 이 문서는 **20.48 TOPS 피크, 8 MiB SRAM, 유효 20GB/s**를 새 기본 후보로 제안한다. SRAM·BW 예산 증가를 명시적으로 포함한 변경이며 기존 2MiB/10GB/s 예산을 유지한 채 달성했다는 의미가 아니다.
+P0 요구는 **지속 10 TOPS 이상**이다. 과거 10.24 TOPS 피크/2 MiB/유효 10GB/s 구성은 현재 C-resident schedule 에서 P0 를 만족하지 못한다. 따라서 이 문서는 **20.48 TOPS 피크, 8 MiB SRAM, 유효 20GB/s**를 기본 설계 구성으로 채택한다. SRAM·BW 예산 증가를 명시적으로 포함한 변경이며 기존 2MiB/10GB/s 예산을 유지한 채 달성했다는 의미가 아니다.
 
 현재 실제 구현은 K=32 compute tile RTL 과 독립 SV SRAM template 이다. 전체 SRAM subsystem, 여러 K 블록의 FP32 누산, DMA·RoCC 연결, LLM 실행과 실제 지속 TOPS 는 아직 구현·검증 전이다. 기능 시뮬레이션과 장래 1GHz 물리 타이밍을 구분한다.
 
@@ -26,7 +26,14 @@ P0 요구는 **지속 10 TOPS 이상**이다. 과거 10.24 TOPS 피크/2 MiB/유
 
 이는 대표 prefill/GEMM 기준이다. 모든 M/N/K, batch1 decode, 전체 LLM 서비스에서 10TOPS 를 보장하는 요구로 확장하지 않는다. 후자는 별도 workload·latency/tokens/s 계약이 필요하다.
 
-현재 이벤트 모델은 기준 GEMM 에 약 13.5155TOPS/635.563µs 를 예측한다. 모델 여유는 약 35%지만 실제 RTL 이 이를 달성한 것은 아니다. RoCC·SRAM·FP32 pipeline·DRAM model 을 넣고 재검증해야 P0 수용 판정이 가능하다.
+현재 이벤트 모델은 기준 GEMM 에 약 13.4775TOPS/637.355µs 를 예측한다. 모델 여유는 약 35%지만 실제 RTL 이 이를 달성한 것은 아니다. RoCC·SRAM·FP32 pipeline·DRAM model 을 넣고 재검증해야 P0 수용 판정이 가능하다.
+
+
+### 확정된 설계 목표
+
+**지속 10 useful TOPS 이상은 선택 사항이 아닌 P0 필수 요구사항이다.** 10 TOPS를 연산 피크 수치로 대체하지 않는다. 기본 기준 GEMM은 `1024×1024×4096`이며, RoCC 작업 수락부터 최종 DMA write-response 완료까지 **858.9934592 µs 이하**여야 한다. 출력 정확도와 시간 기준을 동시에 통과해야 수용한다.
+
+파라미터 `SUSTAINED_TOPS_TARGET=10`, `P0_MANDATORY=true`, `PERFORMANCE_REQUIREMENT=SUSTAINED_USEFUL_TOPS`로 명시한다. ×2/×4의 대응 목표는 지속 20/40 TOPS이다. `RTL_SUSTAINED_TARGET_VERIFIED=false`는 실제 통합 검증까지 유지한다. 20.48 TOPS 피크, 8 MiB SRAM, 유효20 GB/s는 이 목표를 위한 기본 설계 예산이며 공정·PPA 실현성 검증은 별도이다.
 
 ## 3. 파라미터 프로파일
 
@@ -116,7 +123,13 @@ roofline = min(compute_peak, AI * effective_payload_BW)
 
 모델은 burst/700nslatency/MO/4KiB 분할/두 operand slot/sharedread+writeBW 를이벤트로계산한다. Macro 별 C 를 SRAM 에유지하고마지막에저장하며 macro 사이의 A/B 재사용과 outputoverlap 은없다. Macro 입력이도착하면계산하고 K 그룹별 startup 를반영한다. 실제 bankconflict·FP32pipeline·RoCC·CPUpacking·DDRrow 스케줄은생략한다.
 
-P0 후보의기준 GEMM 모델 13.5155TOPS 는향후 RTL 검증을진행할근거이며확정성능은아니다. 작은 608×320×4096 은약 8.3344TOPS 로 P0 아래이다. 따라서모든 shape 에 10TOPS 를주장하지않는다. 기존 2MiB/10GB/sprofile 은 regression 용으로만보존한다.
+P0 후보의기준 GEMM 모델 13.4775TOPS 는향후 RTL 검증을진행할근거이며확정성능은아니다. 작은 608×320×4096 은약 8.3344TOPS 로 P0 아래이다. 따라서모든 shape 에 10TOPS 를주장하지않는다. 기존 2MiB/10GB/sprofile 은 regression 용으로만보존한다.
+
+## 7.1 필수 Data Pipelining
+
+[Data Pipelining 상세 규약](DATA_PIPELINING.md)을 P0 설계 요구사항으로 적용한다. DMA prefetch와 MAC, 이전 snapshot의 scale/FP32 누산을 중첩하고, C hazard는 scoreboard·8-context interleave/forwarding으로 관리한다. Byte credit 없이 MO만으로 DMA를 발행하지 않는다.
+
+현재 모델에 **K-panel당14cycles**의 보수적 pipeline overhead를 추가했다. 기준 GEMM 예상치는 **13.4775TOPS /637.355µs**이며 지속10TOPS 모델 기준을 통과한다. 파이프라인 연결 후 실제 RTL 성능은 별도로 확인해야 한다. 현재 R1의 조합 converter를4-stage로 구현 완료했다는 의미는 아니다.
 
 ## 8. RTL 구현 실행 계획과 완료 정의
 
@@ -219,7 +232,7 @@ GitHubAPI 는계정조회와기존 repo 읽기는가능하지만 createRepositor
 
 ## 11. 남은 공동 결정 / 실행 필요사항
 
-- 새 P0 예산 20.48TOPSpeak/8MiB/유효 20GB/s 의실제공정·메모리자원확정.기존 2MiB/10GB/s 유지시별도아키텍처탐색이필요하다.
+- P0 설계 예산 20.48TOPSpeak/8MiB/유효 20GB/s 의실제공정·메모리자원확정.기존 2MiB/10GB/s 유지시별도아키텍처탐색이필요하다.
 - P0 대표 GEMM  외 추가 실사용 shape 와 batch/LLMprefill/decode 서비스목표확정.
 - SRAMcompiler/FP32IP/공정 PPA 예산,DRAMcontroller·QoS·포트수확정.
 - GitHubintegration 의 repo 생성권한또는빈 TINY-NPUrepo 제공.

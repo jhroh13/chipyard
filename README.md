@@ -2,9 +2,10 @@
 
 Chipyard 기반 **MXFP4 × OCP MXINT8** matmul accelerator 연구·개발 환경입니다.
 
-**P0: 지속 10 TOPS**, 기본 후보는 20.48 TOPS peak / 8 MiB local SRAM / 유효 20 GB/s DMA 입니다. 이전 2MiB·10GB/s 구성은 이 P0 를 충족하지 못해 보존용으로 구분했습니다.
+**필수 설계 목표(P0): 지속 10 useful TOPS 이상**, 기본 설계 구성은 20.48 TOPS peak / 8 MiB local SRAM / 유효 20 GB/s DMA 입니다. 이전 2MiB·10GB/s 구성은 이 P0 를 충족하지 못해 보존용으로 구분했습니다.
 
 - [Overview·통합 HDD·RTL 및 LLM 실행 계획](tiny-npu/docs/TINY_NPU_HDD_AND_ROADMAP.md)
+- [Data Pipelining 설계](tiny-npu/docs/DATA_PIPELINING.md)
 - [RTL/시뮬레이션 결과](tiny-npu/docs/results/RTL_SIMULATION.md)
 - [파라미터와 P0 모델](tiny-npu/model/p0_model.py)
 - [RTL](tiny-npu/rtl) · [Testbench 와 독립 golden model](tiny-npu/sim)

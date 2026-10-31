@@ -53,7 +53,8 @@ def simulate(m,n,k,p,read_mo=None,write_mo=None):
             mm=min(p['MACRO_M'],m-mi);nn=min(p['MACRO_N'],n-ni)
             assert 4*mm*nn<=p['C_BYTES']
             assert 2*(17*mm+33*nn)<=p['OPERAND_BYTES']
-            compute=math.ceil((mm//32)*(nn//32)/p['ARRAY_COUNT'])*32/p['ACCEL_CLOCK_HZ']
+            compute=(math.ceil((mm//32)*(nn//32)/p['ARRAY_COUNT'])*32
+                     +p.get('PANEL_PIPELINE_OVERHEAD_CYCLES',0))/p['ACCEL_CLOCK_HZ']
             finishes=[];end=now
             for block in range(k//32):
                 ready=now if block<2 else finishes[block-2]

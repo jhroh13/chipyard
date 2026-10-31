@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
-"""P0 sustained >=10 TOPS candidate, not an end-to-end RTL achievement."""
+"""P0 sustained >=10 TOPS design requirement; system RTL acceptance is pending."""
 import argparse,csv,json,math
 from pathlib import Path
 from spec_model import profile as legacy_profile, simulate
@@ -23,7 +23,18 @@ def profile(scale):
         TASK_QUEUE_DEPTH=16*s,CDC_AR_DEPTH=16*s,CDC_AW_DEPTH=16*s,
         CDC_R_DEPTH=64*s,CDC_W_DEPTH=64*s,CDC_B_DEPTH=16*s,
         MACS_PER_CLOCK=10240*s,PEAK_TOPS=20.48*s,SUSTAINED_TOPS_TARGET=10*s,
-        PROFILE_NAME='P0_SUSTAINED',PROFILE_STATUS='candidate_model_not_system_RTL')
+        PROFILE_NAME='P0_SUSTAINED',PROFILE_STATUS='design_baseline_system_RTL_acceptance_pending',
+        PERFORMANCE_REQUIREMENT='SUSTAINED_USEFUL_TOPS',P0_MANDATORY=True,
+        REFERENCE_M=m,REFERENCE_N=m,REFERENCE_K=4096,
+        MEASUREMENT_SCOPE='RoCC_accept_to_final_DMA_write_response',
+        RTL_SUSTAINED_TARGET_VERIFIED=False,
+        DATA_PIPELINING_REQUIRED=True,OPERAND_BUFFER_SLOTS=2,RESULT_BUFFER_SLOTS=2,
+        SRAM_READ_PIPE_CYCLES=2,DECODE_PIPE_CYCLES=1,PRODUCT_PIPE_CYCLES=1,
+        PE_ACC_FEEDBACK_CYCLES=1,SCALE_CONVERT_PIPE_CYCLES=4,
+        FP32_ADD_PIPE_CYCLES=4,C_WRITE_PIPE_CYCLES=2,FP32_INTERLEAVE_CONTEXTS=8,
+        FP32_ELASTIC_FIFO_BYTES=16384*s,DMA_CREDIT_CONTROL_REQUIRED=True,
+        PANEL_PIPELINE_OVERHEAD_CYCLES=14)
+    p['MAX_REFERENCE_LATENCY_NS']=2*m*m*4096/(p['SUSTAINED_TOPS_TARGET']*1e12)*1e9
     p['AXI_RAW_GBS']=p['AXI_PORTS']*p['AXI_DATA_BITS']/8*p['AXI_CLOCK_HZ']/1e9
     p['AXI_AFTER_EFFICIENCY_GBS']=p['AXI_RAW_GBS']*.60
     p['MIN_RAW_GBS']=p['DMA_PAYLOAD_TARGET_GBS']/.60
@@ -33,6 +44,8 @@ def profile(scale):
     assert sum(p[k] for k in ('OPERAND_BYTES','C_BYTES','PARTIAL_BYTES','META_BYTES'))==p['SRAM_TOTAL_BYTES']
     for region,width in [('OPERAND',256),('C',256),('PARTIAL',256),('META',128)]:
         assert p[region+'_BANKS']*p[region+'_BANK_DEPTH']*width//8==p[region+'_BYTES']
+    assert p['FP32_INTERLEAVE_CONTEXTS']>=p['SRAM_READ_PIPE_CYCLES']+p['FP32_ADD_PIPE_CYCLES']+p['C_WRITE_PIPE_CYCLES']
+    assert p['FP32_ELASTIC_FIFO_BYTES']>=p['FP32_ACC_LANES']*4*(p['SCALE_CONVERT_PIPE_CYCLES']+p['FP32_ADD_PIPE_CYCLES'])
     assert p['C_BANKS']*32>=p['FP32_ACC_LANES']*4
     assert p['PARTIAL_BANKS']*32>=p['FP32_ACC_LANES']*4
     return p
@@ -45,9 +58,11 @@ def main():
         for shape in dict.fromkeys([(32,32,32),(608,320,4096),(1024,1024,4096),(p['MACRO_M'],p['MACRO_N'],4096)]):
             r=simulate(*shape,p)
             r['target_TOPS']=p['SUSTAINED_TOPS_TARGET']
-            r['reference_acceptance_workload']=shape==(p['MACRO_M'],p['MACRO_N'],4096)
+            r['reference_acceptance_workload']=shape==(p['REFERENCE_M'],p['REFERENCE_N'],p['REFERENCE_K'])
             r['target_pass']=r['model_TOPS']>=r['target_TOPS']
-            if r['reference_acceptance_workload']:assert r['target_pass'],r
+            if r['reference_acceptance_workload']:
+                assert r['target_pass'],r
+                assert r['model_us']*1000<=p['MAX_REFERENCE_LATENCY_NS']
             rows.append(r)
             print(f"x{p['SCALE']} {shape}: model={r['model_TOPS']:.4f} TOPS, target={r['target_TOPS']}, reference={r['reference_acceptance_workload']}, time={r['model_us']:.3f}us")
     (ROOT/'p0_profiles.json').write_text(json.dumps(profiles,indent=2))

@@ -22,11 +22,11 @@ SRAM 독립 template 는 128 개 byte-mask/read-write 비교를통과했다.1-cy
 
 | Profile | 기준 M×N×K | 예상 TOPS | 예상 µs | 목표 TOPS |
 |---|---|---:|---:|---:|
-| ×1 | 1024×1024×4096 | 13.5155 | 635.563 | 10 |
-| ×2 | 1536×1536×4096 | 27.0545 | 714.386 | 20 |
-| ×4 | 2048×2048×4096 | 54.1710 | 634.283 | 40 |
+| ×1 | 1024×1024×4096 | 13.4775 | 637.355 | 10 |
+| ×2 | 1536×1536×4096 | 26.9868 | 716.178 | 20 |
+| ×4 | 2048×2048×4096 | 54.0184 | 636.075 | 40 |
 
-이는 P0 설계후보가모델에서목표를넘는다는결과이다.기본 profile 은 20.48TOPSpeak/8MiB/유효 20GB/s 이며기존 2MiB/10GB/s 예산보다증가했다.기본 1024×1024×4096 의 P0 한도 858.993µs 에대해예상 635.563µs 이다.DMA·SRAMconflict·FP32K 누산·CPU/RoCC 비용이포함된 RTL 측정으로확인해야한다.
+이는 P0 설계후보가모델에서목표를넘는다는결과이다.기본 profile 은 20.48TOPSpeak/8MiB/유효 20GB/s 이며기존 2MiB/10GB/s 예산보다증가했다.기본 1024×1024×4096 의 P0 한도 858.993µs 에대해예상 637.355µs 이다.DMA·SRAMconflict·FP32K 누산·CPU/RoCC 비용이포함된 RTL 측정으로확인해야한다.
 
 ## 재현
 
@@ -44,3 +44,7 @@ make lint
 ## Parameter RTL generation / lint
 
 P0 ×1/×2/×4 wrappers의10/20/40배열을Verilator로각각elaborate/lint하여모두exit0을확인했다.생성RTL,parameters.json,sourceSHA256manifest는`tiny-npu/generated/x1,x2,x4`에보존한다.이는40배열의전체기능시뮬레이션이나DMA/SRAM통합검증이아니다.기능테스트범위는위1/5/10배열이다.
+
+## 설계 목표·파이프라이닝 갱신
+
+P0를필수지속10 useful TOPS로명시했다.후속pipeline의stage/elastic/credit/C hazard요건을DATA_PIPELINING.md에추가하고모델에K-panel당14cycles를더했다.이변경은설계메타데이터·성능모델변경이며기존RTL source SHA256은그대로다.따라서기존bit-exactRTL기능결과는유지하되새물리pipeline·DMA통합이검증됐다고주장하지않는다.
