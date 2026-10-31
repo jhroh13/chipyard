@@ -1,0 +1,10 @@
+PASS job=0 K=32 arrays=1
+PASS job=1 K=64 arrays=1
+PASS job=2 K=128 arrays=1
+PASS job=3 K=4096 arrays=1
+PASS job=4 K=64 arrays=1
+PASS job=5 K=64 arrays=1
+PASS job=6 K=64 arrays=1
+PASS job=7 K=64 arrays=1
+GEMM_PASS arrays=1 jobs=8 comparisons=8192 cycles=6614
+- /workspace/TINY-NPU/tiny-npu/sim/tb_gemm.sv:47: Verilog $finish

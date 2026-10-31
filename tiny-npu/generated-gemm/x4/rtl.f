@@ -1,0 +1,7 @@
+tiny_npu_fp32_from_scaled_int.sv
+tiny_npu_mxfp4_matmul.sv
+tiny_npu_fp32_add_pipe.sv
+tiny_npu_sram_bank.sv
+tiny_npu_k_accumulator.sv
+tiny_npu_gemm_stream.sv
+tiny_npu_gemm_x4.sv

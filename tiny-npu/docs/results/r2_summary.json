@@ -1,0 +1,102 @@
+[
+  {
+    "test": "fp32_add",
+    "comparisons": 20000,
+    "status": "PASS",
+    "seed": 20261102
+  },
+  {
+    "test": "C_same_row_RMW_hazard",
+    "comparisons": 3,
+    "status": "PASS"
+  },
+  {
+    "test": "DMA_request_planner_and_byte_credits",
+    "status": "PASS",
+    "scope": "Not a full AXI DMA engine"
+  },
+  {
+    "test": "gemm_stream",
+    "arrays": 1,
+    "jobs": [
+      "K32",
+      "K64_variable_scale",
+      "K128",
+      "K4096",
+      "cancellation",
+      "NaN",
+      "Inf_minus_Inf",
+      "subnormal"
+    ],
+    "K_values": [
+      32,
+      64,
+      128,
+      4096,
+      64,
+      64,
+      64,
+      64
+    ],
+    "comparisons": 8192,
+    "status": "PASS",
+    "seed": 20261103,
+    "scope": "Stream-fed compute + C SRAM; no AXI DMA/RoCC or sustained TOPS proof"
+  },
+  {
+    "test": "gemm_stream",
+    "arrays": 2,
+    "jobs": [
+      "K32",
+      "K64_variable_scale",
+      "K128",
+      "K4096",
+      "cancellation",
+      "NaN",
+      "Inf_minus_Inf",
+      "subnormal"
+    ],
+    "K_values": [
+      32,
+      64,
+      128,
+      4096,
+      64,
+      64,
+      64,
+      64
+    ],
+    "comparisons": 16384,
+    "status": "PASS",
+    "seed": 20261103,
+    "scope": "Stream-fed compute + C SRAM; no AXI DMA/RoCC or sustained TOPS proof"
+  },
+  {
+    "test": "gemm_stream",
+    "arrays": 10,
+    "jobs": [
+      "K32",
+      "K64_variable_scale",
+      "K128",
+      "K4096",
+      "cancellation",
+      "NaN",
+      "Inf_minus_Inf",
+      "subnormal"
+    ],
+    "K_values": [
+      32,
+      64,
+      128,
+      4096,
+      64,
+      64,
+      64,
+      64
+    ],
+    "comparisons": 81920,
+    "status": "PASS",
+    "seed": 20261103,
+    "scope": "Stream-fed compute + C SRAM; no AXI DMA/RoCC or sustained TOPS proof"
+  }
+]

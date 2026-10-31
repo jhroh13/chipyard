@@ -1,0 +1,2 @@
+C_HAZARD_PASS results=3 blocked_cycles=20 cycles=32
+- /workspace/TINY-NPU/tiny-npu/sim/tb_c_hazard.sv:34: Verilog $finish

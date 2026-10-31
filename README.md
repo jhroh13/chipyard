@@ -14,12 +14,17 @@ Chipyard 기반 **MXFP4 × OCP MXINT8** matmul accelerator 연구·개발 환경
 
 ## 현재 구현 범위
 
-K=32,32×32 MXFP4×MXINT8 tile compute, E8M0 scale, FP32 output,RNE/subnormal/Inf/NaN,dual result buffer,stream backpressure 를구현했습니다. DMA/RoCC matmul 연결,전체 bankedSRAM,K>32FP32 누산,LLM 추론,1GHzSTA 및지속 10TOPS 실증은아직아닙니다.
+K=32 tile compute에 더해 **K=32/64/128/4096의 FP32 K-block 누산**, 실제4단계 FP32 가산 pipeline, C SRAM slice와 row scoreboard를 구현했습니다. DMA burst planner와 byte-credit/ID 예약 전단도 추가했습니다. 실제 AXI DMA·RoCC 연결, 전체8MiB SRAM banking, LLM 추론, STA와 지속10TOPS 실증은 남아 있습니다.
+
+- [R2 stream GEMM 설계·인터페이스](tiny-npu/docs/R2_K_ACCUMULATION.md)
+- [R2 검증 결과](tiny-npu/docs/results/R2_SIMULATION.md)
 
 ```bash
 cd tiny-npu
 source scripts/env.sh                 # 현재 cloudtoolchain 재사용
 make model
+make extended                        # K>32 / FP32 pipeline / DMA frontend
+make generate-gemm
 make generate
 make lint
 make sram

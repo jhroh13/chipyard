@@ -1,0 +1,2 @@
+DMA_FRONTEND_PASS bursts=3 boundary_split=1 byte_credit_stall=1 recycle=1 invalid_retire=1
+- /workspace/TINY-NPU/tiny-npu/sim/tb_dma_frontend.sv:57: Verilog $finish

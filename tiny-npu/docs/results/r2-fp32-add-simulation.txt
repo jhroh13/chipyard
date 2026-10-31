@@ -1,0 +1,2 @@
+FP32_ADD_PASS comparisons=20000 cycles=31906 pipeline_stages=4
+- /workspace/TINY-NPU/tiny-npu/sim/tb_fp32_add.sv:35: Verilog $finish

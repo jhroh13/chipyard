@@ -1,6 +1,6 @@
 # TINY NPU Data Pipelining 설계 규약
 
-상태: P0 지속10 useful TOPS를 위한 설계 요구사항. 현재 R1 RTL의 dual-result-buffer/ready-valid는 구현·검증됐지만, 아래 SRAM·DMA·FP32 K-block 통합 파이프라인은 후속 구현 대상이다.
+상태: P0 지속10 useful TOPS를 위한 설계 요구사항. 현재 R1 dual-result-buffer와 R2 4단계 FP32 가산·C SRAM slice·scoreboard는 구현됐다. 전체 SRAM banking·AXI DMA·scale converter 물리 pipeline은 후속 구현 대상이다.
 
 ## 1. 중첩 실행 구조
 
@@ -36,7 +36,7 @@ flowchart LR
 | PE accumulate | feedback1cycle | 매 PE 1MAC/clock, K=32 | R1 구현 |
 | Snapshot drain | 32 transfers/group | 320 int32/clock | R1 이중 버퍼 구현 |
 | Scale/FP32 conversion | 4 cycles | 320 results/clock | R1은 조합 converter; pipeline 예정 |
-| FP32 add | 4 cycles | 320 results/clock | R2 예정 |
+| FP32 add | 4 cycles | 320 results/clock | R2 구현: 무stall latency4/II1 검증 |
 | C writeback | 2 cycles | 1280B/clock | R3 예정 |
 
 Latency와 처리 간격을 구분한다. 4-stage FP32 add도 II=1이면 매 cycle 새 데이터를 받을 수 있다. C 동일 주소의 feedback recurrence는 SRAM read2+adder4+write2=8cycles 이상을 확보하거나 forwarding해야 한다.
@@ -77,3 +77,7 @@ Latency와 처리 간격을 구분한다. 4-stage FP32 add도 II=1이면 매 cyc
 - Array input stall, snapshot full, scale FIFO full, FP32 dependency, C bank conflict, DMA credit 부족을 별도 카운트한다.
 - 기준1024×1024×4096 전체 실행에14cycle/panel 지연을 반영한 모델 결과는 약13.4775TOPS/637.355µs이다. P0한도858.9934592µs 아래지만 실증은 아직 아니다.
 - SRAM·FP32·AXI stage가 모두 연결된 R5에서 실제 useful TOPS≥10과 결과 정확도를 동시에 확인한다.
+
+## R2 구현과 목표의 차이
+
+실제R2는4단계FP32adder와1-cycle C SRAM slice,32개row scoreboard를사용한다. C RAM은lane별32bit×32word이며목표8MiB256-bitbanking과는다르다. DMA byte-credit/ID와4KiBplanner는전단unit만있고AXI master는없다. Scale converter는현재조합회로이다. 전체파이프라인을연결했다거나지속10TOPS를검증했다고해석하지않는다.

@@ -1,0 +1,9 @@
+{
+  "tiny_npu_fp32_from_scaled_int.sv": "5f46761f87786ac5aebfe430ba0573b84ca4ae0bfc00fdd3afd63b37c3dac3ac",
+  "tiny_npu_mxfp4_matmul.sv": "5064058c3d3d2eebe0936321873221d04164ee01f0625f1dff583e94488cb963",
+  "tiny_npu_fp32_add_pipe.sv": "f3de16089afd261d10ff699160c00cc2b757c0a0666feab67f1d142f106be1df",
+  "tiny_npu_sram_bank.sv": "74d45a6a2e360bae13f841ad51932799bf5841c61dd755354766ed1cd3d13d01",
+  "tiny_npu_k_accumulator.sv": "b8f380bd400dffdb1ee3e972046cda7eb9bf8e8b52add6e74a62fca174d8f509",
+  "tiny_npu_gemm_stream.sv": "d95df40969a8fa458ab1048cfb4e8c226cf9955ac214fb0b17caf516e0243fff",
+  "tiny_npu_gemm_x2.sv": "26caec2365cea2b3b4bba8d51e26215ffcd37157de42ebfb80471db52a850cea"
+}

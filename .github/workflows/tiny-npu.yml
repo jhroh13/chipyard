@@ -24,6 +24,7 @@ jobs:
           make model
           make sram
           make test
+          make extended EXT_ARRAYS="1 2"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

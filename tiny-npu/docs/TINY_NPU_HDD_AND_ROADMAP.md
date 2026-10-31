@@ -79,7 +79,7 @@ y = p * 2^(scale_A + scale_B - 262)
 
 RTL converter 는 RNE,gradual underflow, signed underflow zero, overflow infinity, E8M0=255 의 canonical qNaN 을 구현한다. 누산결과정확한 0 은+0 으로한다. 유한 MX 포맷의 signed-zero 의미는 곱셈 내부정수화에서합쳐진다.
 
-K>32 에서는 각그룹결과에 scale 을적용한후 FP32 로누산해야한다. 이 FP32 K-block accumulation 은 R2 구현대상이며 R1 은각 K=32 기여분을출력한다.
+K>32 에서는 각그룹결과에 scale 을적용한후 FP32 로누산해야한다. R1은 각 K=32 기여분을 출력하며, R2 stream GEMM이 그룹별 FP32 변환 결과를 순서대로 누산한다.
 
 ## 5. SRAM 및 data movement
 
@@ -121,9 +121,9 @@ AI = ops / (actual DMA payload bytes)
 roofline = min(compute_peak, AI * effective_payload_BW)
 ```
 
-모델은 burst/700nslatency/MO/4KiB 분할/두 operand slot/sharedread+writeBW 를이벤트로계산한다. Macro 별 C 를 SRAM 에유지하고마지막에저장하며 macro 사이의 A/B 재사용과 outputoverlap 은없다. Macro 입력이도착하면계산하고 K 그룹별 startup 를반영한다. 실제 bankconflict·FP32pipeline·RoCC·CPUpacking·DDRrow 스케줄은생략한다.
+모델은 burst/700nslatency/MO/4KiB 분할/두 operand slot/sharedread+writeBW 를이벤트로계산한다. Macro 별 C 를 SRAM 에유지하고마지막에저장하며 macro 사이의 A/B 재사용과 outputoverlap 은없다. Macro 입력이도착하면계산하고 K 그룹별 startup 를반영한다. 상세 bank conflict·RoCC·CPU packing·DDR row 스케줄은 생략한다. FP32 등의 pipeline 비용은 panel당14cycles의 보수적 항목으로 반영하며 RTL cycle simulation과 구분한다.
 
-P0 후보의기준 GEMM 모델 13.4775TOPS 는향후 RTL 검증을진행할근거이며확정성능은아니다. 작은 608×320×4096 은약 8.3344TOPS 로 P0 아래이다. 따라서모든 shape 에 10TOPS 를주장하지않는다. 기존 2MiB/10GB/sprofile 은 regression 용으로만보존한다.
+P0 후보의기준 GEMM 모델 13.4775TOPS 는향후 RTL 검증을진행할근거이며확정성능은아니다. 작은 608×320×4096 은약 8.2955TOPS 로 P0 아래이다. 따라서모든 shape 에 10TOPS 를주장하지않는다. 기존 2MiB/10GB/sprofile 은 regression 용으로만보존한다.
 
 ## 7.1 필수 Data Pipelining
 
@@ -137,9 +137,9 @@ P0 후보의기준 GEMM 모델 13.4775TOPS 는향후 RTL 검증을진행할근�
 |---|---|---|---|
 | R0 | HDD/파라미터/event model | P0 기준 workload 가모델목표충족,capacity/ID/BW 제약통과 | 완료, 모델수준 |
 | R1 | FP4decode,integerMAC,K32tile,double snapshot,scaledFP32,stream I/O | 독립 Python 기준값과 bit-exact,stall/active-mask/II 검사 | RTL 생성·시뮬레이션 수행 |
-| R2 | K-loop FP32 accumulator | K64/128/4096,그룹별서로다른 scale,RNE·overflow 검증 | 미구현 |
-| R3 | banked SRAM + load/store scheduler | 8MiB mapping,2-cycleread,bankconflict·ping-pong·RMWhazard 검증 | template 만검증 |
-| R4 | AXI DMA + RoCC wrapper | latency700ns/backpressure/reorder/errors,CPUcache 우회,4KiBsplit | 미구현 |
+| R2 | K-loop FP32 accumulator | K64/128/4096,그룹별 scale,RNE·overflow 검증 | 구현, 결과는 R2 보고서 참조 |
+| R3 | banked SRAM + load/store scheduler | 8MiB mapping,2-cycle read,bank conflict·RMW hazard | C SRAM slice·scoreboard 검증; 전체 subsystem 미구현 |
+| R4 | AXI DMA + RoCC wrapper | latency700ns/reorder/errors,CPU cache 우회 | burst planner·byte credit 전단 검증; AXI/RoCC 미구현 |
 | R5 | end-to-end RTL P0 | 1024×1024×4096,20GB/spayload 모델에서≤858.993µs | 미검증 |
 | R6 | LLM operator/full-model simulation | 품질·tokens/s·prefill/decode 분리리포트 | 계획 |
 | R7 | synthesis/STA/SRAMmacro/CDC | 실제공정 1GHz·625MHz,area/power/thermal 예산통과 | 미수행 |
@@ -246,3 +246,7 @@ GitHubAPI 는계정조회와기존 repo 읽기는가능하지만 createRepositor
 - [P0 파라미터 표](../configs/p0_parameters.csv), [P0 profile JSON](../configs/p0_profiles.json), [모델 결과](../model/p0_results.csv).
 - [환경 재현 및 GitHub 게시 절차](BUILD_AND_PUBLISH.md).
 - 생성된compute-only RTL은`tiny-npu/generated/`에보존한다.컴파일출력과벡터는`build/`에서재생성가능하다.
+
+## 13. 다음 구현 단계 진행 기록
+
+[R2 stream GEMM·FP32 누산](R2_K_ACCUMULATION.md)과[R2 시뮬레이션 결과](results/R2_SIMULATION.md)를 추가했다. 4단계FP32가산pipeline, lane별C SRAM, rowscoreboard, K블록job제어, DMA burstplanner/bytecredit가 포함된다. 기존R1 tile테스트와R2통합테스트를구분한다. 실제AXI데이터전송과전체8MiB메모리구성,RoCC/LLM/P0실증은후속단계이다.
