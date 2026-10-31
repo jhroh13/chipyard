@@ -29,7 +29,7 @@ make test
 현재 GitHub 생성은 연결 권한으로 거부됐으므로 위 원격 clone 은 아직 성공을 보장하지 않습니다. 아래 bundle 을 사용하면 원격 생성 전에도 소스를 복원할 수 있습니다.
 
 ```bash
-git clone TINY-NPU.bundle TINY-NPU
+git clone --branch main TINY-NPU.bundle TINY-NPU
 cd TINY-NPU/tiny-npu
 # conda environment 준비 후 위 명령 실행
 ```
