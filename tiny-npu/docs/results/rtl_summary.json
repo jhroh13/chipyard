@@ -1,0 +1,50 @@
+[
+  {
+    "arrays": 1,
+    "cases": 12,
+    "checked": 12288,
+    "cycles": 638,
+    "input_II": 32,
+    "output_II": 32,
+    "input_stalls": 116,
+    "output_stalls": 220,
+    "status": "PASS",
+    "seed": 20261101,
+    "wall_seconds": 30.593,
+    "simulator": "Verilator 5.022 2024-02-24 rev conda-forge build 1",
+    "comparison": "bit-exact FP32 against independent Python integer-dot/IEEE-pack model",
+    "scope": "K=32 tile engine only; no DMA/RoCC/LLM/SDF"
+  },
+  {
+    "arrays": 5,
+    "cases": 12,
+    "checked": 61440,
+    "cycles": 638,
+    "input_II": 32,
+    "output_II": 32,
+    "input_stalls": 116,
+    "output_stalls": 220,
+    "status": "PASS",
+    "seed": 20261101,
+    "wall_seconds": 144.706,
+    "simulator": "Verilator 5.022 2024-02-24 rev conda-forge build 1",
+    "comparison": "bit-exact FP32 against independent Python integer-dot/IEEE-pack model",
+    "scope": "K=32 tile engine only; no DMA/RoCC/LLM/SDF"
+  },
+  {
+    "arrays": 10,
+    "cases": 12,
+    "checked": 122880,
+    "cycles": 638,
+    "input_II": 32,
+    "output_II": 32,
+    "input_stalls": 116,
+    "output_stalls": 220,
+    "status": "PASS",
+    "seed": 20261101,
+    "wall_seconds": 308.011,
+    "simulator": "Verilator 5.022 2024-02-24 rev conda-forge build 1",
+    "comparison": "bit-exact FP32 against independent Python integer-dot/IEEE-pack model",
+    "scope": "K=32 tile engine only; no DMA/RoCC/LLM/SDF"
+  }
+]

@@ -1,0 +1,34 @@
+name: TINY NPU compute RTL
+on:
+  workflow_dispatch:
+  push:
+    paths: ['tiny-npu/**', '.github/workflows/tiny-npu.yml']
+  pull_request:
+    paths: ['tiny-npu/**', '.github/workflows/tiny-npu.yml']
+permissions:
+  contents: read
+jobs:
+  compute:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniforge-version: latest
+          environment-file: tiny-npu/toolchain.yaml
+          activate-environment: tiny-npu
+      - name: Model, SRAM and compute regression
+        shell: bash -el {0}
+        run: |
+          cd tiny-npu
+          make model
+          make sram
+          make test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tiny-npu-compute-results
+          path: |
+            tiny-npu/build/**/summary.json
+            tiny-npu/build/**/simulation.log
+            tiny-npu/build/**/compile.log

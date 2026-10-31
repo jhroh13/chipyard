@@ -1,102 +1,30 @@
-![CHIPYARD](https://github.com/ucb-bar/chipyard/raw/main/docs/_static/images/chipyard-logo-full.png)
+# TINY NPU
 
-# Chipyard Framework [![Test](https://github.com/ucb-bar/chipyard/actions/workflows/chipyard-run-tests.yml/badge.svg)](https://github.com/ucb-bar/chipyard/actions)
+Chipyard 기반 **MXFP4 × OCP MXINT8** matmul accelerator 연구·개발 환경입니다.
 
-## Quick Links
+**P0: 지속 10 TOPS**, 기본 후보는 20.48 TOPS peak / 8 MiB local SRAM / 유효 20 GB/s DMA 입니다. 이전 2MiB·10GB/s 구성은 이 P0 를 충족하지 못해 보존용으로 구분했습니다.
 
-* **Latest Documentation**: https://chipyard.readthedocs.io/
-* **User Question Forum**: https://groups.google.com/forum/#!forum/chipyard
-* **Bugs and Feature Requests**: https://github.com/ucb-bar/chipyard/issues
+- [Overview·통합 HDD·RTL 및 LLM 실행 계획](tiny-npu/docs/TINY_NPU_HDD_AND_ROADMAP.md)
+- [RTL/시뮬레이션 결과](tiny-npu/docs/results/RTL_SIMULATION.md)
+- [파라미터와 P0 모델](tiny-npu/model/p0_model.py)
+- [RTL](tiny-npu/rtl) · [Testbench 와 독립 golden model](tiny-npu/sim)
+- [기존 Rocket/RoCC 테스트](tests/quad-rocc.md)
+- [원본 Chipyard README](tiny-npu/docs/CHIPYARD_README.md)
 
-## Using Chipyard
+## 현재 구현 범위
 
-To get started using Chipyard, see the documentation on the Chipyard documentation site: https://chipyard.readthedocs.io/
+K=32,32×32 MXFP4×MXINT8 tile compute, E8M0 scale, FP32 output,RNE/subnormal/Inf/NaN,dual result buffer,stream backpressure 를구현했습니다. DMA/RoCC matmul 연결,전체 bankedSRAM,K>32FP32 누산,LLM 추론,1GHzSTA 및지속 10TOPS 실증은아직아닙니다.
 
-## What is Chipyard
-
-Chipyard is an open source framework for agile development of Chisel-based systems-on-chip.
-It will allow you to leverage the Chisel HDL, Rocket Chip SoC generator, and other [Berkeley][berkeley] projects to produce a [RISC-V][riscv] SoC with everything from MMIO-mapped peripherals to custom accelerators.
-Chipyard contains processor cores ([Rocket][rocket-chip], [BOOM][boom], [CVA6 (Ariane)][cva6]), vector units ([Saturn][saturn], [Ara][ara]), accelerators ([Gemmini][gemmini], [NVDLA][nvdla]), memory systems, and additional peripherals and tooling to help create a full featured SoC.
-Chipyard supports multiple concurrent flows of agile hardware development, including software RTL simulation, FPGA-accelerated simulation ([FireSim][firesim]), automated VLSI flows ([Hammer][hammer]), and software workload generation for bare-metal and Linux-based systems ([FireMarshal][firemarshal]).
-Chipyard is actively developed in the [Berkeley Architecture Research Group][ucb-bar] in the [Electrical Engineering and Computer Sciences Department][eecs] at the [University of California, Berkeley][berkeley].
-
-## Resources
-
-* Chipyard Documentation: https://chipyard.readthedocs.io/
-* Chipyard (x FireSim) Tutorial: https://fires.im/tutorial-recent/
-* Chipyard Basics slides: https://fires.im/asplos23-slides-pdf/02_chipyard_basics.pdf
-
-## Need help?
-
-* Join the Chipyard Mailing List: https://groups.google.com/forum/#!forum/chipyard
-* If you find a bug or would like propose a feature, post an issue on this repo: https://github.com/ucb-bar/chipyard/issues
-
-## Contributing
-
-* See [CONTRIBUTING.md](/CONTRIBUTING.md)
-
-## Attribution and Chipyard-related Publications
-
-If used for research, please cite Chipyard by the following publication:
-
-```
-@article{chipyard,
-  author={Amid, Alon and Biancolin, David and Gonzalez, Abraham and Grubb, Daniel and Karandikar, Sagar and Liew, Harrison and Magyar,   Albert and Mao, Howard and Ou, Albert and Pemberton, Nathan and Rigge, Paul and Schmidt, Colin and Wright, John and Zhao, Jerry and Shao, Yakun Sophia and Asanovi\'{c}, Krste and Nikoli\'{c}, Borivoje},
-  journal={IEEE Micro},
-  title={Chipyard: Integrated Design, Simulation, and Implementation Framework for Custom SoCs},
-  year={2020},
-  volume={40},
-  number={4},
-  pages={10-21},
-  doi={10.1109/MM.2020.2996616},
-  ISSN={1937-4143},
-}
+```bash
+cd tiny-npu
+source scripts/env.sh                 # 현재 cloudtoolchain 재사용
+make model
+make generate
+make lint
+make sram
+make test                            # 1/5/10 arrays, bit-exact
 ```
 
-* **Chipyard**
-    * A. Amid, et al. *IEEE Micro'20* [PDF](https://ieeexplore.ieee.org/document/9099108).
-    * A. Amid, et al. *DAC'20* [PDF](https://ieeexplore.ieee.org/document/9218756).
-    * A. Amid, et al. *ISCAS'21* [PDF](https://ieeexplore.ieee.org/abstract/document/9401515).
+`model/p0_model.py --scale 1/2/4`와`tools/generate_rtl.py --scale 1/2/4`로확장할수있습니다.전체 memory/AXI 프로파일이현재 compute-onlyRTL 에연결됐다는뜻은아닙니다.
 
-These additional publications cover many of the internal components used in Chipyard. However, for the most up-to-date details, users should refer to the Chipyard docs.
-
-* **Generators**
-    * **Rocket Chip**: K. Asanovic, et al., *UCB EECS TR*. [PDF](http://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-17.pdf).
-    * **BOOM**: C. Celio, et al., *Hot Chips 30*. [PDF](https://old.hotchips.org/hc30/1conf/1.03_Berkeley_BROOM_HC30.Berkeley.Celio.v02.pdf).
-      * **SonicBOOM (BOOMv3)**: J. Zhao, et al., *CARRV'20*. [PDF](https://carrv.github.io/2020/papers/CARRV2020_paper_15_Zhao.pdf).
-      * **COBRA (BOOM Branch Prediction)**: J. Zhao, et al., *ISPASS'21*. [PDF](https://ieeexplore.ieee.org/document/9408173).
-    * **Gemmini**: H. Genc, et al., *DAC'21*. [PDF](https://arxiv.org/pdf/1911.09925).
-* **Sims**
-    * **FireSim**: S. Karandikar, et al., *ISCA'18*. [PDF](https://sagark.org/assets/pubs/firesim-isca2018.pdf).
-        * **FireSim Micro Top Picks**: S. Karandikar, et al., *IEEE Micro, Top Picks 2018*. [PDF](https://sagark.org/assets/pubs/firesim-micro-top-picks2018.pdf).
-        * **FASED**: D. Biancolin, et al., *FPGA'19*. [PDF](https://people.eecs.berkeley.edu/~biancolin/papers/fased-fpga19.pdf).
-        * **Golden Gate**: A. Magyar, et al., *ICCAD'19*. [PDF](https://davidbiancolin.github.io/papers/goldengate-iccad19.pdf).
-        * **FirePerf**: S. Karandikar, et al., *ASPLOS'20*. [PDF](https://sagark.org/assets/pubs/fireperf-asplos2020.pdf).
-        * **FireSim ISCA@50 Retrospective**: S. Karandikar, et al., *ISCA@50 Retrospective: 1996-2020*. [PDF](https://sites.coecis.cornell.edu/isca50retrospective/files/2023/06/Karandikar_2018_FireSim.pdf)
-* **Tools**
-    * **Chisel**: J. Bachrach, et al., *DAC'12*. [PDF](https://people.eecs.berkeley.edu/~krste/papers/chisel-dac2012.pdf).
-    * **FIRRTL**: A. Izraelevitz, et al., *ICCAD'17*. [PDF](https://ieeexplore.ieee.org/document/8203780).
-    * **Chisel DSP**: A. Wang, et al., *DAC'18*. [PDF](https://ieeexplore.ieee.org/document/8465790).
-    * **FireMarshal**: N. Pemberton, et al., *ISPASS'21*. [PDF](https://ieeexplore.ieee.org/document/9408192).
-* **VLSI**
-    * **Hammer**: E. Wang, et al., *ISQED'20*. [PDF](https://www.isqed.org/English/Archives/2020/Technical_Sessions/113.html).
-    * **Hammer**: H. Liew, et al., *DAC'22*. [PDF](https://dl.acm.org/doi/abs/10.1145/3489517.3530672).
-
-## Acknowledgements
-
-This work is supported by the NSF CCRI ENS Chipyard Award #2016662.
-
-[hammer]:https://github.com/ucb-bar/hammer
-[firesim]:https://fires.im
-[ucb-bar]: http://bar.eecs.berkeley.edu
-[eecs]: https://eecs.berkeley.edu
-[berkeley]: https://berkeley.edu
-[riscv]: https://riscv.org/
-[rocket-chip]: https://github.com/freechipsproject/rocket-chip
-[boom]: https://github.com/riscv-boom/riscv-boom
-[firemarshal]: https://github.com/firesim/FireMarshal/
-[cva6]: https://github.com/openhwgroup/cva6/
-[gemmini]: https://github.com/ucb-bar/gemmini
-[nvdla]: http://nvdla.org/
-[saturn]: https://github.com/ucb-bar/saturn-vectors
-[ara]: https://github.com/pulp-platform/ara
+기반 sourcehistory/license 는원본 Chipyard 그대로보존합니다.새`tiny-npu/`코드는 Apache-2.0 입니다.기존 submodulelicense 는각프로젝트를따릅니다. GitHub 원격생성은현재연결의권한오류로미완료이며로컬작업·bundle 을보존합니다.

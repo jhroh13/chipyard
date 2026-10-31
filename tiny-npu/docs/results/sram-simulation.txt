@@ -1,0 +1,2 @@
+SRAM_PASS comparisons=128 width=256 port=1R1W read_latency=1 same_address=write_first
+- sim/tb_sram.sv:32: Verilog $finish

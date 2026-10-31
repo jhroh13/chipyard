@@ -71,6 +71,7 @@ add_link_options(-T ${LINKER_SCRIPT})
 add_executable(pwm pwm.c)
 add_executable(blkdev blkdev.c)
 add_executable(accum accum.c)
+add_executable(quad-rocc quad-rocc.c)
 add_executable(charcount charcount.c)
 add_executable(cpp-hello cpp-hello.cpp)
 target_link_libraries(cpp-hello PRIVATE
@@ -100,7 +101,7 @@ add_executable(triple-chiplet triple-chiplet.c)
 # shipped by the conda toolchain.  Keep cpp-hello on its separate full-libc
 # path.
 set(NANO_TEST_TARGETS
-    pwm blkdev accum charcount nic-loopback big-blkdev pingd
+    pwm blkdev accum quad-rocc charcount nic-loopback big-blkdev pingd
     streaming-passthrough streaming-fir nvdla spiflashread spiflashwrite
     fft gcd hello mt-hello symmetric ctc-test multi-ctc-test triple-chiplet)
 foreach(target IN LISTS NANO_TEST_TARGETS)
@@ -132,6 +133,7 @@ endfunction()
 add_dump_target(pwm)
 add_dump_target(blkdev)
 add_dump_target(accum)
+add_dump_target(quad-rocc)
 add_dump_target(charcount)
 add_dump_target(cpp-hello)
 add_dump_target(nic-loopback)

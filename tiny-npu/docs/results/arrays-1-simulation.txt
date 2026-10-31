@@ -1,0 +1,14 @@
+PASS case=0 arrays=1 elements=1024
+PASS case=1 arrays=1 elements=1024
+PASS case=2 arrays=1 elements=1024
+PASS case=3 arrays=1 elements=1024
+PASS case=4 arrays=1 elements=1024
+PASS case=5 arrays=1 elements=1024
+PASS case=6 arrays=1 elements=1024
+PASS case=7 arrays=1 elements=1024
+PASS case=8 arrays=1 elements=1024
+PASS case=9 arrays=1 elements=1024
+PASS case=10 arrays=1 elements=1024
+PASS case=11 arrays=1 elements=1024
+SIM_PASS arrays=1 cases=12 checked=12288 cycles=638 input_II=32 output_II=32 input_stalls=116 output_stalls=220
+- /workspace/TINY-NPU/tiny-npu/sim/tb_matmul.sv:86: Verilog $finish

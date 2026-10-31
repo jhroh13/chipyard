@@ -1,0 +1,5 @@
+{
+  "rtl/tiny_npu_mxfp4_matmul.sv": "5064058c3d3d2eebe0936321873221d04164ee01f0625f1dff583e94488cb963",
+  "rtl/tiny_npu_fp32_from_scaled_int.sv": "5f46761f87786ac5aebfe430ba0573b84ca4ae0bfc00fdd3afd63b37c3dac3ac",
+  "rtl/tiny_npu_sram_bank.sv": "74d45a6a2e360bae13f841ad51932799bf5841c61dd755354766ed1cd3d13d01"
+}
