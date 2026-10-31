@@ -93,9 +93,9 @@ def main():
     sweep=[run(608,320,4096,replace(cfg,arrays=a,dram_bytes_s=bw*1e9))
            for a in (1,2,5) for bw in (5,10,20,40,80,160)]
     with (root/'results.csv').open('w',newline='') as f:
-        w=csv.DictWriter(f,fieldnames=rows[0].keys());w.writeheader();w.writerows(rows)
+        w=csv.DictWriter(f,fieldnames=rows[0].keys(),lineterminator="\n");w.writeheader();w.writerows(rows)
     with (root/'sweep.csv').open('w',newline='') as f:
-        w=csv.DictWriter(f,fieldnames=sweep[0].keys());w.writeheader();w.writerows(sweep)
+        w=csv.DictWriter(f,fieldnames=sweep[0].keys(),lineterminator="\n");w.writeheader();w.writerows(sweep)
     cap_outputs=cfg.c_bytes/4
     ai_limit=math.sqrt(cap_outputs/((17/32)*(33/32)))
     payload={'config':asdict(cfg),'cases':rows,'sweep':sweep,

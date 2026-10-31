@@ -89,7 +89,7 @@ def main():
             assert size/t/1e9>=p['DMA_PAYLOAD_TARGET_GBS']*.995
     for name,data in [('spec_results',rows),('spec_mo_sweep',mos),('spec_streams',streams)]:
         with (ROOT/(name+'.csv')).open('w',newline='') as f:
-            w=csv.DictWriter(f,fieldnames=data[0].keys());w.writeheader();w.writerows(data)
+            w=csv.DictWriter(f,fieldnames=data[0].keys(),lineterminator="\n");w.writeheader();w.writerows(data)
     (ROOT/'profiles.json').write_text(json.dumps(profiles,indent=2))
     (ROOT/'spec_results.json').write_text(json.dumps(dict(profiles=profiles,workloads=rows,streams=streams,mo_sweep=mos),indent=2))
     for p in profiles.values():

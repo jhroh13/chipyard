@@ -53,6 +53,12 @@ def main():
     (ROOT/'p0_profiles.json').write_text(json.dumps(profiles,indent=2))
     (ROOT/'p0_results.json').write_text(json.dumps(rows,indent=2))
     with (ROOT/'p0_results.csv').open('w',newline='') as f:
-        w=csv.DictWriter(f,fieldnames=rows[0].keys());w.writeheader();w.writerows(rows)
+        w=csv.DictWriter(f,fieldnames=rows[0].keys(),lineterminator="\n");w.writeheader();w.writerows(rows)
+    configs=ROOT.parent/'configs';configs.mkdir(exist_ok=True)
+    all_profiles={str(s):profile(s) for s in (1,2,4)}
+    (configs/'p0_profiles.json').write_text(json.dumps(all_profiles,indent=2))
+    with (configs/'p0_parameters.csv').open('w',newline='') as f:
+        w=csv.writer(f,lineterminator="\n");w.writerow(['Parameter','default_x1','x2','x4'])
+        for key in all_profiles['1']:w.writerow([key,all_profiles['1'][key],all_profiles['2'][key],all_profiles['4'][key]])
     print('P0 model/reference-workload checks: PASS (not RTL sustained-performance proof)')
 if __name__=='__main__':main()

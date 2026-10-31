@@ -80,7 +80,7 @@ def main():
                            full_burst_occupancy_bound_GBs=min(6.,mo*2048/(700e-9+2048/6e9)/1e9)))
     for name,data in [('latency_results',rows),('mo_sweep',sweep),('stream_bw',stream)]:
         with (root/(name+'.csv')).open('w',newline='') as f:
-            w=csv.DictWriter(f,fieldnames=data[0].keys());w.writeheader();w.writerows(data)
+            w=csv.DictWriter(f,fieldnames=data[0].keys(),lineterminator="\n");w.writeheader();w.writerows(data)
     # Verify one-tile traffic incl. two scale streams, and finite-MO serialization.
     assert rows[0]['read_bytes']==1600 and rows[0]['write_bytes']==4096
     assert stream[0]['sustained_read_GBs']<2.0
