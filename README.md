@@ -1,5 +1,7 @@
 # TINY NPU
 
+개발 위치: [jhroh13/chipyard의 tiny-npu 브랜치](https://github.com/jhroh13/chipyard/tree/tiny-npu).
+
 Chipyard 기반 **MXFP4 × OCP MXINT8** matmul accelerator 연구·개발 환경입니다.
 
 **필수 설계 목표(P0): 지속 10 useful TOPS 이상**, 기본 설계 구성은 20.48 TOPS peak / 8 MiB local SRAM / 유효 20 GB/s DMA 입니다. 이전 2MiB·10GB/s 구성은 이 P0 를 충족하지 못해 보존용으로 구분했습니다.
@@ -33,4 +35,4 @@ make test                            # 1/5/10 arrays, bit-exact
 
 `model/p0_model.py --scale 1/2/4`와`tools/generate_rtl.py --scale 1/2/4`로확장할수있습니다.전체 memory/AXI 프로파일이현재 compute-onlyRTL 에연결됐다는뜻은아닙니다.
 
-기반 sourcehistory/license 는원본 Chipyard 그대로보존합니다.새`tiny-npu/`코드는 Apache-2.0 입니다.기존 submodulelicense 는각프로젝트를따릅니다. GitHub 원격생성은현재연결의권한오류로미완료이며로컬작업·bundle 을보존합니다.
+기반 sourcehistory/license 는원본 Chipyard 그대로보존합니다.새`tiny-npu/`코드는 Apache-2.0 입니다.기존 submodulelicense 는각프로젝트를따릅니다. 개발은 기존 `jhroh13/chipyard`의 `tiny-npu` 브랜치에서 진행하며, 원본 작업과 Git 이력을 보존합니다.

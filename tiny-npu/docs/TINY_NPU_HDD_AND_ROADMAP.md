@@ -228,14 +228,14 @@ make test        # 1/5/10arraysK32 기능테스트
 
 같은 cloudinstance 의설치된 toolchain 을재사용한다.새 machine 에서는`toolchain.yaml`로 conda 환경을만들고 Verilator5.022/Python/GNUmake/C++compiler 를준비한다.Chipyardfull-SoC 작업에는별도로 pinnedsubmodules 및공식 toolchainsetup 이필요하다.
 
-GitHubAPI 는계정조회와기존 repo 읽기는가능하지만 createRepository 가`Resource not accessible by integration`으로거부되었다.따라서원격`jhroh13/TINY-NPU`생성·push 는완료로표기하지않는다.빈 repo 생성권한이있는 GitHub 연결후`tiny-npu/scripts/publish.sh`로 non-forcepush 한다.사용자에게 token 값을채팅으로요청하거나기존인증을추출하지않는다.
+개발 원격은 기존 `jhroh13/chipyard`, 브랜치는 `tiny-npu`로 통일한다. 로컬 `/workspace/TINY-NPU`의 기존 커밋을 그대로 유지하고 origin을 기존 Chipyard로 연결했다. 원본 `/workspace/chipyard`의 `work` 브랜치와 미커밋 변경은 보존한다. `tiny-npu/scripts/publish.sh`는 이 브랜치만 non-force push하며 `main`은 변경하지 않는다. 새 저장소 생성 권한은 필요하지 않다.
 
 ## 11. 남은 공동 결정 / 실행 필요사항
 
 - P0 설계 예산 20.48TOPSpeak/8MiB/유효 20GB/s 의실제공정·메모리자원확정.기존 2MiB/10GB/s 유지시별도아키텍처탐색이필요하다.
 - P0 대표 GEMM  외 추가 실사용 shape 와 batch/LLMprefill/decode 서비스목표확정.
 - SRAMcompiler/FP32IP/공정 PPA 예산,DRAMcontroller·QoS·포트수확정.
-- GitHubintegration 의 repo 생성권한또는빈 TINY-NPUrepo 제공.
+- 원격 개발 위치: https://github.com/jhroh13/chipyard/tree/tiny-npu . 별도 저장소 생성은 하지 않는다.
 - R2→R5 구현전까지지속 10TOPS 실증완료라고표기하지않는다.
 
 ## 12. 현재 결과와 재현 산출물
