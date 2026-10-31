@@ -1,0 +1,145 @@
+python3 sim/run_extended.py --arrays 1 2 10
+FP32_ADD_PASS comparisons=20000 cycles=31906 pipeline_stages=4
+- /workspace/TINY-NPU/tiny-npu/sim/tb_fp32_add.sv:35: Verilog $finish
+
+C_HAZARD_PASS results=3 blocked_cycles=20 cycles=32
+- /workspace/TINY-NPU/tiny-npu/sim/tb_c_hazard.sv:34: Verilog $finish
+
+DMA_FRONTEND_PASS bursts=3 boundary_split=1 byte_credit_stall=1 recycle=1 invalid_retire=1
+- /workspace/TINY-NPU/tiny-npu/sim/tb_dma_frontend.sv:57: Verilog $finish
+
+PASS job=0 K=32 arrays=1
+PASS job=1 K=64 arrays=1
+PASS job=2 K=128 arrays=1
+PASS job=3 K=4096 arrays=1
+PASS job=4 K=64 arrays=1
+PASS job=5 K=64 arrays=1
+PASS job=6 K=64 arrays=1
+PASS job=7 K=64 arrays=1
+GEMM_PASS arrays=1 jobs=8 comparisons=8192 cycles=6614
+- /workspace/TINY-NPU/tiny-npu/sim/tb_gemm.sv:47: Verilog $finish
+
+PASS job=0 K=32 arrays=2
+PASS job=1 K=64 arrays=2
+PASS job=2 K=128 arrays=2
+PASS job=3 K=4096 arrays=2
+PASS job=4 K=64 arrays=2
+PASS job=5 K=64 arrays=2
+PASS job=6 K=64 arrays=2
+PASS job=7 K=64 arrays=2
+GEMM_PASS arrays=2 jobs=8 comparisons=16384 cycles=6614
+- /workspace/TINY-NPU/tiny-npu/sim/tb_gemm.sv:47: Verilog $finish
+
+PASS job=0 K=32 arrays=10
+PASS job=1 K=64 arrays=10
+PASS job=2 K=128 arrays=10
+PASS job=3 K=4096 arrays=10
+PASS job=4 K=64 arrays=10
+PASS job=5 K=64 arrays=10
+PASS job=6 K=64 arrays=10
+PASS job=7 K=64 arrays=10
+GEMM_PASS arrays=10 jobs=8 comparisons=81920 cycles=6614
+- /workspace/TINY-NPU/tiny-npu/sim/tb_gemm.sv:47: Verilog $finish
+
+[
+  {
+    "test": "fp32_add",
+    "comparisons": 20000,
+    "status": "PASS",
+    "seed": 20261102
+  },
+  {
+    "test": "C_same_row_RMW_hazard",
+    "comparisons": 3,
+    "status": "PASS"
+  },
+  {
+    "test": "DMA_request_planner_and_byte_credits",
+    "status": "PASS",
+    "scope": "Not an AXI master or full DMA engine"
+  },
+  {
+    "test": "gemm_stream",
+    "arrays": 1,
+    "jobs": [
+      "K32",
+      "K64_variable_scale",
+      "K128",
+      "K4096",
+      "cancellation",
+      "NaN",
+      "Inf_minus_Inf",
+      "subnormal"
+    ],
+    "K_values": [
+      32,
+      64,
+      128,
+      4096,
+      64,
+      64,
+      64,
+      64
+    ],
+    "comparisons": 8192,
+    "status": "PASS",
+    "seed": 20261103,
+    "scope": "Stream-fed compute + C SRAM; no AXI DMA/RoCC or sustained TOPS proof"
+  },
+  {
+    "test": "gemm_stream",
+    "arrays": 2,
+    "jobs": [
+      "K32",
+      "K64_variable_scale",
+      "K128",
+      "K4096",
+      "cancellation",
+      "NaN",
+      "Inf_minus_Inf",
+      "subnormal"
+    ],
+    "K_values": [
+      32,
+      64,
+      128,
+      4096,
+      64,
+      64,
+      64,
+      64
+    ],
+    "comparisons": 16384,
+    "status": "PASS",
+    "seed": 20261103,
+    "scope": "Stream-fed compute + C SRAM; no AXI DMA/RoCC or sustained TOPS proof"
+  },
+  {
+    "test": "gemm_stream",
+    "arrays": 10,
+    "jobs": [
+      "K32",
+      "K64_variable_scale",
+      "K128",
+      "K4096",
+      "cancellation",
+      "NaN",
+      "Inf_minus_Inf",
+      "subnormal"
+    ],
+    "K_values": [
+      32,
+      64,
+      128,
+      4096,
+      64,
+      64,
+      64,
+      64
+    ],
+    "comparisons": 81920,
+    "status": "PASS",
+    "seed": 20261103,
+    "scope": "Stream-fed compute + C SRAM; no AXI DMA/RoCC or sustained TOPS proof"
+  }
+]

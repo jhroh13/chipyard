@@ -1,0 +1,174 @@
+{
+  "repository": "jhroh13/chipyard",
+  "branch": "tiny-npu",
+  "tested_commit": "92fc2df05e5ae3632fe1d05ff074c9ad0e01d35c",
+  "timestamp_kst": "2026-11-01T07:47:47.361208+09:00",
+  "working_directory": "/workspace/TINY-NPU",
+  "R1": [
+    {
+      "arrays": 1,
+      "cases": 12,
+      "checked": 12288,
+      "cycles": 638,
+      "input_II": 32,
+      "output_II": 32,
+      "input_stalls": 116,
+      "output_stalls": 220,
+      "status": "PASS",
+      "seed": 20261101,
+      "wall_seconds": 0.098,
+      "simulator": "Verilator 5.022 2024-02-24 rev conda-forge build 1",
+      "comparison": "bit-exact FP32 against independent Python integer-dot/IEEE-pack model",
+      "scope": "K=32 tile engine only; no DMA/RoCC/LLM/SDF"
+    },
+    {
+      "arrays": 5,
+      "cases": 12,
+      "checked": 61440,
+      "cycles": 638,
+      "input_II": 32,
+      "output_II": 32,
+      "input_stalls": 116,
+      "output_stalls": 220,
+      "status": "PASS",
+      "seed": 20261101,
+      "wall_seconds": 0.25,
+      "simulator": "Verilator 5.022 2024-02-24 rev conda-forge build 1",
+      "comparison": "bit-exact FP32 against independent Python integer-dot/IEEE-pack model",
+      "scope": "K=32 tile engine only; no DMA/RoCC/LLM/SDF"
+    },
+    {
+      "arrays": 10,
+      "cases": 12,
+      "checked": 122880,
+      "cycles": 638,
+      "input_II": 32,
+      "output_II": 32,
+      "input_stalls": 116,
+      "output_stalls": 220,
+      "status": "PASS",
+      "seed": 20261101,
+      "wall_seconds": 0.475,
+      "simulator": "Verilator 5.022 2024-02-24 rev conda-forge build 1",
+      "comparison": "bit-exact FP32 against independent Python integer-dot/IEEE-pack model",
+      "scope": "K=32 tile engine only; no DMA/RoCC/LLM/SDF"
+    }
+  ],
+  "R2": [
+    {
+      "test": "fp32_add",
+      "comparisons": 20000,
+      "status": "PASS",
+      "seed": 20261102
+    },
+    {
+      "test": "C_same_row_RMW_hazard",
+      "comparisons": 3,
+      "status": "PASS"
+    },
+    {
+      "test": "DMA_request_planner_and_byte_credits",
+      "status": "PASS",
+      "scope": "Not an AXI master or full DMA engine"
+    },
+    {
+      "test": "gemm_stream",
+      "arrays": 1,
+      "jobs": [
+        "K32",
+        "K64_variable_scale",
+        "K128",
+        "K4096",
+        "cancellation",
+        "NaN",
+        "Inf_minus_Inf",
+        "subnormal"
+      ],
+      "K_values": [
+        32,
+        64,
+        128,
+        4096,
+        64,
+        64,
+        64,
+        64
+      ],
+      "comparisons": 8192,
+      "status": "PASS",
+      "seed": 20261103,
+      "scope": "Stream-fed compute + C SRAM; no AXI DMA/RoCC or sustained TOPS proof"
+    },
+    {
+      "test": "gemm_stream",
+      "arrays": 2,
+      "jobs": [
+        "K32",
+        "K64_variable_scale",
+        "K128",
+        "K4096",
+        "cancellation",
+        "NaN",
+        "Inf_minus_Inf",
+        "subnormal"
+      ],
+      "K_values": [
+        32,
+        64,
+        128,
+        4096,
+        64,
+        64,
+        64,
+        64
+      ],
+      "comparisons": 16384,
+      "status": "PASS",
+      "seed": 20261103,
+      "scope": "Stream-fed compute + C SRAM; no AXI DMA/RoCC or sustained TOPS proof"
+    },
+    {
+      "test": "gemm_stream",
+      "arrays": 10,
+      "jobs": [
+        "K32",
+        "K64_variable_scale",
+        "K128",
+        "K4096",
+        "cancellation",
+        "NaN",
+        "Inf_minus_Inf",
+        "subnormal"
+      ],
+      "K_values": [
+        32,
+        64,
+        128,
+        4096,
+        64,
+        64,
+        64,
+        64
+      ],
+      "comparisons": 81920,
+      "status": "PASS",
+      "seed": 20261103,
+      "scope": "Stream-fed compute + C SRAM; no AXI DMA/RoCC or sustained TOPS proof"
+    }
+  ],
+  "SRAM": {
+    "status": "PASS",
+    "comparisons": 128
+  },
+  "rtl_sha256": {
+    "tiny_npu_mxfp4_matmul.sv": "5064058c3d3d2eebe0936321873221d04164ee01f0625f1dff583e94488cb963",
+    "tiny_npu_dma_burst_planner.sv": "accda82bd7313e4d38aa2954683c09b4e326ccd54584e2294c58a4017ecc6b65",
+    "tiny_npu_dma_read_credits.sv": "086635339485be4ef937d6611c0e18d410de4512e587f4e8b22c9c11e69be4bd",
+    "tiny_npu_gemm_stream.sv": "d95df40969a8fa458ab1048cfb4e8c226cf9955ac214fb0b17caf516e0243fff",
+    "tiny_npu_fp32_from_scaled_int.sv": "5f46761f87786ac5aebfe430ba0573b84ca4ae0bfc00fdd3afd63b37c3dac3ac",
+    "tiny_npu_k_accumulator.sv": "b8f380bd400dffdb1ee3e972046cda7eb9bf8e8b52add6e74a62fca174d8f509",
+    "tiny_npu_sram_bank.sv": "74d45a6a2e360bae13f841ad51932799bf5841c61dd755354766ed1cd3d13d01",
+    "tiny_npu_fp32_add_pipe.sv": "f3de16089afd261d10ff699160c00cc2b757c0a0666feab67f1d142f106be1df"
+  },
+  "sustained_10_TOPS_verified": false
+}

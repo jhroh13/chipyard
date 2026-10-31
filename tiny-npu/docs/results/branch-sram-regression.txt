@@ -1,0 +1,6 @@
+mkdir -p build/sram
+verilator --binary --timing -j 4 --top-module tb_sram --Mdir /workspace/TINY-NPU/tiny-npu/build/sram/obj -o Vtb_sram rtl/tiny_npu_sram_bank.sv sim/tb_sram.sv > build/sram/compile.log 2>&1
+build/sram/obj/Vtb_sram > build/sram/simulation.log 2>&1
+cat build/sram/simulation.log
+SRAM_PASS comparisons=128 width=256 port=1R1W read_latency=1 same_address=write_first
+- sim/tb_sram.sv:32: Verilog $finish
