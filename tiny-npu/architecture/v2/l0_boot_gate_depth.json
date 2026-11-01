@@ -1,0 +1,648 @@
+[
+  {
+    "status": "PASS",
+    "limit": 40,
+    "gate_basis": "two-input AND/OR and NOT; XOR/MUX decomposed",
+    "max_depth": 28,
+    "stage_maxima": {
+      "s2": {
+        "stage": "s2",
+        "cell": "$auto$ff.cc:337:slice$1187",
+        "pin": "D",
+        "depth": 28,
+        "driver": "$abc$3793$blif$3793$1315"
+      },
+      "s1": {
+        "stage": "s1",
+        "cell": "$auto$ff.cc:337:slice$1262",
+        "pin": "D",
+        "depth": 16,
+        "driver": "$abc$3793$blif$3793$1195"
+      },
+      "valid/control": {
+        "stage": "valid/control",
+        "cell": "$auto$ff.cc:337:slice$1503",
+        "pin": "D",
+        "depth": 8,
+        "driver": "$abc$3793$blif$3793$1459"
+      },
+      "s3": {
+        "stage": "s3",
+        "cell": "$auto$ff.cc:337:slice$1364",
+        "pin": "D",
+        "depth": 11,
+        "driver": "$abc$3793$blif$3793$683"
+      },
+      "s4": {
+        "stage": "s4",
+        "cell": "$auto$ff.cc:337:slice$1495",
+        "pin": "D",
+        "depth": 13,
+        "driver": "$abc$3793$blif$3793$317"
+      },
+      "module_outputs": {
+        "stage": "module_outputs",
+        "cell": "req_ready",
+        "pin": "output",
+        "depth": 5,
+        "driver": "$abc$3793$blif$3793$772"
+      }
+    },
+    "worst_path": [
+      {
+        "cell": "$abc$3793$blif$3793$37",
+        "type": "$_NOT_",
+        "depth": 1
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1238",
+        "type": "$_OR_",
+        "depth": 2
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1243",
+        "type": "$_AND_",
+        "depth": 3
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1245",
+        "type": "$_AND_",
+        "depth": 4
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1248",
+        "type": "$_OR_",
+        "depth": 5
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1252",
+        "type": "$_AND_",
+        "depth": 6
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1255",
+        "type": "$_OR_",
+        "depth": 7
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1256",
+        "type": "$_AND_",
+        "depth": 8
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1259",
+        "type": "$_OR_",
+        "depth": 9
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1260",
+        "type": "$_AND_",
+        "depth": 10
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1263",
+        "type": "$_OR_",
+        "depth": 11
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1264",
+        "type": "$_AND_",
+        "depth": 12
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1267",
+        "type": "$_OR_",
+        "depth": 13
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1268",
+        "type": "$_AND_",
+        "depth": 14
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1271",
+        "type": "$_OR_",
+        "depth": 15
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1272",
+        "type": "$_AND_",
+        "depth": 16
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1275",
+        "type": "$_OR_",
+        "depth": 17
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1276",
+        "type": "$_AND_",
+        "depth": 18
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1279",
+        "type": "$_OR_",
+        "depth": 19
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1280",
+        "type": "$_AND_",
+        "depth": 20
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1283",
+        "type": "$_OR_",
+        "depth": 21
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1298",
+        "type": "$_AND_",
+        "depth": 22
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1304",
+        "type": "$_OR_",
+        "depth": 23
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1306",
+        "type": "$_OR_",
+        "depth": 24
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1309",
+        "type": "$_AND_",
+        "depth": 25
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1311",
+        "type": "$_AND_",
+        "depth": 26
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1313",
+        "type": "$_AND_",
+        "depth": 27
+      },
+      {
+        "cell": "$abc$3793$blif$3793$1315",
+        "type": "$_OR_",
+        "depth": 28
+      }
+    ],
+    "bit_cells": 1562,
+    "combinational_gates": 1243,
+    "register_bits": 319,
+    "coverage": "plain-DFF data/clock pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
+    "scale": 1,
+    "parameters": {
+      "ADDR_BITS": 24,
+      "HARTS": 8,
+      "LATENCY": 5,
+      "TOTAL_BYTES": 10485760,
+      "BOOT_BASE": 10223616,
+      "CODE_LIMIT": 10354688
+    },
+    "post_synthesis": {
+      "status": "PASS",
+      "compared_requests": 1448,
+      "coverage": "mapped-gate metadata, full-burst permissions, pre/post commit, invalid hart/length, stalls; randomized regression, not formal equivalence"
+    },
+    "source_sha256": "f4255eb07b071fb38160e1259b38358753d7f4b4d31e1f66eab21299c8925dde",
+    "netlist_sha256": "fed9fe5f600e9b62c1a0dcdb6aef20200a218c33b7945c1c94ee0dc8a2c3ce31"
+  },
+  {
+    "status": "PASS",
+    "limit": 40,
+    "gate_basis": "two-input AND/OR and NOT; XOR/MUX decomposed",
+    "max_depth": 29,
+    "stage_maxima": {
+      "s2": {
+        "stage": "s2",
+        "cell": "$auto$ff.cc:337:slice$1197",
+        "pin": "D",
+        "depth": 29,
+        "driver": "$abc$3907$blif$3907$1351"
+      },
+      "s1": {
+        "stage": "s1",
+        "cell": "$auto$ff.cc:337:slice$1273",
+        "pin": "D",
+        "depth": 16,
+        "driver": "$abc$3907$blif$3907$1230"
+      },
+      "valid/control": {
+        "stage": "valid/control",
+        "cell": "$auto$ff.cc:337:slice$1518",
+        "pin": "D",
+        "depth": 8,
+        "driver": "$abc$3907$blif$3907$1485"
+      },
+      "s3": {
+        "stage": "s3",
+        "cell": "$auto$ff.cc:337:slice$1377",
+        "pin": "D",
+        "depth": 12,
+        "driver": "$abc$3907$blif$3907$707"
+      },
+      "s4": {
+        "stage": "s4",
+        "cell": "$auto$ff.cc:337:slice$1510",
+        "pin": "D",
+        "depth": 13,
+        "driver": "$abc$3907$blif$3907$333"
+      },
+      "module_outputs": {
+        "stage": "module_outputs",
+        "cell": "req_ready",
+        "pin": "output",
+        "depth": 5,
+        "driver": "$abc$3907$blif$3907$801"
+      }
+    },
+    "worst_path": [
+      {
+        "cell": "$abc$3907$blif$3907$40",
+        "type": "$_NOT_",
+        "depth": 1
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1263",
+        "type": "$_OR_",
+        "depth": 2
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1268",
+        "type": "$_AND_",
+        "depth": 3
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1270",
+        "type": "$_AND_",
+        "depth": 4
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1273",
+        "type": "$_OR_",
+        "depth": 5
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1277",
+        "type": "$_AND_",
+        "depth": 6
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1280",
+        "type": "$_OR_",
+        "depth": 7
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1281",
+        "type": "$_AND_",
+        "depth": 8
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1284",
+        "type": "$_OR_",
+        "depth": 9
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1285",
+        "type": "$_AND_",
+        "depth": 10
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1288",
+        "type": "$_OR_",
+        "depth": 11
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1292",
+        "type": "$_AND_",
+        "depth": 12
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1295",
+        "type": "$_OR_",
+        "depth": 13
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1299",
+        "type": "$_AND_",
+        "depth": 14
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1302",
+        "type": "$_OR_",
+        "depth": 15
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1306",
+        "type": "$_AND_",
+        "depth": 16
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1309",
+        "type": "$_OR_",
+        "depth": 17
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1313",
+        "type": "$_AND_",
+        "depth": 18
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1316",
+        "type": "$_OR_",
+        "depth": 19
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1317",
+        "type": "$_AND_",
+        "depth": 20
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1320",
+        "type": "$_OR_",
+        "depth": 21
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1335",
+        "type": "$_AND_",
+        "depth": 22
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1341",
+        "type": "$_OR_",
+        "depth": 23
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1342",
+        "type": "$_AND_",
+        "depth": 24
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1345",
+        "type": "$_OR_",
+        "depth": 25
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1346",
+        "type": "$_AND_",
+        "depth": 26
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1348",
+        "type": "$_AND_",
+        "depth": 27
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1350",
+        "type": "$_AND_",
+        "depth": 28
+      },
+      {
+        "cell": "$abc$3907$blif$3907$1351",
+        "type": "$_OR_",
+        "depth": 29
+      }
+    ],
+    "bit_cells": 1607,
+    "combinational_gates": 1282,
+    "register_bits": 325,
+    "coverage": "plain-DFF data/clock pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
+    "scale": 2,
+    "parameters": {
+      "ADDR_BITS": 25,
+      "HARTS": 8,
+      "LATENCY": 5,
+      "TOTAL_BYTES": 20971520,
+      "BOOT_BASE": 20709376,
+      "CODE_LIMIT": 20840448
+    },
+    "post_synthesis": {
+      "status": "PASS",
+      "compared_requests": 1448,
+      "coverage": "mapped-gate metadata, full-burst permissions, pre/post commit, invalid hart/length, stalls; randomized regression, not formal equivalence"
+    },
+    "source_sha256": "f4255eb07b071fb38160e1259b38358753d7f4b4d31e1f66eab21299c8925dde",
+    "netlist_sha256": "736e90a254b60f917a66ca082820d433fec46cfba66d1c3d308f9c3aa77692e8"
+  },
+  {
+    "status": "PASS",
+    "limit": 40,
+    "gate_basis": "two-input AND/OR and NOT; XOR/MUX decomposed",
+    "max_depth": 29,
+    "stage_maxima": {
+      "s2": {
+        "stage": "s2",
+        "cell": "$auto$ff.cc:337:slice$1207",
+        "pin": "D",
+        "depth": 29,
+        "driver": "$abc$4015$blif$4015$1363"
+      },
+      "s1": {
+        "stage": "s1",
+        "cell": "$auto$ff.cc:337:slice$1284",
+        "pin": "D",
+        "depth": 16,
+        "driver": "$abc$4015$blif$4015$1242"
+      },
+      "valid/control": {
+        "stage": "valid/control",
+        "cell": "$auto$ff.cc:337:slice$1533",
+        "pin": "D",
+        "depth": 8,
+        "driver": "$abc$4015$blif$4015$1497"
+      },
+      "s3": {
+        "stage": "s3",
+        "cell": "$auto$ff.cc:337:slice$1390",
+        "pin": "D",
+        "depth": 13,
+        "driver": "$abc$4015$blif$4015$708"
+      },
+      "s4": {
+        "stage": "s4",
+        "cell": "$auto$ff.cc:337:slice$1525",
+        "pin": "D",
+        "depth": 13,
+        "driver": "$abc$4015$blif$4015$326"
+      },
+      "module_outputs": {
+        "stage": "module_outputs",
+        "cell": "req_ready",
+        "pin": "output",
+        "depth": 5,
+        "driver": "$abc$4015$blif$4015$807"
+      }
+    },
+    "worst_path": [
+      {
+        "cell": "$abc$4015$blif$4015$40",
+        "type": "$_NOT_",
+        "depth": 1
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1275",
+        "type": "$_OR_",
+        "depth": 2
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1280",
+        "type": "$_AND_",
+        "depth": 3
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1282",
+        "type": "$_AND_",
+        "depth": 4
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1285",
+        "type": "$_OR_",
+        "depth": 5
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1289",
+        "type": "$_AND_",
+        "depth": 6
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1292",
+        "type": "$_OR_",
+        "depth": 7
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1293",
+        "type": "$_AND_",
+        "depth": 8
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1296",
+        "type": "$_OR_",
+        "depth": 9
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1297",
+        "type": "$_AND_",
+        "depth": 10
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1300",
+        "type": "$_OR_",
+        "depth": 11
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1304",
+        "type": "$_AND_",
+        "depth": 12
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1307",
+        "type": "$_OR_",
+        "depth": 13
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1311",
+        "type": "$_AND_",
+        "depth": 14
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1314",
+        "type": "$_OR_",
+        "depth": 15
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1318",
+        "type": "$_AND_",
+        "depth": 16
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1321",
+        "type": "$_OR_",
+        "depth": 17
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1325",
+        "type": "$_AND_",
+        "depth": 18
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1328",
+        "type": "$_OR_",
+        "depth": 19
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1329",
+        "type": "$_AND_",
+        "depth": 20
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1332",
+        "type": "$_OR_",
+        "depth": 21
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1347",
+        "type": "$_AND_",
+        "depth": 22
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1353",
+        "type": "$_OR_",
+        "depth": 23
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1354",
+        "type": "$_AND_",
+        "depth": 24
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1357",
+        "type": "$_OR_",
+        "depth": 25
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1358",
+        "type": "$_AND_",
+        "depth": 26
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1360",
+        "type": "$_AND_",
+        "depth": 27
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1362",
+        "type": "$_AND_",
+        "depth": 28
+      },
+      {
+        "cell": "$abc$4015$blif$4015$1363",
+        "type": "$_OR_",
+        "depth": 29
+      }
+    ],
+    "bit_cells": 1625,
+    "combinational_gates": 1294,
+    "register_bits": 331,
+    "coverage": "plain-DFF data/clock pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
+    "scale": 4,
+    "parameters": {
+      "ADDR_BITS": 26,
+      "HARTS": 8,
+      "LATENCY": 5,
+      "TOTAL_BYTES": 41943040,
+      "BOOT_BASE": 41680896,
+      "CODE_LIMIT": 41811968
+    },
+    "post_synthesis": {
+      "status": "PASS",
+      "compared_requests": 1448,
+      "coverage": "mapped-gate metadata, full-burst permissions, pre/post commit, invalid hart/length, stalls; randomized regression, not formal equivalence"
+    },
+    "source_sha256": "f4255eb07b071fb38160e1259b38358753d7f4b4d31e1f66eab21299c8925dde",
+    "netlist_sha256": "e689d742eee7031e5fd4ba81abd1f63d789ceafc430e93a0c271a21cb58269eb"
+  }
+]

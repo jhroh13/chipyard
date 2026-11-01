@@ -36,13 +36,13 @@ def evaluate(mib=None,bank_factor=1.,bw=None,latency=None,slots_policy=None,axi_
  assert all(v>0 for v in (mac_hz,l0_hz,axi_hz,vector_hz,subbank_ii))
  assert 0<conflict_efficiency<=1
  for old in p['L0_REGIONS']:
-  ratio=old['bytes']/p['L0_BYTES']
-  r=dict(old);r['banks']=max(1,int(old['banks']*bank_factor))
+  ratio=old['bytes']/(p['L0_BYTES']-p['L0_BOOT_BYTES']) if old['name']!='boot' else 0
+  r=dict(old);r['banks']=old['banks'] if old['name']=='boot' else max(1,int(old['banks']*bank_factor))
   unit=r['banks']*r['subbanks']*r['width']//8
-  r['depth']=int(total*ratio)//unit;r['bytes']=r['depth']*unit
+  r['depth']=(int((total-p['L0_BOOT_BYTES'])*ratio)//unit) if old['name']!='boot' else old['depth'];r['bytes']=r['depth']*unit
   assert r['depth']>=1
   regions.append(r)
- a,b,c,scratch,meta=regions
+ a,b,c,scratch,meta,boot=regions
  # Conservative shared R+W service contract, distinct from duplex AXI channels.
  raw_axi=axi_ports*p['AXI_DATA_BITS']/8*axi_hz/1e9;available=raw_axi*p['MEM_EFFICIENCY']
  effective=min(bw,available)
@@ -88,7 +88,7 @@ def evaluate(mib=None,bank_factor=1.,bw=None,latency=None,slots_policy=None,axi_
  first_strip_ns=math.ceil(rows_per_strip*n/p['VECTOR_LANES'])*p['VECTOR_ISSUE_II_CYCLES']/vector_hz*1e9+vector_pipe_ns
  base_ns=r['model_us']*1000+setup_ns+output_l0_axi_ns
  ops=2*m*n*k
- return dict(L0_requested_MiB=mib,L0_actual_bytes=p['L0_BYTES'],logical_bank_factor=bank_factor,
+ return dict(L0_requested_MiB=mib,L0_actual_bytes=p['L0_BYTES'],L0_boot_reserved_bytes=boot['bytes'],logical_bank_factor=bank_factor,
    physical_C_subbanks=c['banks']*c['subbanks'],subbank_shared_port_II=subbank_ii,
    bank_conflict_efficiency=conflict_efficiency,path_latency_cycles=max(lat[x] for x in bounds) if latency is None else latency,
    latency_sizing_bound_cycles=bound,slot_policy=slots_policy,register_slots=slots,

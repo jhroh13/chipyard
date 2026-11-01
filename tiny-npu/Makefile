@@ -71,3 +71,16 @@ check-fma-depth:
 test-fma-pipe:
 	$(PYTHON) verification/test_lq16_pipe.py
 	$(PYTHON) verification/test_lq16_pipe_tile.py
+
+.PHONY: test-boot-firmware test-boot-rtl check-boot-depth test-fma-netlist
+test-boot-firmware:
+	$(PYTHON) verification/test_l0_boot_firmware.py --scales 1 2 4
+
+test-boot-rtl:
+	$(PYTHON) verification/test_l0_boot_rtl.py
+
+check-boot-depth:
+	$(PYTHON) synthesis/check_boot_depth.py
+
+test-fma-netlist:
+	$(PYTHON) synthesis/test_fma_netlist.py

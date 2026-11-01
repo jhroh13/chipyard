@@ -849,6 +849,61 @@
     "C_header": true,
     "model_status": "consumed_or_derived"
   },
+  "L0_CPU_BASE_ADDR": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_CODE_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_STACK_BYTES_PER_HART": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_MAILBOX_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_GUARD_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_SRAM_READ_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_HART_RELEASE_CDC_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_TL_RETURN_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_TL_BEAT_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ROCKET_CACHE_BLOCK_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "BOOT_ROM_RESET_VECTOR": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
   "SCALE": {
     "SV_package": true,
     "C_header": true,
@@ -1000,6 +1055,81 @@
     "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
   },
   "META_SUBBANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_OFFSET": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_PAYLOAD_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_CPU_LIMIT_ADDR": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_ENTRY_ADDR": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_CODE_LIMIT_ADDR": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_STACK_BASE_ADDR": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_STACK_LIMIT_ADDR": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_DESCRIPTOR_BASE_ADDR": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_DESCRIPTOR_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_DESCRIPTOR_LIMIT_ADDR": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_MAILBOX_BASE_ADDR": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_MAILBOX_LIMIT_ADDR": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_RESERVED_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BOOT_RAW_SHARED_GBS": {
     "SV_package": true,
     "C_header": true,
     "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"

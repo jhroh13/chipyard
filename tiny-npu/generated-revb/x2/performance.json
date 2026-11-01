@@ -1,9 +1,10 @@
 {
-  "configuration_sha256": "995e931ef2252c76aca8485d1b0b00ed6fb62ed25bff61a197c20cd4e0fd6304",
+  "configuration_sha256": "98a80f190c6732750b5b2807ab928e26d30325165230788feabeb9d208c1c1cc",
   "scope": "planning estimate, not integrated RTL throughput",
   "result": {
     "L0_requested_MiB": 20.0,
     "L0_actual_bytes": 20971520,
+    "L0_boot_reserved_bytes": 262144,
     "logical_bank_factor": 1.0,
     "physical_C_subbanks": 320,
     "subbank_shared_port_II": 1,

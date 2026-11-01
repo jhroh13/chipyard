@@ -1,6 +1,7 @@
 read_verilog -sv rtl/tiny_npu_lq16_fma_proto.sv
 hierarchy -top tiny_npu_lq16_fma_proto
 synth -top tiny_npu_lq16_fma_proto -noabc
+check -assert
 dffunmap
 abc -g AND,OR
 opt_clean

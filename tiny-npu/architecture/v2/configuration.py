@@ -18,7 +18,7 @@ def same_shape(value,template,path):
   require(set(value)==set(template),f'{path}: unknown or missing nested keys')
   for k in template:same_shape(value[k],template[k],f'{path}.{k}')
  if isinstance(template,list) and path=='L0_REGIONS':
-  require(len(value)==5,'L0_REGIONS: five ordered regions required')
+  require(len(value)==6,'L0_REGIONS: six ordered regions including boot required')
   for i,(v,t) in enumerate(zip(value,template)):same_shape(v,t,f'{path}[{i}]')
 
 def validate_schema(value,schema,path='config'):
@@ -123,17 +123,39 @@ def load_profile(scale=1,cores=None,overrides=None,config_path=None):
   require(p['SLOT_SIZING_POLICY']=='FIXED32' or p[name+'_SLOTS']>=minimum,f'{name}: slots cannot hide configured credit RTT')
  require(p['LOCAL_MAX_INFLIGHT_VECTORS']<=2**p['LOCAL_VECTOR_ID_BITS'],'Local vector ID space smaller than in-flight limit')
  require(p['LOCAL_MAX_INFLIGHT_VECTORS']>=max(lat[k] for k in ('SRCA','SRCB','SRCC','TARGETR')),'In-flight vectors cannot cover II1 path latency; increase limit and ID width')
- regions=p['L0_REGIONS'];expected=['A','B','C','scratch','scale_metadata']
+ regions=p['L0_REGIONS'];expected=['A','B','C','scratch','scale_metadata','boot']
  for r,name in zip(regions,expected):
-  require(r['name']==name,'L0 regions must be A,B,C,scratch,scale_metadata in order')
+  require(r['name']==name,'L0 regions must be A,B,C,scratch,scale_metadata,boot in order')
   require(all(type(r[k]) is int and r[k]>0 for k in ('banks','subbanks','width','depth')),f'{name}: invalid SRAM geometry')
   require(r['width']==(128 if name=='scale_metadata' else 256),f'{name}: unsupported SRAM width')
   r['bytes']=r['banks']*r['subbanks']*r['width']//8*r['depth']
   r['physical_macros']=r['banks']*r['subbanks']
   r['combined_RW_GBs_at_1GHz']=r['physical_macros']*r['width']/8
- a,b,c,s,meta=regions
+ a,b,c,s,meta,boot=regions
  p.update(L0_BYTES=sum(r['bytes'] for r in regions),OPERAND_BYTES=a['bytes']+b['bytes'],C_BYTES=c['bytes'],PARTIAL_BYTES=s['bytes'],META_BYTES=meta['bytes'],OPERAND_BANKS=a['banks']+b['banks'],C_BANKS=c['banks'],PARTIAL_BANKS=s['banks'],META_BANKS=meta['banks'],MAIN_BANK_BITS=256,META_BANK_BITS=128,OPERAND_BANK_DEPTH=a['depth'],C_BANK_DEPTH=c['depth'],PARTIAL_BANK_DEPTH=s['depth'],META_BANK_DEPTH=meta['depth'])
  for name,r in zip(('A','B','C','SCRATCH','META'),regions):p[name+'_SUBBANKS']=r['subbanks']
+ p['L0_BOOT_BYTES']=boot['bytes'];p['L0_BOOT_OFFSET']=p['L0_BYTES']-boot['bytes'];p['L0_PAYLOAD_BYTES']=p['L0_BOOT_OFFSET']
+ require(p['L0_CPU_BASE_ADDR']%4096==0,'CPU L0 window must be page aligned')
+ require(p['L0_CPU_BASE_ADDR']+p['L0_BYTES']<=2**p['AXI_ADDR_BITS'],'CPU L0 window exceeds address width')
+ for key in ('L0_BOOT_CODE_BYTES','L0_BOOT_STACK_BYTES_PER_HART','L0_BOOT_MAILBOX_BYTES'):
+  require(p[key]>0 and p[key]%4096==0,f'{key}: positive4KiB multiple required')
+ require(p['L0_BOOT_GUARD_CYCLES']>=5 and p['L0_BOOT_SRAM_READ_CYCLES']>=1,'Boot protection/read path latency too short')
+ require(p['L0_BOOT_TL_BEAT_BYTES'] in (8,16,32),'Unsupported boot TL beat width')
+ require(p['ROCKET_CACHE_BLOCK_BYTES']>=p['L0_BOOT_TL_BEAT_BYTES'] and p['ROCKET_CACHE_BLOCK_BYTES']&(p['ROCKET_CACHE_BLOCK_BYTES']-1)==0,'Invalid cache-line bytes')
+ p['L0_CPU_LIMIT_ADDR']=p['L0_CPU_BASE_ADDR']+p['L0_BYTES']
+ p['L0_BOOT_ENTRY_ADDR']=p['L0_CPU_BASE_ADDR']+p['L0_BOOT_OFFSET']
+ p['L0_BOOT_CODE_LIMIT_ADDR']=p['L0_BOOT_ENTRY_ADDR']+p['L0_BOOT_CODE_BYTES']
+ p['L0_BOOT_STACK_BASE_ADDR']=p['L0_BOOT_CODE_LIMIT_ADDR']
+ p['L0_BOOT_STACK_LIMIT_ADDR']=p['L0_BOOT_STACK_BASE_ADDR']+p['ROCKET_CORES']*p['L0_BOOT_STACK_BYTES_PER_HART']
+ p['L0_BOOT_DESCRIPTOR_BASE_ADDR']=p['L0_BOOT_STACK_LIMIT_ADDR']
+ p['L0_BOOT_DESCRIPTOR_BYTES']=p['ROLE_COUNT']*p['COMMAND_QUEUE_DEPTH']*p['DESCRIPTOR_BYTES']
+ p['L0_BOOT_DESCRIPTOR_LIMIT_ADDR']=p['L0_BOOT_DESCRIPTOR_BASE_ADDR']+p['L0_BOOT_DESCRIPTOR_BYTES']
+ p['L0_BOOT_MAILBOX_BASE_ADDR']=p['L0_BOOT_DESCRIPTOR_LIMIT_ADDR']
+ p['L0_BOOT_MAILBOX_LIMIT_ADDR']=p['L0_BOOT_MAILBOX_BASE_ADDR']+p['L0_BOOT_MAILBOX_BYTES']
+ require(p['L0_BOOT_MAILBOX_LIMIT_ADDR']<=p['L0_CPU_LIMIT_ADDR'],'Boot code/stack/descriptor/mailbox do not fit boot reservation')
+ require(p['L0_BOOT_MAILBOX_BYTES']>=64*(p['ROCKET_CORES']+1),'Mailbox too small for per-hart records')
+ p['L0_BOOT_RESERVED_BYTES']=p['L0_CPU_LIMIT_ADDR']-p['L0_BOOT_MAILBOX_LIMIT_ADDR']
+ p['L0_BOOT_RAW_SHARED_GBS']=boot['physical_macros']*boot['width']/8*p['L0_CLOCK_HZ']/1e9
  p['SRAM_TOTAL_BYTES']=p['L0_BYTES'];p['L0_ADDRESS_BITS']=max(1,(p['L0_BYTES']-1).bit_length())
  require(p['L0_BYTES']<=2**p['AXI_ADDR_BITS'],'L0 exceeds address space')
  p['L0_TOTAL_SUBBANKS']=sum(r['physical_macros'] for r in regions);p['L0_TOTAL_BANKS']=sum(r['banks'] for r in regions)

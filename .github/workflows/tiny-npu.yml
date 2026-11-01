@@ -55,12 +55,18 @@ jobs:
       - name: Install pinned generic synthesis tools
         run: python -m pip install --target tiny-npu/build/synth-tools -r tiny-npu/synthesis/requirements.txt
       - name: Enforce 40 basic gates per register stage
-        run: make -C tiny-npu check-fma-depth
+        run: |
+          make -C tiny-npu check-fma-depth
+          make -C tiny-npu test-fma-netlist
+          make -C tiny-npu check-boot-depth
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: tiny-npu-fma-gate-depth
           path: |
             tiny-npu/architecture/v2/fma_gate_depth.json
+            tiny-npu/architecture/v2/fma_netlist_tests.json
+            tiny-npu/architecture/v2/l0_boot_gate_depth.json
+            tiny-npu/build/boot-guard-depth-*/synth.log
             tiny-npu/build/synthesis-pipe/**/depth.json
             tiny-npu/build/synthesis-pipe/**/synth.log

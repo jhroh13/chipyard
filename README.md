@@ -6,6 +6,7 @@ Chipyard 기반 **MXFP4 × OCP MXINT8** matmul accelerator 연구·개발 환경
 
 **필수 설계 목표(P0): 지속 10 useful TOPS 이상.** 최신 RevB 계획은 8 Rocket / 10 MiB single-port L0 / 20.48 TOPS peak / 유효 20 GB/s DMA입니다. 내부 LQ16·선택 TF32, TF32 TARGETR를 사용합니다. 경로별 가변 multicycle latency와 II·credit을 구분합니다. 기존 4-core/FP32 R2 RTL 및 8 MiB 모델은 이전 구현으로 보존합니다.
 
+- [L0 boot: 8-hart firmware·접근 보호·다중 사이클 검증](tiny-npu/architecture/v2/L0_BOOT_REPORT.md)
 - [최신 FMA pipeline·40-gate 검증](tiny-npu/architecture/v2/FMA_PIPELINE_REPORT.md)
 - [Workload waveform·bubble·DRAM·합성 검증](tiny-npu/architecture/v2/WORKLOAD_VERIFICATION.md) · [실행 결과와 판단](tiny-npu/architecture/v2/WORKLOAD_REPORT.md)
 - [순서별 Job List](tiny-npu/architecture/v2/JOB_LIST.md) · [Job 1 설정 생성 체계](tiny-npu/architecture/v2/CONFIGURATION_GENERATION.md)

@@ -1,7 +1,16 @@
 {
   "address_space": "NPU_LOCAL_BYTE_OFFSET",
-  "cpu_mmio_base": null,
-  "AXI_system_mapping": "integration_pending",
+  "cpu_mmio_base": 1610612736,
+  "AXI_system_mapping": "CPU_TL_mapping_planned_not_integrated",
+  "boot": {
+    "entry": 1620836352,
+    "code_limit": 1620967424,
+    "stack_base": 1620967424,
+    "descriptor_base": 1621032960,
+    "mailbox_base": 1621065728,
+    "limit": 1621098496,
+    "policy": "loader-before-commit; code RX; CPU/control RW; no NPU payload access"
+  },
   "L0_bytes": 10485760,
   "bounds_check_required": true,
   "regions": [
@@ -38,21 +47,31 @@
     {
       "name": "scratch",
       "base": 8388608,
-      "size_bytes": 1048576,
-      "limit_exclusive": 9437184,
+      "size_bytes": 786432,
+      "limit_exclusive": 9175040,
       "logical_banks": 32,
       "subbanks_per_bank": 2,
       "word_bytes": 32,
-      "depth": 512
+      "depth": 384
     },
     {
       "name": "scale_metadata",
-      "base": 9437184,
+      "base": 9175040,
       "size_bytes": 1048576,
-      "limit_exclusive": 10485760,
+      "limit_exclusive": 10223616,
       "logical_banks": 32,
       "subbanks_per_bank": 2,
       "word_bytes": 16,
+      "depth": 1024
+    },
+    {
+      "name": "boot",
+      "base": 10223616,
+      "size_bytes": 262144,
+      "limit_exclusive": 10485760,
+      "logical_banks": 4,
+      "subbanks_per_bank": 2,
+      "word_bytes": 32,
       "depth": 1024
     }
   ]

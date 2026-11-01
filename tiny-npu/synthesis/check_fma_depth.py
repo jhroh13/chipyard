@@ -22,6 +22,7 @@ def run(latencies=(11,13),reuse=False):
 chparam -set LATENCY {latency} tiny_npu_lq16_fma_pipe
 hierarchy -top tiny_npu_lq16_fma_pipe
 synth -top tiny_npu_lq16_fma_pipe -noabc
+check -assert
 dffunmap
 abc -g AND,OR
 opt_clean

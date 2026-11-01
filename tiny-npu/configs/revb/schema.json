@@ -184,7 +184,18 @@
         "FMA_GATE_BASIS",
         "MAC_FEEDBACK_EXTRA_CYCLES",
         "MAC_OPERAND_READ_CYCLES",
-        "MAC_TARGETR_STORE_CYCLES"
+        "MAC_TARGETR_STORE_CYCLES",
+        "L0_CPU_BASE_ADDR",
+        "L0_BOOT_CODE_BYTES",
+        "L0_BOOT_STACK_BYTES_PER_HART",
+        "L0_BOOT_MAILBOX_BYTES",
+        "L0_BOOT_GUARD_CYCLES",
+        "L0_BOOT_SRAM_READ_CYCLES",
+        "L0_BOOT_HART_RELEASE_CDC_CYCLES",
+        "L0_BOOT_TL_RETURN_CYCLES",
+        "L0_BOOT_TL_BEAT_BYTES",
+        "ROCKET_CACHE_BLOCK_BYTES",
+        "BOOT_ROM_RESET_VECTOR"
       ],
       "properties": {
         "ARRAY_COUNT": {
@@ -830,6 +841,39 @@
           "type": "integer"
         },
         "MAC_TARGETR_STORE_CYCLES": {
+          "type": "integer"
+        },
+        "L0_CPU_BASE_ADDR": {
+          "type": "integer"
+        },
+        "L0_BOOT_CODE_BYTES": {
+          "type": "integer"
+        },
+        "L0_BOOT_STACK_BYTES_PER_HART": {
+          "type": "integer"
+        },
+        "L0_BOOT_MAILBOX_BYTES": {
+          "type": "integer"
+        },
+        "L0_BOOT_GUARD_CYCLES": {
+          "type": "integer"
+        },
+        "L0_BOOT_SRAM_READ_CYCLES": {
+          "type": "integer"
+        },
+        "L0_BOOT_HART_RELEASE_CDC_CYCLES": {
+          "type": "integer"
+        },
+        "L0_BOOT_TL_RETURN_CYCLES": {
+          "type": "integer"
+        },
+        "L0_BOOT_TL_BEAT_BYTES": {
+          "type": "integer"
+        },
+        "ROCKET_CACHE_BLOCK_BYTES": {
+          "type": "integer"
+        },
+        "BOOT_ROM_RESET_VECTOR": {
           "type": "integer"
         }
       }
@@ -1491,6 +1535,39 @@
             },
             "MAC_TARGETR_STORE_CYCLES": {
               "type": "integer"
+            },
+            "L0_CPU_BASE_ADDR": {
+              "type": "integer"
+            },
+            "L0_BOOT_CODE_BYTES": {
+              "type": "integer"
+            },
+            "L0_BOOT_STACK_BYTES_PER_HART": {
+              "type": "integer"
+            },
+            "L0_BOOT_MAILBOX_BYTES": {
+              "type": "integer"
+            },
+            "L0_BOOT_GUARD_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BOOT_SRAM_READ_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BOOT_HART_RELEASE_CDC_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BOOT_TL_RETURN_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BOOT_TL_BEAT_BYTES": {
+              "type": "integer"
+            },
+            "ROCKET_CACHE_BLOCK_BYTES": {
+              "type": "integer"
+            },
+            "BOOT_ROM_RESET_VECTOR": {
+              "type": "integer"
             }
           }
         },
@@ -2141,6 +2218,39 @@
               "type": "integer"
             },
             "MAC_TARGETR_STORE_CYCLES": {
+              "type": "integer"
+            },
+            "L0_CPU_BASE_ADDR": {
+              "type": "integer"
+            },
+            "L0_BOOT_CODE_BYTES": {
+              "type": "integer"
+            },
+            "L0_BOOT_STACK_BYTES_PER_HART": {
+              "type": "integer"
+            },
+            "L0_BOOT_MAILBOX_BYTES": {
+              "type": "integer"
+            },
+            "L0_BOOT_GUARD_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BOOT_SRAM_READ_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BOOT_HART_RELEASE_CDC_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BOOT_TL_RETURN_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BOOT_TL_BEAT_BYTES": {
+              "type": "integer"
+            },
+            "ROCKET_CACHE_BLOCK_BYTES": {
+              "type": "integer"
+            },
+            "BOOT_ROM_RESET_VECTOR": {
               "type": "integer"
             }
           }
@@ -2793,6 +2903,39 @@
             },
             "MAC_TARGETR_STORE_CYCLES": {
               "type": "integer"
+            },
+            "L0_CPU_BASE_ADDR": {
+              "type": "integer"
+            },
+            "L0_BOOT_CODE_BYTES": {
+              "type": "integer"
+            },
+            "L0_BOOT_STACK_BYTES_PER_HART": {
+              "type": "integer"
+            },
+            "L0_BOOT_MAILBOX_BYTES": {
+              "type": "integer"
+            },
+            "L0_BOOT_GUARD_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BOOT_SRAM_READ_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BOOT_HART_RELEASE_CDC_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BOOT_TL_RETURN_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BOOT_TL_BEAT_BYTES": {
+              "type": "integer"
+            },
+            "ROCKET_CACHE_BLOCK_BYTES": {
+              "type": "integer"
+            },
+            "BOOT_ROM_RESET_VECTOR": {
+              "type": "integer"
             }
           }
         }
@@ -3031,7 +3174,18 @@
         "FMA_GATE_BASIS",
         "MAC_FEEDBACK_EXTRA_CYCLES",
         "MAC_OPERAND_READ_CYCLES",
-        "MAC_TARGETR_STORE_CYCLES"
+        "MAC_TARGETR_STORE_CYCLES",
+        "L0_CPU_BASE_ADDR",
+        "L0_BOOT_CODE_BYTES",
+        "L0_BOOT_STACK_BYTES_PER_HART",
+        "L0_BOOT_MAILBOX_BYTES",
+        "L0_BOOT_GUARD_CYCLES",
+        "L0_BOOT_SRAM_READ_CYCLES",
+        "L0_BOOT_HART_RELEASE_CDC_CYCLES",
+        "L0_BOOT_TL_RETURN_CYCLES",
+        "L0_BOOT_TL_BEAT_BYTES",
+        "ROCKET_CACHE_BLOCK_BYTES",
+        "BOOT_ROM_RESET_VECTOR"
       ],
       "properties": {
         "SCALE": {
@@ -6699,6 +6853,182 @@
           }
         },
         "MAC_TARGETR_STORE_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_CPU_BASE_ADDR": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BOOT_CODE_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BOOT_STACK_BYTES_PER_HART": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BOOT_MAILBOX_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BOOT_GUARD_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BOOT_SRAM_READ_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BOOT_HART_RELEASE_CDC_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BOOT_TL_RETURN_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BOOT_TL_BEAT_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ROCKET_CACHE_BLOCK_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "BOOT_ROM_RESET_VECTOR": {
           "type": "object",
           "additionalProperties": false,
           "required": [

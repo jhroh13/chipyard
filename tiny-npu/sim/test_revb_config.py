@@ -58,7 +58,7 @@ def main():
    assert p[key]==old[str(scale)][key],(scale,key)
   assert p['NEAR_MAC_REGFILE_TOTAL_BYTES']==3133440*scale and p['PE_ACC_CONTEXT_BYTES']==245760*scale
   result['profiles'].append({'scale':scale,'L0_bytes':p['L0_BYTES'],'peak_TOPS':p['PEAK_TOPS']})
- invalid=[{'UNKNOWN':1},{'L0_BYTES':123},{'AXI_DATA_BITS':512},{'AXI_ID_BITS':4},{'AXI_MAX_BURST_BEATS':8},
+ invalid=[{'L0_BOOT_CODE_BYTES':1048576},{'L0_CPU_BASE_ADDR':3},{'L0_BOOT_STACK_BYTES_PER_HART':131072},{'UNKNOWN':1},{'L0_BYTES':123},{'AXI_DATA_BITS':512},{'AXI_ID_BITS':4},{'AXI_MAX_BURST_BEATS':8},
   {'DMA_MAX_BURST_BYTES':4097},{'DMA_READ_BUFFER_BYTES':1024},{'AXI_PORTS':0},
   {'MEM_EFFICIENCY':0},{'MEM_EFFICIENCY':1.1},{'ROCKET_CORES':6},{'SRAM_PORT':'1R1W'},
   {'MAC_ACC_CONTEXTS':2},{'PATH_LATENCIES_CYCLES':{'SRCA':-1}},
@@ -117,7 +117,7 @@ def main():
    (dest/'check.c').write_text('#include "tiny_npu_revb_config.h"\n'+
     f'_Static_assert(TINY_NPU_L0_BYTES == {p["L0_BYTES"]},"L0");\n'+
     f'_Static_assert(TINY_NPU_PATH_LATENCIES_CYCLES_SRCA == {p["PATH_LATENCIES_CYCLES"]["SRCA"]},"latency");\n'+
-    f'_Static_assert(TINY_NPU_L0_SCALE_METADATA_LIMIT_EXCLUSIVE == {p["L0_BYTES"]},"end");\n')
+    f'_Static_assert(TINY_NPU_L0_BOOT_LIMIT_EXCLUSIVE == {p["L0_BYTES"]},"end");\n')
    subprocess.run(['cc','-std=c11','-Wall','-Wextra','-Werror','-fsyntax-only','check.c'],cwd=dest,check=True)
    (dest/'tb.sv').write_text(TB)
    cmd=[shutil.which('verilator') or 'verilator','--binary','--timing','-j','2','--top-module','tb_revb_config','-f','rtl.f','tb.sv']

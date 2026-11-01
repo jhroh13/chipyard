@@ -23,3 +23,8 @@ Job 1의 RTL 산출물은 설정 package와 isolated SRAM wrapper이다. 새 MAC
 [Workload 검증 환경](WORKLOAD_VERIFICATION.md)과 [실행 보고](WORKLOAD_REPORT.md)를 추가했다. Monitor/trace 분석, SRAM stall fixture, 새700ns 정의의 AXI model, 초기 generic 합성을 실행했다. 실제 Rocket/새 MAC 전체 연결과 PDK STA는 후속 gate다. 초기 FMA의 긴 조합 경로 때문에 대규모 array 복제보다 arithmetic pipeline 최적화를 우선한다.
 
 최신 [FMA pipeline 결과](FMA_PIPELINE_REPORT.md)는 max40 basic gates를 강제한다.
+
+
+## L0 boot 선행 작업 체크포인트
+
+256KiB 전용 boot/control 영역,5+cycle guard,8-hart RV64 firmware 및5/16·7/32cycle SRAM RTL 테스트를 완료했다. x1/x2/x4 합성 guard는28/29/29 basic gates이며 같은 netlist의 permission/metadata 회귀도 통과했다. 다음은 TL manager와 ROM loader/hart parking을 실제8-Rocket에 연결하고 instruction/cache traffic을 계측하는 작업이다. 상세 범위와 실행 명령은 [L0 boot report](L0_BOOT_REPORT.md)를 참조한다.

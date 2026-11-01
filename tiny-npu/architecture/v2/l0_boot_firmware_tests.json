@@ -1,0 +1,107 @@
+[
+  {
+    "status": "PASS",
+    "scale": 1,
+    "harts": 8,
+    "entry": "0x609c0000",
+    "cpu_window": [
+      "0x60000000",
+      "0x60a00000"
+    ],
+    "code_bytes": 192,
+    "code_reserved_bytes": 131072,
+    "elf_sha256": "f56b0f670b40a691a7943f56d89aaba31192c6c1959a4e9b567ba44c08f21a55",
+    "configuration_sha256": "7b73db6d91ab82473c5205d8120725a1f652c15f0b0278c32479eedb9ffe2e98",
+    "entered_harts": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "instruction_counts": {
+      "0": 5112,
+      "1": 27,
+      "2": 27,
+      "3": 27,
+      "4": 27,
+      "5": 27,
+      "6": 27,
+      "7": 27
+    },
+    "scope": "Spike ISA-only preload test; firmware verifies every hart ID/private stack; not Rocket RTL, cache, TL manager, loader timing, or SRAM permission proof"
+  },
+  {
+    "status": "PASS",
+    "scale": 2,
+    "harts": 8,
+    "entry": "0x613c0000",
+    "cpu_window": [
+      "0x60000000",
+      "0x61400000"
+    ],
+    "code_bytes": 192,
+    "code_reserved_bytes": 131072,
+    "elf_sha256": "281368dc4e576c9406560cd238440b88db2dc5ea6f4cc2a0951591c0c14ac942",
+    "configuration_sha256": "98a80f190c6732750b5b2807ab928e26d30325165230788feabeb9d208c1c1cc",
+    "entered_harts": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "instruction_counts": {
+      "0": 5112,
+      "1": 27,
+      "2": 27,
+      "3": 27,
+      "4": 27,
+      "5": 27,
+      "6": 27,
+      "7": 27
+    },
+    "scope": "Spike ISA-only preload test; firmware verifies every hart ID/private stack; not Rocket RTL, cache, TL manager, loader timing, or SRAM permission proof"
+  },
+  {
+    "status": "PASS",
+    "scale": 4,
+    "harts": 8,
+    "entry": "0x627c0000",
+    "cpu_window": [
+      "0x60000000",
+      "0x62800000"
+    ],
+    "code_bytes": 192,
+    "code_reserved_bytes": 131072,
+    "elf_sha256": "4a56c334b74dc00b37888950de7af92af7e3df8e197878b07955027b985b1301",
+    "configuration_sha256": "8181a3ab681e1b5fe4d18cd64cbb54f9ec6ab76e1d41adbfa4f456f337fc9df3",
+    "entered_harts": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "instruction_counts": {
+      "0": 5112,
+      "1": 27,
+      "2": 27,
+      "3": 27,
+      "4": 27,
+      "5": 27,
+      "6": 27,
+      "7": 27
+    },
+    "scope": "Spike ISA-only preload test; firmware verifies every hart ID/private stack; not Rocket RTL, cache, TL manager, loader timing, or SRAM permission proof"
+  }
+]

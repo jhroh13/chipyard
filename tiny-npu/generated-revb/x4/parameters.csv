@@ -24,6 +24,7 @@ AXI_RAW_GBS,160.0,대역폭GB/s. raw/효율후가용/예약payload를구분.,기
 AXI_STRB_BITS,32,인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.,기본값및파생관계참조;구현지원범위검증
 AXI_USER_BITS,0,인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.,기본값및파생관계참조;구현지원범위검증
 A_SUBBANKS,2,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
+BOOT_ROM_RESET_VECTOR,65536,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
 B_SUBBANKS,2,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
 CDC_AR_DEPTH,64,bank당word깊이. 용량=bank수×depth×width/8.,기본값및파생관계참조;구현지원범위검증
 CDC_AW_DEPTH,64,bank당word깊이. 용량=bank수×depth×width/8.,기본값및파생관계참조;구현지원범위검증
@@ -82,16 +83,40 @@ L0_ADDRESS_BITS,26,인터페이스/데이터비트폭. 연관주소·ID·packing
 L0_ARBITER_PIPE_CYCLES,2,단계별 구현 계획값. 현재 timing 모델은 PATH_LATENCIES_CYCLES의 경로 총지연을 사용하며 이 값을 자동 합산하지 않음.,nonnegative stage planning value; aggregate path latencies configured independently
 L0_ARBITRATION,"""PER_SUBBANK_VOQ_CREDIT""",RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
 L0_BANK_MAPPING,"""WORD_INTERLEAVED""",RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
+L0_BOOT_BYTES,262144,derived; see configuration.py,derived / validated contract
+L0_BOOT_CODE_BYTES,131072,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
+L0_BOOT_CODE_LIMIT_ADDR,1652424704,derived; see configuration.py,derived / validated contract
+L0_BOOT_DESCRIPTOR_BASE_ADDR,1652490240,derived; see configuration.py,derived / validated contract
+L0_BOOT_DESCRIPTOR_BYTES,32768,derived; see configuration.py,derived / validated contract
+L0_BOOT_DESCRIPTOR_LIMIT_ADDR,1652523008,derived; see configuration.py,derived / validated contract
+L0_BOOT_ENTRY_ADDR,1652293632,derived; see configuration.py,derived / validated contract
+L0_BOOT_GUARD_CYCLES,5,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
+L0_BOOT_HART_RELEASE_CDC_CYCLES,2,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
+L0_BOOT_MAILBOX_BASE_ADDR,1652523008,derived; see configuration.py,derived / validated contract
+L0_BOOT_MAILBOX_BYTES,4096,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
+L0_BOOT_MAILBOX_LIMIT_ADDR,1652527104,derived; see configuration.py,derived / validated contract
+L0_BOOT_OFFSET,41680896,derived; see configuration.py,derived / validated contract
+L0_BOOT_RAW_SHARED_GBS,256.0,derived; see configuration.py,derived / validated contract
+L0_BOOT_RESERVED_BYTES,28672,derived; see configuration.py,derived / validated contract
+L0_BOOT_SRAM_READ_CYCLES,16,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
+L0_BOOT_STACK_BASE_ADDR,1652424704,derived; see configuration.py,derived / validated contract
+L0_BOOT_STACK_BYTES_PER_HART,8192,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
+L0_BOOT_STACK_LIMIT_ADDR,1652490240,derived; see configuration.py,derived / validated contract
+L0_BOOT_TL_BEAT_BYTES,8,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
+L0_BOOT_TL_RETURN_CYCLES,2,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
 L0_BYTES,41943040,L0 capacity byte수. Near-register/PE/LUT/FIFO는별도예산.,기본값및파생관계참조;구현지원범위검증
 L0_CLOCK_HZ,1000000000,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
 L0_CONFLICT_EFFICIENCY,0.8,Sub-bank 충돌·중재 실효율. 기본0.8은 trace 검증 전의 계획 가정.,0 < eta <= 1; trace calibration required
+L0_CPU_BASE_ADDR,1610612736,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
+L0_CPU_LIMIT_ADDR,1652555776,derived; see configuration.py,derived / validated contract
 L0_C_READ_GBs_PEAK,5120.0,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
 L0_C_READ_WRITE_PHASE_OFFSET,1,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
 L0_C_WRITE_GBs_PEAK,5120.0,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
 L0_ECC,"""OFF""",RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,"OFF,PARITY,SECDED"
 L0_OPERAND_GBs_PEAK,2000.0,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
+L0_PAYLOAD_BYTES,41680896,derived; see configuration.py,derived / validated contract
 L0_PORTS_PER_SUBBANK,1,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
-L0_REGIONS,"[{""name"": ""A"", ""banks"": 64, ""subbanks"": 2, ""width"": 256, ""depth"": 1024, ""bytes"": 4194304, ""physical_macros"": 128, ""combined_RW_GBs_at_1GHz"": 4096.0}, {""name"": ""B"", ""banks"": 128, ""subbanks"": 2, ""width"": 256, ""depth"": 1024, ""bytes"": 8388608, ""physical_macros"": 256, ""combined_RW_GBs_at_1GHz"": 8192.0}, {""name"": ""C"", ""banks"": 160, ""subbanks"": 4, ""width"": 256, ""depth"": 1024, ""bytes"": 20971520, ""physical_macros"": 640, ""combined_RW_GBs_at_1GHz"": 20480.0}, {""name"": ""scratch"", ""banks"": 128, ""subbanks"": 2, ""width"": 256, ""depth"": 512, ""bytes"": 4194304, ""physical_macros"": 256, ""combined_RW_GBs_at_1GHz"": 8192.0}, {""name"": ""scale_metadata"", ""banks"": 128, ""subbanks"": 2, ""width"": 128, ""depth"": 1024, ""bytes"": 4194304, ""physical_macros"": 256, ""combined_RW_GBs_at_1GHz"": 4096.0}]",A/B/C/scratch/scale의 bank/width/depth/용량; 구조화JSON참조.,기본값및파생관계참조;구현지원범위검증
+L0_REGIONS,"[{""name"": ""A"", ""banks"": 64, ""subbanks"": 2, ""width"": 256, ""depth"": 1024, ""bytes"": 4194304, ""physical_macros"": 128, ""combined_RW_GBs_at_1GHz"": 4096.0}, {""name"": ""B"", ""banks"": 128, ""subbanks"": 2, ""width"": 256, ""depth"": 1024, ""bytes"": 8388608, ""physical_macros"": 256, ""combined_RW_GBs_at_1GHz"": 8192.0}, {""name"": ""C"", ""banks"": 160, ""subbanks"": 4, ""width"": 256, ""depth"": 1024, ""bytes"": 20971520, ""physical_macros"": 640, ""combined_RW_GBs_at_1GHz"": 20480.0}, {""name"": ""scratch"", ""banks"": 128, ""subbanks"": 2, ""width"": 256, ""depth"": 480, ""bytes"": 3932160, ""physical_macros"": 256, ""combined_RW_GBs_at_1GHz"": 8192.0}, {""name"": ""scale_metadata"", ""banks"": 128, ""subbanks"": 2, ""width"": 128, ""depth"": 1024, ""bytes"": 4194304, ""physical_macros"": 256, ""combined_RW_GBs_at_1GHz"": 4096.0}, {""name"": ""boot"", ""banks"": 4, ""subbanks"": 2, ""width"": 256, ""depth"": 1024, ""bytes"": 262144, ""physical_macros"": 8, ""combined_RW_GBs_at_1GHz"": 256.0}]",A/B/C/scratch/scale의 bank/width/depth/용량; 구조화JSON참조.,기본값및파생관계참조;구현지원범위검증
 L0_REGISTER_INGRESS_PIPE_CYCLES,4,단계별 구현 계획값. 현재 timing 모델은 PATH_LATENCIES_CYCLES의 경로 총지연을 사용하며 이 값을 자동 합산하지 않음.,nonnegative stage planning value; aggregate path latencies configured independently
 L0_REG_CREDIT_RTT_CYCLES,34,경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
 L0_REG_LATENCY_ENUM,"[10, 16, 32, 64, 128, 256]",RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
@@ -103,8 +128,8 @@ L0_RETURN_REORDER,true,RevB 구성 또는 파생값. 연관 제약·모델/RTL �
 L0_SIMULTANEOUS_RW_SAME_SUBBANK,false,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
 L0_SRAM_MACRO_READ_CYCLES,2,단계별 구현 계획값. 현재 timing 모델은 PATH_LATENCIES_CYCLES의 경로 총지연을 사용하며 이 값을 자동 합산하지 않음.,nonnegative stage planning value; aggregate path latencies configured independently
 L0_STARVATION_BOUND_CYCLES,32,경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
-L0_TOTAL_BANKS,608,병렬bank수. depth/폭/clock/port와실효BW계산.,기본값및파생관계참조;구현지원범위검증
-L0_TOTAL_SUBBANKS,1536,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
+L0_TOTAL_BANKS,612,병렬bank수. depth/폭/clock/port와실효BW계산.,기본값및파생관계참조;구현지원범위검증
+L0_TOTAL_SUBBANKS,1544,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
 L0_XBAR_PIPE_CYCLES,4,단계별 구현 계획값. 현재 timing 모델은 PATH_LATENCIES_CYCLES의 경로 총지연을 사용하며 이 값을 자동 합산하지 않음.,nonnegative stage planning value; aggregate path latencies configured independently
 LOCAL_BOUNDS_LATENCY_POLICY,"""CREDIT_BACKPRESSURE_NO_DATA_LOSS""",RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
 LOCAL_MAX_INFLIGHT_VECTORS,128,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
@@ -154,8 +179,8 @@ OPERAND_BYTES,12582912,용량(bytes). bank/slot/FIFO주소범위및전체예산�
 P0_MANDATORY,true,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
 PANEL_PIPELINE_OVERHEAD_CYCLES,849,경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.,기본값및파생관계참조;구현지원범위검증
 PARTIAL_BANKS,128,병렬bank수. depth/폭/clock/port와실효BW계산.,기본값및파생관계참조;구현지원범위검증
-PARTIAL_BANK_DEPTH,512,bank당word깊이. 용량=bank수×depth×width/8.,기본값및파생관계참조;구현지원범위검증
-PARTIAL_BYTES,4194304,용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.,기본값및파생관계참조;구현지원범위검증
+PARTIAL_BANK_DEPTH,480,bank당word깊이. 용량=bank수×depth×width/8.,기본값및파생관계참조;구현지원범위검증
+PARTIAL_BYTES,3932160,용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.,기본값및파생관계참조;구현지원범위검증
 PATH_LATENCIES_CYCLES,"{""SRCA"": 16, ""SRCB"": 16, ""SRCC"": 16, ""TARGETR"": 16, ""DMA_L0_COMMIT"": 16, ""L0_AXI_READ"": 16, ""VECTOR_READ"": 16, ""VECTOR_WRITE"": 16, ""TC"": 2, ""OIC"": 2, ""FMA"": 11, ""LUT"": 4, ""FORMAT"": 1, ""AXI_CDC"": 4}",경로별 독립 latency. L0/MAC/vector/AXI domain을 구분해 ns로 환산.,per-path nonnegative integers; independent clocks
 PATH_LATENCY_DOMAIN,"""L0:SRCA/SRCB/SRCC/TARGETR/DMA/VECTOR_READ_WRITE/TC/OIC;MAC:FMA;VECTOR:LUT/FORMAT;AXI:CDC""",RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
 PEAK_GROUP_RATE_PER_SECOND,31250000.0,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
@@ -173,6 +198,7 @@ REG_B_BANKS,32,병렬bank수. depth/폭/clock/port와실효BW계산.,기본값�
 REG_C_BANKS,32,병렬bank수. depth/폭/clock/port와실효BW계산.,기본값및파생관계참조;구현지원범위검증
 RESULT_BUFFER_SLOTS,2,slot/context개수. producer/consumercredit과일치.,기본값및파생관계참조;구현지원범위검증
 RESULT_ELASTIC_FIFO_BYTES,65536,용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.,기본값및파생관계참조;구현지원범위검증
+ROCKET_CACHE_BLOCK_BYTES,64,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
 ROCKET_CLOCK_HZ,1000000000,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.,positive integer Hz; actual IPC/CDC require Rocket RTL
 ROCKET_CORES,8,기본8개 controller. 8역할의 ROLE_TO_HART 및 RoCC권한과 함께 변경.,"6,8 (기본8)"
 ROCKET_DCACHE_BYTES,8192,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.,power-of-two bytes >=1024; planned host-control cache parameter

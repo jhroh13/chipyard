@@ -1,0 +1,14 @@
+[
+  {
+    "latency": 11,
+    "status": "PASS",
+    "checked": 2565,
+    "reset_flushed": 6
+  },
+  {
+    "latency": 13,
+    "status": "PASS",
+    "checked": 2555,
+    "reset_flushed": 8
+  }
+]

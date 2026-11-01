@@ -119,13 +119,20 @@
         "banks": 32,
         "subbanks": 2,
         "width": 256,
-        "depth": 512
+        "depth": 384
       },
       {
         "name": "scale_metadata",
         "banks": 32,
         "subbanks": 2,
         "width": 128,
+        "depth": 1024
+      },
+      {
+        "name": "boot",
+        "banks": 4,
+        "subbanks": 2,
+        "width": 256,
         "depth": 1024
       }
     ],
@@ -246,7 +253,18 @@
     "FMA_GATE_BASIS": "AND2_OR2_NOT",
     "MAC_FEEDBACK_EXTRA_CYCLES": 1,
     "MAC_OPERAND_READ_CYCLES": 2,
-    "MAC_TARGETR_STORE_CYCLES": 1
+    "MAC_TARGETR_STORE_CYCLES": 1,
+    "L0_CPU_BASE_ADDR": 1610612736,
+    "L0_BOOT_CODE_BYTES": 131072,
+    "L0_BOOT_STACK_BYTES_PER_HART": 8192,
+    "L0_BOOT_MAILBOX_BYTES": 4096,
+    "L0_BOOT_GUARD_CYCLES": 5,
+    "L0_BOOT_SRAM_READ_CYCLES": 16,
+    "L0_BOOT_HART_RELEASE_CDC_CYCLES": 2,
+    "L0_BOOT_TL_RETURN_CYCLES": 2,
+    "L0_BOOT_TL_BEAT_BYTES": 8,
+    "ROCKET_CACHE_BLOCK_BYTES": 64,
+    "BOOT_ROM_RESET_VECTOR": 65536
   },
   "scale_overrides": {
     "1": {},
@@ -297,13 +315,20 @@
           "banks": 64,
           "subbanks": 2,
           "width": 256,
-          "depth": 512
+          "depth": 448
         },
         {
           "name": "scale_metadata",
           "banks": 64,
           "subbanks": 2,
           "width": 128,
+          "depth": 1024
+        },
+        {
+          "name": "boot",
+          "banks": 4,
+          "subbanks": 2,
+          "width": 256,
           "depth": 1024
         }
       ],
@@ -358,13 +383,20 @@
           "banks": 128,
           "subbanks": 2,
           "width": 256,
-          "depth": 512
+          "depth": 480
         },
         {
           "name": "scale_metadata",
           "banks": 128,
           "subbanks": 2,
           "width": 128,
+          "depth": 1024
+        },
+        {
+          "name": "boot",
+          "banks": 4,
+          "subbanks": 2,
+          "width": 256,
           "depth": 1024
         }
       ],
@@ -1293,6 +1325,50 @@
     "MAC_TARGETR_STORE_CYCLES": {
       "allowed_or_rule": "nonnegative cycles; explicit integration planning latency, not RTL timing proof",
       "description": "Near-RF operand read or TARGETR format/store path; independently variable. Not inside native FMA primitive."
+    },
+    "L0_CPU_BASE_ADDR": {
+      "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
+      "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
+    },
+    "L0_BOOT_CODE_BYTES": {
+      "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
+      "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
+    },
+    "L0_BOOT_STACK_BYTES_PER_HART": {
+      "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
+      "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
+    },
+    "L0_BOOT_MAILBOX_BYTES": {
+      "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
+      "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
+    },
+    "L0_BOOT_GUARD_CYCLES": {
+      "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
+      "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
+    },
+    "L0_BOOT_SRAM_READ_CYCLES": {
+      "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
+      "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
+    },
+    "L0_BOOT_HART_RELEASE_CDC_CYCLES": {
+      "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
+      "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
+    },
+    "L0_BOOT_TL_RETURN_CYCLES": {
+      "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
+      "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
+    },
+    "L0_BOOT_TL_BEAT_BYTES": {
+      "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
+      "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
+    },
+    "ROCKET_CACHE_BLOCK_BYTES": {
+      "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
+      "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
+    },
+    "BOOT_ROM_RESET_VECTOR": {
+      "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
+      "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
     }
   }
 }

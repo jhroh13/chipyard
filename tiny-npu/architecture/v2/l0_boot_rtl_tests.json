@@ -1,0 +1,18 @@
+[
+  {
+    "status": "PASS",
+    "guard_latency": 5,
+    "sram_latency": 16,
+    "harts": 8,
+    "log": "L0_BOOT_RTL_PASS guard=5 read=16 checks=8237 reads=24 writes=8200 denied=12 harts=8\n- /workspace/TINY-NPU/tiny-npu/sim/tb_l0_boot.sv:101: Verilog $finish",
+    "scope": "real guard +single-port SRAM; firmware fetched by synthetic CPU agents; not TL/Rocket RTL integration"
+  },
+  {
+    "status": "PASS",
+    "guard_latency": 7,
+    "sram_latency": 32,
+    "harts": 8,
+    "log": "L0_BOOT_RTL_PASS guard=7 read=32 checks=8237 reads=24 writes=8200 denied=12 harts=8\n- /workspace/TINY-NPU/tiny-npu/sim/tb_l0_boot.sv:101: Verilog $finish",
+    "scope": "real guard +single-port SRAM; firmware fetched by synthetic CPU agents; not TL/Rocket RTL integration"
+  }
+]

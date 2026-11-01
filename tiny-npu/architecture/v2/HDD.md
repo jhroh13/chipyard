@@ -365,9 +365,14 @@ E7은MX E8M0scale전체범위보다좁으므로overflow/underflow와calibration�
 
 ### 최신 재현 결과
 
-기본16cycle·8slots의 vector 직렬 pass 포함 계획값은 **12.309 TOPS**다. 128cycle·고정8slots에서는 **7.407 TOPS**, AUTO16slots에서는 **11.815 TOPS**다. 자세한 가정과 560개 구성 결과는 [sweep 가이드](PARAMETERS_AND_SWEEPS.md)에 있다. 이 수치는 통합 RTL 실증이 아니다. SRAM primitive는 10/16/32/64cycle 및 backpressure에서 검증했으며 TC/OIC·전체 fabric·새 MAC 통합 검증이 남아 있다.
+현재 native FMA11cycle·12contexts·32slots의 vector 직렬 pass 포함 계획값은 **10.771972 TOPS**다. 이전 4-cycle prototype/8slots 수치는 역사적 기준이다. 최신 수식과 검증은 [FMA pipeline report](FMA_PIPELINE_REPORT.md)를 적용한다. 자세한 가정과 560개 구성 결과는 [sweep 가이드](PARAMETERS_AND_SWEEPS.md)에 있다. 이 수치는 통합 RTL 실증이 아니다. SRAM primitive는 10/16/32/64cycle 및 backpressure에서 검증했으며 TC/OIC·전체 fabric·새 MAC 통합 검증이 남아 있다.
 
 
 ## 17. 구현 Job 및 설정 생성
 
 [순서별 Job List](JOB_LIST.md)와 [Job 1 설정 생성 체계](CONFIGURATION_GENERATION.md)를 적용한다. 최신 RevB profile은 JSON 원본을 사용하며 이전 P0 Python profile 상속을 제거했다. 생성된 SV/C 상수와 모델 입력은 공통 설정 hash로 추적한다. 전체 NPU RTL 통합 상태는 별도이다.
+
+
+## 18. L0-resident Rocket boot code
+
+[L0 boot 설계·수식·검증 보고서](L0_BOOT_REPORT.md)를 적용한다. 기본10MiB 중256KiB를 전용8개 single-port subbank로 예약하고 scratch는768KiB로 조정한다. 총392개 physical subbank이다. Code128KiB RX, hart별 stack8KiB, descriptor32KiB, mailbox4KiB를 분리한다. Guard5+SRAM16 cycle을 독립 파라미터로 두며7+32 cycle도 RTL 검증했다. 8-hart Spike 부트는 통과했으나 실제 Rocket/TL/ROM loader 연결은 미구현이다.

@@ -20,6 +20,24 @@
   "rejected": [
     {
       "override": {
+        "L0_BOOT_CODE_BYTES": 1048576
+      },
+      "reason": "Boot code/stack/descriptor/mailbox do not fit boot reservation"
+    },
+    {
+      "override": {
+        "L0_CPU_BASE_ADDR": 3
+      },
+      "reason": "CPU L0 window must be page aligned"
+    },
+    {
+      "override": {
+        "L0_BOOT_STACK_BYTES_PER_HART": 131072
+      },
+      "reason": "Boot code/stack/descriptor/mailbox do not fit boot reservation"
+    },
+    {
+      "override": {
         "UNKNOWN": 1
       },
       "reason": "UNKNOWN: unknown, obsolete, or derived parameter; edit its source instead"
@@ -141,7 +159,7 @@
           }
         ]
       },
-      "reason": "L0_REGIONS: five ordered regions required"
+      "reason": "L0_REGIONS: six ordered regions including boot required"
     },
     {
       "override": {
