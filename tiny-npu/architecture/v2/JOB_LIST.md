@@ -27,4 +27,9 @@ Job 1의 RTL 산출물은 설정 package와 isolated SRAM wrapper이다. 새 MAC
 
 ## L0 boot 선행 작업 체크포인트
 
-256KiB 전용 boot/control 영역,5+cycle guard,8-hart RV64 firmware 및5/16·7/32cycle SRAM RTL 테스트를 완료했다. x1/x2/x4 합성 guard는28/29/29 basic gates이며 같은 netlist의 permission/metadata 회귀도 통과했다. 다음은 TL manager와 ROM loader/hart parking을 실제8-Rocket에 연결하고 instruction/cache traffic을 계측하는 작업이다. 상세 범위와 실행 명령은 [L0 boot report](L0_BOOT_REPORT.md)를 참조한다.
+256KiB 전용 boot/control 영역,5+cycle guard,8-hart RV64 firmware 및5/16·7/32cycle SRAM RTL 테스트를 완료했다. x1/x2/x4 합성 guard는28/29/29 basic gates이며 같은 netlist의 permission/metadata 회귀도 통과했다. 다음은 TL manager와 외부 SRAM preloader, SRAM reset-vector 및 hart reset 제어기를 실제8-Rocket에 연결하고 instruction/cache traffic을 계측하는 작업이다. 상세 범위와 실행 명령은 [L0 boot report](L0_BOOT_REPORT.md)를 참조한다.
+
+외부 preload 방식: reset 분리 RTL·직접 SRAM reset PC·CDC 해제 및 SRAM 보존 검증을 완료했다. ROM loader는 구현 대상에서 제외한다.
+
+
+Bank fabric: default-enable ROW_SKEW_ADD hashing과 region SFR, ingress/bank별 VOQ 및 round-robin issue RTL을 추가했다. 실제8-bank SRAM의 linear/hash·동시 R/W·16/32cycle·consumer stall 비교 및 JSONL/VCD bubble 분석은 [bank report](BANK_FABRIC_REPORT.md)를 적용한다. 다음은 tagged return/response credit와 write commit 통합이다.

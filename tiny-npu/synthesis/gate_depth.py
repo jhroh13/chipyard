@@ -4,7 +4,7 @@ as a convenient single gate. Physical delay/wire/fanout are not inferred.
 """
 import collections,json
 ALLOWED={'$_AND_','$_OR_','$_NOT_'}
-def audit(module,limit=40):
+def audit(module,limit=40,allow_async_reset=False):
  cells=module['cells'];ff={n:c for n,c in cells.items() if 'DFF' in c['type'].upper()};comb={n:c for n,c in cells.items() if n not in ff}
  unknown={c['type'] for c in comb.values()}-ALLOWED
  if unknown:raise ValueError(f'Unmapped/unsupported combinational cells: {unknown}')
@@ -12,7 +12,7 @@ def audit(module,limit=40):
   widths=[len(bits) for port,bits in c['connections'].items() if c['port_directions'][port]=='input']
   if sum(widths)!=(1 if c['type']=='$_NOT_' else 2) or any(len(bits)!=1 for bits in c['connections'].values()):raise ValueError('Expected scalar basic gates')
  for c in ff.values():
-  if c['type'] not in ('$_DFF_P_','$_DFF_N_'):raise ValueError('Run dffunmap: enable/reset muxes must be explicit gates')
+  if c['type'] not in (('$_DFF_P_','$_DFF_N_','$_DFF_PP0_') if allow_async_reset else ('$_DFF_P_','$_DFF_N_')):raise ValueError('Run dffunmap: enable/reset muxes must be explicit gates')
   if len(c['connections'].get('Q',[]))!=1:raise ValueError('Expected bit-level register cells')
  drivers={b:n for n,c in comb.items() for port,bits in c['connections'].items() if c['port_directions'][port]=='output' for b in bits if isinstance(b,int)}
  dependencies={n:{drivers[b] for port,bits in c['connections'].items() if c['port_directions'][port]=='input' for b in bits if b in drivers} for n,c in comb.items()}
@@ -49,7 +49,7 @@ def audit(module,limit=40):
  groups={}
  for e in endpoints:
   if e['depth']>groups.get(e['stage'],{}).get('depth',-1):groups[e['stage']]=e
- return dict(status='PASS' if worst['depth']<=limit else 'FAIL',limit=limit,gate_basis='two-input AND/OR and NOT; XOR/MUX decomposed',max_depth=worst['depth'],stage_maxima=groups,worst_path=list(reversed(path)),bit_cells=len(cells),combinational_gates=len(comb),register_bits=len(ff),coverage='plain-DFF data/clock pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded')
+ return dict(status='PASS' if worst['depth']<=limit else 'FAIL',limit=limit,gate_basis='two-input AND/OR and NOT; XOR/MUX decomposed',max_depth=worst['depth'],stage_maxima=groups,worst_path=list(reversed(path)),bit_cells=len(cells),combinational_gates=len(comb),register_bits=len(ff),coverage='DFF input/control pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded')
 if __name__=='__main__':
  import argparse
  ap=argparse.ArgumentParser();ap.add_argument('netlist');ap.add_argument('--top',required=True);ap.add_argument('--limit',type=int,default=40);a=ap.parse_args();r=audit(json.load(open(a.netlist))['modules'][a.top],a.limit);print(json.dumps({k:v for k,v in r.items() if k!='worst_path'},indent=2));raise SystemExit(0 if r['status']=='PASS' else 1)

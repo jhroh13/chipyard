@@ -3,13 +3,15 @@
   "cpu_mmio_base": 1610612736,
   "AXI_system_mapping": "CPU_TL_mapping_planned_not_integrated",
   "boot": {
+    "source": "EXTERNAL_PRELOAD_SRAM",
+    "reset_vector": 1620836352,
     "entry": 1620836352,
     "code_limit": 1620967424,
     "stack_base": 1620967424,
     "descriptor_base": 1621032960,
     "mailbox_base": 1621065728,
     "limit": 1621098496,
-    "policy": "loader-before-commit; code RX; CPU/control RW; no NPU payload access"
+    "policy": "external-preload-before-reset-release; code RX; CPU/control RW; no NPU payload access"
   },
   "L0_bytes": 10485760,
   "bounds_check_required": true,

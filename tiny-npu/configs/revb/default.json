@@ -264,7 +264,15 @@
     "L0_BOOT_TL_RETURN_CYCLES": 2,
     "L0_BOOT_TL_BEAT_BYTES": 8,
     "ROCKET_CACHE_BLOCK_BYTES": 64,
-    "BOOT_ROM_RESET_VECTOR": 65536
+    "BOOT_SOURCE": "EXTERNAL_PRELOAD_SRAM",
+    "BOOT_RESET_ACK_CYCLES": 2,
+    "L0_BANK_HASH_ENABLE": true,
+    "L0_BANK_HASH_ROW_SHIFT": 2,
+    "L0_BANK_HASH_MODE": "ROW_SKEW_ADD",
+    "L0_BANK_HASH_PIPE_CYCLES": 4,
+    "L0_BANK_FABRIC_PORTS": 8,
+    "L0_BANK_VOQ_DEPTH": 2,
+    "L0_BANK_MONITOR_ENABLE": true
   },
   "scale_overrides": {
     "1": {},
@@ -1366,9 +1374,41 @@
       "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
       "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
     },
-    "BOOT_ROM_RESET_VECTOR": {
-      "allowed_or_rule": "aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds",
-      "description": "Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending."
+    "BOOT_SOURCE": {
+      "description": "External host preloads S0/L0 boot SRAM while all Rocket harts are held in reset.",
+      "allowed_or_rule": "EXTERNAL_PRELOAD_SRAM"
+    },
+    "BOOT_RESET_ACK_CYCLES": {
+      "description": "Hart-reset assertion acknowledgment synchronizer in fabric clock domain.",
+      "allowed_or_rule": "integer >=2"
+    },
+    "L0_BANK_HASH_ENABLE": {
+      "description": "Tensor-region bank hashing default enabled; selected by SFR0. Boot SRAM uses fixed linear mapping.",
+      "allowed_or_rule": "{false,true}; default true"
+    },
+    "L0_BANK_HASH_ROW_SHIFT": {
+      "description": "SFR0 row shift. Hash folds BANK_BITS of row>>shift into bank permutation.",
+      "allowed_or_rule": "integer 0..minimum tensor-region ROW_BITS-1; SFR bits12:8"
+    },
+    "L0_BANK_HASH_MODE": {
+      "description": "Invertible row-dependent modular bank permutation; physical row is unchanged.",
+      "allowed_or_rule": "{ROW_SKEW_ADD}; XOR is not implemented"
+    },
+    "L0_BANK_HASH_PIPE_CYCLES": {
+      "description": "Four real mapper stages, independently of SRAM latency.",
+      "allowed_or_rule": "{4}; fixed real stages"
+    },
+    "L0_BANK_FABRIC_PORTS": {
+      "description": "Ingress count for a region bank fabric. Full multi-region integration pending.",
+      "allowed_or_rule": "positive integer; recommended {4,8,16}; repeat gate/traffic checks after change"
+    },
+    "L0_BANK_VOQ_DEPTH": {
+      "description": "Command entries per ingress per physical bank; response credits are external.",
+      "allowed_or_rule": "integer >=2; typical {2,4,8}; larger queues do not add SRAM bandwidth"
+    },
+    "L0_BANK_MONITOR_ENABLE": {
+      "description": "SFR1 monitoring default enabled; simulation JSONL probes include valid/ready and stalls.",
+      "allowed_or_rule": "{false,true}; default true"
     }
   }
 }

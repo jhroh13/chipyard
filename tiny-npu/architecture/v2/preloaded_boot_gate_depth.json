@@ -1,0 +1,573 @@
+[
+  {
+    "status": "PASS",
+    "limit": 40,
+    "gate_basis": "two-input AND/OR and NOT; XOR/MUX decomposed",
+    "max_depth": 28,
+    "stage_maxima": {
+      "valid/control": {
+        "stage": "valid/control",
+        "cell": "$auto$ff.cc:337:slice$1303",
+        "pin": "D",
+        "depth": 28,
+        "driver": "$abc$3854$blif$3854$1078"
+      },
+      "module_outputs": {
+        "stage": "module_outputs",
+        "cell": "req_ready",
+        "pin": "output",
+        "depth": 6,
+        "driver": "$abc$3854$blif$3854$263"
+      }
+    },
+    "worst_path": [
+      {
+        "cell": "$abc$3854$blif$3854$30",
+        "type": "$_NOT_",
+        "depth": 1
+      },
+      {
+        "cell": "$abc$3854$blif$3854$998",
+        "type": "$_OR_",
+        "depth": 2
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1003",
+        "type": "$_AND_",
+        "depth": 3
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1005",
+        "type": "$_AND_",
+        "depth": 4
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1008",
+        "type": "$_OR_",
+        "depth": 5
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1012",
+        "type": "$_AND_",
+        "depth": 6
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1015",
+        "type": "$_OR_",
+        "depth": 7
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1016",
+        "type": "$_AND_",
+        "depth": 8
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1019",
+        "type": "$_OR_",
+        "depth": 9
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1020",
+        "type": "$_AND_",
+        "depth": 10
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1023",
+        "type": "$_OR_",
+        "depth": 11
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1024",
+        "type": "$_AND_",
+        "depth": 12
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1027",
+        "type": "$_OR_",
+        "depth": 13
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1028",
+        "type": "$_AND_",
+        "depth": 14
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1031",
+        "type": "$_OR_",
+        "depth": 15
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1032",
+        "type": "$_AND_",
+        "depth": 16
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1035",
+        "type": "$_OR_",
+        "depth": 17
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1036",
+        "type": "$_AND_",
+        "depth": 18
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1039",
+        "type": "$_OR_",
+        "depth": 19
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1040",
+        "type": "$_AND_",
+        "depth": 20
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1043",
+        "type": "$_OR_",
+        "depth": 21
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1058",
+        "type": "$_AND_",
+        "depth": 22
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1064",
+        "type": "$_OR_",
+        "depth": 23
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1066",
+        "type": "$_OR_",
+        "depth": 24
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1067",
+        "type": "$_AND_",
+        "depth": 25
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1071",
+        "type": "$_AND_",
+        "depth": 26
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1076",
+        "type": "$_AND_",
+        "depth": 27
+      },
+      {
+        "cell": "$abc$3854$blif$3854$1078",
+        "type": "$_OR_",
+        "depth": 28
+      }
+    ],
+    "bit_cells": 1581,
+    "combinational_gates": 1258,
+    "register_bits": 323,
+    "coverage": "DFF input/control pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
+    "scale": 1,
+    "parameters": {
+      "ADDR_BITS": 24,
+      "HARTS": 8,
+      "LATENCY": 5,
+      "TOTAL_BYTES": 10485760,
+      "BOOT_BASE": 10223616,
+      "CODE_LIMIT": 10354688,
+      "RESET_VECTOR": 1620836352,
+      "RELEASE_STAGES": 2,
+      "ACK_STAGES": 2
+    },
+    "source_sha256": {
+      "tiny_npu_l0_boot_guard.sv": "6543f8ca3c18c3a86a0561db5343fdb7cd1343574661f3c0fa94dffc4d856502",
+      "tiny_npu_sram_boot_control.sv": "3a7988d78e515309d814ac8def9af81acbaa7c901a14250085970a94aaef08c6",
+      "tiny_npu_preloaded_boot.sv": "5dc545cdf025fd9584a183689441abeba1632d4aa15cd584840eaaab38a5728d"
+    },
+    "register_basis": "plain DFF plus explicitly allowed positive-clock async-reset-to-zero DFF for reset release synchronizer; data, clock and reset pin combinational paths included",
+    "scope": "structural depth; async recovery/removal and physical CDC/metastability reliability require implementation signoff; wrapper functionality verified in RTL fixture"
+  },
+  {
+    "status": "PASS",
+    "limit": 40,
+    "gate_basis": "two-input AND/OR and NOT; XOR/MUX decomposed",
+    "max_depth": 29,
+    "stage_maxima": {
+      "valid/control": {
+        "stage": "valid/control",
+        "cell": "$auto$ff.cc:337:slice$1314",
+        "pin": "D",
+        "depth": 29,
+        "driver": "$abc$3968$blif$3968$1090"
+      },
+      "module_outputs": {
+        "stage": "module_outputs",
+        "cell": "req_ready",
+        "pin": "output",
+        "depth": 6,
+        "driver": "$abc$3968$blif$3968$265"
+      }
+    },
+    "worst_path": [
+      {
+        "cell": "$abc$3968$blif$3968$29",
+        "type": "$_NOT_",
+        "depth": 1
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1011",
+        "type": "$_OR_",
+        "depth": 2
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1016",
+        "type": "$_AND_",
+        "depth": 3
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1018",
+        "type": "$_AND_",
+        "depth": 4
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1021",
+        "type": "$_OR_",
+        "depth": 5
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1025",
+        "type": "$_AND_",
+        "depth": 6
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1028",
+        "type": "$_OR_",
+        "depth": 7
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1029",
+        "type": "$_AND_",
+        "depth": 8
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1032",
+        "type": "$_OR_",
+        "depth": 9
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1033",
+        "type": "$_AND_",
+        "depth": 10
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1036",
+        "type": "$_OR_",
+        "depth": 11
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1037",
+        "type": "$_AND_",
+        "depth": 12
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1040",
+        "type": "$_OR_",
+        "depth": 13
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1041",
+        "type": "$_AND_",
+        "depth": 14
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1044",
+        "type": "$_OR_",
+        "depth": 15
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1045",
+        "type": "$_AND_",
+        "depth": 16
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1048",
+        "type": "$_OR_",
+        "depth": 17
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1049",
+        "type": "$_AND_",
+        "depth": 18
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1052",
+        "type": "$_OR_",
+        "depth": 19
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1053",
+        "type": "$_AND_",
+        "depth": 20
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1056",
+        "type": "$_OR_",
+        "depth": 21
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1071",
+        "type": "$_AND_",
+        "depth": 22
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1077",
+        "type": "$_OR_",
+        "depth": 23
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1078",
+        "type": "$_AND_",
+        "depth": 24
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1081",
+        "type": "$_OR_",
+        "depth": 25
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1082",
+        "type": "$_AND_",
+        "depth": 26
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1085",
+        "type": "$_OR_",
+        "depth": 27
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1086",
+        "type": "$_AND_",
+        "depth": 28
+      },
+      {
+        "cell": "$abc$3968$blif$3968$1090",
+        "type": "$_AND_",
+        "depth": 29
+      }
+    ],
+    "bit_cells": 1605,
+    "combinational_gates": 1276,
+    "register_bits": 329,
+    "coverage": "DFF input/control pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
+    "scale": 2,
+    "parameters": {
+      "ADDR_BITS": 25,
+      "HARTS": 8,
+      "LATENCY": 5,
+      "TOTAL_BYTES": 20971520,
+      "BOOT_BASE": 20709376,
+      "CODE_LIMIT": 20840448,
+      "RESET_VECTOR": 1631322112,
+      "RELEASE_STAGES": 2,
+      "ACK_STAGES": 2
+    },
+    "source_sha256": {
+      "tiny_npu_l0_boot_guard.sv": "6543f8ca3c18c3a86a0561db5343fdb7cd1343574661f3c0fa94dffc4d856502",
+      "tiny_npu_sram_boot_control.sv": "3a7988d78e515309d814ac8def9af81acbaa7c901a14250085970a94aaef08c6",
+      "tiny_npu_preloaded_boot.sv": "5dc545cdf025fd9584a183689441abeba1632d4aa15cd584840eaaab38a5728d"
+    },
+    "register_basis": "plain DFF plus explicitly allowed positive-clock async-reset-to-zero DFF for reset release synchronizer; data, clock and reset pin combinational paths included",
+    "scope": "structural depth; async recovery/removal and physical CDC/metastability reliability require implementation signoff; wrapper functionality verified in RTL fixture"
+  },
+  {
+    "status": "PASS",
+    "limit": 40,
+    "gate_basis": "two-input AND/OR and NOT; XOR/MUX decomposed",
+    "max_depth": 29,
+    "stage_maxima": {
+      "valid/control": {
+        "stage": "valid/control",
+        "cell": "$auto$ff.cc:337:slice$1325",
+        "pin": "D",
+        "depth": 29,
+        "driver": "$abc$4076$blif$4076$1112"
+      },
+      "module_outputs": {
+        "stage": "module_outputs",
+        "cell": "req_ready",
+        "pin": "output",
+        "depth": 6,
+        "driver": "$abc$4076$blif$4076$269"
+      }
+    },
+    "worst_path": [
+      {
+        "cell": "$abc$4076$blif$4076$30",
+        "type": "$_NOT_",
+        "depth": 1
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1033",
+        "type": "$_OR_",
+        "depth": 2
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1038",
+        "type": "$_AND_",
+        "depth": 3
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1040",
+        "type": "$_AND_",
+        "depth": 4
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1043",
+        "type": "$_OR_",
+        "depth": 5
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1047",
+        "type": "$_AND_",
+        "depth": 6
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1050",
+        "type": "$_OR_",
+        "depth": 7
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1051",
+        "type": "$_AND_",
+        "depth": 8
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1054",
+        "type": "$_OR_",
+        "depth": 9
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1055",
+        "type": "$_AND_",
+        "depth": 10
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1058",
+        "type": "$_OR_",
+        "depth": 11
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1059",
+        "type": "$_AND_",
+        "depth": 12
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1062",
+        "type": "$_OR_",
+        "depth": 13
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1063",
+        "type": "$_AND_",
+        "depth": 14
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1066",
+        "type": "$_OR_",
+        "depth": 15
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1067",
+        "type": "$_AND_",
+        "depth": 16
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1070",
+        "type": "$_OR_",
+        "depth": 17
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1071",
+        "type": "$_AND_",
+        "depth": 18
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1074",
+        "type": "$_OR_",
+        "depth": 19
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1075",
+        "type": "$_AND_",
+        "depth": 20
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1078",
+        "type": "$_OR_",
+        "depth": 21
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1093",
+        "type": "$_AND_",
+        "depth": 22
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1099",
+        "type": "$_OR_",
+        "depth": 23
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1100",
+        "type": "$_AND_",
+        "depth": 24
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1103",
+        "type": "$_OR_",
+        "depth": 25
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1104",
+        "type": "$_AND_",
+        "depth": 26
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1107",
+        "type": "$_OR_",
+        "depth": 27
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1108",
+        "type": "$_AND_",
+        "depth": 28
+      },
+      {
+        "cell": "$abc$4076$blif$4076$1112",
+        "type": "$_AND_",
+        "depth": 29
+      }
+    ],
+    "bit_cells": 1634,
+    "combinational_gates": 1299,
+    "register_bits": 335,
+    "coverage": "DFF input/control pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
+    "scale": 4,
+    "parameters": {
+      "ADDR_BITS": 26,
+      "HARTS": 8,
+      "LATENCY": 5,
+      "TOTAL_BYTES": 41943040,
+      "BOOT_BASE": 41680896,
+      "CODE_LIMIT": 41811968,
+      "RESET_VECTOR": 1652293632,
+      "RELEASE_STAGES": 2,
+      "ACK_STAGES": 2
+    },
+    "source_sha256": {
+      "tiny_npu_l0_boot_guard.sv": "6543f8ca3c18c3a86a0561db5343fdb7cd1343574661f3c0fa94dffc4d856502",
+      "tiny_npu_sram_boot_control.sv": "3a7988d78e515309d814ac8def9af81acbaa7c901a14250085970a94aaef08c6",
+      "tiny_npu_preloaded_boot.sv": "5dc545cdf025fd9584a183689441abeba1632d4aa15cd584840eaaab38a5728d"
+    },
+    "register_basis": "plain DFF plus explicitly allowed positive-clock async-reset-to-zero DFF for reset release synchronizer; data, clock and reset pin combinational paths included",
+    "scope": "structural depth; async recovery/removal and physical CDC/metastability reliability require implementation signoff; wrapper functionality verified in RTL fixture"
+  }
+]

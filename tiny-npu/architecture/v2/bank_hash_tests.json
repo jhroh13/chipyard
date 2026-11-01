@@ -1,0 +1,30 @@
+[
+  {
+    "banks": 8,
+    "hashing": false,
+    "checked": 8192,
+    "status": "PASS",
+    "scope": "all1024 rows x each bank, metadata preservation and backpressure; independent integer golden"
+  },
+  {
+    "banks": 8,
+    "hashing": true,
+    "checked": 8192,
+    "status": "PASS",
+    "scope": "all1024 rows x each bank, metadata preservation and backpressure; independent integer golden"
+  },
+  {
+    "banks": 160,
+    "hashing": false,
+    "checked": 163840,
+    "status": "PASS",
+    "scope": "all1024 rows x each bank, metadata preservation and backpressure; independent integer golden"
+  },
+  {
+    "banks": 160,
+    "hashing": true,
+    "checked": 163840,
+    "status": "PASS",
+    "scope": "all1024 rows x each bank, metadata preservation and backpressure; independent integer golden"
+  }
+]

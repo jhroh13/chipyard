@@ -1,3 +1,5 @@
+> 최신 SRAM preload/reset boot는 [RevB boot 보고서](../architecture/v2/L0_BOOT_REPORT.md), bank 수 증설 후 남는 stride 충돌의 뜻·수식·대응은 [RevB HDD 19절](../architecture/v2/HDD.md#19-bank-수만-늘리면-alias가-남았다의-정확한-의미)을 적용한다.
+
 > 이전 설계/구현 기록입니다. 최신 8-core·10 MiB single-port·LQ16/TF32 구조와 가변 경로 latency 계약은 [RevB HDD](../architecture/v2/HDD.md)를 참조하세요.
 
 # TINY NPU — Overview, HDD, RTL 및 LLM Simulation 실행 계획

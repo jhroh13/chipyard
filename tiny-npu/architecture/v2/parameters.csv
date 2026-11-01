@@ -179,8 +179,21 @@ L0_BOOT_HART_RELEASE_CDC_CYCLES,L0,2,2,2,aligned sizes / explicit nonnegative mu
 L0_BOOT_TL_RETURN_CYCLES,L0,2,2,2,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.
 L0_BOOT_TL_BEAT_BYTES,L0,8,8,8,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.
 ROCKET_CACHE_BLOCK_BYTES,System / derived,64,64,64,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.
-BOOT_ROM_RESET_VECTOR,System / derived,65536,65536,65536,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.
+BOOT_SOURCE,System / derived,EXTERNAL_PRELOAD_SRAM,EXTERNAL_PRELOAD_SRAM,EXTERNAL_PRELOAD_SRAM,EXTERNAL_PRELOAD_SRAM,External host preloads S0/L0 boot SRAM while all Rocket harts are held in reset.
+BOOT_RESET_ACK_CYCLES,System / derived,2,2,2,integer >=2,Hart-reset assertion acknowledgment synchronizer in fabric clock domain.
+L0_BANK_HASH_ENABLE,L0,true,true,true,"{false,true}; default true",Tensor-region bank hashing default enabled; selected by SFR0. Boot SRAM uses fixed linear mapping.
+L0_BANK_HASH_ROW_SHIFT,L0,2,2,2,integer 0..minimum tensor-region ROW_BITS-1; SFR bits12:8,SFR0 row shift. Hash folds BANK_BITS of row>>shift into bank permutation.
+L0_BANK_HASH_MODE,L0,ROW_SKEW_ADD,ROW_SKEW_ADD,ROW_SKEW_ADD,{ROW_SKEW_ADD}; XOR is not implemented,Invertible row-dependent modular bank permutation; physical row is unchanged.
+L0_BANK_HASH_PIPE_CYCLES,L0,4,4,4,{4}; fixed real stages,"Four real mapper stages, independently of SRAM latency."
+L0_BANK_FABRIC_PORTS,L0,8,8,8,"positive integer; recommended {4,8,16}; repeat gate/traffic checks after change",Ingress count for a region bank fabric. Full multi-region integration pending.
+L0_BANK_VOQ_DEPTH,L0,2,2,2,"integer >=2; typical {2,4,8}; larger queues do not add SRAM bandwidth",Command entries per ingress per physical bank; response credits are external.
+L0_BANK_MONITOR_ENABLE,L0,true,true,true,"{false,true}; default true",SFR1 monitoring default enabled; simulation JSONL probes include valid/ready and stalls.
 SCALE,System / derived,1,2,4,"1,2,4",RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.
+L0_BANK_SFR_MAP_INDEX,L0,0,0,0,derived / validated contract,파생값. configuration.py 수식 참조.
+L0_BANK_SFR_MONITOR_INDEX,L0,1,1,1,derived / validated contract,파생값. configuration.py 수식 참조.
+L0_BANK_SFR_STRIDE_BYTES,L0,8,8,8,derived / validated contract,파생값. configuration.py 수식 참조.
+L0_BANK_SFR_HASH_ENABLE_BIT,L0,0,0,0,derived / validated contract,파생값. configuration.py 수식 참조.
+L0_BANK_SFR_SHIFT_LSB,L0,8,8,8,derived / validated contract,파생값. configuration.py 수식 참조.
 WRITE_RESPONSE_TAIL_NS,System / derived,32,32,32,기본값및파생관계참조;구현지원범위검증,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.
 FLOAT_VECTOR_OWNER_HART,System / derived,7,7,7,기본값및파생관계참조;구현지원범위검증,Hart7=Core8만FP32/TF32 vector/변환명령소유.
 MAC_FMA_PIPE_CYCLES,MAC,11,11,11,PDK/STA로검증할정수,경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.
@@ -216,6 +229,7 @@ L0_BOOT_OFFSET,L0,10223616,20709376,41680896,derived / validated contract,파생
 L0_PAYLOAD_BYTES,L0,10223616,20709376,41680896,derived / validated contract,파생값. configuration.py 수식 참조.
 L0_CPU_LIMIT_ADDR,L0,1621098496,1631584256,1652555776,derived / validated contract,파생값. configuration.py 수식 참조.
 L0_BOOT_ENTRY_ADDR,L0,1620836352,1631322112,1652293632,derived / validated contract,파생값. configuration.py 수식 참조.
+ROCKET_RESET_VECTOR,System / derived,1620836352,1631322112,1652293632,derived / validated contract,파생값. configuration.py 수식 참조.
 L0_BOOT_CODE_LIMIT_ADDR,L0,1620967424,1631453184,1652424704,derived / validated contract,파생값. configuration.py 수식 참조.
 L0_BOOT_STACK_BASE_ADDR,L0,1620967424,1631453184,1652424704,derived / validated contract,파생값. configuration.py 수식 참조.
 L0_BOOT_STACK_LIMIT_ADDR,L0,1621032960,1631518720,1652490240,derived / validated contract,파생값. configuration.py 수식 참조.

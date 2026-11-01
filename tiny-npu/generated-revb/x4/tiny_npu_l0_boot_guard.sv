@@ -16,11 +16,11 @@ module tiny_npu_l0_boot_guard #(
  output logic [2:0] out_error,output logic [1:0] out_owner,
  output logic [7:0] out_hart,output logic [TAG_BITS-1:0] out_tag,output logic [12:0] out_bytes,output logic out_write,
  output logic [ADDR_BITS-1:0] out_addr,
- input logic image_verified,rw_initialized,loader_idle,commit_valid,
+ input logic image_verified,rw_initialized,preload_idle,commit_valid,
  output logic commit_ready,commit_error,boot_ready
 );
- // Owners:0=trusted loader,1=instruction fetch,2=CPU/control data,3=NPU payload.
- // Errors:0=none,1=range/length,2=hart,3=not ready,4=protected,5=loader locked.
+ // Owners:0=external preloader,1=instruction fetch,2=CPU/control data,3=NPU payload.
+ // Errors:0=none,1=range/length,2=hart,3=not ready,4=protected,5=preload locked.
  typedef struct packed {logic [1:0] owner;logic [7:0] hart;logic write_bit;logic [ADDR_BITS-1:0] addr;logic [12:0] count_minus1,byte_count;logic [TAG_BITS-1:0] tag;logic bad;} s1_t;
  typedef struct packed {s1_t request;logic [16:0] low_sum;} s2_t;
  typedef struct packed {s1_t request;logic [ADDR_BITS:0] last_byte;} s3_t;
@@ -29,7 +29,7 @@ module tiny_npu_l0_boot_guard #(
  logic [LATENCY-1:0] valid_pipe;logic advance;logic [ADDR_BITS-16:0] high_sum;
  assign advance=!valid_pipe[LATENCY-1]||out_ready;
  assign req_ready=advance&&!reset&&!commit_valid;
- assign commit_ready=!reset&&(valid_pipe==0)&&loader_idle&&(boot_ready||(image_verified&&rw_initialized));
+ assign commit_ready=!reset&&(valid_pipe==0)&&preload_idle&&(boot_ready||(image_verified&&rw_initialized));
  assign commit_error=boot_ready;
  always_ff @(posedge clk)begin
   if(reset)boot_ready<=0;

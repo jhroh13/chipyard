@@ -1,5 +1,6 @@
 /* Minimal shared RV64 stage1 code resident in reserved L0 SRAM.
- * Real stage0 must load/verify code, initialize RW, fence.i, then release harts.
+ * External host preloads code and initializes RW while Rocket reset is asserted.
+ * Reset PC is the SRAM entry; no ROM copying or trampoline is used.
  * Spike preloads the ELF; it does not model the actual Rocket/TL/guard path.
  */
 .include "boot_config.S.inc"

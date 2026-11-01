@@ -1,0 +1,524 @@
+[
+  {
+    "status": "PASS",
+    "limit": 40,
+    "gate_basis": "two-input AND/OR and NOT; XOR/MUX decomposed",
+    "max_depth": 19,
+    "stage_maxima": {
+      "valid/control": {
+        "stage": "valid/control",
+        "cell": "$auto$ff.cc:337:slice$1005",
+        "pin": "D",
+        "depth": 19,
+        "driver": "$abc$4934$blif$4934$2208"
+      },
+      "module_outputs": {
+        "stage": "module_outputs",
+        "cell": "in_ready",
+        "pin": "output",
+        "depth": 4,
+        "driver": "$abc$4934$blif$4934$35"
+      }
+    },
+    "worst_path": [
+      {
+        "cell": "$abc$4934$blif$4934$2161",
+        "type": "$_OR_",
+        "depth": 1
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2162",
+        "type": "$_NOT_",
+        "depth": 2
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2164",
+        "type": "$_OR_",
+        "depth": 3
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2166",
+        "type": "$_OR_",
+        "depth": 4
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2167",
+        "type": "$_AND_",
+        "depth": 5
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2173",
+        "type": "$_OR_",
+        "depth": 6
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2174",
+        "type": "$_AND_",
+        "depth": 7
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2177",
+        "type": "$_OR_",
+        "depth": 8
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2178",
+        "type": "$_AND_",
+        "depth": 9
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2181",
+        "type": "$_OR_",
+        "depth": 10
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2182",
+        "type": "$_AND_",
+        "depth": 11
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2188",
+        "type": "$_OR_",
+        "depth": 12
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2189",
+        "type": "$_AND_",
+        "depth": 13
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2195",
+        "type": "$_OR_",
+        "depth": 14
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2196",
+        "type": "$_AND_",
+        "depth": 15
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2205",
+        "type": "$_OR_",
+        "depth": 16
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2206",
+        "type": "$_AND_",
+        "depth": 17
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2207",
+        "type": "$_OR_",
+        "depth": 18
+      },
+      {
+        "cell": "$abc$4934$blif$4934$2208",
+        "type": "$_AND_",
+        "depth": 19
+      }
+    ],
+    "bit_cells": 5485,
+    "combinational_gates": 4172,
+    "register_bits": 1313,
+    "coverage": "DFF input/control pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
+    "name": "mapper160",
+    "parameters": {
+      "BANKS": 160,
+      "ROW_BITS": 10,
+      "PAYLOAD_BITS": 305
+    },
+    "source_sha256": {
+      "tiny_npu_bank_hash.sv": "922c84e6dac24058ec512c45ec61a9a6858ececfe613a2df2ea3c4ef988297c7"
+    },
+    "scope": "mapper at160 banks; representative fabric at8 ingress/8 banks with32-bit payload; full256-bit/12-bit-row8-bank fabric also audited; full160-bank fabric gate proof pending"
+  },
+  {
+    "status": "PASS",
+    "limit": 40,
+    "gate_basis": "two-input AND/OR and NOT; XOR/MUX decomposed",
+    "max_depth": 30,
+    "stage_maxima": {
+      "valid/control": {
+        "stage": "valid/control",
+        "cell": "$auto$ff.cc:337:slice$44426",
+        "pin": "D",
+        "depth": 30,
+        "driver": "$abc$102890$blif$102890$46160"
+      },
+      "module_outputs": {
+        "stage": "module_outputs",
+        "cell": "bank_contention",
+        "pin": "output",
+        "depth": 17,
+        "driver": "$abc$102890$blif$102890$59034"
+      }
+    },
+    "worst_path": [
+      {
+        "cell": "$abc$102890$blif$102890$101",
+        "type": "$_NOT_",
+        "depth": 1
+      },
+      {
+        "cell": "$abc$102890$blif$102890$17562",
+        "type": "$_OR_",
+        "depth": 2
+      },
+      {
+        "cell": "$abc$102890$blif$102890$17571",
+        "type": "$_OR_",
+        "depth": 3
+      },
+      {
+        "cell": "$abc$102890$blif$102890$17572",
+        "type": "$_AND_",
+        "depth": 4
+      },
+      {
+        "cell": "$abc$102890$blif$102890$17573",
+        "type": "$_AND_",
+        "depth": 5
+      },
+      {
+        "cell": "$abc$102890$blif$102890$17574",
+        "type": "$_AND_",
+        "depth": 6
+      },
+      {
+        "cell": "$abc$102890$blif$102890$17575",
+        "type": "$_OR_",
+        "depth": 7
+      },
+      {
+        "cell": "$abc$102890$blif$102890$17576",
+        "type": "$_OR_",
+        "depth": 8
+      },
+      {
+        "cell": "$abc$102890$blif$102890$17577",
+        "type": "$_NOT_",
+        "depth": 9
+      },
+      {
+        "cell": "$abc$102890$blif$102890$17578",
+        "type": "$_AND_",
+        "depth": 10
+      },
+      {
+        "cell": "$abc$102890$blif$102890$22188",
+        "type": "$_AND_",
+        "depth": 11
+      },
+      {
+        "cell": "$abc$102890$blif$102890$26355",
+        "type": "$_AND_",
+        "depth": 12
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43163",
+        "type": "$_AND_",
+        "depth": 13
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43166",
+        "type": "$_OR_",
+        "depth": 14
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43167",
+        "type": "$_AND_",
+        "depth": 15
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43172",
+        "type": "$_OR_",
+        "depth": 16
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43173",
+        "type": "$_AND_",
+        "depth": 17
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43178",
+        "type": "$_OR_",
+        "depth": 18
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43179",
+        "type": "$_AND_",
+        "depth": 19
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43184",
+        "type": "$_OR_",
+        "depth": 20
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43185",
+        "type": "$_AND_",
+        "depth": 21
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43190",
+        "type": "$_OR_",
+        "depth": 22
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43193",
+        "type": "$_AND_",
+        "depth": 23
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43198",
+        "type": "$_OR_",
+        "depth": 24
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43199",
+        "type": "$_AND_",
+        "depth": 25
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43204",
+        "type": "$_OR_",
+        "depth": 26
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43213",
+        "type": "$_OR_",
+        "depth": 27
+      },
+      {
+        "cell": "$abc$102890$blif$102890$43215",
+        "type": "$_OR_",
+        "depth": 28
+      },
+      {
+        "cell": "$abc$102890$blif$102890$46159",
+        "type": "$_AND_",
+        "depth": 29
+      },
+      {
+        "cell": "$abc$102890$blif$102890$46160",
+        "type": "$_OR_",
+        "depth": 30
+      }
+    ],
+    "bit_cells": 70095,
+    "combinational_gates": 59040,
+    "register_bits": 11055,
+    "coverage": "DFF input/control pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
+    "name": "fabric8",
+    "parameters": {
+      "PORTS": 8,
+      "BANKS": 8,
+      "DATA_BITS": 32,
+      "ROW_BITS": 10,
+      "TAG_BITS": 16
+    },
+    "source_sha256": {
+      "tiny_npu_bank_hash.sv": "922c84e6dac24058ec512c45ec61a9a6858ececfe613a2df2ea3c4ef988297c7",
+      "tiny_npu_bank_voq.sv": "e8e0b3de0880a13028dd942cbcbdb4f01773f23dc2180969bcf36f6e891f3657",
+      "tiny_npu_hashed_bank_fabric.sv": "b94135e4a3a8e232a2bef2ba2407d08e7ff5e193f32aad73eed5e1decc995a20"
+    },
+    "scope": "mapper at160 banks; representative fabric at8 ingress/8 banks with32-bit payload; full256-bit/12-bit-row8-bank fabric also audited; full160-bank fabric gate proof pending"
+  },
+  {
+    "status": "PASS",
+    "limit": 40,
+    "gate_basis": "two-input AND/OR and NOT; XOR/MUX decomposed",
+    "max_depth": 31,
+    "stage_maxima": {
+      "valid/control": {
+        "stage": "valid/control",
+        "cell": "$auto$ff.cc:337:slice$104716",
+        "pin": "D",
+        "depth": 31,
+        "driver": "$abc$263420$blif$263420$88667"
+      },
+      "module_outputs": {
+        "stage": "module_outputs",
+        "cell": "bank_contention",
+        "pin": "output",
+        "depth": 18,
+        "driver": "$abc$263420$blif$263420$275336"
+      }
+    },
+    "worst_path": [
+      {
+        "cell": "$abc$263420$blif$263420$73756",
+        "type": "$_AND_",
+        "depth": 1
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73757",
+        "type": "$_OR_",
+        "depth": 2
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73758",
+        "type": "$_NOT_",
+        "depth": 3
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73759",
+        "type": "$_AND_",
+        "depth": 4
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73762",
+        "type": "$_OR_",
+        "depth": 5
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73764",
+        "type": "$_OR_",
+        "depth": 6
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73789",
+        "type": "$_OR_",
+        "depth": 7
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73791",
+        "type": "$_OR_",
+        "depth": 8
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73792",
+        "type": "$_AND_",
+        "depth": 9
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73798",
+        "type": "$_AND_",
+        "depth": 10
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73804",
+        "type": "$_AND_",
+        "depth": 11
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73810",
+        "type": "$_AND_",
+        "depth": 12
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73816",
+        "type": "$_AND_",
+        "depth": 13
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73822",
+        "type": "$_AND_",
+        "depth": 14
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73828",
+        "type": "$_AND_",
+        "depth": 15
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73836",
+        "type": "$_AND_",
+        "depth": 16
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73862",
+        "type": "$_OR_",
+        "depth": 17
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73863",
+        "type": "$_OR_",
+        "depth": 18
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73866",
+        "type": "$_OR_",
+        "depth": 19
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73868",
+        "type": "$_OR_",
+        "depth": 20
+      },
+      {
+        "cell": "$abc$263420$blif$263420$73885",
+        "type": "$_AND_",
+        "depth": 21
+      },
+      {
+        "cell": "$abc$263420$blif$263420$88625",
+        "type": "$_OR_",
+        "depth": 22
+      },
+      {
+        "cell": "$abc$263420$blif$263420$88626",
+        "type": "$_AND_",
+        "depth": 23
+      },
+      {
+        "cell": "$abc$263420$blif$263420$88627",
+        "type": "$_AND_",
+        "depth": 24
+      },
+      {
+        "cell": "$abc$263420$blif$263420$88628",
+        "type": "$_OR_",
+        "depth": 25
+      },
+      {
+        "cell": "$abc$263420$blif$263420$88629",
+        "type": "$_OR_",
+        "depth": 26
+      },
+      {
+        "cell": "$abc$263420$blif$263420$88640",
+        "type": "$_AND_",
+        "depth": 27
+      },
+      {
+        "cell": "$abc$263420$blif$263420$88641",
+        "type": "$_AND_",
+        "depth": 28
+      },
+      {
+        "cell": "$abc$263420$blif$263420$88664",
+        "type": "$_OR_",
+        "depth": 29
+      },
+      {
+        "cell": "$abc$263420$blif$263420$88665",
+        "type": "$_AND_",
+        "depth": 30
+      },
+      {
+        "cell": "$abc$263420$blif$263420$88667",
+        "type": "$_OR_",
+        "depth": 31
+      }
+    ],
+    "bit_cells": 329215,
+    "combinational_gates": 275488,
+    "register_bits": 53727,
+    "coverage": "DFF input/control pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
+    "name": "fabric8_full256",
+    "parameters": {
+      "PORTS": 8,
+      "BANKS": 8,
+      "DATA_BITS": 256,
+      "ROW_BITS": 12,
+      "TAG_BITS": 16
+    },
+    "source_sha256": {
+      "tiny_npu_bank_hash.sv": "922c84e6dac24058ec512c45ec61a9a6858ececfe613a2df2ea3c4ef988297c7",
+      "tiny_npu_bank_voq.sv": "e8e0b3de0880a13028dd942cbcbdb4f01773f23dc2180969bcf36f6e891f3657",
+      "tiny_npu_hashed_bank_fabric.sv": "b94135e4a3a8e232a2bef2ba2407d08e7ff5e193f32aad73eed5e1decc995a20"
+    },
+    "scope": "mapper at160 banks; representative fabric at8 ingress/8 banks with32-bit payload; full256-bit/12-bit-row8-bank fabric also audited; full160-bank fabric gate proof pending"
+  }
+]

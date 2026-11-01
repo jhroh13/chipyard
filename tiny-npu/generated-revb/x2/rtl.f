@@ -5,3 +5,9 @@ tiny_npu_lq16_fma_pipe.sv
 tiny_npu_revb_fma.sv
 tiny_npu_l0_boot_guard.sv
 tiny_npu_revb_boot_guard.sv
+tiny_npu_sram_boot_control.sv
+tiny_npu_preloaded_boot.sv
+tiny_npu_revb_preloaded_boot.sv
+tiny_npu_bank_hash.sv
+tiny_npu_bank_voq.sv
+tiny_npu_hashed_bank_fabric.sv

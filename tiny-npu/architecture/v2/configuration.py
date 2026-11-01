@@ -58,6 +58,7 @@ def load_profile(scale=1,cores=None,overrides=None,config_path=None):
  if cores is not None:merge_known(p,{'ROCKET_CORES':cores})
  for k in contract:same_shape(p[k],contract[k],k)
  p['SCALE']=scale
+ p.update(L0_BANK_SFR_MAP_INDEX=0,L0_BANK_SFR_MONITOR_INDEX=1,L0_BANK_SFR_STRIDE_BYTES=8,L0_BANK_SFR_HASH_ENABLE_BIT=0,L0_BANK_SFR_SHIFT_LSB=8)
  for k,v in p.items():
   if type(v) is int:require(v>=0,f'{k}: must be nonnegative')
  for k in ('ACCEL_CLOCK_HZ','L0_CLOCK_HZ','AXI_CLOCK_HZ','VECTOR_CLOCK_HZ','ARRAY_COUNT','ROCKET_CORES','MAC_ACC_CONTEXTS','SUBBANK_ISSUE_II_CYCLES','VECTOR_ISSUE_II_CYCLES','TC_ISSUE_II_CYCLES','AXI_PORTS','OIC_REQUEST_PORTS','OIC_BANKS','VECTOR_LANES','LOCAL_MAX_INFLIGHT_VECTORS','ROCKET_CLOCK_HZ','SUSTAINED_TOPS_TARGET','OIC_COUNT','COMMAND_QUEUE_DEPTH','TC_CONTEXTS_PER_ENGINE','VECTOR_LUT_ENTRIES','FINAL_FP32_STRIP_ROWS','FINAL_FP32_STRIP_SLOTS'):
@@ -131,6 +132,7 @@ def load_profile(scale=1,cores=None,overrides=None,config_path=None):
   r['bytes']=r['banks']*r['subbanks']*r['width']//8*r['depth']
   r['physical_macros']=r['banks']*r['subbanks']
   r['combined_RW_GBs_at_1GHz']=r['physical_macros']*r['width']/8
+ require(p['L0_BANK_HASH_ROW_SHIFT']<min(max(1,(r['depth']-1).bit_length()) for r in regions if r['name']!='boot'),'Hash row shift exceeds a tensor-region row width')
  a,b,c,s,meta,boot=regions
  p.update(L0_BYTES=sum(r['bytes'] for r in regions),OPERAND_BYTES=a['bytes']+b['bytes'],C_BYTES=c['bytes'],PARTIAL_BYTES=s['bytes'],META_BYTES=meta['bytes'],OPERAND_BANKS=a['banks']+b['banks'],C_BANKS=c['banks'],PARTIAL_BANKS=s['banks'],META_BANKS=meta['banks'],MAIN_BANK_BITS=256,META_BANK_BITS=128,OPERAND_BANK_DEPTH=a['depth'],C_BANK_DEPTH=c['depth'],PARTIAL_BANK_DEPTH=s['depth'],META_BANK_DEPTH=meta['depth'])
  for name,r in zip(('A','B','C','SCRATCH','META'),regions):p[name+'_SUBBANKS']=r['subbanks']
@@ -139,11 +141,16 @@ def load_profile(scale=1,cores=None,overrides=None,config_path=None):
  require(p['L0_CPU_BASE_ADDR']+p['L0_BYTES']<=2**p['AXI_ADDR_BITS'],'CPU L0 window exceeds address width')
  for key in ('L0_BOOT_CODE_BYTES','L0_BOOT_STACK_BYTES_PER_HART','L0_BOOT_MAILBOX_BYTES'):
   require(p[key]>0 and p[key]%4096==0,f'{key}: positive4KiB multiple required')
+ require(p['L0_BANK_HASH_MODE']=='ROW_SKEW_ADD' and p['L0_BANK_HASH_PIPE_CYCLES']==4,'Hash mapper implements four real ROW_SKEW_ADD stages')
+ require(0<=p['L0_BANK_HASH_ROW_SHIFT']<32 and p['L0_BANK_FABRIC_PORTS']>=1 and p['L0_BANK_VOQ_DEPTH']>=2,'Invalid bank fabric/hash geometry')
+ require(p['BOOT_SOURCE']=='EXTERNAL_PRELOAD_SRAM','Boot must start directly from externally preloaded SRAM')
+ require(p['BOOT_RESET_ACK_CYCLES']>=2 and p['L0_BOOT_HART_RELEASE_CDC_CYCLES']>=2,'Reset CDC synchronizers require at least two stages')
  require(p['L0_BOOT_GUARD_CYCLES']>=5 and p['L0_BOOT_SRAM_READ_CYCLES']>=1,'Boot protection/read path latency too short')
  require(p['L0_BOOT_TL_BEAT_BYTES'] in (8,16,32),'Unsupported boot TL beat width')
  require(p['ROCKET_CACHE_BLOCK_BYTES']>=p['L0_BOOT_TL_BEAT_BYTES'] and p['ROCKET_CACHE_BLOCK_BYTES']&(p['ROCKET_CACHE_BLOCK_BYTES']-1)==0,'Invalid cache-line bytes')
  p['L0_CPU_LIMIT_ADDR']=p['L0_CPU_BASE_ADDR']+p['L0_BYTES']
  p['L0_BOOT_ENTRY_ADDR']=p['L0_CPU_BASE_ADDR']+p['L0_BOOT_OFFSET']
+ p['ROCKET_RESET_VECTOR']=p['L0_BOOT_ENTRY_ADDR']
  p['L0_BOOT_CODE_LIMIT_ADDR']=p['L0_BOOT_ENTRY_ADDR']+p['L0_BOOT_CODE_BYTES']
  p['L0_BOOT_STACK_BASE_ADDR']=p['L0_BOOT_CODE_LIMIT_ADDR']
  p['L0_BOOT_STACK_LIMIT_ADDR']=p['L0_BOOT_STACK_BASE_ADDR']+p['ROCKET_CORES']*p['L0_BOOT_STACK_BYTES_PER_HART']

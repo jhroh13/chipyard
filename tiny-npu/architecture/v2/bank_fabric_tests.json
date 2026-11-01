@@ -1,0 +1,386 @@
+[
+  {
+    "hashing": false,
+    "latency": 16,
+    "consumer_stall": false,
+    "stall_mode": 0,
+    "rows_per_bank": 4096,
+    "requests_per_port_per_phase": 64,
+    "independent_progress_samples": 0,
+    "status": "PASS",
+    "phases": [
+      {
+        "phase": 0,
+        "commands": 512,
+        "cycles": 518,
+        "commands_per_cycle": 0.9884169884169884,
+        "GBs_at_reference_1GHz": 31.62934362934363
+      },
+      {
+        "phase": 1,
+        "commands": 512,
+        "cycles": 534,
+        "commands_per_cycle": 0.9588014981273408,
+        "GBs_at_reference_1GHz": 30.681647940074907
+      },
+      {
+        "phase": 2,
+        "commands": 512,
+        "cycles": 533,
+        "commands_per_cycle": 0.9606003752345216,
+        "GBs_at_reference_1GHz": 30.73921200750469
+      }
+    ],
+    "bank_contention_samples": 1533,
+    "VOQ_no_credit_samples": 10332,
+    "SRAM_command_blocked_samples": 0,
+    "response_consumer_blocked_samples": 0,
+    "bank_command_counts": [
+      1536,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "scope": "actual 8-ingress/8-bank fixture; fixed-latency SRAM with optional response consumer stall; no Rocket/MAC/AXI integration; 1GHz is testbench timebase only"
+  },
+  {
+    "hashing": true,
+    "latency": 16,
+    "consumer_stall": false,
+    "stall_mode": 0,
+    "rows_per_bank": 4096,
+    "requests_per_port_per_phase": 64,
+    "independent_progress_samples": 0,
+    "status": "PASS",
+    "phases": [
+      {
+        "phase": 0,
+        "commands": 512,
+        "cycles": 70,
+        "commands_per_cycle": 7.314285714285714,
+        "GBs_at_reference_1GHz": 234.05714285714285
+      },
+      {
+        "phase": 1,
+        "commands": 512,
+        "cycles": 86,
+        "commands_per_cycle": 5.953488372093023,
+        "GBs_at_reference_1GHz": 190.51162790697674
+      },
+      {
+        "phase": 2,
+        "commands": 512,
+        "cycles": 86,
+        "commands_per_cycle": 5.953488372093023,
+        "GBs_at_reference_1GHz": 190.51162790697674
+      }
+    ],
+    "bank_contention_samples": 0,
+    "VOQ_no_credit_samples": 0,
+    "SRAM_command_blocked_samples": 0,
+    "response_consumer_blocked_samples": 0,
+    "bank_command_counts": [
+      192,
+      192,
+      192,
+      192,
+      192,
+      192,
+      192,
+      192
+    ],
+    "scope": "actual 8-ingress/8-bank fixture; fixed-latency SRAM with optional response consumer stall; no Rocket/MAC/AXI integration; 1GHz is testbench timebase only"
+  },
+  {
+    "hashing": false,
+    "latency": 32,
+    "consumer_stall": false,
+    "stall_mode": 0,
+    "rows_per_bank": 4096,
+    "requests_per_port_per_phase": 64,
+    "independent_progress_samples": 0,
+    "status": "PASS",
+    "phases": [
+      {
+        "phase": 0,
+        "commands": 512,
+        "cycles": 518,
+        "commands_per_cycle": 0.9884169884169884,
+        "GBs_at_reference_1GHz": 31.62934362934363
+      },
+      {
+        "phase": 1,
+        "commands": 512,
+        "cycles": 550,
+        "commands_per_cycle": 0.9309090909090909,
+        "GBs_at_reference_1GHz": 29.78909090909091
+      },
+      {
+        "phase": 2,
+        "commands": 512,
+        "cycles": 549,
+        "commands_per_cycle": 0.9326047358834244,
+        "GBs_at_reference_1GHz": 29.84335154826958
+      }
+    ],
+    "bank_contention_samples": 1533,
+    "VOQ_no_credit_samples": 10332,
+    "SRAM_command_blocked_samples": 0,
+    "response_consumer_blocked_samples": 0,
+    "bank_command_counts": [
+      1536,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "scope": "actual 8-ingress/8-bank fixture; fixed-latency SRAM with optional response consumer stall; no Rocket/MAC/AXI integration; 1GHz is testbench timebase only"
+  },
+  {
+    "hashing": true,
+    "latency": 32,
+    "consumer_stall": false,
+    "stall_mode": 0,
+    "rows_per_bank": 4096,
+    "requests_per_port_per_phase": 64,
+    "independent_progress_samples": 0,
+    "status": "PASS",
+    "phases": [
+      {
+        "phase": 0,
+        "commands": 512,
+        "cycles": 70,
+        "commands_per_cycle": 7.314285714285714,
+        "GBs_at_reference_1GHz": 234.05714285714285
+      },
+      {
+        "phase": 1,
+        "commands": 512,
+        "cycles": 102,
+        "commands_per_cycle": 5.019607843137255,
+        "GBs_at_reference_1GHz": 160.62745098039215
+      },
+      {
+        "phase": 2,
+        "commands": 512,
+        "cycles": 102,
+        "commands_per_cycle": 5.019607843137255,
+        "GBs_at_reference_1GHz": 160.62745098039215
+      }
+    ],
+    "bank_contention_samples": 0,
+    "VOQ_no_credit_samples": 0,
+    "SRAM_command_blocked_samples": 0,
+    "response_consumer_blocked_samples": 0,
+    "bank_command_counts": [
+      192,
+      192,
+      192,
+      192,
+      192,
+      192,
+      192,
+      192
+    ],
+    "scope": "actual 8-ingress/8-bank fixture; fixed-latency SRAM with optional response consumer stall; no Rocket/MAC/AXI integration; 1GHz is testbench timebase only"
+  },
+  {
+    "hashing": false,
+    "latency": 32,
+    "consumer_stall": true,
+    "stall_mode": 1,
+    "rows_per_bank": 4096,
+    "requests_per_port_per_phase": 64,
+    "independent_progress_samples": 0,
+    "status": "PASS",
+    "phases": [
+      {
+        "phase": 0,
+        "commands": 512,
+        "cycles": 518,
+        "commands_per_cycle": 0.9884169884169884,
+        "GBs_at_reference_1GHz": 31.62934362934363
+      },
+      {
+        "phase": 1,
+        "commands": 512,
+        "cycles": 950,
+        "commands_per_cycle": 0.5389473684210526,
+        "GBs_at_reference_1GHz": 17.246315789473684
+      },
+      {
+        "phase": 2,
+        "commands": 512,
+        "cycles": 877,
+        "commands_per_cycle": 0.5838084378563284,
+        "GBs_at_reference_1GHz": 18.68187001140251
+      }
+    ],
+    "bank_contention_samples": 2213,
+    "VOQ_no_credit_samples": 15537,
+    "SRAM_command_blocked_samples": 680,
+    "response_consumer_blocked_samples": 728,
+    "bank_command_counts": [
+      1536,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "scope": "actual 8-ingress/8-bank fixture; fixed-latency SRAM with optional response consumer stall; no Rocket/MAC/AXI integration; 1GHz is testbench timebase only"
+  },
+  {
+    "hashing": true,
+    "latency": 32,
+    "consumer_stall": true,
+    "stall_mode": 1,
+    "rows_per_bank": 4096,
+    "requests_per_port_per_phase": 64,
+    "independent_progress_samples": 44,
+    "status": "PASS",
+    "phases": [
+      {
+        "phase": 0,
+        "commands": 512,
+        "cycles": 70,
+        "commands_per_cycle": 7.314285714285714,
+        "GBs_at_reference_1GHz": 234.05714285714285
+      },
+      {
+        "phase": 1,
+        "commands": 512,
+        "cycles": 143,
+        "commands_per_cycle": 3.5804195804195804,
+        "GBs_at_reference_1GHz": 114.57342657342657
+      },
+      {
+        "phase": 2,
+        "commands": 512,
+        "cycles": 152,
+        "commands_per_cycle": 3.3684210526315788,
+        "GBs_at_reference_1GHz": 107.78947368421052
+      }
+    ],
+    "bank_contention_samples": 0,
+    "VOQ_no_credit_samples": 248,
+    "SRAM_command_blocked_samples": 248,
+    "response_consumer_blocked_samples": 528,
+    "bank_command_counts": [
+      192,
+      192,
+      192,
+      192,
+      192,
+      192,
+      192,
+      192
+    ],
+    "scope": "actual 8-ingress/8-bank fixture; fixed-latency SRAM with optional response consumer stall; no Rocket/MAC/AXI integration; 1GHz is testbench timebase only"
+  },
+  {
+    "hashing": false,
+    "latency": 32,
+    "consumer_stall": true,
+    "stall_mode": 2,
+    "rows_per_bank": 4096,
+    "requests_per_port_per_phase": 64,
+    "independent_progress_samples": 0,
+    "status": "PASS",
+    "phases": [
+      {
+        "phase": 0,
+        "commands": 512,
+        "cycles": 518,
+        "commands_per_cycle": 0.9884169884169884,
+        "GBs_at_reference_1GHz": 31.62934362934363
+      },
+      {
+        "phase": 1,
+        "commands": 512,
+        "cycles": 950,
+        "commands_per_cycle": 0.5389473684210526,
+        "GBs_at_reference_1GHz": 17.246315789473684
+      },
+      {
+        "phase": 2,
+        "commands": 512,
+        "cycles": 877,
+        "commands_per_cycle": 0.5838084378563284,
+        "GBs_at_reference_1GHz": 18.68187001140251
+      }
+    ],
+    "bank_contention_samples": 2213,
+    "VOQ_no_credit_samples": 15537,
+    "SRAM_command_blocked_samples": 680,
+    "response_consumer_blocked_samples": 728,
+    "bank_command_counts": [
+      1536,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "scope": "actual 8-ingress/8-bank fixture; fixed-latency SRAM with optional response consumer stall; no Rocket/MAC/AXI integration; 1GHz is testbench timebase only"
+  },
+  {
+    "hashing": true,
+    "latency": 32,
+    "consumer_stall": true,
+    "stall_mode": 2,
+    "rows_per_bank": 4096,
+    "requests_per_port_per_phase": 64,
+    "independent_progress_samples": 309,
+    "status": "PASS",
+    "phases": [
+      {
+        "phase": 0,
+        "commands": 512,
+        "cycles": 70,
+        "commands_per_cycle": 7.314285714285714,
+        "GBs_at_reference_1GHz": 234.05714285714285
+      },
+      {
+        "phase": 1,
+        "commands": 512,
+        "cycles": 143,
+        "commands_per_cycle": 3.5804195804195804,
+        "GBs_at_reference_1GHz": 114.57342657342657
+      },
+      {
+        "phase": 2,
+        "commands": 512,
+        "cycles": 152,
+        "commands_per_cycle": 3.3684210526315788,
+        "GBs_at_reference_1GHz": 107.78947368421052
+      }
+    ],
+    "bank_contention_samples": 0,
+    "VOQ_no_credit_samples": 41,
+    "SRAM_command_blocked_samples": 41,
+    "response_consumer_blocked_samples": 91,
+    "bank_command_counts": [
+      192,
+      192,
+      192,
+      192,
+      192,
+      192,
+      192,
+      192
+    ],
+    "scope": "actual 8-ingress/8-bank fixture; fixed-latency SRAM with optional response consumer stall; no Rocket/MAC/AXI integration; 1GHz is testbench timebase only"
+  }
+]

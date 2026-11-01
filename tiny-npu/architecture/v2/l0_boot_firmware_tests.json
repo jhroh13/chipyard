@@ -10,8 +10,8 @@
     ],
     "code_bytes": 192,
     "code_reserved_bytes": 131072,
-    "elf_sha256": "f56b0f670b40a691a7943f56d89aaba31192c6c1959a4e9b567ba44c08f21a55",
-    "configuration_sha256": "7b73db6d91ab82473c5205d8120725a1f652c15f0b0278c32479eedb9ffe2e98",
+    "elf_sha256": "f5b08638d627d0d3826d933f9f8575f3c9c7894c76a7f3cadfa221d151b47588",
+    "configuration_sha256": "b14c2088e467db1fdc5fee72db7a086070a5f1efd15d03017f6f35994252dc54",
     "entered_harts": [
       0,
       1,
@@ -45,8 +45,8 @@
     ],
     "code_bytes": 192,
     "code_reserved_bytes": 131072,
-    "elf_sha256": "281368dc4e576c9406560cd238440b88db2dc5ea6f4cc2a0951591c0c14ac942",
-    "configuration_sha256": "98a80f190c6732750b5b2807ab928e26d30325165230788feabeb9d208c1c1cc",
+    "elf_sha256": "b7a0990e50d45049c308dbea1ecf73b292b5aafb024f848091d26580e8d7d884",
+    "configuration_sha256": "5133ba9ddbab7098938565cfde2260567e1f7254a4172a28576338894eb4f1ed",
     "entered_harts": [
       0,
       1,
@@ -80,8 +80,8 @@
     ],
     "code_bytes": 192,
     "code_reserved_bytes": 131072,
-    "elf_sha256": "4a56c334b74dc00b37888950de7af92af7e3df8e197878b07955027b985b1301",
-    "configuration_sha256": "8181a3ab681e1b5fe4d18cd64cbb54f9ec6ab76e1d41adbfa4f456f337fc9df3",
+    "elf_sha256": "02e00c7d8b84f10730f80ef8990654e3fffb379a36ebf06e09f7a3a0c05dc6c9",
+    "configuration_sha256": "50585cdff16e046ead16c5eccb6b6cb4ab13c0a9b3ca443b15b713732d10b0e2",
     "entered_harts": [
       0,
       1,

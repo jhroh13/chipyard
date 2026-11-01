@@ -1,5 +1,5 @@
 {
-  "configuration_sha256": "7b73db6d91ab82473c5205d8120725a1f652c15f0b0278c32479eedb9ffe2e98",
+  "configuration_sha256": "b14c2088e467db1fdc5fee72db7a086070a5f1efd15d03017f6f35994252dc54",
   "scope": "planning estimate, not integrated RTL throughput",
   "result": {
     "L0_requested_MiB": 10.0,

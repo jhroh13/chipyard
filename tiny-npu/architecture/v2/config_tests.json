@@ -20,6 +20,48 @@
   "rejected": [
     {
       "override": {
+        "L0_BANK_HASH_MODE": "XOR"
+      },
+      "reason": "Hash mapper implements four real ROW_SKEW_ADD stages"
+    },
+    {
+      "override": {
+        "L0_BANK_VOQ_DEPTH": 1
+      },
+      "reason": "Invalid bank fabric/hash geometry"
+    },
+    {
+      "override": {
+        "L0_BANK_HASH_ROW_SHIFT": 32
+      },
+      "reason": "Hash row shift exceeds a tensor-region row width"
+    },
+    {
+      "override": {
+        "L0_BANK_HASH_PIPE_CYCLES": 1
+      },
+      "reason": "Hash mapper implements four real ROW_SKEW_ADD stages"
+    },
+    {
+      "override": {
+        "BOOT_SOURCE": "ROM"
+      },
+      "reason": "Boot must start directly from externally preloaded SRAM"
+    },
+    {
+      "override": {
+        "BOOT_RESET_ACK_CYCLES": 1
+      },
+      "reason": "Reset CDC synchronizers require at least two stages"
+    },
+    {
+      "override": {
+        "L0_BOOT_HART_RELEASE_CDC_CYCLES": 1
+      },
+      "reason": "Reset CDC synchronizers require at least two stages"
+    },
+    {
+      "override": {
         "L0_BOOT_CODE_BYTES": 1048576
       },
       "reason": "Boot code/stack/descriptor/mailbox do not fit boot reservation"

@@ -17,9 +17,9 @@ digraph tiny_npu_v2 {
   tc[label="Tensor-counter contexts\n32x32 tile / slot / context / bank addressing\n6D base / index / stride / bounds",fillcolor="#fef3c7"];
   oic[label="OIC / semaphore fabric\natomic multi-credit + ready sequence + epoch\n16 banks, persistent conditional issue",fillcolor="#fef3c7"];
  }
- boot[label="L0 boot/control: dedicated 256 KiB\nCode RX128K | stacks64K | descriptors32K\nROM loader / CPU TL integration planned",fillcolor="#fef3c7"];
+ boot[label="L0 boot/control: dedicated 256 KiB\nCode RX128K | stacks64K | descriptors32K\nExternal preload with harts held reset / CPU TL planned",fillcolor="#fef3c7"];
  boot -> l0 [label="8 dedicated single-port subbanks"];
- h0 -> boot [style=dashed,label="all harts fetch L0 code via planned TL"];
+ h0 -> boot [style=dashed,label="all harts start at SRAM reset PC via planned TL"];
  dram[label="DRAM\nAR accept -> RLAST: 700 ns nominal\nAW request -> first WVALID: 700 ns nominal",fillcolor="#e2e8f0"];
  dma[label="Dedicated AXI4 R/W + CDC + MO/byte credits\n2 ports x 256 bits x 625 MHz = 40 GB/s raw\n60% -> 24 GB/s available; target 20 GB/s aggregate",fillcolor="#e0f2fe"];
  l0[label="L0SRAM: 10 MiB x SCALE | single-port hierarchy\nA 1 | B 2 | C 5 | scratch 0.75 | scale/meta 1 | boot 0.25 MiB\n156 logical banks / 392 single-port subbanks\nR OR W per subbank; variable 16+ cycle paths\nNo Rocket L1/L2 payload path",fillcolor="#dcfce7"];

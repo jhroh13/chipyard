@@ -3,16 +3,22 @@
     "status": "PASS",
     "guard_latency": 5,
     "sram_latency": 16,
+    "image_kind": "compiled_RV64_firmware",
+    "release_stages": 2,
+    "hart_period_ps": 1400,
     "harts": 8,
-    "log": "L0_BOOT_RTL_PASS guard=5 read=16 checks=8237 reads=24 writes=8200 denied=12 harts=8\n- /workspace/TINY-NPU/tiny-npu/sim/tb_l0_boot.sv:101: Verilog $finish",
-    "scope": "real guard +single-port SRAM; firmware fetched by synthetic CPU agents; not TL/Rocket RTL integration"
+    "log": "PRELOADED_SRAM_RESET_PASS entry=00000000609c0000 release_stages=2 hart_half_period=700\nL0_BOOT_RTL_PASS guard=5 read=16 checks=8237 reads=25 writes=8200 denied=11 harts=8\n- /workspace/TINY-NPU/tiny-npu/sim/tb_l0_boot.sv:126: Verilog $finish",
+    "scope": "external SRAM preload during hart reset; direct SRAM reset PC, retention on CPU reset, CDC release +real single-port SRAM; synthetic fetches, not TL/Rocket RTL integration"
   },
   {
     "status": "PASS",
     "guard_latency": 7,
     "sram_latency": 32,
+    "image_kind": "compiled_RV64_firmware",
+    "release_stages": 4,
+    "hart_period_ps": 4200,
     "harts": 8,
-    "log": "L0_BOOT_RTL_PASS guard=7 read=32 checks=8237 reads=24 writes=8200 denied=12 harts=8\n- /workspace/TINY-NPU/tiny-npu/sim/tb_l0_boot.sv:101: Verilog $finish",
-    "scope": "real guard +single-port SRAM; firmware fetched by synthetic CPU agents; not TL/Rocket RTL integration"
+    "log": "PRELOADED_SRAM_RESET_PASS entry=00000000609c0000 release_stages=4 hart_half_period=2100\nL0_BOOT_RTL_PASS guard=7 read=32 checks=8237 reads=25 writes=8200 denied=11 harts=8\n- /workspace/TINY-NPU/tiny-npu/sim/tb_l0_boot.sv:126: Verilog $finish",
+    "scope": "external SRAM preload during hart reset; direct SRAM reset PC, retention on CPU reset, CDC release +real single-port SRAM; synthetic fetches, not TL/Rocket RTL integration"
   }
 ]

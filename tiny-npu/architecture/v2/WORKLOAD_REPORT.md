@@ -46,7 +46,7 @@
 
 1. 이 fixture에서는 consumer stall 감소가 우선이다. Source를 더 빠르게 만드는 것보다 결과 drain/vector/AXI downstream을 먼저 계측한다.
 2. 긴128cycle 경로에서 slots8→16은 완료 token95→103으로 개선됐다. 실제 경로의 credit RTT와 slot high-water를 확인해 적용한다.
-3. subbank 수4→8만으로 stride alias는 해소되지 않았다. Skew mapping은 충돌을0으로 줄였지만 처리량 개선은 작다. 숨겨진 충돌을 줄이는 것과 전체 병목을 줄이는 것을 구분한다.
+3. subbank 수4→8만으로 stride에 의한 bank 충돌은 해소되지 않았다. 여기서 alias는 서로 다른 주소가 같은 bank를 선택한다는 뜻이며 데이터 주소가 겹쳐 덮어써지는 오류가 아니다. [HDD의 수식·예제](HDD.md#19-bank-수만-늘리면-alias가-남았다의-정확한-의미)를 참조한다. Skew mapping은 충돌을0으로 줄였지만 처리량 개선은 작다. 숨겨진 충돌을 줄이는 것과 전체 병목을 줄이는 것을 구분한다.
 4. Control-agent clock2배는 이 fixture에서 처리량 개선이 없었다. 실제 Rocket control valid/ready·retire·cache miss 자료가 없으면 코어 주파수 증설을 우선하지 않는다.
 5. I-cache8→16KiB만 바꿔도 miss trace는 그대로다. 도구가 cache 용량 증가에 따른 성능을 임의로 만들어내지 않는지 검사한 것이다. 실제 cache size 효과는 Rocket 실행으로 검증한다.
 

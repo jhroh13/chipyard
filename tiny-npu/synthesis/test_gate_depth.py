@@ -35,3 +35,10 @@ with tempfile.TemporaryDirectory() as tmp:
  r=subprocess.run([sys.executable,str(Path(__file__).with_name('gate_depth.py')),str(net),'--top','test'],capture_output=True,text=True)
  assert r.returncode==1 and '"status": "FAIL"' in r.stdout
 print('CLI hard-failure and hidden-flop rejection PASS')
+
+async_ff=chain(1,enable=True);async_ff['cells']['reg']['type']='$_DFF_PP0_';async_ff['cells']['reg']['port_directions']['R']='input';async_ff['cells']['reg']['connections']['R']=[2]
+try:audit(async_ff)
+except ValueError:pass
+else:raise AssertionError('async flop silently accepted in plain-DFF mode')
+assert audit(async_ff,allow_async_reset=True)['max_depth']==1
+print('Explicit async-reset pin coverage PASS; default plain-DFF contract unchanged')

@@ -14,9 +14,9 @@ def qualify(module,p):
  base=p['L0_BOOT_OFFSET'];code=base+p['L0_BOOT_CODE_BYTES'];total=p['L0_BYTES']
  for running in (0,1):
   if running:
-   blocked=sim.tick(commit_valid=1,loader_idle=0,image_verified=1,rw_initialized=1);assert not blocked['commit_ready']
-   blocked=sim.tick(commit_valid=1,loader_idle=1,image_verified=0,rw_initialized=1);assert not blocked['commit_ready']
-   committed=sim.tick(commit_valid=1,loader_idle=1,image_verified=1,rw_initialized=1);assert committed['commit_ready']
+   blocked=sim.tick(commit_valid=1,preload_idle=0,image_verified=1,rw_initialized=1);assert not blocked['commit_ready']
+   blocked=sim.tick(commit_valid=1,preload_idle=1,image_verified=0,rw_initialized=1);assert not blocked['commit_ready']
+   committed=sim.tick(commit_valid=1,preload_idle=1,image_verified=1,rw_initialized=1);assert committed['commit_ready']
   for cycle in range(1300):
    owner=rng.randrange(4);hart=rng.choice([0,7,8,255]);write=rng.randrange(2);size=rng.choice([0,1,8,64,4096,4097]);tag=rng.randrange(256)
    addr=rng.choice([0,base-1,base,code-1,code,total-1,total,(1<<p['L0_ADDRESS_BITS'])-1,rng.randrange(total)])
@@ -51,4 +51,20 @@ def run():
   m=json.loads((d/'netlist.json').read_text())['modules']['tiny_npu_l0_boot_guard'];r=audit(m,40);assert r['status']=='PASS',r['max_depth']
   r.update(scale=scale,parameters=settings,post_synthesis=qualify(m,p),source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),netlist_sha256=hashlib.sha256((d/'netlist.json').read_bytes()).hexdigest());reports.append(r);print('Boot guard',scale,r['max_depth'],r['post_synthesis'],flush=True)
  (ROOT/'architecture/v2/l0_boot_gate_depth.json').write_text(json.dumps(reports,indent=2)+'\n')
+ check_preloaded(tool,env)
+
+def check_preloaded(tool,env):
+ reports=[]
+ sources=['tiny_npu_l0_boot_guard.sv','tiny_npu_sram_boot_control.sv','tiny_npu_preloaded_boot.sv']
+ for scale in (1,2,4):
+  p=load_profile(scale);d=ROOT/f'build/preloaded-boot-depth-x{scale}';d.mkdir(parents=True,exist_ok=True);rel=d.relative_to(ROOT)
+  settings=dict(ADDR_BITS=p['L0_ADDRESS_BITS'],HARTS=p['ROCKET_CORES'],LATENCY=p['L0_BOOT_GUARD_CYCLES'],TOTAL_BYTES=p['L0_BYTES'],BOOT_BASE=p['L0_BOOT_OFFSET'],CODE_LIMIT=p['L0_BOOT_OFFSET']+p['L0_BOOT_CODE_BYTES'],RESET_VECTOR=p['ROCKET_RESET_VECTOR'],RELEASE_STAGES=p['L0_BOOT_HART_RELEASE_CDC_CYCLES'],ACK_STAGES=p['BOOT_RESET_ACK_CYCLES'])
+  script='read_verilog -sv '+' '.join('rtl/'+f for f in sources)+'\nchparam '+' '.join(f'-set {k} {v}' for k,v in settings.items())+' tiny_npu_preloaded_boot\nhierarchy -top tiny_npu_preloaded_boot\nsynth -flatten -top tiny_npu_preloaded_boot -noabc\ndelete t:$scopeinfo\ncheck -assert\ndffunmap\nabc -g AND,OR\nopt_clean\nwrite_json '+str(rel/'netlist.json')+'\n'
+  (d/'synth.ys').write_text(script)
+  with (d/'synth.log').open('w') as log:subprocess.run([tool,'-s',str(rel/'synth.ys')],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=300)
+  m=json.loads((d/'netlist.json').read_text())['modules']['tiny_npu_preloaded_boot'];r=audit(m,40,allow_async_reset=True);assert r['status']=='PASS',r['max_depth']
+  r.update(scale=scale,parameters=settings,source_sha256={f:hashlib.sha256((ROOT/'rtl'/f).read_bytes()).hexdigest() for f in sources},register_basis='plain DFF plus explicitly allowed positive-clock async-reset-to-zero DFF for reset release synchronizer; data, clock and reset pin combinational paths included',scope='structural depth; async recovery/removal and physical CDC/metastability reliability require implementation signoff; wrapper functionality verified in RTL fixture')
+  reports.append(r);print('Preloaded boot complete control',scale,r['max_depth'],flush=True)
+ (ROOT/'architecture/v2/preloaded_boot_gate_depth.json').write_text(json.dumps(reports,indent=2)+'\n')
+
 if __name__=='__main__':run()

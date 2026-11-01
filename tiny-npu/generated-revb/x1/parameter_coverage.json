@@ -899,12 +899,77 @@
     "C_header": true,
     "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
   },
-  "BOOT_ROM_RESET_VECTOR": {
+  "BOOT_SOURCE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "BOOT_RESET_ACK_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BANK_HASH_ENABLE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BANK_HASH_ROW_SHIFT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BANK_HASH_MODE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BANK_HASH_PIPE_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BANK_FABRIC_PORTS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BANK_VOQ_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BANK_MONITOR_ENABLE": {
     "SV_package": true,
     "C_header": true,
     "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
   },
   "SCALE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BANK_SFR_MAP_INDEX": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BANK_SFR_MONITOR_INDEX": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BANK_SFR_STRIDE_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BANK_SFR_HASH_ENABLE_BIT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BANK_SFR_SHIFT_LSB": {
     "SV_package": true,
     "C_header": true,
     "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
@@ -1080,6 +1145,11 @@
     "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
   },
   "L0_BOOT_ENTRY_ADDR": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ROCKET_RESET_VECTOR": {
     "SV_package": true,
     "C_header": true,
     "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"

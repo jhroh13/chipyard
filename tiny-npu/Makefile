@@ -84,3 +84,17 @@ check-boot-depth:
 
 test-fma-netlist:
 	$(PYTHON) synthesis/test_fma_netlist.py
+
+.PHONY: test-bank-fabric test-bank-hash check-bank-depth
+test-bank-fabric:
+	$(PYTHON) verification/test_bank_fabric.py
+
+test-bank-hash:
+	$(PYTHON) verification/test_bank_hash.py
+
+check-bank-depth:
+	$(PYTHON) synthesis/check_bank_fabric_depth.py
+
+.PHONY: test-bank-netlist
+test-bank-netlist:
+	$(PYTHON) synthesis/test_bank_netlist.py

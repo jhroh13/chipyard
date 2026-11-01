@@ -375,4 +375,214 @@ E7은MX E8M0scale전체범위보다좁으므로overflow/underflow와calibration�
 
 ## 18. L0-resident Rocket boot code
 
-[L0 boot 설계·수식·검증 보고서](L0_BOOT_REPORT.md)를 적용한다. 기본10MiB 중256KiB를 전용8개 single-port subbank로 예약하고 scratch는768KiB로 조정한다. 총392개 physical subbank이다. Code128KiB RX, hart별 stack8KiB, descriptor32KiB, mailbox4KiB를 분리한다. Guard5+SRAM16 cycle을 독립 파라미터로 두며7+32 cycle도 RTL 검증했다. 8-hart Spike 부트는 통과했으나 실제 Rocket/TL/ROM loader 연결은 미구현이다.
+[L0 boot 설계·수식·검증 보고서](L0_BOOT_REPORT.md)를 적용한다. 기본10MiB 중256KiB를 전용8개 single-port subbank로 예약하고 scratch는768KiB로 조정한다. 총392개 physical subbank이다. Code128KiB RX, hart별 stack8KiB, descriptor32KiB, mailbox4KiB를 분리한다. Guard5+SRAM16 cycle을 독립 파라미터로 두며7+32 cycle도 RTL 검증했다. 8-hart Spike 부트는 통과했으나 외부에서 S0/L0 boot SRAM을 미리 적재한 뒤 hart reset을 해제해 SRAM reset PC로 직접 실행한다. ROM loader는 사용하지 않는다. Fabric/SRAM reset과 hart reset을 분리한 제어 RTL 및 reset 유지/2·4-cycle 해제/CPU-reset SRAM 보존 테스트를 추가했다. 실제 Rocket/TL/외부 적재 bus 연결은 미구현이다.
+
+## 19. “Bank 수만 늘리면 alias가 남았다”의 정확한 의미
+
+여기서 **alias는 stride에 의한 bank 충돌(bank-index aliasing)**을 뜻한다.
+서로 다른 주소가 같은 물리 bank/subbank를 선택하므로 single-port에서 동시에
+서비스되지 못한다. **같은 `(bank, row, byte)`에 잘못 저장되어 데이터가 덮어써지는
+주소 alias 오류를 의미하지 않는다.** Row가 다르더라도 같은 single-port bank라면
+동시 read/write 요청은 중재·직렬화된다. “stride에 의한 bank 충돌”이라는 표현을
+우선 사용한다.
+
+### 19.1 실제 검증 fixture의 원인과 관찰
+
+[축소 workload fixture](../../verification/local_stress.py)의 linear 선택식은
+`physical_subbank = (token_id * 32) % P`다. 이 식은 synthetic token의 bank
+경합을 주입하기 위한 것이며 전체32×32 tensor의 실제 byte-address decoder가 아니다.
+P는 이 fixture가 공유하는 물리 subbank 수다. 다음은 이 식을 그대로 계산한 예다.
+
+| token_id | stride32 word index | P=4 선택 | P=8 선택 | P=64 선택 |
+|---:|---:|---:|---:|---:|
+| 0 | 0 | 0 | 0 | 0 |
+| 1 | 32 | 0 | 0 | 32 |
+| 2 | 64 | 0 | 0 | 0 |
+| 3 | 96 | 0 | 0 | 32 |
+| 4 | 128 | 0 | 0 | 0 |
+
+32는4와8의 공배수이므로4→8로 늘려도 모든 요청이 subbank0에 몰린다.
+P=64에서도 두 개만 사용한다. 따라서 bank 수와 총 용량 증가만으로 해당 접근
+패턴의 유효 BW가 늘어난다고 가정하면 안 된다. Bank 폭32B일 때 word stride32는
+byte stride1024B에 해당한다. 이 예는 fixture의 충돌 설명이며 실제 C row pitch를
+1024B라고 변경하는 설계 지시가 아니다.
+
+기록된 동일 stimulus/seed의 [baseline sweep](workload_sweeps.json)은 다음과 같다.
+현재 FMA/Rocket 전체 RTL 성능 측정값과 구분한다.
+
+| 축소 fixture 설정 | source bank-conflict 계수 | 완료 token 수 |
+|---|---:|---:|
+| Linear, subbanks4 | 351 | 108 |
+| Linear, subbanks8 | 351 | 108 |
+| Skew scheduling | 0 | 109 |
+
+Skew fixture는 `(token_id + path_index) % P`, path_index=A/B/C/T의0/1/2/3으로
+요청 위치를 분산한다. **실제 SRAM의 가역 주소 변환 RTL이 구현되었다는 뜻은 아니다.**
+Conflict 계수는 요청별 충돌 관찰 수이며 겹치는 채널의 stall을 합한 전체 elapsed
+cycle 수가 아니다. Conflict가351→0이어도 완료량은108→109로 약0.93%만 늘었다.
+이 fixture에서는 consumer stall 등 다른 병목이 남아 있으므로, bank conflict
+제거를 같은 비율의 TOPS 향상으로 바꾸어 해석하지 않는다.
+
+### 19.2 수식: bank 개수보다 접근 stride와의 관계가 중요
+
+한 region 내 word 주소가 `w_j=w_0+j*S`이고 linear bank 선택이 `b_j=w_j mod P`면,
+전체 주기에서 사용하는 서로 다른 bank 수는
+
+`U = P / gcd(P, S)`
+
+이다. Q개 요청의 bank 종류는 최대 `min(Q,U)`개다. S=32일 때 P=4/8/16/32는
+U=1, P=64는U=2이다. 같은 bank를 공유하는 다른 stream과의 충돌은 별도 분석한다.
+고른 도착·충분한 요청·독립 bank·consumer 무정체 조건에서 이 stream의 BW 상한은
+
+`BW_stream <= U * WORD_BYTES * f_sram / II_subbank`
+
+이며 동시에 전체 bank fabric, 반환 bus, credit, consumer의 상한도 만족해야 한다.
+이 상한은 충돌·turnaround·부하 불균형을 무시한 ceiling이다. L0 전체392개 subbank가
+한 address space의 동일 modulo decoder를 공유한다고 계산하지 않는다. A/B/C/metadata/
+boot의 물리 bank와 포트는 각 region 단위로 분석하며 boot 전용8개는 tensor BW에
+합산하지 않는다.
+
+예를 들어 같은 cycle에 도착한8개 read가 bank0에 몰리고 II=1, 고정 읽기 지연16이면
+accept는cycle0..7, 마지막 응답은cycle23이다. 독립8개 bank와 충분한 ingress/return
+폭으로 모두cycle0에 accept하면 마지막 응답은cycle16이다. Pipeline이 II=1이면
+**16-cycle latency를 이유로 요청당16cycle 직렬화한다고 계산하지 않는다.** 실제
+queue 대기, 경로별 가변 지연, response backpressure와 R/W 경합은 별도로 더한다.
+필요 credit은 최소 `ceil(issue_rate * response_or_credit_RTT)`이며 충돌로 issue가
+줄어든 원인과 긴 RTT로 credit이 고갈된 원인을 분리 계측한다.
+
+### 19.3 올바른 물리 주소와 개선 선택
+
+Linear decoder의 region-relative byte 주소 x, word 폭 W, 논리 bank Nb,
+subbank Ns에 대한 기본적인 가역 분해는 다음과 같다.
+
+```
+w = floor(x / W)
+byte_lane = x % W
+logical_bank = w % Nb
+subbank = floor(w / Nb) % Ns
+physical_row = floor(w / (Nb*Ns))
+w = ((physical_row * Ns + subbank) * Nb + logical_bank)  # 역변환
+```
+
+서로 다른 w가 같은 bank를 사용해도 row 또는 subbank가 다르면 데이터 주소는
+구별된다. 반대로 bank 수를 바꾸면서 row 분모·bit slicing을 이전 값으로 남기거나
+상위 row bits를 잘라버리면 실제 주소 손상 오류가 될 수 있다. 전체 decode의
+가역성, SRAM depth bounds와 전체 용량 보존을 검증한다.
+
+후속 fabric RTL에서는 다음을 비교한다.
+
+- **Tile packing/coalescing:** 현재32×32 A/B tile을 연속 word로 전달하고 near-RF에서
+  재배열한다. MAC마다 L0의 strided scalar를 직접 gather하는 방식은 피한다.
+  C의 GROUP_ROW_ARRAY_COL 배치와 각 lane/array/slot의 stride를 함께 확인한다.
+- **Row-skew/hash:** row의 상위 정보를 bank 선택에 섞는다. 예를 들어 P개의
+  물리 bank에 대해 `q=floor(w/P)`, `b=w%P`, `b'=(b+g(q))%P`, `row=q`면
+  `w=q*P+((b'-g(q))%P)`로 복원할 수 있어 가역성을 유지한다. P=8,S=32에서
+  `g(q)=floor(q/4)`는 위 stride의 bank를0,1,2,...로 분산한다. 모든 stride에
+  유리하다는 보장은 없으므로 workload별로 검증한다. XOR 방식은 bank 수가
+  2의 거듭제곱인지와 bit 폭을 별도로 제약한다.
+- **경합 중재/VOQ:** 동일 bank 요청은 독립 queue와 공정한 arbiter로 처리하며
+  다른 bank까지 막는 head-of-line blocking을 줄인다. R/W 모두 같은 1RW 포트를
+  소비한다. Skew로 부족한 총 service BW나 response bus BW가 늘어나지는 않는다.
+- **파라미터 검토:** region별 banks/subbanks/depth/width, mapping mode와 hash
+  shift, tile pitch/padding, VOQ depth, II, latency bound, in-flight/credit,
+  RF slots를 함께 sweep한다. 새 ROW_SKEW_ADD selector와 SFR·default 파라미터는21절처럼 구현했다.
+  실제 전체 region fabric 및 XOR hash는 미구현이다.
+
+Read/write/DMA/vector가 같은 변환을 사용하고 byte mask·region bounds를 보존해야
+한다. Mapping을 실행 중 바꾸면 안 되며, 변경 전 outstanding을 drain하고 데이터
+재배치 및 epoch 경계를 처리한다. Bank별 요청 수, accepted read/write, conflict
+stall, queue high-water, RTT, 반환 credit을 trace에서 확인한다. OIC counter bank도
+비슷한 modulo 편향이 생길 수 있으므로 tensor SRAM 충돌과 별도 원인으로 계측한다.
+
+## 20. 현재 bank 공유 구조, 충돌과 구현 범위
+
+현재 구현은 (a) 실제 single-port SRAM primitive, (b) 별도 boot preload/reset 경로,
+(c) 새 **hash→VOQ→bank별 round-robin→elastic command** RTL이다. 아직 전체392개
+subbank를 모든 Rocket/RoCC/AXI/MAC 경로에 연결한 통합 칩이 아니다. 아래 표는 최종
+fabric에서 어떤 region을 공유하는지와, 새8-ingress/8-bank SRAM fixture가 검증하는
+중재 성질을 구분하는 설계 계약이다.
+
+| 동시 요청 | 공유 영역/물리 자원 | 충돌 조건 및 처리 |
+|---|---|---|
+| AXI→L0 write / SRCA 또는 SRCB load read | A 또는 B의 해당 subbank | 같은 physical subbank이면 R/W 직렬화. 완료 전 operand ready publish 금지 |
+| SRCC read / TARGETR→L0 write | C subbank | 서로 다른 row여도 1RW 경합. 같은 주소면 RAW/WAR/WAW 의존성까지 별도 OIC/scoreboard로 처리 |
+| Vector read / vector write / L0→AXI read | C 또는 FP32 scratch subbank | 같은 subbank이면 read/read·read/write·write/write 모두 한 번에 하나 |
+| DMA read/write 여러 outstanding burst | 선택된 각 region의 subbank | AXI port를 추가해도 SRAM 포트가 늘지는 않음. Burst를 word별로 분배하고 byte/response credit 확보 |
+| 8개 hart의 instruction refill / stack·descriptor 접근 | 전용 boot/control8 subbank | 같은 bank의 fetch/read/write는 직렬화. 동일 코드 read broadcast는 아직 미구현 |
+| 외부 boot preload / Rocket fetch | boot/control | preload 동안 harts reset, seal 후 preload ingress 폐쇄로 동시 실행을 차단 |
+| A load / B load | 서로 다른 A/B 물리 bank | 같은 local bank 번호라도 별도 SRAM이면 물리 충돌 아님. 공유 router·return bus의 경합은 별도 |
+| Boot code fetch / tensor A/B/C | 물리적으로 분리한 bank | bank 충돌 없음. 향후 공유 CPU/interconnect의 병목은 별도 검증 |
+
+**같은 bank, 다른 row**는 service bandwidth 문제다. **같은 데이터 주소**의
+read-after-write, write-after-read, write-after-write는 정확성 의존성도 있으므로
+hashing만으로 해결되지 않는다. VOQ는 동일 ingress·동일 bank FIFO 순서를 보존하며
+서로 다른 bank 또는 ingress의 전역 순서를 보장하지 않는다. TC/OIC/ownership과
+최종 write-commit/return completion이 producer/consumer 순서를 보장해야 한다.
+
+새 RTL은 각 region의 bank/row decoder 뒤에서 동작한다. 4-stage mapper가 bank를
+선택하고, ingress별·bank별 depth2 VOQ에 명령·row·data·mask·tag를 함께 저장한다.
+각 bank가 round-robin으로 하나를 골라1-entry elastic output에 보관한다. SRAM이
+ready일 때만 그 bank의 read 또는 write 하나가 실행된다. Output이 stall되면 모든
+metadata와 payload가 안정적으로 유지된다. VOQ에 이미 들어간 다른 bank 요청은
+계속 진행할 수 있지만 **입력단의 단일 FIFO head가 막혀 뒤의 요청을 보여주지
+못하면 upstream HOL은 여전히 남는다.** 실제 return routing/response credit/
+producer scoreboard와 다중 region 연결은 후속 통합 대상이다.
+
+VOQ 명령 storage는 대략
+`PORTS*BANKS*DEPTH*(ROW_BITS+1+DATA_BITS+DATA_BITS/8+TAG_BITS)` bits이며 output
+register는 bank당 같은 폭1개를 추가한다. 모든 region에 무조건 전체 cross-product
+queue를 복제하기 전에 area·fanout·hierarchical routing을 검토한다. Depth가 클수록
+진짜 SRAM service BW가 증가하는 것은 아니다.
+
+## 21. 기본 enable hashing과 SFR 계약
+
+`L0_BANK_HASH_ENABLE=true`, `L0_BANK_HASH_MODE=ROW_SKEW_ADD`,
+`L0_BANK_HASH_ROW_SHIFT=2`, `L0_BANK_HASH_PIPE_CYCLES=4`,
+`L0_BANK_FABRIC_PORTS=8`, `L0_BANK_VOQ_DEPTH=2`,
+`L0_BANK_MONITOR_ENABLE=true`를 canonical default로 추가했다. 이 설정은 **tensor
+region**에 적용하며 boot code의 고정 linear 매핑은 유지한다. 신규 fabric primitives와
+SV/C 파라미터를 생성하지만 실제 region별 wiring은 아직 연결해야 한다.
+
+```
+P = 해당 region의 physical bank 수
+K = max(1, ceil(log2(P)))
+g_raw = (row >> HASH_ROW_SHIFT) & ((1<<K)-1)
+g = g_raw >= P ? g_raw-P : g_raw
+hashed_bank = (linear_bank + g) % P
+physical_row = row
+inverse_linear_bank = (hashed_bank - g + P) % P
+```
+
+P가2의 거듭제곱이 아니어도 bank별 permutation이다. Mapping은 data/scale의
+주소 범위와 row를 바꾸지 않으며 가역이다. 입력 linear bank/row의 region decode와
+bounds 검사는 upstream 책임이다. 실제 hardware는 raw hash capture, hash 범위
+보정, bank+hash 합, 최종 bank 범위 보정을 **4개의 register stage**로 분리한다.
+따라서 empty mapper4cycle + VOQ/enqueue·output2cycle + SRAM read latency L가
+무경합 경로의 최소 지연이다. 요청·응답이 stall되면 더 길어지며 L을1로 가정하지
+않는다. Canonical aggregate PATH latency 모델은 아직 새 region fabric으로
+보정하지 않았으므로 기존10.772 TOPS 계획값을 이 RTL의 측정 성능으로 쓰지 않는다.
+
+아래 SFR는 **region-local register index**이며 system MMIO/RoCC base는 후속 wiring
+대상이다. Byte offset은64-bit stride 기준이다. `sfr_valid && sfr_ready`에서 access가
+완료된다. `sfr_write=0`은 read,1은 write다.
+
+| Index / byte offset | SFR | Bits | Reset/default | 동작 |
+|---|---|---|---|---|
+| 0 / 0x00 | BANK_MAP_CONTROL | bit0 HASH_ENABLE | 1 | 0=linear,1=row-skew hashing |
+| 0 / 0x00 | BANK_MAP_CONTROL | bits12:8 ROW_SHIFT | 2 | row bits의 hash 선택; ROW_BITS 미만 |
+| 1 / 0x08 | BANK_MONITOR_CONTROL_STATUS | bit0 MONITOR_ENABLE | 1 | 실제 fabric valid/ready JSONL probe 계측 enable |
+| 1 / 0x08 | status | bit1 IDLE | 동적 | mapper+VOQ+output+외부 response 모두 empty |
+| 1 / 0x08 | status | bit2 LAYOUT_CHANGE_SAFE | 외부 입력 | 해당 region 데이터가 invalidate/repack되고 job 소유권을 확보했음 |
+
+Mapping 변경 write는 신규 ingress를 막고 기존 요청·응답의 drain을 기다린다.
+`IDLE && LAYOUT_CHANGE_SAFE`가 모두 참이어야 적용된다. **Idle만으로 기존 SRAM
+내용을 새 mapping으로 읽어도 되는 것은 아니다.** Caller는 producer를 먼저
+quiesce하고 데이터를 무효화/재배치한 뒤 LAYOUT_CHANGE_SAFE를 제공해야 한다.
+이 조건이 없으면 write가 ready를 기다리므로 활성 job의 중간에서 blocking CSR
+write를 발행하지 않는다. 잘못된 register index 또는 ROW_SHIFT 범위는 sfr_error로
+거절한다. CPU-only reset은 mapping/SRAM을 보존하며 fabric reset 후에는 새 mapping에
+맞춰 데이터를 적재한다. 모든 read/write/DMA/vector 경로가 동일 설정을 사용해야 한다.
+
+[Bank fabric·hashing·bubble 측정 보고서](BANK_FABRIC_REPORT.md)에 실제 RTL 측정값,
+consumer stall, credit 정체와 다음 개선 사항을 기록한다. Hash는 bank 분산을 개선할
+수 있지만 동일 주소 의존성, 반환 BW 부족, 긴 latency, consumer stall을 없애지는 않는다.

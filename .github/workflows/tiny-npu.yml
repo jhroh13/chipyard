@@ -26,6 +26,9 @@ jobs:
           python verification/run_rtl_trace.py --latencies 16
           make numeric-prototype
           make test-fma-pipe
+          python verification/test_l0_boot_rtl.py --synthetic-image
+          make test-bank-hash
+          make test-bank-fabric
           make model
           make sram
           make test
@@ -38,6 +41,7 @@ jobs:
             tiny-npu/architecture/v2/environment_tests.json
             tiny-npu/architecture/v2/rtl_trace_tests.json
             tiny-npu/architecture/v2/lq16*_tests.json
+            tiny-npu/architecture/v2/bank*_tests.json
             tiny-npu/architecture/v2/config_tests.json
             tiny-npu/generated-revb/**/manifest.json
             tiny-npu/generated-revb/**/lint.log
@@ -59,6 +63,9 @@ jobs:
           make -C tiny-npu check-fma-depth
           make -C tiny-npu test-fma-netlist
           make -C tiny-npu check-boot-depth
+          python tiny-npu/tools/install_sv2v.py
+          make -C tiny-npu check-bank-depth
+          make -C tiny-npu test-bank-netlist
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -66,6 +73,10 @@ jobs:
           path: |
             tiny-npu/architecture/v2/fma_gate_depth.json
             tiny-npu/architecture/v2/fma_netlist_tests.json
+            tiny-npu/architecture/v2/preloaded_boot_gate_depth.json
+            tiny-npu/architecture/v2/bank_fabric_gate_depth.json
+            tiny-npu/architecture/v2/bank_netlist_tests.json
+            tiny-npu/build/bank-depth-*/synth.log
             tiny-npu/architecture/v2/l0_boot_gate_depth.json
             tiny-npu/build/boot-guard-depth-*/synth.log
             tiny-npu/build/synthesis-pipe/**/depth.json

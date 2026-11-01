@@ -24,7 +24,7 @@ def address_map(p):
  for r in p['L0_REGIONS']:
   regions.append(dict(name=r['name'],base=offset,size_bytes=r['bytes'],limit_exclusive=offset+r['bytes'],logical_banks=r['banks'],subbanks_per_bank=r['subbanks'],word_bytes=r['width']//8,depth=r['depth']))
   offset+=r['bytes']
- return dict(address_space='NPU_LOCAL_BYTE_OFFSET',cpu_mmio_base=p['L0_CPU_BASE_ADDR'],AXI_system_mapping='CPU_TL_mapping_planned_not_integrated',boot=dict(entry=p['L0_BOOT_ENTRY_ADDR'],code_limit=p['L0_BOOT_CODE_LIMIT_ADDR'],stack_base=p['L0_BOOT_STACK_BASE_ADDR'],descriptor_base=p['L0_BOOT_DESCRIPTOR_BASE_ADDR'],mailbox_base=p['L0_BOOT_MAILBOX_BASE_ADDR'],limit=p['L0_CPU_LIMIT_ADDR'],policy='loader-before-commit; code RX; CPU/control RW; no NPU payload access'),L0_bytes=offset,bounds_check_required=True,regions=regions)
+ return dict(address_space='NPU_LOCAL_BYTE_OFFSET',cpu_mmio_base=p['L0_CPU_BASE_ADDR'],AXI_system_mapping='CPU_TL_mapping_planned_not_integrated',boot=dict(source=p['BOOT_SOURCE'],reset_vector=p['ROCKET_RESET_VECTOR'],entry=p['L0_BOOT_ENTRY_ADDR'],code_limit=p['L0_BOOT_CODE_LIMIT_ADDR'],stack_base=p['L0_BOOT_STACK_BASE_ADDR'],descriptor_base=p['L0_BOOT_DESCRIPTOR_BASE_ADDR'],mailbox_base=p['L0_BOOT_MAILBOX_BASE_ADDR'],limit=p['L0_CPU_LIMIT_ADDR'],policy='external-preload-before-reset-release; code RX; CPU/control RW; no NPU payload access'),L0_bytes=offset,bounds_check_required=True,regions=regions)
 
 def generate(scale=1,config_path=None,overrides=None,out=None,lint=False):
  # Resolve every constraint before touching output directories.
@@ -118,7 +118,7 @@ module tiny_npu_revb_boot_guard(
  output logic out_allow,output logic [2:0] out_error,output logic [1:0] out_owner,
  output logic [7:0] out_hart,output logic [7:0] out_tag,output logic [12:0] out_bytes,output logic out_write,
  output logic [int'(tiny_npu_revb_config_pkg::L0_ADDRESS_BITS)-1:0] out_addr,
- input logic image_verified,rw_initialized,loader_idle,commit_valid,
+ input logic image_verified,rw_initialized,preload_idle,commit_valid,
  output logic commit_ready,commit_error,boot_ready
 );
  import tiny_npu_revb_config_pkg::*;
@@ -129,6 +129,16 @@ module tiny_npu_revb_boot_guard(
 endmodule
 """)
  files+=['tiny_npu_l0_boot_guard.sv','tiny_npu_revb_boot_guard.sv']
+ for primitive in ('tiny_npu_sram_boot_control.sv','tiny_npu_preloaded_boot.sv'):
+  shutil.copyfile(ROOT/'rtl'/primitive,d/primitive)
+ boot_wrapper=(d/'tiny_npu_revb_boot_guard.sv').read_text().replace('module tiny_npu_revb_boot_guard','module tiny_npu_revb_preloaded_boot').replace('input logic clk,reset,req_valid','input logic clk,hart_clk,fabric_reset,hold_harts,req_valid')
+ boot_wrapper=boot_wrapper.replace('output logic commit_ready,commit_error,boot_ready','output logic commit_ready,commit_error,boot_ready,preload_enable,harts_held_ack,\n output logic [int\'(tiny_npu_revb_config_pkg::ROCKET_CORES)-1:0] hart_reset,output logic [63:0] reset_vector')
+ boot_wrapper=boot_wrapper.replace('tiny_npu_l0_boot_guard #','tiny_npu_preloaded_boot #').replace("L0_BOOT_OFFSET+L0_BOOT_CODE_BYTES))) guard(.*);", "L0_BOOT_OFFSET+L0_BOOT_CODE_BYTES)),.RELEASE_STAGES(int'(L0_BOOT_HART_RELEASE_CDC_CYCLES)),.ACK_STAGES(int'(BOOT_RESET_ACK_CYCLES)),.RESET_VECTOR(ROCKET_RESET_VECTOR)) boot(.*);")
+ (d/'tiny_npu_revb_preloaded_boot.sv').write_text(boot_wrapper)
+ files+=['tiny_npu_sram_boot_control.sv','tiny_npu_preloaded_boot.sv','tiny_npu_revb_preloaded_boot.sv']
+ for primitive in ('tiny_npu_bank_hash.sv','tiny_npu_bank_voq.sv','tiny_npu_hashed_bank_fabric.sv'):
+  shutil.copyfile(ROOT/'rtl'/primitive,d/primitive)
+ files+=['tiny_npu_bank_hash.sv','tiny_npu_bank_voq.sv','tiny_npu_hashed_bank_fabric.sv']
  (d/'rtl.f').write_text('\n'.join(files)+'\n')
  metadata=json.loads(source.read_text())['metadata']
  with (d/'parameters.csv').open('w',newline='') as f:
@@ -150,20 +160,20 @@ Config SHA256: `{identity}`
 | FMA max basic-gate depth / limit | {gate_record['max_depth'] if gate_record else 'not implemented for selected mode'} / {p['FMA_MAX_LOGIC_DEPTH']} |
 | Planning TOPS, serialized vector | {result['serialized_vector_TOPS']:.6f} |
 
-The model reads `model_input.json`, identical to `parameters.json`. `address_map.json` uses NPU-local byte offsets; CPU address is a planned TL window; actual Chipyard integration remains pending. The generated SV package and C header carry the same resolved values and configuration hash. `rtl.f` includes the configuration package, isolated SRAM, boot access guard, boot linker/constants and, in LQ16 mode, a native staged FMA wrapper. TF32 arithmetic is not emitted.
+The model reads `model_input.json`, identical to `parameters.json`. `address_map.json` uses NPU-local byte offsets; CPU address is a planned TL window; actual Chipyard integration remains pending. The generated SV package and C header carry the same resolved values and configuration hash. `rtl.f` includes the configuration package, isolated SRAM, boot access guard, external-preload/reset control, boot linker/constants and, in LQ16 mode, a native staged FMA wrapper. Hash/VOQ/fabric primitives are included; instantiate per-region geometry with canonical hash/queue/monitor settings. No full multi-region fabric wrapper is emitted. TF32 arithmetic is not emitted.
 
 No new MAC/TC/OIC/AXI/RoCC system RTL is generated here. Configuration propagation does not establish feature implementation, timing closure, numeric accuracy, or sustained 10 TOPS. See `parameter_coverage.json` for model coverage. Stage-breakdown planning fields do not automatically replace aggregate `PATH_LATENCIES_CYCLES`. Physical SRAM, precise arbitration/DDR traces and unimplemented controls still require calibration. `performance.json` is a planning estimate.
 ''')
  if lint:
   logs=[]
-  for top in ['tiny_npu_revb_config_smoke','tiny_npu_revb_boot_guard']+(['tiny_npu_revb_fma'] if native_fma else []):
+  for top in ['tiny_npu_revb_config_smoke','tiny_npu_revb_boot_guard','tiny_npu_revb_preloaded_boot']+(['tiny_npu_revb_fma'] if native_fma else []):
    run=subprocess.run([shutil.which('verilator') or 'verilator','--lint-only','--top-module',top,*files],cwd=d,capture_output=True,text=True)
    logs.append(run.stdout+run.stderr)
    if run.returncode:
     (d/'lint.log').write_text(''.join(logs));raise ConfigError(f'RTL lint failed: {d / "lint.log"}')
   (d/'lint.log').write_text(''.join(logs))
  generated=['boot_config.S.inc','boot.ld','parameter_coverage.json','parameters.json','model_input.json','address_map.json','performance.json','parameters.csv','REPORT.md','tiny_npu_revb_config.h','rtl.f',*files]
- manifest=dict(schema_version=1,source_config_sha256=source_sha,configuration_sha256=identity,scale=scale,overrides=overrides or {},rtl_scope='config_package_isolated_sram_native_LQ16_FMA',fma_native_emitted=native_fma,fma_gate_max_depth=gate_record['max_depth'] if gate_record else None,fma_gate_netlist_sha256=gate_record['netlist_sha256'] if gate_record else None,files={n:hashlib.sha256((d/n).read_bytes()).hexdigest() for n in generated})
+ manifest=dict(schema_version=1,source_config_sha256=source_sha,configuration_sha256=identity,scale=scale,overrides=overrides or {},rtl_scope='config_package_isolated_sram_native_LQ16_FMA_external_preload_reset_control',fma_native_emitted=native_fma,fma_gate_max_depth=gate_record['max_depth'] if gate_record else None,fma_gate_netlist_sha256=gate_record['netlist_sha256'] if gate_record else None,files={n:hashlib.sha256((d/n).read_bytes()).hexdigest() for n in generated})
  dump(d/'manifest.json',manifest)
  print(f'x{scale}: generated {len(generated)} files, lint={lint}, planning TOPS={result["serialized_vector_TOPS"]:.6f}',flush=True)
  return d

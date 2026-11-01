@@ -24,7 +24,8 @@ AXI_RAW_GBS,40.0,대역폭GB/s. raw/효율후가용/예약payload를구분.,기�
 AXI_STRB_BITS,32,인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.,기본값및파생관계참조;구현지원범위검증
 AXI_USER_BITS,0,인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.,기본값및파생관계참조;구현지원범위검증
 A_SUBBANKS,2,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
-BOOT_ROM_RESET_VECTOR,65536,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
+BOOT_RESET_ACK_CYCLES,2,Hart-reset assertion acknowledgment synchronizer in fabric clock domain.,integer >=2
+BOOT_SOURCE,"""EXTERNAL_PRELOAD_SRAM""",External host preloads S0/L0 boot SRAM while all Rocket harts are held in reset.,EXTERNAL_PRELOAD_SRAM
 B_SUBBANKS,2,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
 CDC_AR_DEPTH,16,bank당word깊이. 용량=bank수×depth×width/8.,기본값및파생관계참조;구현지원범위검증
 CDC_AW_DEPTH,16,bank당word깊이. 용량=bank수×depth×width/8.,기본값및파생관계참조;구현지원범위검증
@@ -82,7 +83,19 @@ L0_ACK_PIPE_CYCLES,2,단계별 구현 계획값. 현재 timing 모델은 PATH_LA
 L0_ADDRESS_BITS,24,인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.,기본값및파생관계참조;구현지원범위검증
 L0_ARBITER_PIPE_CYCLES,2,단계별 구현 계획값. 현재 timing 모델은 PATH_LATENCIES_CYCLES의 경로 총지연을 사용하며 이 값을 자동 합산하지 않음.,nonnegative stage planning value; aggregate path latencies configured independently
 L0_ARBITRATION,"""PER_SUBBANK_VOQ_CREDIT""",RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
+L0_BANK_FABRIC_PORTS,8,Ingress count for a region bank fabric. Full multi-region integration pending.,"positive integer; recommended {4,8,16}; repeat gate/traffic checks after change"
+L0_BANK_HASH_ENABLE,true,Tensor-region bank hashing default enabled; selected by SFR0. Boot SRAM uses fixed linear mapping.,"{false,true}; default true"
+L0_BANK_HASH_MODE,"""ROW_SKEW_ADD""",Invertible row-dependent modular bank permutation; physical row is unchanged.,{ROW_SKEW_ADD}; XOR is not implemented
+L0_BANK_HASH_PIPE_CYCLES,4,"Four real mapper stages, independently of SRAM latency.",{4}; fixed real stages
+L0_BANK_HASH_ROW_SHIFT,2,SFR0 row shift. Hash folds BANK_BITS of row>>shift into bank permutation.,integer 0..minimum tensor-region ROW_BITS-1; SFR bits12:8
 L0_BANK_MAPPING,"""WORD_INTERLEAVED""",RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
+L0_BANK_MONITOR_ENABLE,true,SFR1 monitoring default enabled; simulation JSONL probes include valid/ready and stalls.,"{false,true}; default true"
+L0_BANK_SFR_HASH_ENABLE_BIT,0,derived; see configuration.py,derived / validated contract
+L0_BANK_SFR_MAP_INDEX,0,derived; see configuration.py,derived / validated contract
+L0_BANK_SFR_MONITOR_INDEX,1,derived; see configuration.py,derived / validated contract
+L0_BANK_SFR_SHIFT_LSB,8,derived; see configuration.py,derived / validated contract
+L0_BANK_SFR_STRIDE_BYTES,8,derived; see configuration.py,derived / validated contract
+L0_BANK_VOQ_DEPTH,2,Command entries per ingress per physical bank; response credits are external.,"integer >=2; typical {2,4,8}; larger queues do not add SRAM bandwidth"
 L0_BOOT_BYTES,262144,derived; see configuration.py,derived / validated contract
 L0_BOOT_CODE_BYTES,131072,Boot-only region / Rocket instruction-fetch and control-data path. Independent of NPU payload banks; actual TL/Rocket integration pending.,aligned sizes / explicit nonnegative multi-cycle latency; validate boot budget and CPU address bounds
 L0_BOOT_CODE_LIMIT_ADDR,1620967424,derived; see configuration.py,derived / validated contract
@@ -204,6 +217,7 @@ ROCKET_CORES,8,기본8개 controller. 8역할의 ROLE_TO_HART 및 RoCC권한과 
 ROCKET_DCACHE_BYTES,8192,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.,power-of-two bytes >=1024; planned host-control cache parameter
 ROCKET_ICACHE_BYTES,8192,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.,power-of-two bytes >=1024; planned host-control cache parameter
 ROCKET_L2_BYTES,65536,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.,power-of-two bytes >=1024; planned host-control cache parameter
+ROCKET_RESET_VECTOR,1620836352,derived; see configuration.py,derived / validated contract
 ROLE_COUNT,8,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
 ROLE_TO_HART,"{""1"": 0, ""2"": 1, ""3"": 2, ""4"": 3, ""5"": 4, ""6"": 5, ""7"": 6, ""8"": 7}",1-basedCore역할에서0-basedHart로의매핑.,기본값및파생관계참조;구현지원범위검증
 ROUND_MODE,"""RNE""",동시메모리요청상한. ID/bytecredit/reorder와연동.,RNE

@@ -195,7 +195,15 @@
         "L0_BOOT_TL_RETURN_CYCLES",
         "L0_BOOT_TL_BEAT_BYTES",
         "ROCKET_CACHE_BLOCK_BYTES",
-        "BOOT_ROM_RESET_VECTOR"
+        "BOOT_SOURCE",
+        "BOOT_RESET_ACK_CYCLES",
+        "L0_BANK_HASH_ENABLE",
+        "L0_BANK_HASH_ROW_SHIFT",
+        "L0_BANK_HASH_MODE",
+        "L0_BANK_HASH_PIPE_CYCLES",
+        "L0_BANK_FABRIC_PORTS",
+        "L0_BANK_VOQ_DEPTH",
+        "L0_BANK_MONITOR_ENABLE"
       ],
       "properties": {
         "ARRAY_COUNT": {
@@ -873,8 +881,32 @@
         "ROCKET_CACHE_BLOCK_BYTES": {
           "type": "integer"
         },
-        "BOOT_ROM_RESET_VECTOR": {
+        "BOOT_SOURCE": {
+          "type": "string"
+        },
+        "BOOT_RESET_ACK_CYCLES": {
           "type": "integer"
+        },
+        "L0_BANK_HASH_ENABLE": {
+          "type": "boolean"
+        },
+        "L0_BANK_HASH_ROW_SHIFT": {
+          "type": "integer"
+        },
+        "L0_BANK_HASH_MODE": {
+          "type": "string"
+        },
+        "L0_BANK_HASH_PIPE_CYCLES": {
+          "type": "integer"
+        },
+        "L0_BANK_FABRIC_PORTS": {
+          "type": "integer"
+        },
+        "L0_BANK_VOQ_DEPTH": {
+          "type": "integer"
+        },
+        "L0_BANK_MONITOR_ENABLE": {
+          "type": "boolean"
         }
       }
     },
@@ -1566,8 +1598,32 @@
             "ROCKET_CACHE_BLOCK_BYTES": {
               "type": "integer"
             },
-            "BOOT_ROM_RESET_VECTOR": {
+            "BOOT_SOURCE": {
+              "type": "string"
+            },
+            "BOOT_RESET_ACK_CYCLES": {
               "type": "integer"
+            },
+            "L0_BANK_HASH_ENABLE": {
+              "type": "boolean"
+            },
+            "L0_BANK_HASH_ROW_SHIFT": {
+              "type": "integer"
+            },
+            "L0_BANK_HASH_MODE": {
+              "type": "string"
+            },
+            "L0_BANK_HASH_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BANK_FABRIC_PORTS": {
+              "type": "integer"
+            },
+            "L0_BANK_VOQ_DEPTH": {
+              "type": "integer"
+            },
+            "L0_BANK_MONITOR_ENABLE": {
+              "type": "boolean"
             }
           }
         },
@@ -2250,8 +2306,32 @@
             "ROCKET_CACHE_BLOCK_BYTES": {
               "type": "integer"
             },
-            "BOOT_ROM_RESET_VECTOR": {
+            "BOOT_SOURCE": {
+              "type": "string"
+            },
+            "BOOT_RESET_ACK_CYCLES": {
               "type": "integer"
+            },
+            "L0_BANK_HASH_ENABLE": {
+              "type": "boolean"
+            },
+            "L0_BANK_HASH_ROW_SHIFT": {
+              "type": "integer"
+            },
+            "L0_BANK_HASH_MODE": {
+              "type": "string"
+            },
+            "L0_BANK_HASH_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BANK_FABRIC_PORTS": {
+              "type": "integer"
+            },
+            "L0_BANK_VOQ_DEPTH": {
+              "type": "integer"
+            },
+            "L0_BANK_MONITOR_ENABLE": {
+              "type": "boolean"
             }
           }
         },
@@ -2934,8 +3014,32 @@
             "ROCKET_CACHE_BLOCK_BYTES": {
               "type": "integer"
             },
-            "BOOT_ROM_RESET_VECTOR": {
+            "BOOT_SOURCE": {
+              "type": "string"
+            },
+            "BOOT_RESET_ACK_CYCLES": {
               "type": "integer"
+            },
+            "L0_BANK_HASH_ENABLE": {
+              "type": "boolean"
+            },
+            "L0_BANK_HASH_ROW_SHIFT": {
+              "type": "integer"
+            },
+            "L0_BANK_HASH_MODE": {
+              "type": "string"
+            },
+            "L0_BANK_HASH_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "L0_BANK_FABRIC_PORTS": {
+              "type": "integer"
+            },
+            "L0_BANK_VOQ_DEPTH": {
+              "type": "integer"
+            },
+            "L0_BANK_MONITOR_ENABLE": {
+              "type": "boolean"
             }
           }
         }
@@ -3185,7 +3289,15 @@
         "L0_BOOT_TL_RETURN_CYCLES",
         "L0_BOOT_TL_BEAT_BYTES",
         "ROCKET_CACHE_BLOCK_BYTES",
-        "BOOT_ROM_RESET_VECTOR"
+        "BOOT_SOURCE",
+        "BOOT_RESET_ACK_CYCLES",
+        "L0_BANK_HASH_ENABLE",
+        "L0_BANK_HASH_ROW_SHIFT",
+        "L0_BANK_HASH_MODE",
+        "L0_BANK_HASH_PIPE_CYCLES",
+        "L0_BANK_FABRIC_PORTS",
+        "L0_BANK_VOQ_DEPTH",
+        "L0_BANK_MONITOR_ENABLE"
       ],
       "properties": {
         "SCALE": {
@@ -7028,7 +7140,135 @@
             }
           }
         },
-        "BOOT_ROM_RESET_VECTOR": {
+        "BOOT_SOURCE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "BOOT_RESET_ACK_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BANK_HASH_ENABLE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BANK_HASH_ROW_SHIFT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BANK_HASH_MODE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BANK_HASH_PIPE_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BANK_FABRIC_PORTS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BANK_VOQ_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BANK_MONITOR_ENABLE": {
           "type": "object",
           "additionalProperties": false,
           "required": [

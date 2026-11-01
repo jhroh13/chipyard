@@ -193,7 +193,7 @@
     "bit_cells": 1562,
     "combinational_gates": 1243,
     "register_bits": 319,
-    "coverage": "plain-DFF data/clock pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
+    "coverage": "DFF input/control pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
     "scale": 1,
     "parameters": {
       "ADDR_BITS": 24,
@@ -208,8 +208,8 @@
       "compared_requests": 1448,
       "coverage": "mapped-gate metadata, full-burst permissions, pre/post commit, invalid hart/length, stalls; randomized regression, not formal equivalence"
     },
-    "source_sha256": "f4255eb07b071fb38160e1259b38358753d7f4b4d31e1f66eab21299c8925dde",
-    "netlist_sha256": "fed9fe5f600e9b62c1a0dcdb6aef20200a218c33b7945c1c94ee0dc8a2c3ce31"
+    "source_sha256": "6543f8ca3c18c3a86a0561db5343fdb7cd1343574661f3c0fa94dffc4d856502",
+    "netlist_sha256": "70d7db9f63cbf04114adc4d836ef4f7e09edf869e4aeaa2342f0dfe234a9ce05"
   },
   {
     "status": "PASS",
@@ -410,7 +410,7 @@
     "bit_cells": 1607,
     "combinational_gates": 1282,
     "register_bits": 325,
-    "coverage": "plain-DFF data/clock pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
+    "coverage": "DFF input/control pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
     "scale": 2,
     "parameters": {
       "ADDR_BITS": 25,
@@ -425,8 +425,8 @@
       "compared_requests": 1448,
       "coverage": "mapped-gate metadata, full-burst permissions, pre/post commit, invalid hart/length, stalls; randomized regression, not formal equivalence"
     },
-    "source_sha256": "f4255eb07b071fb38160e1259b38358753d7f4b4d31e1f66eab21299c8925dde",
-    "netlist_sha256": "736e90a254b60f917a66ca082820d433fec46cfba66d1c3d308f9c3aa77692e8"
+    "source_sha256": "6543f8ca3c18c3a86a0561db5343fdb7cd1343574661f3c0fa94dffc4d856502",
+    "netlist_sha256": "e848076e7c239b3e5497d74afafb0ea5279f3aeddf73f4a3cbc2e8e2b111f493"
   },
   {
     "status": "PASS",
@@ -627,7 +627,7 @@
     "bit_cells": 1625,
     "combinational_gates": 1294,
     "register_bits": 331,
-    "coverage": "plain-DFF data/clock pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
+    "coverage": "DFF input/control pins plus primary outputs; enable/reset muxes decomposed; wire/fanout/physical delays excluded",
     "scale": 4,
     "parameters": {
       "ADDR_BITS": 26,
@@ -642,7 +642,7 @@
       "compared_requests": 1448,
       "coverage": "mapped-gate metadata, full-burst permissions, pre/post commit, invalid hart/length, stalls; randomized regression, not formal equivalence"
     },
-    "source_sha256": "f4255eb07b071fb38160e1259b38358753d7f4b4d31e1f66eab21299c8925dde",
-    "netlist_sha256": "e689d742eee7031e5fd4ba81abd1f63d789ceafc430e93a0c271a21cb58269eb"
+    "source_sha256": "6543f8ca3c18c3a86a0561db5343fdb7cd1343574661f3c0fa94dffc4d856502",
+    "netlist_sha256": "9736a5b210317f35f3628b2d62f1208c7f393733b222527cf5ac8f82f4b0bae3"
   }
 ]

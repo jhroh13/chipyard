@@ -1,0 +1,18 @@
+{
+  "scope": "audited 8x8/32-bit netlist; randomized command stalls, exact tags/data/bank routing, stable output, default monitor/hash and SFR linear selection; not formal equivalence or full256-bit post-synth test",
+  "netlist_sha256": "094ad9d482c0c4bf2463eacb6502c9526313d8af2dc527986d6b65cbca759009",
+  "cases": [
+    {
+      "hashing": false,
+      "checked": 128,
+      "status": "PASS",
+      "cycles": 197
+    },
+    {
+      "hashing": true,
+      "checked": 128,
+      "status": "PASS",
+      "cycles": 31
+    }
+  ]
+}
