@@ -1,0 +1,35 @@
+[
+  {
+    "status": "PASS",
+    "vectors": 262144,
+    "comparisons": 262144,
+    "reset_flushed": 0,
+    "valid_gaps": false,
+    "latency": 11,
+    "arithmetic_stages": 11,
+    "golden": "exact Fraction RNE plus wide RTL reference",
+    "scope": "native staged FMA; 13cycle case includes2 explicit output transport stages"
+  },
+  {
+    "status": "PASS",
+    "vectors": 262144,
+    "comparisons": 262134,
+    "reset_flushed": 10,
+    "valid_gaps": true,
+    "latency": 11,
+    "arithmetic_stages": 11,
+    "golden": "exact Fraction RNE plus wide RTL reference",
+    "scope": "native staged FMA; 13cycle case includes2 explicit output transport stages"
+  },
+  {
+    "status": "PASS",
+    "vectors": 262144,
+    "comparisons": 262144,
+    "reset_flushed": 0,
+    "valid_gaps": true,
+    "latency": 13,
+    "arithmetic_stages": 11,
+    "golden": "exact Fraction RNE plus wide RTL reference",
+    "scope": "native staged FMA; 13cycle case includes2 explicit output transport stages"
+  }
+]

@@ -1,0 +1,8 @@
+read_verilog -sv rtl/tiny_npu_lq16_fma_proto.sv
+hierarchy -top tiny_npu_lq16_fma_proto
+synth -top tiny_npu_lq16_fma_proto -noabc
+dffunmap
+abc -g AND,OR
+opt_clean
+tee -o build/synthesis-pipe/reference_stats.json stat -json
+write_json build/synthesis-pipe/reference_netlist.json

@@ -25,6 +25,7 @@ jobs:
           make verify-environment
           python verification/run_rtl_trace.py --latencies 16
           make numeric-prototype
+          make test-fma-pipe
           make model
           make sram
           make test
@@ -43,3 +44,23 @@ jobs:
             tiny-npu/build/**/summary.json
             tiny-npu/build/**/simulation.log
             tiny-npu/build/**/compile.log
+
+  fma-gate-depth:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned generic synthesis tools
+        run: python -m pip install --target tiny-npu/build/synth-tools -r tiny-npu/synthesis/requirements.txt
+      - name: Enforce 40 basic gates per register stage
+        run: make -C tiny-npu check-fma-depth
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tiny-npu-fma-gate-depth
+          path: |
+            tiny-npu/architecture/v2/fma_gate_depth.json
+            tiny-npu/build/synthesis-pipe/**/depth.json
+            tiny-npu/build/synthesis-pipe/**/synth.log

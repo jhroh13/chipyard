@@ -1,88 +1,43 @@
-# Parameter와single-port/multicycle sensitivity 가이드
+# Current parameter and performance sweep guide
 
-현재기본은8 Rocket /10MiBL0 /single-port384subbanks /LQ16FMA /TF32TARGETR이다. [필수수식](SINGLE_PORT_LATENCY_BW.md)과[TC/OIC/addressing](COUNTERS_ADDRESSING.md)을먼저적용한다. 이전1R1W/짧은고정지연표는새구조의성능근거로사용하지않는다.
+최신 native LQ16 FMA는11 arithmetic stages이며 gate-depth cap은40이다. 기본12contexts·32slots를 사용한다. [FMA 보고서](FMA_PIPELINE_REPORT.md), [단일 source](../../configs/revb/default.json), [resolved parameter CSV](parameters.csv)를 함께 참조한다.
 
-## 분리해야 하는 축
-
-| Group | 변경 변수 | 계산·검증 |
-|---|---|---|
-| Workload |M/N/K,batch,tail,Cinitial,format,activation|usefulops,재사용,정확도|
-| Capacity |L0total,region비율,depth,allocationgranularity|실제bytes,macro,spill/reload|
-| SingleportBW |logicalbanks,subbanks,width,clock,portII,conflict효율|R+W합산service,hotbank|
-| 각 경로 latency |A/B/C/TARGETR,DMA-L0,L0-AXI,vector,TC/OIC,FMA,LUT/format,CDC|fill/drain,creditRTT,queuebound|
-| Near registers |elements,width,contexts,slots,distributedports|burstcompletion,source/destinationcredit|
-| Counter / semaphore |dims,stride/unitbits,issueII,banks/ports,atomic조건,epoch,eventFIFO|주소/동기화stall·deadlock|
-| Externalmemory |AXI256ports,clock,효율,MO,burst,FIFO,DRAMservice,QoS|R/Wratio,가능BW와latencyhide|
-| Vector |lanes,LUTports/replicas,II,기능별latency,striprows/slots|최종FP32store속도|
-| Physical |PDK,SRAMmacro,wire,clockdomains,ECC,power|실제1GHz/PPA;현재미검증|
-
-**Latency와II는독립parameter이다.** L=16,II=1은여러요청을동시에보유하면pipeline발행이가능하지만L=16,II=16인nonpipelinedmemory는동일BW가아니다. 어떤경로도암묵적으로1cycle로두지않는다. 모델에서II1은명시적목표값이고타이밍검증결과가아니다.
-
-## 실행
+Latency와II, 용량과BW는 별도 변수다. 모든 경로는 자체 clock domain을 갖는다. MAC operand read2cycle·feedback extra1cycle·TARGETR store1cycle은 명시적 integration 계획값이며 필요시 변경한다. L0↔RF 기본16cycle/설계bound32cycle은 그대로 독립적이다.
 
 ```bash
-cd /workspace/TINY-NPU/tiny-npu
-python3 architecture/v2/analyze.py
-python3 architecture/v2/local_paths.py
-python3 architecture/v2/sweep_l0.py \
-  --l0-mib 2 4 6 8 10 12 16 --bank-factor 0.25 0.5 1 2 \
-  --path-cycles 10 16 32 64 128 --axi-ports 1 2 \
-  --slots-policy AUTO FIXED8 --bw-gbs 20
+python3 tiny-npu/architecture/v2/sweep_l0.py \
+ --l0-mib 2 4 6 8 10 12 16 --bank-factor 0.25 0.5 1 2 \
+ --path-cycles 10 16 32 64 128 --axi-ports 1 2 \
+ --slots-policy AUTO FIXED32 --bw-gbs 20
 ```
 
-560개설정을실행했다. 용량은physicalmacro단위로depth를내림정렬하고C group-padding을포함한다. Auto macro선택은DRAM중복전송을줄이는heuristic이며전역최적schedule은아니다.
+560개 구성의 계획 모델이다. Gate-depth 검증은 실제 합성 netlist에서 수행하며 성능 모델이 이를 대신하지 않는다. 아래 TOPS는 기존1GHz 참조 clock의 계산값으로 실제 주파수·지속 성능 증명이 아니다.
 
-독립경로지연과clock은PythonAPI로입력할수있다:
+| Local cycles | Policy | RF slots | Group II | Planning useful TOPS |
+|---:|---|---:|---:|---:|
+| 10 | AUTO | 32 | 32.00 | 10.793 |
+| 10 | FIXED32 | 32 | 32.00 | 10.793 |
+| 16 | AUTO | 32 | 32.00 | 10.772 |
+| 16 | FIXED32 | 32 | 32.00 | 10.772 |
+| 32 | AUTO | 32 | 32.00 | 10.716 |
+| 32 | FIXED32 | 32 | 32.00 | 10.716 |
+| 64 | AUTO | 32 | 32.00 | 10.607 |
+| 64 | FIXED32 | 32 | 32.00 | 10.607 |
+| 128 | AUTO | 32 | 32.00 | 10.394 |
+| 128 | FIXED32 | 32 | 32.00 | 10.394 |
+
+Context12의 최소 이중 buffer가24slots이므로 기본은 power-of-two32slots다. 이 범위에서는 AUTO와FIXED32가 같을 수 있다. 더 긴 경로를 검사할 때는 ID/in-flight 한도도 명시적으로 늘린다.
 
 ```python
+from configuration import load_profile
 from sweep_l0 import evaluate
-r = evaluate(10, latency=16, axi_ports=2,
-    per_path={'SRCA':24,'SRCB':32,'SRCC':64,'TARGETR':48,
-              'TC':3,'OIC':4,'FMA':6,'DMA_L0_COMMIT':20,
-              'L0_AXI_READ':24,'VECTOR_READ':32,'VECTOR_WRITE':48,
-              'LUT':8,'FORMAT':2,'AXI_CDC':6},
-    mac_hz=1e9,l0_hz=1e9,axi_hz=625e6,vector_hz=1e9)
+p = load_profile(overrides={
+ 'PATH_LATENCIES_CYCLES': {'SRCA':512,'SRCB':512,'SRCC':512,'TARGETR':512},
+ 'LOCAL_MAX_INFLIGHT_VECTORS':512, 'LOCAL_VECTOR_ID_BITS':9})
+a = evaluate(config=p,slots_policy='AUTO')     #64slots
+b = evaluate(config=p,slots_policy='FIXED32')  #32slots; credit stalls
 ```
 
-`evaluate(...,config=...)`은`profiles.json`의기본profile객체를받을수있다. 명시적으로전달한sweep인수가해당profile항목을override한다. TC/OIC구현세부나PDK/DDRtiming같은변수는아직RTL/trace기반service로구현되지않았으며별도검증대상으로표기한다.
+경로별 지연은 `per_path`로 따로 override할 수 있다. Operand/feedback/store 경로 변경은 canonical parameter로 반영한다. FIFO·counter·byte credit·bank conflict·physical wire 검증은 후속 통합 RTL에서 수행한다.
 
-## 기본10MiB의latency/credit sensitivity
-
-2×256bit@625MHz,유효20GB/s목표,각localpath지연을동시에변경했다. SRAMsingleportII1,conflict효율0.8을가정했다. 모든stagefill/drain과최종vector직렬pass를포함한보수적예상치이며실제통합RTL값은아니다.
-
-| Local latency cycles | Slot policy | Slots | MAC group II cycles | Vector 포함 예상 TOPS |
-|---:|---|---:|---:|---:|
-| 10 | AUTO | 8 | 32.00 | 12.337 |
-| 10 | FIXED8 | 8 | 32.00 | 12.337 |
-| 16 | AUTO | 8 | 32.00 | 12.309 |
-| 16 | FIXED8 | 8 | 32.00 | 12.309 |
-| 32 | AUTO | 8 | 32.00 | 12.236 |
-| 32 | FIXED8 | 8 | 32.00 | 12.236 |
-| 64 | AUTO | 16 | 32.00 | 12.094 |
-| 64 | FIXED8 | 8 | 32.50 | 11.981 |
-| 128 | AUTO | 16 | 32.00 | 11.818 |
-| 128 | FIXED8 | 8 | 64.50 | 7.408 |
-
-지연128cycles에서고정8slots는credit반환이늦어groupII가64.5cycles로증가한다. AUTO16slots는credit병목을숨길수있지만물리BW·counterarbitration은여전히검증해야한다.
-
-## 용량 sensitivity: multicycle default16cycles
-
-| 요청L0MiB | 실제bytes | Macro | Vector포함예상TOPS |
-|---:|---:|---|---:|
-| 2 | 2088960 | 608×416 | 7.532 |
-| 4 | 4187136 | 1024×480 | 9.846 |
-| 6 | 6287360 | 1024×736 | 11.001 |
-| 8 | 8385536 | 1024×992 | 10.722 |
-| 10 | 10485760 | 1024×1024 | 12.309 |
-| 12 | 12574720 | 1024×1024 | 12.309 |
-| 16 | 16773120 | 1024×1024 | 12.309 |
-
-Capacity-only는banks/subbanks/width를고정하고depth만바꾼다. 용량이증가해도작업이이미수용되거나다른병목이있으면성능이증가하지않는다. 작은비단조결과는선택된macro와contextpadding의heuristic영향이며일반법칙이아니다.
-
-## 모델의한계와수용기준
-
-단순service효율·latency항목으로per-subbankqueue분포와atomicOIC중재를완전히대체하지않는다. 실제주소trace,read/write VOQ,TC/OIC,가변returnlatency와새LQ16FMA를RTL로연결해교정한다. Counter/semaphore는성능검증의핵심블록이며모델상BW가충분하다는이유로bubbleless를선언하지않는다.
-
-최종수용은결과정확도와RoCC수락→최종DRAMwriteB까지지속10TOPS를동시에통과해야한다. 기존FP32R2기능회귀나과거1cycle SRAMtest는이요건을대체하지않는다.
-
-현재 표는 새 AR→RLAST/AWVALID→WVALID DRAM 계약의 event 근사 모델이다. 실제 workload trace 검증·합성 결과는 [선행 검증](WORKLOAD_VERIFICATION.md)을 참조한다.
+Register/PE 자원은 L0 밖이다. FMA latency를11보다 작게 설정하면 생성이 거부된다.11보다 큰 값은 추가 output transport이며 산술 stage가 더 분할됐다는 뜻이 아니다. 새 latency는 gate audit 증거를 생성해야 하며 contexts≥FMA+feedback extra여야 한다.

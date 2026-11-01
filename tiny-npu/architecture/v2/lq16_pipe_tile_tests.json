@@ -1,0 +1,67 @@
+[
+  {
+    "case": "zero",
+    "M": 32,
+    "N": 32,
+    "K": 32,
+    "FMA_comparisons": 33024,
+    "useful_FMA_comparisons": 32768,
+    "masked_contexts": 8,
+    "contexts": 12,
+    "latency": 11,
+    "status": "PASS",
+    "scope": "native11-stage LQ16 FMA with configured latency/context feedback and masked tails; MX decode/scales performed by testbench host; no MAC array/TF32 store integration"
+  },
+  {
+    "case": "identity",
+    "M": 32,
+    "N": 32,
+    "K": 32,
+    "FMA_comparisons": 33024,
+    "useful_FMA_comparisons": 32768,
+    "masked_contexts": 8,
+    "contexts": 12,
+    "latency": 11,
+    "status": "PASS",
+    "scope": "native11-stage LQ16 FMA with configured latency/context feedback and masked tails; MX decode/scales performed by testbench host; no MAC array/TF32 store integration"
+  },
+  {
+    "case": "random",
+    "M": 32,
+    "N": 32,
+    "K": 32,
+    "FMA_comparisons": 33024,
+    "useful_FMA_comparisons": 32768,
+    "masked_contexts": 8,
+    "contexts": 12,
+    "latency": 11,
+    "status": "PASS",
+    "scope": "native11-stage LQ16 FMA with configured latency/context feedback and masked tails; MX decode/scales performed by testbench host; no MAC array/TF32 store integration"
+  },
+  {
+    "case": "random_scales_K64",
+    "M": 32,
+    "N": 32,
+    "K": 64,
+    "FMA_comparisons": 66048,
+    "useful_FMA_comparisons": 65536,
+    "masked_contexts": 8,
+    "contexts": 12,
+    "latency": 11,
+    "status": "PASS",
+    "scope": "native11-stage LQ16 FMA with configured latency/context feedback and masked tails; MX decode/scales performed by testbench host; no MAC array/TF32 store integration"
+  },
+  {
+    "case": "random_K64_L13",
+    "M": 32,
+    "N": 32,
+    "K": 64,
+    "FMA_comparisons": 65536,
+    "useful_FMA_comparisons": 65536,
+    "masked_contexts": 0,
+    "contexts": 16,
+    "latency": 13,
+    "status": "PASS",
+    "scope": "native11-stage LQ16 FMA with configured latency/context feedback and masked tails; MX decode/scales performed by testbench host; no MAC array/TF32 store integration"
+  }
+]

@@ -62,10 +62,10 @@ def evaluate(mib=None,bank_factor=1.,bw=None,latency=None,slots_policy=None,axi_
  def shared_bw(r):return r['banks']*r['subbanks']*r['width']/8*(l0_hz/1e9)/subbank_ii*conflict_efficiency
  array_scale=p['ARRAY_COUNT']/10
  raw_slow=max(1.,(160*array_scale+1)*(mac_hz/1e9)/shared_bw(a),(320*array_scale+1)*(mac_hz/1e9)/shared_bw(b),
-              (1280+1280)*array_scale*(mac_hz/1e9)/shared_bw(c),20*array_scale*(mac_hz/1e9)/shared_bw(meta),float(tc_vector_ii)*mac_hz/l0_hz,lat['FMA']/p['MAC_ACC_CONTEXTS'])
+              (1280+1280)*array_scale*(mac_hz/1e9)/shared_bw(c),20*array_scale*(mac_hz/1e9)/shared_bw(meta),float(tc_vector_ii)*mac_hz/l0_hz,(lat['FMA']+p.get('MAC_FEEDBACK_EXTRA_CYCLES',0))/p['MAC_ACC_CONTEXTS'])
  bounds={name:max(p.get('L0_REG_LATENCY_MAX_CYCLES',32),lat[name]) for name in ('SRCA','SRCB','SRCC','TARGETR')}
  budgets={name:path_budget(bounds[name],contexts=p['MAC_ACC_CONTEXTS'],group_ii=32*l0_hz/mac_hz,oic_latency=lat['OIC']) for name in bounds}
- slots_by_path={name:(max(p[name+'_SLOTS'],budgets[name]['configured_slots']) if slots_policy=='AUTO' else p[name+'_SLOTS']) for name in bounds}
+ slots_by_path={name:(max(p[name+'_SLOTS'],budgets[name]['configured_slots']) if slots_policy=='AUTO' else 32) for name in bounds}
  rtts={name:2*lat[name]+lat['OIC'] for name in bounds}
  slots=max(slots_by_path.values());bound=max(bounds.values());actual_rtt=max(rtts.values())
  credit_group_ii=max(rtts[name]*mac_hz/l0_hz/max(1,slots_by_path[name]-p['MAC_ACC_CONTEXTS']) for name in bounds)
@@ -74,8 +74,10 @@ def evaluate(mib=None,bank_factor=1.,bw=None,latency=None,slots_policy=None,axi_
  p['ARCH_LOCAL_SLOWDOWN']=effective_group_ii/32
  # Explicit variable fill/drain stages, all expressed in L0-clock cycles.
  cdc_ns=lat['AXI_CDC']/axi_hz*1e9
- pre_ns=(max(lat['SRCA'],lat['SRCB'],lat['SRCC'])+lat['TC']+lat['OIC']+lat['DMA_L0_COMMIT'])/l0_hz*1e9+2*cdc_ns
- drain_ns=(lat['TARGETR']+lat['OIC'])/l0_hz*1e9+(lat['FMA']+p['MAC_ACC_CONTEXTS']*32)/mac_hz*1e9
+ # Explicit cold-prefill of all interleaved contexts; do not assume RF data arrives in one cycle.
+ context_prefill_ns=p['MAC_ACC_CONTEXTS']*effective_group_ii/mac_hz*1e9
+ pre_ns=context_prefill_ns+p['MAC_OPERAND_READ_CYCLES']/mac_hz*1e9+(max(lat['SRCA'],lat['SRCB'],lat['SRCC'])+lat['TC']+lat['OIC']+lat['DMA_L0_COMMIT'])/l0_hz*1e9+2*cdc_ns
+ drain_ns=(lat['TARGETR']+lat['OIC'])/l0_hz*1e9+(lat['FMA']+p['MAC_ACC_CONTEXTS']*32+p['MAC_TARGETR_STORE_CYCLES'])/mac_hz*1e9
  p['PANEL_PIPELINE_OVERHEAD_CYCLES']=math.ceil((pre_ns+drain_ns)*mac_hz/1e9)
  r=simulate(m,n,k,p)
  setup_ns=p['JOB_DISPATCH_CYCLES']/mac_hz*1e9;output_l0_axi_ns=lat['L0_AXI_READ']/l0_hz*1e9+cdc_ns
@@ -92,7 +94,7 @@ def evaluate(mib=None,bank_factor=1.,bw=None,latency=None,slots_policy=None,axi_
    latency_sizing_bound_cycles=bound,slot_policy=slots_policy,register_slots=slots,
    per_path_latencies=lat,register_slots_by_path=slots_by_path,
    credit_RTT_cycles=actual_rtt,MAC_group_II_cycles=effective_group_ii,
-   panel_fill_drain_cycles=p['PANEL_PIPELINE_OVERHEAD_CYCLES'],
+   context_prefill_ns=context_prefill_ns,panel_fill_drain_cycles=p['PANEL_PIPELINE_OVERHEAD_CYCLES'],
    AXI_ports=axi_ports,AXI_bits=p['AXI_DATA_BITS'],MAC_MHz=mac_hz/1e6,L0_MHz=l0_hz/1e6,AXI_MHz=axi_hz/1e6,VECTOR_MHz=vector_hz/1e6,AXI_raw_total_GBs=raw_axi,
    AXI_available_shared_GBs=available,requested_payload_GBs=bw,effective_payload_GBs=effective,
    macro_M=best[1],macro_N=best[2],C_capacity=c['bytes'],C_shared_RW_GBs=shared_bw(c),
@@ -108,7 +110,7 @@ def main():
  ap.add_argument('--bank-factor',type=float,nargs='+',default=[.25,.5,1,2])
  ap.add_argument('--path-cycles',type=int,nargs='+',default=[10,16,32,64,128])
  ap.add_argument('--axi-ports',type=int,nargs='+',default=[1,2])
- ap.add_argument('--slots-policy',nargs='+',choices=['AUTO','FIXED8'],default=['AUTO','FIXED8'])
+ ap.add_argument('--slots-policy',nargs='+',choices=['AUTO','FIXED32'],default=['AUTO','FIXED32'])
  ap.add_argument('--bw-gbs',type=float,default=20)
  ap.add_argument('--subbank-ii',type=int,default=1)
  a=ap.parse_args()
@@ -121,7 +123,9 @@ def main():
   if r['L0_requested_MiB']==10 and r['logical_bank_factor']==1 and r['AXI_ports']==2:
    print({k:r[k] for k in ('path_latency_cycles','slot_policy','register_slots','MAC_group_II_cycles','event_TOPS_without_vector','serialized_vector_TOPS')})
  # Credit and physical port consistency checks with opposite scenarios.
- fast=evaluate(10,latency=128,slots_policy='AUTO');fixed=evaluate(10,latency=128,slots_policy='FIXED8')
+ from configuration import load_profile
+ long_cfg=load_profile(overrides={'PATH_LATENCIES_CYCLES':{n:512 for n in ('SRCA','SRCB','SRCC','TARGETR')},'LOCAL_MAX_INFLIGHT_VECTORS':512,'LOCAL_VECTOR_ID_BITS':9})
+ fast=evaluate(config=long_cfg,slots_policy='AUTO');fixed=evaluate(config=long_cfg,slots_policy='FIXED32')
  assert fast['register_slots']>fixed['register_slots'] and fast['serialized_vector_TOPS']>fixed['serialized_vector_TOPS']
  assert evaluate(10,bank_factor=.25)['local_slowdown']>1
  assert evaluate(10,axi_ports=1)['effective_payload_GBs']==12

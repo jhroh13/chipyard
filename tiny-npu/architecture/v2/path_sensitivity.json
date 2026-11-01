@@ -6,127 +6,127 @@
       "path": "SRCA",
       "base_cycles": 16,
       "changed_cycles": 80,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 12.16632583509901
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.662437315190036
     },
     {
       "path": "SRCB",
       "base_cycles": 16,
       "changed_cycles": 80,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 12.16632583509901
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.662437315190036
     },
     {
       "path": "SRCC",
       "base_cycles": 16,
       "changed_cycles": 80,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 12.16632583509901
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.662437315190036
     },
     {
       "path": "TARGETR",
       "base_cycles": 16,
       "changed_cycles": 80,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 12.16632583509901
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.662437315190036
     },
     {
       "path": "DMA_L0_COMMIT",
       "base_cycles": 16,
       "changed_cycles": 80,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 12.16632583509901
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.662437315190036
     },
     {
       "path": "L0_AXI_READ",
       "base_cycles": 16,
       "changed_cycles": 80,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 12.308016537285539
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.77110757170718
     },
     {
       "path": "VECTOR_READ",
       "base_cycles": 16,
       "changed_cycles": 80,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 12.308016537285539
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.77110757170718
     },
     {
       "path": "VECTOR_WRITE",
       "base_cycles": 16,
       "changed_cycles": 80,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 12.308016537285539
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.77110757170718
     },
     {
       "path": "TC",
       "base_cycles": 2,
       "changed_cycles": 66,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 12.16632583509901
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.662437315190036
     },
     {
       "path": "OIC",
       "base_cycles": 2,
       "changed_cycles": 66,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 12.026782535354425
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.555107779652708
     },
     {
       "path": "FMA",
-      "base_cycles": 4,
-      "changed_cycles": 68,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 1.1420073397996082
+      "base_cycles": 11,
+      "changed_cycles": 75,
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 2.506498297173042
     },
     {
       "path": "LUT",
       "base_cycles": 4,
       "changed_cycles": 68,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 12.308016537285539
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.77110757170718
     },
     {
       "path": "FORMAT",
       "base_cycles": 1,
       "changed_cycles": 65,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 12.308016537285539
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.77110757170718
     },
     {
       "path": "AXI_CDC",
       "base_cycles": 4,
       "changed_cycles": 68,
-      "base_TOPS": 12.309145308918612,
-      "changed_TOPS": 11.86140169971427
+      "base_TOPS": 10.771972033289554,
+      "changed_TOPS": 10.427510034885493
     },
     {
       "clock": "mac_hz",
-      "changed_TOPS": 7.528942467397759
+      "changed_TOPS": 6.409969385633636
     },
     {
       "clock": "l0_hz",
-      "changed_TOPS": 7.596375742420825
+      "changed_TOPS": 6.628476826159199
     },
     {
       "clock": "axi_hz",
-      "changed_TOPS": 9.204943237180142
+      "changed_TOPS": 8.949279796623184
     },
     {
       "clock": "vector_hz",
-      "changed_TOPS": 11.75700319234467
+      "changed_TOPS": 10.346740826502293
     },
     {
       "subbank_II": 2,
-      "changed_TOPS": 10.679405041960596
+      "changed_TOPS": 9.33370182213921
     },
     {
       "subbank_II": 4,
-      "changed_TOPS": 6.425619996262705
+      "changed_TOPS": 5.597092169236966
     },
     {
       "subbank_II": 8,
-      "changed_TOPS": 3.576478215501122
+      "changed_TOPS": 3.1083378675365934
     }
   ]
 }

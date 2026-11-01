@@ -1,3 +1,5 @@
 tiny_npu_revb_config_pkg.sv
 tiny_npu_sram_1rw_subbank.sv
 tiny_npu_revb_config_smoke.sv
+tiny_npu_lq16_fma_pipe.sv
+tiny_npu_revb_fma.sv

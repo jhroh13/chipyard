@@ -47,7 +47,7 @@
     "ROCKET_CORES": 8,
     "ROLE_COUNT": 8,
     "CORE_COUNT_STATUS": "8 confirmed by user; six-core mapping is optional",
-    "MAC_ACC_CONTEXTS": 4,
+    "MAC_ACC_CONTEXTS": 12,
     "SRCA_SLOTS": 0,
     "SRCB_SLOTS": 0,
     "SRCC_SLOTS": 0,
@@ -208,7 +208,7 @@
       "VECTOR_WRITE": 16,
       "TC": 2,
       "OIC": 2,
-      "FMA": 4,
+      "FMA": 11,
       "LUT": 4,
       "FORMAT": 1,
       "AXI_CDC": 4
@@ -240,7 +240,13 @@
     "ROCKET_L2_BYTES": 65536,
     "DRAM_LATENCY_MODE": "AR_RLAST_AW_WVALID",
     "DRAM_AW_TO_WVALID_NS": 700,
-    "DRAM_B_RESPONSE_NS": 32
+    "DRAM_B_RESPONSE_NS": 32,
+    "FMA_IMPLEMENTATION": "LQ16_PIPE11",
+    "FMA_MAX_LOGIC_DEPTH": 40,
+    "FMA_GATE_BASIS": "AND2_OR2_NOT",
+    "MAC_FEEDBACK_EXTRA_CYCLES": 1,
+    "MAC_OPERAND_READ_CYCLES": 2,
+    "MAC_TARGETR_STORE_CYCLES": 1
   },
   "scale_overrides": {
     "1": {},
@@ -689,8 +695,8 @@
       "allowed_or_rule": "PDK/STA로검증할정수"
     },
     "MAC_ACC_CONTEXTS": {
-      "description": "FMAfeedbacklatency이상독립context가필요. tailpadding과저장소증가.",
-      "allowed_or_rule": "1,2,4,8; >= FMA latency"
+      "description": "PE별 독립 누산 context. 기본12: FMA11+feedback1; tail context masking 필요.",
+      "allowed_or_rule": "{12,16,24,32}; >= FMA+explicit feedback; any supported positive count"
     },
     "SRCA_SLOTS": {
       "description": "slot/context개수. producer/consumercredit과일치.",
@@ -1137,8 +1143,8 @@
       "allowed_or_rule": "0 < eta <= 1; trace calibration required"
     },
     "SLOT_SIZING_POLICY": {
-      "description": "Credit RTT로 슬롯 재계산. FIXED8은 슬롯 부족에 따른 stall 검토.",
-      "allowed_or_rule": "AUTO,FIXED8"
+      "description": "현재 context12의 기본32slots. FIXED32는 긴 경로의 credit stall 민감도 검토용.",
+      "allowed_or_rule": "AUTO,FIXED32"
     },
     "L0_PORTS_PER_SUBBANK": {
       "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
@@ -1263,6 +1269,30 @@
     "DRAM_B_RESPONSE_NS": {
       "description": "DRAM 계약: AR handshake→첫 RVALID&&RLAST, AW handshake→첫 WVALID. B 응답은 별도.",
       "allowed_or_rule": "nonnegative integer ns; queue/backpressure measured separately"
+    },
+    "FMA_IMPLEMENTATION": {
+      "allowed_or_rule": "LQ16_PIPE11",
+      "description": "11 actual arithmetic stages. LQ16 only; TF32 MAC is not implemented."
+    },
+    "FMA_MAX_LOGIC_DEPTH": {
+      "allowed_or_rule": "1..40; hard maximum40",
+      "description": "Strict basic-gate depth budget; audit fails when exceeded."
+    },
+    "FMA_GATE_BASIS": {
+      "allowed_or_rule": "AND2_OR2_NOT",
+      "description": "XOR/MUX and enabled/reset flops decomposed; plain DFF cuts paths."
+    },
+    "MAC_FEEDBACK_EXTRA_CYCLES": {
+      "allowed_or_rule": "nonnegative cycles",
+      "description": "Explicit extra PE accumulator feedback latency; contexts >= FMA latency + extra."
+    },
+    "MAC_OPERAND_READ_CYCLES": {
+      "allowed_or_rule": "nonnegative cycles; explicit integration planning latency, not RTL timing proof",
+      "description": "Near-RF operand read or TARGETR format/store path; independently variable. Not inside native FMA primitive."
+    },
+    "MAC_TARGETR_STORE_CYCLES": {
+      "allowed_or_rule": "nonnegative cycles; explicit integration planning latency, not RTL timing proof",
+      "description": "Near-RF operand read or TARGETR format/store path; independently variable. Not inside native FMA primitive."
     }
   }
 }

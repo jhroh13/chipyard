@@ -5,10 +5,15 @@ import math,json,csv
 OUT=Path(__file__).resolve().parent
 
 def pow2ceil(n):return 1<<(max(1,int(n))-1).bit_length()
-def path_budget(latency,contexts=4,group_ii=32,oic_latency=2):
+def path_budget(latency,contexts=None,group_ii=32,oic_latency=None):
+ if contexts is None or oic_latency is None:
+  from configuration import load_profile
+  p=load_profile()
+  if contexts is None:contexts=p['MAC_ACC_CONTEXTS']
+  if oic_latency is None:oic_latency=p['OIC_RESPONSE_LATENCY_CYCLES']
  rtt=2*latency+oic_latency
  minimum_slots=contexts+math.ceil(rtt/group_ii)
- slots=max(2*contexts,pow2ceil(minimum_slots))
+ slots=pow2ceil(max(2*contexts,minimum_slots))
  rates={'SRCA':160,'SRCB':320,'SRCC':1280,'TARGETR':1280}
  group_bytes={'SRCA':5440,'SRCB':10560,'SRCC':40960,'TARGETR':40960}
  buffers={n:pow2ceil(rate*latency+contexts*group_bytes[n]) for n,rate in rates.items()}

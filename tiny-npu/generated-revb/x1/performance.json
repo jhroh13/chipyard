@@ -1,5 +1,5 @@
 {
-  "configuration_sha256": "7bf4302ebcbe7c4c11750645dcf5290f43309de9778de016ea6a0648edb478d2",
+  "configuration_sha256": "84e567ecabd2a096f5a13a609f3e214bf36d5b365ce05f8c8645f11ebfdb7c75",
   "scope": "planning estimate, not integrated RTL throughput",
   "result": {
     "L0_requested_MiB": 10.0,
@@ -11,7 +11,7 @@
     "path_latency_cycles": 16,
     "latency_sizing_bound_cycles": 32,
     "slot_policy": "AUTO",
-    "register_slots": 8,
+    "register_slots": 32,
     "per_path_latencies": {
       "SRCA": 16,
       "SRCB": 16,
@@ -23,20 +23,21 @@
       "VECTOR_WRITE": 16,
       "TC": 2,
       "OIC": 2,
-      "FMA": 4,
+      "FMA": 11,
       "LUT": 4,
       "FORMAT": 1,
       "AXI_CDC": 4
     },
     "register_slots_by_path": {
-      "SRCA": 8,
-      "SRCB": 8,
-      "SRCC": 8,
-      "TARGETR": 8
+      "SRCA": 32,
+      "SRCB": 32,
+      "SRCC": 32,
+      "TARGETR": 32
     },
     "credit_RTT_cycles": 34,
     "MAC_group_II_cycles": 32.0,
-    "panel_fill_drain_cycles": 199,
+    "context_prefill_ns": 384.0,
+    "panel_fill_drain_cycles": 849,
     "AXI_ports": 2,
     "AXI_bits": 256,
     "MAC_MHz": 1000.0,
@@ -53,11 +54,11 @@
     "C_shared_RW_GBs": 4096.0,
     "local_slowdown": 1.0,
     "external_bytes": 10747904,
-    "event_TOPS_without_vector": 12.916324722785266,
-    "event_us_without_vector": 665.0448000000168,
+    "event_TOPS_without_vector": 11.234123789216165,
+    "event_us_without_vector": 764.6288000000169,
     "FP32_strip_rows": 32,
-    "serialized_vector_TOPS": 12.309145308918612,
-    "ideal_overlap_vector_TOPS": 12.895751083386127,
+    "serialized_vector_TOPS": 10.771972033289554,
+    "ideal_overlap_vector_TOPS": 11.218556903852985,
     "context": "LQ16 arithmetic assumed capable of II1 per interleaved PE; new TC/OIC/physical subbank scheduler not RTL-validated"
   }
 }

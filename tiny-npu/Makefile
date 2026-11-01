@@ -62,3 +62,12 @@ numeric-prototype:
 
 synth-initial:
 	$(PYTHON) synthesis/run_synthesis.py
+
+.PHONY: check-fma-depth test-fma-pipe
+check-fma-depth:
+	$(PYTHON) synthesis/test_gate_depth.py
+	$(PYTHON) synthesis/check_fma_depth.py
+
+test-fma-pipe:
+	$(PYTHON) verification/test_lq16_pipe.py
+	$(PYTHON) verification/test_lq16_pipe_tile.py

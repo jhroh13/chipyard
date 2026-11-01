@@ -1,9 +1,9 @@
-1 cycles -> slots 8 RTT 4
-10 cycles -> slots 8 RTT 22
-16 cycles -> slots 8 RTT 34
-32 cycles -> slots 8 RTT 66
-64 cycles -> slots 16 RTT 130
-128 cycles -> slots 16 RTT 258
+1 cycles -> slots 32 RTT 4
+10 cycles -> slots 32 RTT 22
+16 cycles -> slots 32 RTT 34
+32 cycles -> slots 32 RTT 66
+64 cycles -> slots 32 RTT 130
+128 cycles -> slots 32 RTT 258
 256 cycles -> slots 32 RTT 514
 AXI {'ports': 1, 'data_bits': 256, 'clock_MHz': 625.0, 'raw_per_direction_GBs': 20.0, 'payload_per_direction_GBs': 12.0, 'conservative_shared_service_GBs': 12.0, 'duplex_channel_bound_GBs': 19.68, 'P0_10TOPS_required_read_GBs': 7.62939453125, 'P0_10TOPS_required_write_GBs': 4.8828125, 'conservative_roofline_TOPS': 9.590634146341465, 'duplex_roofline_TOPS': 15.728639999999999, 'caveat': 'Duplex sum requires concurrent R/W across jobs/strips and sufficient shared DRAM bandwidth; ports alone do not create DRAM bandwidth'}
 AXI {'ports': 2, 'data_bits': 256, 'clock_MHz': 625.0, 'raw_per_direction_GBs': 40.0, 'payload_per_direction_GBs': 24.0, 'conservative_shared_service_GBs': 24.0, 'duplex_channel_bound_GBs': 39.36, 'P0_10TOPS_required_read_GBs': 7.62939453125, 'P0_10TOPS_required_write_GBs': 4.8828125, 'conservative_roofline_TOPS': 19.18126829268293, 'duplex_roofline_TOPS': 20.48, 'caveat': 'Duplex sum requires concurrent R/W across jobs/strips and sufficient shared DRAM bandwidth; ports alone do not create DRAM bandwidth'}

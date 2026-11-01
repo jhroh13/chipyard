@@ -1,3 +1,5 @@
+> 이 문서의 수치·fixture는 이전 baseline 기록이다. 최신 native FMA·자원 설정은 [FMA pipeline 보고서](FMA_PIPELINE_REPORT.md)를 참조한다.
+
 # Workload trace·bubble 검증·DRAM·초기 합성
 
 요청한 선행 검증 도구를 구현하고 실행했다. 다음을 구분한다.

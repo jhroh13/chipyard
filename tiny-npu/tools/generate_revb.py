@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate a consistent RevB config package, SW header, address map, model, manifest.
-This emits configuration RTL plus an isolated SRAM wrapper, not a complete NPU.
+Emits configuration RTL, isolated SRAM, and native LQ16 FMA; not a complete NPU.
 """
 import argparse,csv,hashlib,json,shutil,subprocess,sys,tempfile
 from pathlib import Path
@@ -29,13 +29,20 @@ def address_map(p):
 def generate(scale=1,config_path=None,overrides=None,out=None,lint=False):
  # Resolve every constraint before touching output directories.
  p=load_profile(scale,overrides=overrides,config_path=config_path)
+ native_fma=p['FMA_RTL_IMPLEMENTED_FOR_MODE'];gate_record=None
+ if native_fma:
+  proof=json.loads((ARCH/'fma_gate_depth.json').read_text())
+  fma_sha=hashlib.sha256((ROOT/'rtl/tiny_npu_lq16_fma_pipe.sv').read_bytes()).hexdigest()
+  gate_record=proof.get('configurations',{}).get(str(p['MAC_FMA_PIPE_CYCLES']))
+  if proof.get('source_sha256')!=fma_sha or not gate_record or gate_record['status']!='PASS' or gate_record['max_depth']>p['FMA_MAX_LOGIC_DEPTH'] or not proof.get('register_basis','').startswith('plain DFF'):
+   raise ConfigError('Native FMA gate proof missing/stale/over budget; run synthesis/check_fma_depth.py for selected latency')
  result=evaluate(config=p)
  model_input=dict(p);mapping=address_map(p)
  source=Path(config_path or DEFAULT_CONFIG);source_sha=hashlib.sha256(source.read_bytes()).hexdigest()
  identity=hashlib.sha256(json.dumps(p,sort_keys=True,separators=(',',':')).encode()).hexdigest()
  d=Path(out) if out else ROOT/f'generated-revb/x{scale}';d.mkdir(parents=True,exist_ok=True)
  dump(d/'parameters.json',p);dump(d/'model_input.json',model_input);dump(d/'address_map.json',mapping)
- modeled=set('ARRAY_COUNT ACCEL_CLOCK_HZ L0_CLOCK_HZ AXI_CLOCK_HZ VECTOR_CLOCK_HZ AXI_DATA_BITS AXI_PORTS MEM_EFFICIENCY DMA_PAYLOAD_TARGET_GBS DRAM_READ_LATENCY_NS DRAM_LATENCY_MODE DRAM_AW_TO_WVALID_NS DRAM_B_RESPONSE_NS DMA_READ_MO DMA_WRITE_MO DMA_MAX_BURST_BYTES MAC_ACC_CONTEXTS PATH_LATENCIES_CYCLES L0_REG_LATENCY_MAX_CYCLES SLOT_SIZING_POLICY SUBBANK_ISSUE_II_CYCLES TC_ISSUE_II_CYCLES L0_CONFLICT_EFFICIENCY L0_REGIONS L0_BYTES VECTOR_LANES VECTOR_ISSUE_II_CYCLES JOB_DISPATCH_CYCLES OIC_OPERATION_BUDGET_PER_GROUP OIC_REQUEST_PORTS FINAL_FP32_STRIP_ROWS FINAL_FP32_STRIP_SLOTS REFERENCE_M REFERENCE_N REFERENCE_K SRCA_SLOTS SRCB_SLOTS SRCC_SLOTS TARGETR_SLOTS'.split())
+ modeled=set('ARRAY_COUNT ACCEL_CLOCK_HZ L0_CLOCK_HZ AXI_CLOCK_HZ VECTOR_CLOCK_HZ AXI_DATA_BITS AXI_PORTS MEM_EFFICIENCY DMA_PAYLOAD_TARGET_GBS DRAM_READ_LATENCY_NS DRAM_LATENCY_MODE DRAM_AW_TO_WVALID_NS DRAM_B_RESPONSE_NS DMA_READ_MO DMA_WRITE_MO DMA_MAX_BURST_BYTES MAC_ACC_CONTEXTS MAC_FEEDBACK_EXTRA_CYCLES MAC_OPERAND_READ_CYCLES MAC_TARGETR_STORE_CYCLES PATH_LATENCIES_CYCLES L0_REG_LATENCY_MAX_CYCLES SLOT_SIZING_POLICY SUBBANK_ISSUE_II_CYCLES TC_ISSUE_II_CYCLES L0_CONFLICT_EFFICIENCY L0_REGIONS L0_BYTES VECTOR_LANES VECTOR_ISSUE_II_CYCLES JOB_DISPATCH_CYCLES OIC_OPERATION_BUDGET_PER_GROUP OIC_REQUEST_PORTS FINAL_FP32_STRIP_ROWS FINAL_FP32_STRIP_SLOTS REFERENCE_M REFERENCE_N REFERENCE_K SRCA_SLOTS SRCB_SLOTS SRCC_SLOTS TARGETR_SLOTS'.split())
  dump(d/'parameter_coverage.json',{k:dict(SV_package=True,C_header=True,model_status='consumed_or_derived' if k in modeled else 'contract_validation_or_planned_only; no independent timing sensitivity claimed') for k in p})
  dump(d/'performance.json',dict(configuration_sha256=identity,scope='planning estimate, not integrated RTL throughput',result=result))
  constants=dict(p)
@@ -68,6 +75,22 @@ endmodule
  (d/'tiny_npu_revb_config_smoke.sv').write_text(wrapper)
  shutil.copyfile(ROOT/'rtl/tiny_npu_sram_1rw_subbank.sv',d/'tiny_npu_sram_1rw_subbank.sv')
  files=['tiny_npu_revb_config_pkg.sv','tiny_npu_sram_1rw_subbank.sv','tiny_npu_revb_config_smoke.sv']
+ if native_fma:
+  shutil.copyfile(ROOT/'rtl/tiny_npu_lq16_fma_pipe.sv',d/'tiny_npu_lq16_fma_pipe.sv')
+  (d/'tiny_npu_revb_fma.sv').write_text("""`timescale 1ns/1ps
+// Native LQ16 primitive only: MX decode/array/TF32 store are not connected.
+module tiny_npu_revb_fma(
+ input logic clk,reset,in_valid,output logic in_ready,
+ input logic [15:0] a,b,c,output logic out_valid,input logic out_ready,
+ output logic [15:0] result
+);
+ tiny_npu_lq16_fma_pipe #(.LATENCY(int'(tiny_npu_revb_config_pkg::MAC_FMA_PIPE_CYCLES))) fma(.*);
+endmodule
+""")
+  files+=['tiny_npu_lq16_fma_pipe.sv','tiny_npu_revb_fma.sv']
+ else:
+  for name in ('tiny_npu_lq16_fma_pipe.sv','tiny_npu_revb_fma.sv'):
+   if (d/name).exists():(d/name).unlink()
  (d/'rtl.f').write_text('\n'.join(files)+'\n')
  metadata=json.loads(source.read_text())['metadata']
  with (d/'parameters.csv').open('w',newline='') as f:
@@ -85,18 +108,24 @@ Config SHA256: `{identity}`
 | AXI ports x data bits | {p['AXI_PORTS']} x {p['AXI_DATA_BITS']} |
 | Requested effective GB/s | {p['DMA_PAYLOAD_TARGET_GBS']} |
 | A/B/C/TARGETR slots | {'/'.join(str(p[x+'_SLOTS']) for x in ('SRCA','SRCB','SRCC','TARGETR'))} |
+| Native FMA latency / contexts | {p['MAC_FMA_PIPE_CYCLES']} / {p['MAC_ACC_CONTEXTS']} |
+| FMA max basic-gate depth / limit | {gate_record['max_depth'] if gate_record else 'not implemented for selected mode'} / {p['FMA_MAX_LOGIC_DEPTH']} |
 | Planning TOPS, serialized vector | {result['serialized_vector_TOPS']:.6f} |
 
-The model reads `model_input.json`, identical to `parameters.json`. `address_map.json` uses NPU-local byte offsets; CPU MMIO and system AXI mappings await integration. The generated SV package and C header carry the same resolved values and configuration hash. `rtl.f` builds only the configuration package and isolated single-port SRAM wrapper.
+The model reads `model_input.json`, identical to `parameters.json`. `address_map.json` uses NPU-local byte offsets; CPU MMIO and system AXI mappings await integration. The generated SV package and C header carry the same resolved values and configuration hash. `rtl.f` includes the configuration package, isolated SRAM and, in LQ16 mode, a native staged FMA wrapper. TF32 arithmetic is not emitted.
 
 No new MAC/TC/OIC/AXI/RoCC system RTL is generated here. Configuration propagation does not establish feature implementation, timing closure, numeric accuracy, or sustained 10 TOPS. See `parameter_coverage.json` for model coverage. Stage-breakdown planning fields do not automatically replace aggregate `PATH_LATENCIES_CYCLES`. Physical SRAM, precise arbitration/DDR traces and unimplemented controls still require calibration. `performance.json` is a planning estimate.
 ''')
  if lint:
-  run=subprocess.run([shutil.which('verilator') or 'verilator','--lint-only','--top-module','tiny_npu_revb_config_smoke',*files],cwd=d,capture_output=True,text=True)
-  (d/'lint.log').write_text(run.stdout+run.stderr)
-  if run.returncode:raise ConfigError(f'RTL lint failed: {d / "lint.log"}')
+  logs=[]
+  for top in ['tiny_npu_revb_config_smoke']+(['tiny_npu_revb_fma'] if native_fma else []):
+   run=subprocess.run([shutil.which('verilator') or 'verilator','--lint-only','--top-module',top,*files],cwd=d,capture_output=True,text=True)
+   logs.append(run.stdout+run.stderr)
+   if run.returncode:
+    (d/'lint.log').write_text(''.join(logs));raise ConfigError(f'RTL lint failed: {d / "lint.log"}')
+  (d/'lint.log').write_text(''.join(logs))
  generated=['parameter_coverage.json','parameters.json','model_input.json','address_map.json','performance.json','parameters.csv','REPORT.md','tiny_npu_revb_config.h','rtl.f',*files]
- manifest=dict(schema_version=1,source_config_sha256=source_sha,configuration_sha256=identity,scale=scale,overrides=overrides or {},rtl_scope='config_package_and_isolated_sram_only',files={n:hashlib.sha256((d/n).read_bytes()).hexdigest() for n in generated})
+ manifest=dict(schema_version=1,source_config_sha256=source_sha,configuration_sha256=identity,scale=scale,overrides=overrides or {},rtl_scope='config_package_isolated_sram_native_LQ16_FMA',fma_native_emitted=native_fma,fma_gate_max_depth=gate_record['max_depth'] if gate_record else None,fma_gate_netlist_sha256=gate_record['netlist_sha256'] if gate_record else None,files={n:hashlib.sha256((d/n).read_bytes()).hexdigest() for n in generated})
  dump(d/'manifest.json',manifest)
  print(f'x{scale}: generated {len(generated)} files, lint={lint}, planning TOPS={result["serialized_vector_TOPS"]:.6f}',flush=True)
  return d

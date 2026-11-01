@@ -3,13 +3,13 @@
     {
       "path_latency_cycles": 1,
       "credit_RTT_cycles": 4,
-      "minimum_slots": 5,
-      "configured_slots": 8,
+      "minimum_slots": 13,
+      "configured_slots": 32,
       "reserved_buffer_bytes": {
-        "SRCA": 32768,
-        "SRCB": 65536,
-        "SRCC": 262144,
-        "TARGETR": 262144
+        "SRCA": 65536,
+        "SRCB": 131072,
+        "SRCC": 524288,
+        "TARGETR": 524288
       },
       "vector_inflight_min": 1,
       "scope": "latency-hiding lower-bound sizing, not guaranteed conflict-free RTL"
@@ -17,13 +17,13 @@
     {
       "path_latency_cycles": 10,
       "credit_RTT_cycles": 22,
-      "minimum_slots": 5,
-      "configured_slots": 8,
+      "minimum_slots": 13,
+      "configured_slots": 32,
       "reserved_buffer_bytes": {
-        "SRCA": 32768,
-        "SRCB": 65536,
-        "SRCC": 262144,
-        "TARGETR": 262144
+        "SRCA": 131072,
+        "SRCB": 131072,
+        "SRCC": 524288,
+        "TARGETR": 524288
       },
       "vector_inflight_min": 10,
       "scope": "latency-hiding lower-bound sizing, not guaranteed conflict-free RTL"
@@ -31,13 +31,13 @@
     {
       "path_latency_cycles": 16,
       "credit_RTT_cycles": 34,
-      "minimum_slots": 6,
-      "configured_slots": 8,
+      "minimum_slots": 14,
+      "configured_slots": 32,
       "reserved_buffer_bytes": {
-        "SRCA": 32768,
-        "SRCB": 65536,
-        "SRCC": 262144,
-        "TARGETR": 262144
+        "SRCA": 131072,
+        "SRCB": 262144,
+        "SRCC": 524288,
+        "TARGETR": 524288
       },
       "vector_inflight_min": 16,
       "scope": "latency-hiding lower-bound sizing, not guaranteed conflict-free RTL"
@@ -45,13 +45,13 @@
     {
       "path_latency_cycles": 32,
       "credit_RTT_cycles": 66,
-      "minimum_slots": 7,
-      "configured_slots": 8,
+      "minimum_slots": 15,
+      "configured_slots": 32,
       "reserved_buffer_bytes": {
-        "SRCA": 32768,
-        "SRCB": 65536,
-        "SRCC": 262144,
-        "TARGETR": 262144
+        "SRCA": 131072,
+        "SRCB": 262144,
+        "SRCC": 1048576,
+        "TARGETR": 1048576
       },
       "vector_inflight_min": 32,
       "scope": "latency-hiding lower-bound sizing, not guaranteed conflict-free RTL"
@@ -59,13 +59,13 @@
     {
       "path_latency_cycles": 64,
       "credit_RTT_cycles": 130,
-      "minimum_slots": 9,
-      "configured_slots": 16,
+      "minimum_slots": 17,
+      "configured_slots": 32,
       "reserved_buffer_bytes": {
-        "SRCA": 32768,
-        "SRCB": 65536,
-        "SRCC": 262144,
-        "TARGETR": 262144
+        "SRCA": 131072,
+        "SRCB": 262144,
+        "SRCC": 1048576,
+        "TARGETR": 1048576
       },
       "vector_inflight_min": 64,
       "scope": "latency-hiding lower-bound sizing, not guaranteed conflict-free RTL"
@@ -73,13 +73,13 @@
     {
       "path_latency_cycles": 128,
       "credit_RTT_cycles": 258,
-      "minimum_slots": 13,
-      "configured_slots": 16,
+      "minimum_slots": 21,
+      "configured_slots": 32,
       "reserved_buffer_bytes": {
-        "SRCA": 65536,
-        "SRCB": 131072,
-        "SRCC": 524288,
-        "TARGETR": 524288
+        "SRCA": 131072,
+        "SRCB": 262144,
+        "SRCC": 1048576,
+        "TARGETR": 1048576
       },
       "vector_inflight_min": 128,
       "scope": "latency-hiding lower-bound sizing, not guaranteed conflict-free RTL"
@@ -87,13 +87,13 @@
     {
       "path_latency_cycles": 256,
       "credit_RTT_cycles": 514,
-      "minimum_slots": 21,
+      "minimum_slots": 29,
       "configured_slots": 32,
       "reserved_buffer_bytes": {
-        "SRCA": 65536,
-        "SRCB": 131072,
-        "SRCC": 524288,
-        "TARGETR": 524288
+        "SRCA": 131072,
+        "SRCB": 262144,
+        "SRCC": 1048576,
+        "TARGETR": 1048576
       },
       "vector_inflight_min": 256,
       "scope": "latency-hiding lower-bound sizing, not guaranteed conflict-free RTL"

@@ -76,7 +76,7 @@ def load_profile(scale=1,cores=None,overrides=None,config_path=None):
   require(0<=p[key]<2**bits,f'{key}: field width overflow')
  require(p['SRCC_FORMAT']==p['TARGETR_FORMAT']=='TF32_CONTAINER32' and p['FINAL_L0_FORMAT']=='FP32','Invalid result format contract')
  require(p['SRCA_DATA_BITS']==4 and p['SRCB_DATA_BITS']==8 and p['SRCC_DATA_BITS']==p['TARGETR_DATA_BITS']==32,'Unsupported operand/storage widths')
- require(p['SLOT_SIZING_POLICY'] in ('AUTO','FIXED8'),'Unsupported slot policy')
+ require(p['SLOT_SIZING_POLICY'] in ('AUTO','FIXED32'),'Unsupported slot policy')
  require(0<p['MEM_EFFICIENCY']<=1 and 0<p['L0_CONFLICT_EFFICIENCY']<=1,'Efficiencies must be in (0,1]')
  require(1<=p['TC_DIMENSIONS']<=6 and p['TC_ADDRESS_BITS']>=p['AXI_ADDR_BITS'],'Invalid tensor counter geometry')
  require(p['OIC_BITS']==64 and p['OIC_EPOCH_BITS']==64,'OIC sequence/epoch must be 64 bits')
@@ -101,7 +101,12 @@ def load_profile(scale=1,cores=None,overrides=None,config_path=None):
  require(all(type(v) is int and v>=0 for v in lat.values()),'Path latencies must be nonnegative integer cycles')
  require(lat['SRCA']>=1,'SRCA primitive read latency must be >=1')
  p['MAC_FMA_PIPE_CYCLES']=lat['FMA'];p['OIC_RESPONSE_LATENCY_CYCLES']=lat['OIC']
- require(p['MAC_ACC_CONTEXTS']>=max(1,lat['FMA']),'FMA feedback latency exceeds interleaved contexts for II1')
+ require(p['FMA_IMPLEMENTATION']=='LQ16_PIPE11' and lat['FMA']>=11,'Native FMA needs11 arithmetic stages; shorter latency is unsupported')
+ require(p['FMA_GATE_BASIS']=='AND2_OR2_NOT' and 1<=p['FMA_MAX_LOGIC_DEPTH']<=40,'Gate depth budget must not exceed40 basic gates')
+ require(p['MAC_ACC_CONTEXTS']>=max(1,lat['FMA']+p['MAC_FEEDBACK_EXTRA_CYCLES']),'FMA plus explicit feedback latency exceeds contexts for II1')
+ p['FMA_ARITHMETIC_STAGES']=11;p['FMA_EXTRA_OUTPUT_STAGES']=lat['FMA']-11
+ p['MAC_FEEDBACK_RTT_CYCLES']=lat['FMA']+p['MAC_FEEDBACK_EXTRA_CYCLES']
+ p['FMA_RTL_IMPLEMENTED_FOR_MODE']=p['INTERNAL_ACC_FORMAT']=='LQ16_S1_E7_M8'
  p['L0_REG_PATH_LATENCY_CYCLES']=max(lat[k] for k in ('SRCA','SRCB','SRCC','TARGETR'))
  p['L0_REG_CREDIT_RTT_CYCLES']=2*p['L0_REG_PATH_LATENCY_CYCLES']+lat['OIC']
  # Compare credit RTT in seconds, not cycles from different domains.
@@ -112,9 +117,10 @@ def load_profile(scale=1,cores=None,overrides=None,config_path=None):
   needed=1<<(max(2*contexts,minimum)-1).bit_length()
   requested=p[name+'_SLOTS']
   if requested==0:
-   p[name+'_SLOTS']=needed if p['SLOT_SIZING_POLICY']=='AUTO' else 8
+   p[name+'_SLOTS']=needed if p['SLOT_SIZING_POLICY']=='AUTO' else 32
+  require(p['SLOT_SIZING_POLICY']!='FIXED32' or p[name+'_SLOTS']==32,f'{name}: FIXED32 requires32 slots')
   require(p[name+'_SLOTS']>=2*contexts,f'{name}: insufficient slots for context double buffering')
-  require(p['SLOT_SIZING_POLICY']=='FIXED8' or p[name+'_SLOTS']>=minimum,f'{name}: slots cannot hide configured credit RTT')
+  require(p['SLOT_SIZING_POLICY']=='FIXED32' or p[name+'_SLOTS']>=minimum,f'{name}: slots cannot hide configured credit RTT')
  require(p['LOCAL_MAX_INFLIGHT_VECTORS']<=2**p['LOCAL_VECTOR_ID_BITS'],'Local vector ID space smaller than in-flight limit')
  require(p['LOCAL_MAX_INFLIGHT_VECTORS']>=max(lat[k] for k in ('SRCA','SRCB','SRCC','TARGETR')),'In-flight vectors cannot cover II1 path latency; increase limit and ID width')
  regions=p['L0_REGIONS'];expected=['A','B','C','scratch','scale_metadata']
@@ -137,7 +143,11 @@ def load_profile(scale=1,cores=None,overrides=None,config_path=None):
  sizes={'SRCA':544,'SRCB':1056,'SRCC':4096,'TARGETR':4096}
  p['NEAR_MAC_REGFILE_BYTES']={k:arrays*p[k+'_SLOTS']*v for k,v in sizes.items()};p['NEAR_MAC_REGFILE_TOTAL_BYTES']=sum(p['NEAR_MAC_REGFILE_BYTES'].values())
  p['PE_ACC_CONTEXT_BYTES']=arrays*1024*contexts*(2 if p['INTERNAL_EXP_BITS']==7 else 4)
- p['SINGLE_CONTEXT_K32_LATENCY_CYCLES']=32*contexts+lat['FMA'];p['PANEL_PIPELINE_OVERHEAD_CYCLES']=32*contexts+8
+ p['SINGLE_CONTEXT_K32_LATENCY_CYCLES']=31*contexts+lat['FMA']
+ nominal_prefill=(contexts*32+p['MAC_OPERAND_READ_CYCLES'])/p['ACCEL_CLOCK_HZ']
+ nominal_pre=(max(lat[n] for n in ('SRCA','SRCB','SRCC'))+lat['TC']+lat['OIC']+lat['DMA_L0_COMMIT'])/p['L0_CLOCK_HZ']+2*lat['AXI_CDC']/p['AXI_CLOCK_HZ']
+ nominal_drain=(lat['TARGETR']+lat['OIC'])/p['L0_CLOCK_HZ']+(lat['FMA']+contexts*32+p['MAC_TARGETR_STORE_CYCLES'])/p['ACCEL_CLOCK_HZ']
+ p['PANEL_PIPELINE_OVERHEAD_CYCLES']=math.ceil((nominal_prefill+nominal_pre+nominal_drain)*p['ACCEL_CLOCK_HZ'])
  p['INTERNAL_ACC_LANES']=arrays*32;p['AXI_STRB_BITS']=p['AXI_DATA_BITS']//8
  p['AXI_RAW_GBS']=p['AXI_PORTS']*p['AXI_DATA_BITS']/8*p['AXI_CLOCK_HZ']/1e9
  p['AXI_AFTER_EFFICIENCY_GBS']=p['AXI_RAW_GBS']*p['MEM_EFFICIENCY'];p['MIN_RAW_GBS']=p['DMA_PAYLOAD_TARGET_GBS']/p['MEM_EFFICIENCY']

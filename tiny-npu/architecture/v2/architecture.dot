@@ -22,11 +22,11 @@ digraph tiny_npu_v2 {
  l0[label="L0SRAM: 10 MiB x SCALE | single-port hierarchy\nA 1 | B 2 | C 5 | scratch 1 | scale/meta 1 MiB\n152 logical banks / 384 single-port subbanks\nR OR W per subbank; variable 16+ cycle paths\nNo Rocket L1/L2 payload path",fillcolor="#dcfce7"];
  subgraph cluster_near {
   label="Near-MAC register files: independent of the 10 MiB L0 budget";color="#86efac";
-  ra[label="SRCA\nMXFP4 + E8M0\n8 slots / array"];
-  rb[label="SRCB\nMXINT8 + E8M0\n8 slots / array"];
-  rc[label="SRCC\nTF32 container32\nC / bias input | 8 slots/array"];
-  mac[label="10 x (32x32) MAC arrays\n10,240 MAC/clock @ 1 GHz\nLQ16 S1/E7/M8 (TF32 optional)\n4 interleaved FMA contexts / PE\n20.48 TOPS peak; >=10 sustained target",fillcolor="#fde68a"];
-  tr[label="TARGETR\nTF32 container32\nRNE at store; 8 slots / array",fillcolor="#fde68a"];
+  ra[label="SRCA\nMXFP4 + E8M0\n32 slots / array"];
+  rb[label="SRCB\nMXINT8 + E8M0\n32 slots / array"];
+  rc[label="SRCC\nTF32 container32\nC / bias input | 32 slots/array"];
+  mac[label="10 x (32x32) MAC arrays\n10,240 MAC/clock | 1GHz reference model\nLQ16 S1/E7/M8 (TF32 optional)\n12 interleaved contexts / PE\n11 arithmetic stages; max40 basic gates\n20.48 TOPS peak; >=10 sustained target",fillcolor="#fde68a"];
+  tr[label="TARGETR\nTF32 container32\nRNE at store; 32 slots / array",fillcolor="#fde68a"];
  }
  vec[label="Dedicated vector engine (Core 8 only)\nLUT / activations / FP32 arithmetic\nTF32 -> FP32 final conversion\n32 lanes, LUT-port-dependent throughput",fillcolor="#ede9fe"];
  dram -> dma [dir=both,penwidth=2];dma -> l0 [dir=both,penwidth=2];

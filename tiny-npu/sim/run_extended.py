@@ -12,12 +12,12 @@ def add(a,b):
  v=val(a)+val(b)
  return 0x7fc00000 if math.isnan(v) else bits(v)
 def write(path,values,width=8):path.write_text(''.join(f'{x:0{width}x}\n' for x in values))
-def compile_run(folder,top,sources,params,verilator):
+def compile_run(folder,top,sources,params,verilator,run_args=()):
  folder.mkdir(parents=True,exist_ok=True)
  cmd=[verilator,'--binary','--timing','-j','4','--top-module',top,'--Mdir',str(folder/'obj'),'-o','Vtest']
  cmd += [f'-G{k}={v}' for k,v in params.items()]+[str(ROOT/s) for s in sources]
  with (folder/'compile.log').open('w') as f:subprocess.run(cmd,stdout=f,stderr=subprocess.STDOUT,check=True)
- with (folder/'simulation.log').open('w') as f:subprocess.run([str(folder/'obj/Vtest')],cwd=folder,stdout=f,stderr=subprocess.STDOUT,check=True,timeout=180)
+ with (folder/'simulation.log').open('w') as f:subprocess.run([str(folder/'obj/Vtest'),*run_args],cwd=folder,stdout=f,stderr=subprocess.STDOUT,check=True,timeout=180)
  log=(folder/'simulation.log').read_text();print(log,flush=True);return log
 
 def adder(verilator):

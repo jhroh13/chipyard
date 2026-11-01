@@ -37,19 +37,19 @@ python3 tiny-npu/tools/generate_revb.py --check
 아래 명령은 원본 파일을 수정하지 않고 별도 실험 결과를 만든다.
 
 ```bash
-# SRCA 경로만 128cycle: 해당 슬롯을 AUTO16으로 산정, 다른 경로는 유지
+# SRCA 경로만128cycle:12-context 기본 슬롯은32 유지, 다른 경로는 유지
 python3 tiny-npu/tools/generate_revb.py --scale 1 --lint \
   --set PATH_LATENCIES_CYCLES.SRCA=128 --out tiny-npu/build/revb-long
 
-# MAC feedback 6cycle: context도 늘려서 II1 제약 충족
+# MAC output transport를 포함한13cycle: context도 늘려서 II1 제약 충족
 python3 tiny-npu/tools/generate_revb.py --scale 1 --lint \
-  --set PATH_LATENCIES_CYCLES.FMA=6 --set MAC_ACC_CONTEXTS=8 \
-  --out tiny-npu/build/revb-fma6
+  --set PATH_LATENCIES_CYCLES.FMA=13 --set MAC_ACC_CONTEXTS=16 \
+  --out tiny-npu/build/revb-fma13
 ```
 
 L0 용량은 `L0_REGIONS`의 bank/subbank/width/depth로 변경한다. 용량만 바꿀 때는 depth를 바꾸고, BW를 바꿀 때는 bank/subbank·II·clock을 별도로 조정한다. `L0_BYTES`, 주소폭, peak TOPS처럼 파생되는 값은 직접 override할 수 없다.
 
-슬롯 입력 `0`은 AUTO 산정을 뜻한다. 경로별 왕복 지연·최대 sizing bound·MAC/L0 clock·context를 사용해 계산한다. 명시한 슬롯이 부족하면 AUTO 정책에서 생성 전에 거부한다. `FIXED8`은 의도적으로 credit stall을 평가할 때 사용하는 정책이며 II1/bubbleless를 보장하지 않는다. 256cycle 이상의 경우 local in-flight limit과 ID 폭도 함께 늘려야 한다.
+슬롯 입력 `0`은 AUTO 산정을 뜻한다. 경로별 왕복 지연·최대 sizing bound·MAC/L0 clock·context를 사용해 계산한다. 명시한 슬롯이 부족하면 AUTO 정책에서 생성 전에 거부한다. `FIXED32`은 의도적으로 credit stall을 평가할 때 사용하는 정책이며 II1/bubbleless를 보장하지 않는다. 256cycle 이상의 경우 local in-flight limit과 ID 폭도 함께 늘려야 한다.
 
 스케일 선택은 명시된 override template을 적용한다. 기본 x1 값만 바꾼 뒤 x2/x4가 자동으로 같은 변경을 상속한다고 가정하지 말고, 생성된 resolved 값과 report를 검토한다.
 
@@ -57,10 +57,12 @@ L0 용량은 `L0_REGIONS`의 bank/subbank/width/depth로 변경한다. 용량만
 
 생성 전에 schema·타입·unknown key, geometry, single-port 조건, 역할 매핑, format, context/FMA 관계, slot/credit RTT, local ID 공간, AXI burst·ID·MO·buffer 및 요청 BW 상한을 검사한다. 유효한 source라도 실제 지속 10 TOPS에 부족할 수 있으며, 성능 pass/fail은 별도 평가한다.
 
-테스트는 x1/x2/x4 기준값, 23개 잘못된 설정의 거부, nested override, L0 depth 변경의 용량·주소폭 전파, 생성 결과·manifest 재현성, 모델 입력 roundtrip, 생성 C header compile과 SV package 소비를 검사한다. 생성 RTL 시뮬레이션에서 기본16cycle, SRCA128cycle, L0 20MiB 설정의 데이터·응답 지연을 검사한다. 기존 single-port backpressure 회귀도 수행한다.
+테스트는 x1/x2/x4 기준값, 26개 잘못된 설정의 거부, nested override, L0 depth 변경의 용량·주소폭 전파, 생성 결과·manifest 재현성, 모델 입력 roundtrip, 생성 C header compile과 SV package 소비를 검사한다. 생성 RTL 시뮬레이션에서 기본16cycle, SRCA128cycle, L0 20MiB 설정의 데이터·응답 지연을 검사한다. 기존 single-port backpressure 회귀도 수행한다.
 
 ## 모델 적용 범위
 
 모든 설정은 SV/C 상수로 전달하지만 모든 기능을 RTL로 구현한 것은 아니다. 모델은 경로 총지연 `PATH_LATENCIES_CYCLES`를 사용한다. 개별 stage breakdown은 구현 계획값이며 자동 합산되지 않는다. TC/OIC 세부 중재, SRAM physical timing, LUT 함수별 service, DMA FIFO의 실제 credit 동작은 후속 RTL 검증 대상이다. `parameter_coverage.json`을 참고한다.
 
 현재 AXI 생성·모델 지원 폭은256bit이며 port 수를 조절한다. 다른 폭은 계약·모델·RTL 확장 후 사용한다. FP32 최종 저장과 TF32 container32 정책을 유지한다.
+
+Native LQ16 FMA wrapper도 생성한다. 선택 latency의 source-hash 일치 gate-depth 증거가 필요하며40단 초과 시 생성하지 않는다. 기준은 [FMA 보고서](FMA_PIPELINE_REPORT.md)다.

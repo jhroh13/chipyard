@@ -1,3 +1,5 @@
+> 최신 FMA latency/context/RF 설정과40-gate 수용 기준은 [FMA pipeline 보고서](FMA_PIPELINE_REPORT.md)를 우선 적용한다.
+
 # TINY NPU Architecture RevB — 8 Rocket Controllers / 10 MiB L0 / TF32 TARGETR
 
 > 최신 trace·DRAM 700ns 정의·초기 합성은 [검증 문서](WORKLOAD_VERIFICATION.md)와 [실행 결과](WORKLOAD_REPORT.md)를 우선 적용한다. 이전 성능 표는 계획 모델이며 실제 RTL 성능이 아니다.
@@ -69,17 +71,17 @@ L0주소폭은기본24bits이지만10MiBexactbounds를검사한다. Read/write�
 
 | Resource | Per-array slot 내용 | Default slots/array | 10arrays 총용량 |
 |---|---|---:|---:|
-| SRCA |32×32 FP4=512B +32Bscale|8|43,520B|
-| SRCB |32×32 INT8=1024B +32Bscale|8|84,480B|
-| SRCC |32×32 TF32 container32=4096B|8|327,680B|
-| TARGETR |32×32 TF32 container32=4096B|8|327,680B|
-| **합계** |—|—|**783,360B=765KiB**|
+| SRCA |32×32 FP4=512B +32Bscale|32|174,080B|
+| SRCB |32×32 INT8=1024B +32Bscale|32|337,920B|
+| SRCC |32×32 TF32 container32=4096B|32|1,310,720B|
+| TARGETR |32×32 TF32 container32=4096B|32|1,310,720B|
+| **합계** |—|—|**3,133,440B=3,060KiB**|
 
-별도 PE accumulator는 LQ16에서 4context×10×1024×2B=80KiB이다. Near register files와 PE상태는 **L0 10MiB 밖의 추가 면적**이며 FIFO/LUT/TC/OIC/ECC도 별도 집계한다. TF32 내부 모드에서 더 긴 FMA latency가 필요하면 context수와 저장소도 늘린다.
+별도 PE accumulator는 LQ16에서12contexts×10×1024×2B=240KiB다. Near RF와 PE 상태는 L0 밖의 추가 자원이다.
 
-LQ16 FMA pipeline을4cycles로 목표할 때 동일C의dependency 때문에 **최소4개의독립context/PE**를 interleave해야 한다. 각context는매4cycle마다자기K를하나진행하며K=32의개별latency는약128cycles+pipeline이다. 4개의tile-group을128cycles에처리하므로평균32cycles/group,10배열의평균20.48TOPS peak를유지할수있는계획이다. 실제1GHz/II1은합성으로검증해야한다.
+최신 native LQ16 FMA는11개의 실제 산술 stage를 가지며, 각 stage는 AND2/OR2/NOT 기준40gate 이하다. Enable/reset mux도 분해한 검증은 [FMA 보고서](FMA_PIPELINE_REPORT.md)를 따른다. 기본 feedback 여유1cycle을 명시해12contexts를 사용한다. 같은 context의 K32 연산은 첫 입력부터 마지막 결과까지31×12+11=383cycles다. 충분한 context와 data/credit이 있으면 평균32cycles/tile-group을 유지할 수 있다.
 
-결과4context가짧은구간에연속완료되는burst를흡수하도록TARGETR8slots를두고,SRCA/B는4contexts×2buffer=8slots,SRCC도추가multicycle왕복을숨기도록4contexts의이중buffer=8slots를준비한다. 평균BW만맞추고이burst저장소를빼면bubble이생긴다. MAC초기C읽기와결과snapshot은PE별분산레지스터에서병렬로수행하며L0의1280B/clock포트와동일한단일bus로가정하지않는다.
+초기12context 데이터 prefill384cycles와 결과 burst·drain을 별도 모델링한다. SRCA/B/C/TARGETR 각각32slots를 두며, L0↔RF의 가변 multicycle latency와 RF 읽기·feedback·결과 저장은 서로 다른 parameter다. MAC operand read2cycles, feedback extra1cycle, TARGETR store1cycle은 명시적 integration 계획값이며 전체 array RTL에서 재검증한다. TF32 산술·MX decode·TF32 TARGETR 저장은 native FMA primitive 밖의 후속 연결 대상이다.
 
 TARGETR의low13bits는0이어야한다. LQ16의finite값을TF32로widen하면값은정확히보존되지만이전LQ16반올림오차는복구되지않는다.
 
@@ -310,7 +312,7 @@ LUT32lanegather에는32개동시lookup을지원하는복제/banking이필요하�
 | L0_BYTES |10MiB|SCALE={1,2,4}이면10/20/40MiB|
 | ARRAY_COUNT |10|10/20/40|
 | MAC clock |1GHz|타이밍검증후변경|
-| SRCA/B/C/TARGET slots |8/8/8/8|MACcontexts·pipeline latency·credit와일치|
+| SRCA/B/C/TARGET slots |32/32/32/32|MACcontexts·pipeline latency·credit와일치|
 | SRCA elements |32×32/array/slot|tile크기변경시packing/TC/broadcast동시변경|
 | SRCB elements |32×32/array/slot|동일|
 | SRCC/TARGET elements |32×32/array/slot|TF32container32고정기본|

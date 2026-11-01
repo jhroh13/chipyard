@@ -94,7 +94,7 @@
       "override": {
         "MAC_ACC_CONTEXTS": 2
       },
-      "reason": "FMA feedback latency exceeds interleaved contexts for II1"
+      "reason": "FMA plus explicit feedback latency exceeds contexts for II1"
     },
     {
       "override": {
@@ -119,7 +119,7 @@
         },
         "SRCA_SLOTS": 8
       },
-      "reason": "SRCA: slots cannot hide configured credit RTT"
+      "reason": "SRCA: insufficient slots for context double buffering"
     },
     {
       "override": {
@@ -166,6 +166,26 @@
         "OIC_BITS": 32
       },
       "reason": "OIC sequence/epoch must be 64 bits"
+    },
+    {
+      "override": {
+        "FMA_MAX_LOGIC_DEPTH": 41
+      },
+      "reason": "Gate depth budget must not exceed40 basic gates"
+    },
+    {
+      "override": {
+        "PATH_LATENCIES_CYCLES": {
+          "FMA": 10
+        }
+      },
+      "reason": "Native FMA needs11 arithmetic stages; shorter latency is unsupported"
+    },
+    {
+      "override": {
+        "MAC_ACC_CONTEXTS": 11
+      },
+      "reason": "FMA plus explicit feedback latency exceeds contexts for II1"
     }
   ],
   "rtl": [
@@ -173,19 +193,22 @@
       "configuration": "default",
       "L0_bytes": 10485760,
       "latency": 16,
-      "result": "REVB_CONFIG_PASS read_latency=16 L0_bytes=10485760\n- tb.sv:19: Verilog $finish"
+      "result": "REVB_CONFIG_PASS read_latency=16 L0_bytes=10485760\n- tb.sv:19: Verilog $finish",
+      "native_FMA": "GENERATED_FMA_PASS latency=11\n- fma_tb.sv:13: Verilog $finish"
     },
     {
       "configuration": "long",
       "L0_bytes": 10485760,
       "latency": 128,
-      "result": "REVB_CONFIG_PASS read_latency=128 L0_bytes=10485760\n- tb.sv:19: Verilog $finish"
+      "result": "REVB_CONFIG_PASS read_latency=128 L0_bytes=10485760\n- tb.sv:19: Verilog $finish",
+      "native_FMA": "GENERATED_FMA_PASS latency=11\n- fma_tb.sv:13: Verilog $finish"
     },
     {
       "configuration": "capacity",
       "L0_bytes": 20971520,
       "latency": 16,
-      "result": "REVB_CONFIG_PASS read_latency=16 L0_bytes=20971520\n- tb.sv:19: Verilog $finish"
+      "result": "REVB_CONFIG_PASS read_latency=16 L0_bytes=20971520\n- tb.sv:19: Verilog $finish",
+      "native_FMA": "GENERATED_FMA_PASS latency=11\n- fma_tb.sv:13: Verilog $finish"
     }
   ],
   "schema_unknown_default_rejected": true,

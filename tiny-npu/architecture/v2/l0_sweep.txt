@@ -1,11 +1,11 @@
-{'path_latency_cycles': 10, 'slot_policy': 'AUTO', 'register_slots': 8, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.946342640904911, 'serialized_vector_TOPS': 12.336616983758642}
-{'path_latency_cycles': 10, 'slot_policy': 'FIXED8', 'register_slots': 8, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.946342640904911, 'serialized_vector_TOPS': 12.336616983758642}
-{'path_latency_cycles': 16, 'slot_policy': 'AUTO', 'register_slots': 8, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.916324722785266, 'serialized_vector_TOPS': 12.309145308918612}
-{'path_latency_cycles': 16, 'slot_policy': 'FIXED8', 'register_slots': 8, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.916324722785266, 'serialized_vector_TOPS': 12.309145308918612}
-{'path_latency_cycles': 32, 'slot_policy': 'AUTO', 'register_slots': 8, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.836953300033421, 'serialized_vector_TOPS': 12.23648213417243}
-{'path_latency_cycles': 32, 'slot_policy': 'FIXED8', 'register_slots': 8, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.836953300033421, 'serialized_vector_TOPS': 12.23648213417243}
-{'path_latency_cycles': 64, 'slot_policy': 'AUTO', 'register_slots': 16, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.681101371635853, 'serialized_vector_TOPS': 12.093699419019044}
-{'path_latency_cycles': 64, 'slot_policy': 'FIXED8', 'register_slots': 8, 'MAC_group_II_cycles': 32.5, 'event_TOPS_without_vector': 12.557708287039217, 'serialized_vector_TOPS': 11.981422366068292}
-{'path_latency_cycles': 128, 'slot_policy': 'AUTO', 'register_slots': 16, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.380481455943865, 'serialized_vector_TOPS': 11.817902472808017}
-{'path_latency_cycles': 128, 'slot_policy': 'FIXED8', 'register_slots': 8, 'MAC_group_II_cycles': 64.5, 'event_TOPS_without_vector': 7.625541508118022, 'serialized_vector_TOPS': 7.4083233206651204}
+{'path_latency_cycles': 10, 'slot_policy': 'AUTO', 'register_slots': 32, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 11.256825032224146, 'serialized_vector_TOPS': 10.793004913555826}
+{'path_latency_cycles': 10, 'slot_policy': 'FIXED32', 'register_slots': 32, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 11.256825032224146, 'serialized_vector_TOPS': 10.793004913555826}
+{'path_latency_cycles': 16, 'slot_policy': 'AUTO', 'register_slots': 32, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 11.234123789216165, 'serialized_vector_TOPS': 10.771972033289554}
+{'path_latency_cycles': 16, 'slot_policy': 'FIXED32', 'register_slots': 32, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 11.234123789216165, 'serialized_vector_TOPS': 10.771972033289554}
+{'path_latency_cycles': 32, 'slot_policy': 'AUTO', 'register_slots': 32, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 11.174032381265357, 'serialized_vector_TOPS': 10.716283050752956}
+{'path_latency_cycles': 32, 'slot_policy': 'FIXED32', 'register_slots': 32, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 11.174032381265357, 'serialized_vector_TOPS': 10.716283050752956}
+{'path_latency_cycles': 64, 'slot_policy': 'AUTO', 'register_slots': 32, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 11.055757728020392, 'serialized_vector_TOPS': 10.606614814454229}
+{'path_latency_cycles': 64, 'slot_policy': 'FIXED32', 'register_slots': 32, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 11.055757728020392, 'serialized_vector_TOPS': 10.606614814454229}
+{'path_latency_cycles': 128, 'slot_policy': 'AUTO', 'register_slots': 32, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 10.826564169370375, 'serialized_vector_TOPS': 10.393877211922039}
+{'path_latency_cycles': 128, 'slot_policy': 'FIXED32', 'register_slots': 32, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 10.826564169370375, 'serialized_vector_TOPS': 10.393877211922039}
 Configurations: 560 capacity/credit/shared-port/AXI checks PASS; planning model only

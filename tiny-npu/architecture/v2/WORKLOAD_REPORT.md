@@ -1,3 +1,5 @@
+> 이 문서의 수치·fixture는 이전 baseline 기록이다. 최신 native FMA·자원 설정은 [FMA pipeline 보고서](FMA_PIPELINE_REPORT.md)를 참조한다.
+
 # Workload 선행 검증 결과와 판단
 
 이 보고서는 실제 SRAM RTL fixture, behavioral AXI/control agents, scalar FMA RTL의 결과를 구분한다. 전체8-Rocket NPU의 측정 결과가 아니다.

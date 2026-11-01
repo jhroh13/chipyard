@@ -178,7 +178,13 @@
         "ROCKET_L2_BYTES",
         "DRAM_LATENCY_MODE",
         "DRAM_AW_TO_WVALID_NS",
-        "DRAM_B_RESPONSE_NS"
+        "DRAM_B_RESPONSE_NS",
+        "FMA_IMPLEMENTATION",
+        "FMA_MAX_LOGIC_DEPTH",
+        "FMA_GATE_BASIS",
+        "MAC_FEEDBACK_EXTRA_CYCLES",
+        "MAC_OPERAND_READ_CYCLES",
+        "MAC_TARGETR_STORE_CYCLES"
       ],
       "properties": {
         "ARRAY_COUNT": {
@@ -806,6 +812,24 @@
           "type": "integer"
         },
         "DRAM_B_RESPONSE_NS": {
+          "type": "integer"
+        },
+        "FMA_IMPLEMENTATION": {
+          "type": "string"
+        },
+        "FMA_MAX_LOGIC_DEPTH": {
+          "type": "integer"
+        },
+        "FMA_GATE_BASIS": {
+          "type": "string"
+        },
+        "MAC_FEEDBACK_EXTRA_CYCLES": {
+          "type": "integer"
+        },
+        "MAC_OPERAND_READ_CYCLES": {
+          "type": "integer"
+        },
+        "MAC_TARGETR_STORE_CYCLES": {
           "type": "integer"
         }
       }
@@ -1449,6 +1473,24 @@
             },
             "DRAM_B_RESPONSE_NS": {
               "type": "integer"
+            },
+            "FMA_IMPLEMENTATION": {
+              "type": "string"
+            },
+            "FMA_MAX_LOGIC_DEPTH": {
+              "type": "integer"
+            },
+            "FMA_GATE_BASIS": {
+              "type": "string"
+            },
+            "MAC_FEEDBACK_EXTRA_CYCLES": {
+              "type": "integer"
+            },
+            "MAC_OPERAND_READ_CYCLES": {
+              "type": "integer"
+            },
+            "MAC_TARGETR_STORE_CYCLES": {
+              "type": "integer"
             }
           }
         },
@@ -2081,6 +2123,24 @@
               "type": "integer"
             },
             "DRAM_B_RESPONSE_NS": {
+              "type": "integer"
+            },
+            "FMA_IMPLEMENTATION": {
+              "type": "string"
+            },
+            "FMA_MAX_LOGIC_DEPTH": {
+              "type": "integer"
+            },
+            "FMA_GATE_BASIS": {
+              "type": "string"
+            },
+            "MAC_FEEDBACK_EXTRA_CYCLES": {
+              "type": "integer"
+            },
+            "MAC_OPERAND_READ_CYCLES": {
+              "type": "integer"
+            },
+            "MAC_TARGETR_STORE_CYCLES": {
               "type": "integer"
             }
           }
@@ -2715,6 +2775,24 @@
             },
             "DRAM_B_RESPONSE_NS": {
               "type": "integer"
+            },
+            "FMA_IMPLEMENTATION": {
+              "type": "string"
+            },
+            "FMA_MAX_LOGIC_DEPTH": {
+              "type": "integer"
+            },
+            "FMA_GATE_BASIS": {
+              "type": "string"
+            },
+            "MAC_FEEDBACK_EXTRA_CYCLES": {
+              "type": "integer"
+            },
+            "MAC_OPERAND_READ_CYCLES": {
+              "type": "integer"
+            },
+            "MAC_TARGETR_STORE_CYCLES": {
+              "type": "integer"
             }
           }
         }
@@ -2947,7 +3025,13 @@
         "ROCKET_L2_BYTES",
         "DRAM_LATENCY_MODE",
         "DRAM_AW_TO_WVALID_NS",
-        "DRAM_B_RESPONSE_NS"
+        "DRAM_B_RESPONSE_NS",
+        "FMA_IMPLEMENTATION",
+        "FMA_MAX_LOGIC_DEPTH",
+        "FMA_GATE_BASIS",
+        "MAC_FEEDBACK_EXTRA_CYCLES",
+        "MAC_OPERAND_READ_CYCLES",
+        "MAC_TARGETR_STORE_CYCLES"
       ],
       "properties": {
         "SCALE": {
@@ -6519,6 +6603,102 @@
           }
         },
         "DRAM_B_RESPONSE_NS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "FMA_IMPLEMENTATION": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "FMA_MAX_LOGIC_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "FMA_GATE_BASIS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MAC_FEEDBACK_EXTRA_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MAC_OPERAND_READ_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MAC_TARGETR_STORE_CYCLES": {
           "type": "object",
           "additionalProperties": false,
           "required": [

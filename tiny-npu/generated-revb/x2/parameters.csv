@@ -62,6 +62,12 @@ FINAL_FP32_STRIP_SLOTS,2,Core8/Core2생산·소비의pingpongcredit수.,기본�
 FINAL_L0_FORMAT,"""FP32""",Core8이최종FP32로widen해scratchstrip에저장.,기본값및파생관계참조;구현지원범위검증
 FINAL_TARGETR_ROUTE,"""FINAL_VIA_L0""",기본Core6→L0TF32→Core8→L0FP32strip→Core2.,기본값및파생관계참조;구현지원범위검증
 FLOAT_VECTOR_OWNER_HART,7,Hart7=Core8만FP32/TF32 vector/변환명령소유.,기본값및파생관계참조;구현지원범위검증
+FMA_ARITHMETIC_STAGES,11,derived; see configuration.py,derived / validated contract
+FMA_EXTRA_OUTPUT_STAGES,0,derived; see configuration.py,derived / validated contract
+FMA_GATE_BASIS,"""AND2_OR2_NOT""",XOR/MUX and enabled/reset flops decomposed; plain DFF cuts paths.,AND2_OR2_NOT
+FMA_IMPLEMENTATION,"""LQ16_PIPE11""",11 actual arithmetic stages. LQ16 only; TF32 MAC is not implemented.,LQ16_PIPE11
+FMA_MAX_LOGIC_DEPTH,40,Strict basic-gate depth budget; audit fails when exceeded.,1..40; hard maximum40
+FMA_RTL_IMPLEMENTED_FOR_MODE,true,derived; see configuration.py,derived / validated contract
 FULL_BURST_MIN_READ_MO,7,동시메모리요청상한. ID/bytecredit/reorder와연동.,기본값및파생관계참조;구현지원범위검증
 INTERNAL_ACC_FORMAT,"""LQ16_S1_E7_M8""","FP32내부누산금지. 기본LQ16 S1/E7/M8, 선택TF32.","LQ16_S1_E7_M8,TF32_S1_E8_M10"
 INTERNAL_ACC_LANES,640,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
@@ -107,9 +113,13 @@ LQ16_SUBNORMAL,"""GRADUAL""",RevB구성또는파생값. 변경시HDD의연관제
 MACRO_M,1536,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
 MACRO_N,1536,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
 MACS_PER_CLOCK,20480,clock목표(Hz). 실제타이밍/CDC검증필요.,기본값및파생관계참조;구현지원범위검증
-MAC_ACC_CONTEXTS,4,FMAfeedbacklatency이상독립context가필요. tailpadding과저장소증가.,"1,2,4,8; >= FMA latency"
+MAC_ACC_CONTEXTS,12,PE별 독립 누산 context. 기본12: FMA11+feedback1; tail context masking 필요.,"{12,16,24,32}; >= FMA+explicit feedback; any supported positive count"
 MAC_ARITHMETIC,"""FMA_RNE_PER_MAC""",각MAC마다fusedmultiply-add를선택형식으로RNE.,기본값및파생관계참조;구현지원범위검증
-MAC_FMA_PIPE_CYCLES,4,경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.,PDK/STA로검증할정수
+MAC_FEEDBACK_EXTRA_CYCLES,1,Explicit extra PE accumulator feedback latency; contexts >= FMA latency + extra.,nonnegative cycles
+MAC_FEEDBACK_RTT_CYCLES,12,derived; see configuration.py,derived / validated contract
+MAC_FMA_PIPE_CYCLES,11,경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.,PDK/STA로검증할정수
+MAC_OPERAND_READ_CYCLES,2,Near-RF operand read or TARGETR format/store path; independently variable. Not inside native FMA primitive.,"nonnegative cycles; explicit integration planning latency, not RTL timing proof"
+MAC_TARGETR_STORE_CYCLES,1,Near-RF operand read or TARGETR format/store path; independently variable. Not inside native FMA primitive.,"nonnegative cycles; explicit integration planning latency, not RTL timing proof"
 MAIN_BANK_BITS,256,인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.,기본값및파생관계참조;구현지원범위검증
 MAX_REFERENCE_LATENCY_NS,966367.6416,지연/실행cycle파라미터. 모델값과RTL실측을구분.,기본값및파생관계참조;구현지원범위검증
 MEASUREMENT_SCOPE,"""RoCC_accept_to_final_DMA_write_response""",RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
@@ -120,8 +130,8 @@ META_BANK_DEPTH,1024,bank당word깊이. 용량=bank수×depth×width/8.,기본�
 META_BYTES,2097152,용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.,기본값및파생관계참조;구현지원범위검증
 META_SUBBANKS,2,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
 MIN_RAW_GBS,66.66666666666667,대역폭GB/s. raw/효율후가용/예약payload를구분.,기본값및파생관계참조;구현지원범위검증
-NEAR_MAC_REGFILE_BYTES,"{""SRCA"": 87040, ""SRCB"": 168960, ""SRCC"": 655360, ""TARGETR"": 655360}",용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.,기본값및파생관계참조;구현지원범위검증
-NEAR_MAC_REGFILE_TOTAL_BYTES,1566720,SRCA/B/C/TARGETR용량합계. L0외부추가면적.,기본값및파생관계참조;구현지원범위검증
+NEAR_MAC_REGFILE_BYTES,"{""SRCA"": 348160, ""SRCB"": 675840, ""SRCC"": 2621440, ""TARGETR"": 2621440}",용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.,기본값및파생관계참조;구현지원범위검증
+NEAR_MAC_REGFILE_TOTAL_BYTES,6266880,SRCA/B/C/TARGETR용량합계. L0외부추가면적.,기본값및파생관계참조;구현지원범위검증
 NUMERIC_FAULT_POLICY,"""REPORT_AND_PROPAGATE""",Inf/NaN/overflow상태보고와데이터전파정책.,기본값및파생관계참조;구현지원범위검증
 OIC_ATOMIC_MULTI_ACQUIRE,true,모든조건·credit을동시에예약하거나아무것도예약하지않음.,기본값및파생관계참조;구현지원범위검증
 OIC_BANKS,16,counterhotspot과multi-conditionatomic중재를검토.,"1,4,8,16,32"
@@ -142,16 +152,16 @@ OPERAND_BANK_DEPTH,1024,bank당word깊이. 용량=bank수×depth×width/8.,기�
 OPERAND_BUFFER_SLOTS,2,slot/context개수. producer/consumercredit과일치.,기본값및파생관계참조;구현지원범위검증
 OPERAND_BYTES,6291456,용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.,기본값및파생관계참조;구현지원범위검증
 P0_MANDATORY,true,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
-PANEL_PIPELINE_OVERHEAD_CYCLES,136,경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.,기본값및파생관계참조;구현지원범위검증
+PANEL_PIPELINE_OVERHEAD_CYCLES,849,경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.,기본값및파생관계참조;구현지원범위검증
 PARTIAL_BANKS,64,병렬bank수. depth/폭/clock/port와실효BW계산.,기본값및파생관계참조;구현지원범위검증
 PARTIAL_BANK_DEPTH,512,bank당word깊이. 용량=bank수×depth×width/8.,기본값및파생관계참조;구현지원범위검증
 PARTIAL_BYTES,2097152,용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.,기본값및파생관계참조;구현지원범위검증
-PATH_LATENCIES_CYCLES,"{""SRCA"": 16, ""SRCB"": 16, ""SRCC"": 16, ""TARGETR"": 16, ""DMA_L0_COMMIT"": 16, ""L0_AXI_READ"": 16, ""VECTOR_READ"": 16, ""VECTOR_WRITE"": 16, ""TC"": 2, ""OIC"": 2, ""FMA"": 4, ""LUT"": 4, ""FORMAT"": 1, ""AXI_CDC"": 4}",경로별 독립 latency. L0/MAC/vector/AXI domain을 구분해 ns로 환산.,per-path nonnegative integers; independent clocks
+PATH_LATENCIES_CYCLES,"{""SRCA"": 16, ""SRCB"": 16, ""SRCC"": 16, ""TARGETR"": 16, ""DMA_L0_COMMIT"": 16, ""L0_AXI_READ"": 16, ""VECTOR_READ"": 16, ""VECTOR_WRITE"": 16, ""TC"": 2, ""OIC"": 2, ""FMA"": 11, ""LUT"": 4, ""FORMAT"": 1, ""AXI_CDC"": 4}",경로별 독립 latency. L0/MAC/vector/AXI domain을 구분해 ns로 환산.,per-path nonnegative integers; independent clocks
 PATH_LATENCY_DOMAIN,"""L0:SRCA/SRCB/SRCC/TARGETR/DMA/VECTOR_READ_WRITE/TC/OIC;MAC:FMA;VECTOR:LUT/FORMAT;AXI:CDC""",RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
 PEAK_GROUP_RATE_PER_SECOND,31250000.0,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
 PEAK_TOPS,40.96,1MAC=2operations기준. peak/지속목표/검증여부구분.,기본값및파생관계참조;구현지원범위검증
 PERFORMANCE_REQUIREMENT,"""SUSTAINED_USEFUL_TOPS""",RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
-PE_ACC_CONTEXT_BYTES,163840,모든PE의LQ16contextstate용량.,기본값및파생관계참조;구현지원범위검증
+PE_ACC_CONTEXT_BYTES,491520,모든PE의LQ16contextstate용량.,기본값및파생관계참조;구현지원범위검증
 PROFILE_NAME,"""P0_REVB_8CTRL_LQ16""",RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
 PROFILE_STATUS,"""architecture_not_integrated_RTL""",계획/검증상태표시;성능달성주장이아님.,기본값및파생관계참조;구현지원범위검증
 REFERENCE_K,4096,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
@@ -175,25 +185,25 @@ ROW_MAJOR_DDR_OUTPUT,true,RevB구성또는파생값. 변경시HDD의연관제약
 RTL_SUSTAINED_TARGET_VERIFIED,false,계획/검증상태표시;성능달성주장이아님.,기본값및파생관계참조;구현지원범위검증
 SCALE,2,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,"1,2,4"
 SCRATCH_SUBBANKS,2,RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.,기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증
-SINGLE_CONTEXT_K32_LATENCY_CYCLES,132,경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.,기본값및파생관계참조;구현지원범위검증
-SLOT_SIZING_POLICY,"""AUTO""",Credit RTT로 슬롯 재계산. FIXED8은 슬롯 부족에 따른 stall 검토.,"AUTO,FIXED8"
+SINGLE_CONTEXT_K32_LATENCY_CYCLES,383,경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.,기본값및파생관계참조;구현지원범위검증
+SLOT_SIZING_POLICY,"""AUTO""",현재 context12의 기본32slots. FIXED32는 긴 경로의 credit stall 민감도 검토용.,"AUTO,FIXED32"
 SRAM_PORT,"""1RW""",물리 sub-bank당 read 또는 write 하나를 수락하는 single port. R/W 합산 BW로 계산.,1RW
 SRAM_READ_LATENCY,2,지연/실행cycle파라미터. 모델값과RTL실측을구분.,기본값및파생관계참조;구현지원범위검증
 SRAM_TOTAL_BYTES,20971520,용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.,기본값및파생관계참조;구현지원범위검증
 SRCA_DATA_BITS,4,인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.,기본값및파생관계참조;구현지원범위검증
-SRCA_SLOTS,8,slot/context개수. producer/consumercredit과일치.,authoring 0=AUTO; resolved positive slots; RTT/context constraints checked
+SRCA_SLOTS,32,slot/context개수. producer/consumercredit과일치.,authoring 0=AUTO; resolved positive slots; RTT/context constraints checked
 SRCB_DATA_BITS,8,인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.,기본값및파생관계참조;구현지원범위검증
-SRCB_SLOTS,8,slot/context개수. producer/consumercredit과일치.,authoring 0=AUTO; resolved positive slots; RTT/context constraints checked
+SRCB_SLOTS,32,slot/context개수. producer/consumercredit과일치.,authoring 0=AUTO; resolved positive slots; RTT/context constraints checked
 SRCC_DATA_BITS,32,인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.,기본값및파생관계참조;구현지원범위검증
 SRCC_FORMAT,"""TF32_CONTAINER32""",초기C/bias의opaque TF32입력. 준비·변환은Core8.,기본값및파생관계참조;구현지원범위검증
-SRCC_SLOTS,8,C 입력 슬롯 수. multicycle 왕복과 4-context 완료 burst 흡수.,authoring 0=AUTO; resolved positive slots; RTT/context constraints checked
+SRCC_SLOTS,32,C 입력 슬롯 수. multicycle 왕복과 4-context 완료 burst 흡수.,authoring 0=AUTO; resolved positive slots; RTT/context constraints checked
 STATUS,"""architecture_reference_not_integrated_RTL""",계획/검증상태표시;성능달성주장이아님.,기본값및파생관계참조;구현지원범위검증
 SUBBANK_ISSUE_II_CYCLES,1,Single-port macro 요청 간격. 응답 latency와 독립.,"1,2,4,8,16; PDK constrained"
 SUSTAINED_TOPS_TARGET,20,1MAC=2operations기준. peak/지속목표/검증여부구분.,기본값및파생관계참조;구현지원범위검증
 TARGETR_DATA_BITS,32,인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.,기본값및파생관계참조;구현지원범위검증
 TARGETR_FORMAT,"""TF32_CONTAINER32""",TF32 32-bit container; low13bits0. 저장량4B.,기본값및파생관계참조;구현지원범위검증
 TARGETR_PACKED19_SUPPORTED,false,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
-TARGETR_SLOTS,8,slot/context개수. producer/consumercredit과일치.,authoring 0=AUTO; resolved positive slots; RTT/context constraints checked
+TARGETR_SLOTS,32,slot/context개수. producer/consumercredit과일치.,authoring 0=AUTO; resolved positive slots; RTT/context constraints checked
 TASK_QUEUE_DEPTH,32,bank당word깊이. 용량=bank수×depth×width/8.,기본값및파생관계참조;구현지원범위검증
 TC_ADDRESS_BITS,64,인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.,기본값및파생관계참조;구현지원범위검증
 TC_COMMIT_TRACKING,true,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증

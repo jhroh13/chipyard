@@ -819,6 +819,36 @@
     "C_header": true,
     "model_status": "consumed_or_derived"
   },
+  "FMA_IMPLEMENTATION": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "FMA_MAX_LOGIC_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "FMA_GATE_BASIS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "MAC_FEEDBACK_EXTRA_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "MAC_OPERAND_READ_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "MAC_TARGETR_STORE_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
   "SCALE": {
     "SV_package": true,
     "C_header": true,
@@ -840,6 +870,26 @@
     "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
   },
   "OIC_RESPONSE_LATENCY_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "FMA_ARITHMETIC_STAGES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "FMA_EXTRA_OUTPUT_STAGES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "MAC_FEEDBACK_RTT_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "FMA_RTL_IMPLEMENTED_FOR_MODE": {
     "SV_package": true,
     "C_header": true,
     "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
