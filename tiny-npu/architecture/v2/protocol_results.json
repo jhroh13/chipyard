@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "address_checks": 1086720,
+  "physical_subbank_checks": 2560,
+  "C_bank_row_words": 40,
+  "C_bank_row_conflicts": 0,
+  "C_bytes_with_group_padding": 4218112,
+  "OIC_checks": [
+    "all_waits_before_issue",
+    "all_or_nothing_credit",
+    "stale_epoch_reject",
+    "credit_return",
+    "overflow_reject",
+    "two_reader_panel_lifetime"
+  ],
+  "scope": "software reference; TC/OIC RTL and real bubbleless timing are not implemented"
+}

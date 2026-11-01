@@ -1,0 +1,226 @@
+{
+  "status": "PASS",
+  "LQ16_exhaustive_roundtrips": 65536,
+  "finite_LQ16_to_TF32_exact": true,
+  "synthetic_FMA_sequences": 24,
+  "seed": 20261105,
+  "results": [
+    {
+      "K": 32,
+      "case": 0,
+      "mode": "LQ16_S1_E7_M8",
+      "exact_reference": -5.80859375,
+      "result": -5.828125,
+      "absolute_error": 0.01953125,
+      "target_tf32_hex": "c0ba8000"
+    },
+    {
+      "K": 32,
+      "case": 0,
+      "mode": "TF32_S1_E8_M10",
+      "exact_reference": -5.80859375,
+      "result": -5.80859375,
+      "absolute_error": 0.0,
+      "target_tf32_hex": "c0b9e000"
+    },
+    {
+      "K": 32,
+      "case": 1,
+      "mode": "LQ16_S1_E7_M8",
+      "exact_reference": 5.28515625,
+      "result": 5.25,
+      "absolute_error": 0.03515625,
+      "target_tf32_hex": "40a80000"
+    },
+    {
+      "K": 32,
+      "case": 1,
+      "mode": "TF32_S1_E8_M10",
+      "exact_reference": 5.28515625,
+      "result": 5.28515625,
+      "absolute_error": 0.0,
+      "target_tf32_hex": "40a92000"
+    },
+    {
+      "K": 32,
+      "case": 2,
+      "mode": "LQ16_S1_E7_M8",
+      "exact_reference": -0.38671875,
+      "result": -0.390625,
+      "absolute_error": 0.00390625,
+      "target_tf32_hex": "bec80000"
+    },
+    {
+      "K": 32,
+      "case": 2,
+      "mode": "TF32_S1_E8_M10",
+      "exact_reference": -0.38671875,
+      "result": -0.38671875,
+      "absolute_error": 0.0,
+      "target_tf32_hex": "bec60000"
+    },
+    {
+      "K": 32,
+      "case": 3,
+      "mode": "LQ16_S1_E7_M8",
+      "exact_reference": 1.19921875,
+      "result": 1.19140625,
+      "absolute_error": 0.0078125,
+      "target_tf32_hex": "3f988000"
+    },
+    {
+      "K": 32,
+      "case": 3,
+      "mode": "TF32_S1_E8_M10",
+      "exact_reference": 1.19921875,
+      "result": 1.19921875,
+      "absolute_error": 0.0,
+      "target_tf32_hex": "3f998000"
+    },
+    {
+      "K": 128,
+      "case": 0,
+      "mode": "LQ16_S1_E7_M8",
+      "exact_reference": -13.61328125,
+      "result": -13.6875,
+      "absolute_error": 0.07421875,
+      "target_tf32_hex": "c15b0000"
+    },
+    {
+      "K": 128,
+      "case": 0,
+      "mode": "TF32_S1_E8_M10",
+      "exact_reference": -13.61328125,
+      "result": -13.609375,
+      "absolute_error": 0.00390625,
+      "target_tf32_hex": "c159c000"
+    },
+    {
+      "K": 128,
+      "case": 1,
+      "mode": "LQ16_S1_E7_M8",
+      "exact_reference": -5.171875,
+      "result": -5.1875,
+      "absolute_error": 0.015625,
+      "target_tf32_hex": "c0a60000"
+    },
+    {
+      "K": 128,
+      "case": 1,
+      "mode": "TF32_S1_E8_M10",
+      "exact_reference": -5.171875,
+      "result": -5.171875,
+      "absolute_error": 0.0,
+      "target_tf32_hex": "c0a58000"
+    },
+    {
+      "K": 128,
+      "case": 2,
+      "mode": "LQ16_S1_E7_M8",
+      "exact_reference": 26.375,
+      "result": 26.5625,
+      "absolute_error": 0.1875,
+      "target_tf32_hex": "41d48000"
+    },
+    {
+      "K": 128,
+      "case": 2,
+      "mode": "TF32_S1_E8_M10",
+      "exact_reference": 26.375,
+      "result": 26.359375,
+      "absolute_error": 0.015625,
+      "target_tf32_hex": "41d2e000"
+    },
+    {
+      "K": 128,
+      "case": 3,
+      "mode": "LQ16_S1_E7_M8",
+      "exact_reference": 12.8203125,
+      "result": 12.78125,
+      "absolute_error": 0.0390625,
+      "target_tf32_hex": "414c8000"
+    },
+    {
+      "K": 128,
+      "case": 3,
+      "mode": "TF32_S1_E8_M10",
+      "exact_reference": 12.8203125,
+      "result": 12.828125,
+      "absolute_error": 0.0078125,
+      "target_tf32_hex": "414d4000"
+    },
+    {
+      "K": 4096,
+      "case": 0,
+      "mode": "LQ16_S1_E7_M8",
+      "exact_reference": 62.53125,
+      "result": 62.875,
+      "absolute_error": 0.34375,
+      "target_tf32_hex": "427b8000"
+    },
+    {
+      "K": 4096,
+      "case": 0,
+      "mode": "TF32_S1_E8_M10",
+      "exact_reference": 62.53125,
+      "result": 62.0625,
+      "absolute_error": 0.46875,
+      "target_tf32_hex": "42784000"
+    },
+    {
+      "K": 4096,
+      "case": 1,
+      "mode": "LQ16_S1_E7_M8",
+      "exact_reference": -87.69140625,
+      "result": -90.25,
+      "absolute_error": 2.55859375,
+      "target_tf32_hex": "c2b48000"
+    },
+    {
+      "K": 4096,
+      "case": 1,
+      "mode": "TF32_S1_E8_M10",
+      "exact_reference": -87.69140625,
+      "result": -87.3125,
+      "absolute_error": 0.37890625,
+      "target_tf32_hex": "c2aea000"
+    },
+    {
+      "K": 4096,
+      "case": 2,
+      "mode": "LQ16_S1_E7_M8",
+      "exact_reference": 28.4765625,
+      "result": 31.25,
+      "absolute_error": 2.7734375,
+      "target_tf32_hex": "41fa0000"
+    },
+    {
+      "K": 4096,
+      "case": 2,
+      "mode": "TF32_S1_E8_M10",
+      "exact_reference": 28.4765625,
+      "result": 27.875,
+      "absolute_error": 0.6015625,
+      "target_tf32_hex": "41df0000"
+    },
+    {
+      "K": 4096,
+      "case": 3,
+      "mode": "LQ16_S1_E7_M8",
+      "exact_reference": -7.65625,
+      "result": -6.75,
+      "absolute_error": 0.90625,
+      "target_tf32_hex": "c0d80000"
+    },
+    {
+      "K": 4096,
+      "case": 3,
+      "mode": "TF32_S1_E8_M10",
+      "exact_reference": -7.65625,
+      "result": -7.8515625,
+      "absolute_error": 0.1953125,
+      "target_tf32_hex": "c0fb4000"
+    }
+  ],
+  "scope": "software numerical reference; not MAC RTL/PPA or model accuracy validation"
+}

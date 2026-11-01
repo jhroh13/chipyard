@@ -1,3 +1,5 @@
+> 이전 설계/구현 기록입니다. 최신 8-core·10 MiB single-port·LQ16/TF32 구조와 가변 경로 latency 계약은 [RevB HDD](../architecture/v2/HDD.md)를 참조하세요.
+
 # TINY NPU Data Pipelining 설계 규약
 
 상태: P0 지속10 useful TOPS를 위한 설계 요구사항. 현재 R1 dual-result-buffer와 R2 4단계 FP32 가산·C SRAM slice·scoreboard는 구현됐다. 전체 SRAM banking·AXI DMA·scale converter 물리 pipeline은 후속 구현 대상이다.

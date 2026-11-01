@@ -1,0 +1,13 @@
+scale,M,N,K,C_init,payload_target_GBs,peak_TOPS,external_bytes,AI_ops_byte,roofline_TOPS,bandwidth_only_time_us,event_model_TOPS,event_model_us,timing_model
+1,1024,1024,4096,ZERO,10,20.48,10747904,799.219512195122,7.9921951219512195,1074.7904,,,Use sweep_l0.py for multicycle single-port timing; this table is roofline only
+1,1024,1024,4096,LOAD_EXISTING,10,20.48,14942208,574.8771929824561,5.748771929824561,1494.2207999999998,,,Use sweep_l0.py for multicycle single-port timing; this table is roofline only
+1,1024,1024,4096,ZERO,20,20.48,10747904,799.219512195122,15.984390243902439,537.3952,,,Use sweep_l0.py for multicycle single-port timing; this table is roofline only
+1,1024,1024,4096,LOAD_EXISTING,20,20.48,14942208,574.8771929824561,11.497543859649122,747.1103999999999,,,Use sweep_l0.py for multicycle single-port timing; this table is roofline only
+2,1536,1536,4096,ZERO,20,40.96,19267584,1003.1020408163265,20.06204081632653,963.3792,,,Use sweep_l0.py for multicycle single-port timing; this table is roofline only
+2,1536,1536,4096,LOAD_EXISTING,20,40.96,28704768,673.3150684931506,13.466301369863013,1435.2384,,,Use sweep_l0.py for multicycle single-port timing; this table is roofline only
+2,1536,1536,4096,ZERO,40,40.96,19267584,1003.1020408163265,40.12408163265306,481.6896,,,Use sweep_l0.py for multicycle single-port timing; this table is roofline only
+2,1536,1536,4096,LOAD_EXISTING,40,40.96,28704768,673.3150684931506,26.932602739726025,717.6192,,,Use sweep_l0.py for multicycle single-port timing; this table is roofline only
+4,2048,2048,4096,ZERO,40,81.92,29884416,1149.7543859649122,45.99017543859649,747.1103999999999,,,Use sweep_l0.py for multicycle single-port timing; this table is roofline only
+4,2048,2048,4096,LOAD_EXISTING,40,81.92,46661632,736.3595505617977,29.454382022471908,1166.5408,,,Use sweep_l0.py for multicycle single-port timing; this table is roofline only
+4,2048,2048,4096,ZERO,80,81.92,29884416,1149.7543859649122,81.92,373.55519999999996,,,Use sweep_l0.py for multicycle single-port timing; this table is roofline only
+4,2048,2048,4096,LOAD_EXISTING,80,81.92,46661632,736.3595505617977,58.908764044943815,583.2704,,,Use sweep_l0.py for multicycle single-port timing; this table is roofline only

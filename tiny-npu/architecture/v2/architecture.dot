@@ -1,0 +1,42 @@
+digraph tiny_npu_v2 {
+ graph [rankdir=TB,bgcolor="#f8fafc",pad=0.3,nodesep=0.35,ranksep=0.6,fontname="DejaVu Sans",label="TINY NPU RevB | 8 parameterized Rocket controllers | 10 MiB L0 | TF32 TARGETR",labelloc=t,fontsize=20];
+ node [shape=box,style="rounded,filled",fillcolor="white",color="#64748b",fontname="DejaVu Sans",fontsize=11];
+ edge [fontname="DejaVu Sans",fontsize=10,color="#475569"];
+ subgraph cluster_control {
+  label="Control plane: custom RoCC per role; hardware loops, not per-element CPU commands";color="#93c5fd";
+  h0[label="Core 1 / Hart 0\nAXI -> L0 DMA",fillcolor="#dbeafe"];
+  h1[label="Core 2 / Hart 1\nL0 -> AXI DMA",fillcolor="#dbeafe"];
+  h2[label="Core 3 / Hart 2\nL0 -> SRCA",fillcolor="#dbeafe"];
+  h3[label="Core 4 / Hart 3\nL0 -> SRCB",fillcolor="#dbeafe"];
+  h4[label="Core 5 / Hart 4\nL0 -> SRCC",fillcolor="#dbeafe"];
+  h5[label="Core 6 / Hart 5\nTARGETR -> L0",fillcolor="#dbeafe"];
+  h6[label="Core 7 / Hart 6\nMAC operation",fillcolor="#dbeafe"];
+  h7[label="Core 8 / Hart 7\nFP32 / TF32 vector control",fillcolor="#ede9fe"];
+  {rank=same;h0;h1;h2;h3;}
+  {rank=same;h4;h5;h6;h7;}
+  tc[label="Tensor-counter contexts\n32x32 tile / slot / context / bank addressing\n6D base / index / stride / bounds",fillcolor="#fef3c7"];
+  oic[label="OIC / semaphore fabric\natomic multi-credit + ready sequence + epoch\n16 banks, persistent conditional issue",fillcolor="#fef3c7"];
+ }
+ dram[label="DRAM\n700 ns first-data latency",fillcolor="#e2e8f0"];
+ dma[label="Dedicated AXI4 R/W + CDC + MO/byte credits\n2 ports x 256 bits x 625 MHz = 40 GB/s raw\n60% -> 24 GB/s available; target 20 GB/s aggregate",fillcolor="#e0f2fe"];
+ l0[label="L0SRAM: 10 MiB x SCALE | single-port hierarchy\nA 1 | B 2 | C 5 | scratch 1 | scale/meta 1 MiB\n152 logical banks / 384 single-port subbanks\nR OR W per subbank; variable 16+ cycle paths\nNo Rocket L1/L2 payload path",fillcolor="#dcfce7"];
+ subgraph cluster_near {
+  label="Near-MAC register files: independent of the 10 MiB L0 budget";color="#86efac";
+  ra[label="SRCA\nMXFP4 + E8M0\n8 slots / array"];
+  rb[label="SRCB\nMXINT8 + E8M0\n8 slots / array"];
+  rc[label="SRCC\nTF32 container32\nC / bias input | 8 slots/array"];
+  mac[label="10 x (32x32) MAC arrays\n10,240 MAC/clock @ 1 GHz\nLQ16 S1/E7/M8 (TF32 optional)\n4 interleaved FMA contexts / PE\n20.48 TOPS peak; >=10 sustained target",fillcolor="#fde68a"];
+  tr[label="TARGETR\nTF32 container32\nRNE at store; 8 slots / array",fillcolor="#fde68a"];
+ }
+ vec[label="Dedicated vector engine (Core 8 only)\nLUT / activations / FP32 arithmetic\nTF32 -> FP32 final conversion\n32 lanes, LUT-port-dependent throughput",fillcolor="#ede9fe"];
+ dram -> dma [dir=both,penwidth=2];dma -> l0 [dir=both,penwidth=2];
+ l0 -> ra [label="load A"];l0 -> rb [label="load B"];l0 -> rc [label="load C"];
+ ra -> mac;rb -> mac;rc -> mac;mac -> tr [label="TF32 store"];
+ tr -> l0 [label="Core 6: intermediate TF32 spill",color="#059669"];
+ tr -> vec [label="optional direct final route",style=dashed,color="#7c3aed"];
+ vec -> l0 [label="Core 8: FP32 staging strip store",color="#7c3aed",penwidth=2];
+ l0 -> vec [label="final TF32 -> activation",color="#7c3aed",penwidth=2];
+ h0 -> dma [style=dashed];h1 -> dma [style=dashed];h2 -> ra [style=dashed];h3 -> rb [style=dashed];h4 -> rc [style=dashed];h5 -> tr [style=dashed];h6 -> mac [style=dashed];h7 -> vec [style=dashed];
+ tc -> l0 [style=dashed,label="address generation"];tc -> ra [style=dashed];tc -> rb [style=dashed];
+ oic -> mac [style=dashed,label="conditional issue"];oic -> dma [style=dashed];oic -> vec [style=dashed];
+}

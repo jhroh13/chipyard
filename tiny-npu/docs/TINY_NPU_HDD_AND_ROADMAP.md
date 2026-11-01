@@ -1,3 +1,5 @@
+> 이전 설계/구현 기록입니다. 최신 8-core·10 MiB single-port·LQ16/TF32 구조와 가변 경로 latency 계약은 [RevB HDD](../architecture/v2/HDD.md)를 참조하세요.
+
 # TINY NPU — Overview, HDD, RTL 및 LLM Simulation 실행 계획
 
 기준일: 2026-11-01, Asia/Seoul. 기반: jhroh13/chipyard commit `262423bacd0b8bf65b4f628da4cceac28549e540`.

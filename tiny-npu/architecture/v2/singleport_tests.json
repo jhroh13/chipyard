@@ -1,0 +1,30 @@
+[
+  {
+    "status": "PASS",
+    "latency_cycles": 10,
+    "commands": 144,
+    "read_results": 86,
+    "scope": "one single-port subbank plus elastic multicycle path, not full L0 fabric"
+  },
+  {
+    "status": "PASS",
+    "latency_cycles": 16,
+    "commands": 144,
+    "read_results": 86,
+    "scope": "one single-port subbank plus elastic multicycle path, not full L0 fabric"
+  },
+  {
+    "status": "PASS",
+    "latency_cycles": 32,
+    "commands": 144,
+    "read_results": 86,
+    "scope": "one single-port subbank plus elastic multicycle path, not full L0 fabric"
+  },
+  {
+    "status": "PASS",
+    "latency_cycles": 64,
+    "commands": 144,
+    "read_results": 86,
+    "scope": "one single-port subbank plus elastic multicycle path, not full L0 fabric"
+  }
+]

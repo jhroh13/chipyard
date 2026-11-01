@@ -1,0 +1,285 @@
+[
+  {
+    "funct7": 0,
+    "name": "TC_CONFIG",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "context ID",
+      "검증/등록status"
+    ]
+  },
+  {
+    "funct7": 1,
+    "name": "TC_ARM",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "job/epoch handle",
+      "loop실행준비"
+    ]
+  },
+  {
+    "funct7": 2,
+    "name": "TC_READ",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "필드선택",
+      "index/address/commitcount"
+    ]
+  },
+  {
+    "funct7": 3,
+    "name": "TC_RESET",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "epoch",
+      "idle에서만reset"
+    ]
+  },
+  {
+    "funct7": 8,
+    "name": "OIC_INIT",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "초기값",
+      "idle+권한검사"
+    ]
+  },
+  {
+    "funct7": 9,
+    "name": "OIC_SIGNAL",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "증분",
+      "release/완료sequence갱신"
+    ]
+  },
+  {
+    "funct7": 10,
+    "name": "OIC_ACQUIRE",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "필요수량",
+      "try-acquire성공/실패"
+    ]
+  },
+  {
+    "funct7": 11,
+    "name": "OIC_WAIT",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "queue/epoch",
+      "비동기wait-ticket"
+    ]
+  },
+  {
+    "funct7": 12,
+    "name": "OIC_QUERY",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "0",
+      "현재counter/status"
+    ]
+  },
+  {
+    "funct7": 16,
+    "name": "DESC_VALIDATE",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "engine ID",
+      "format/bounds/ownership검사"
+    ]
+  },
+  {
+    "funct7": 17,
+    "name": "ENGINE_STATUS",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "필드선택",
+      "진행/오류/카운터"
+    ]
+  },
+  {
+    "funct7": 18,
+    "name": "JOB_FENCE",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "completion mask",
+      "조회/대기ticket;최종B완료기준"
+    ]
+  },
+  {
+    "funct7": 19,
+    "name": "ENGINE_ABORT",
+    "owner_core": null,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "flags",
+      "새issue중지/기존transaction정리"
+    ]
+  },
+  {
+    "funct7": 32,
+    "name": "DMA_L0_READ",
+    "owner_core": 1,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "DRAMsourceTC→L0destTC;L0freeacquire→inputready"
+    ]
+  },
+  {
+    "funct7": 33,
+    "name": "DMA_L0_WRITE",
+    "owner_core": 2,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "L0FP32sourceTC→DRAMdestTC;finalreadywait→Bdone"
+    ]
+  },
+  {
+    "funct7": 34,
+    "name": "LOAD_SRCA",
+    "owner_core": 3,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "L0A/scaleTC→SRCA TC;Afree+inputready→Aready"
+    ]
+  },
+  {
+    "funct7": 35,
+    "name": "LOAD_SRCB",
+    "owner_core": 4,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "L0B/scaleTC→SRCB TC;Bfree+inputready→Bready"
+    ]
+  },
+  {
+    "funct7": 36,
+    "name": "LOAD_SRCC",
+    "owner_core": 5,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "L0C/biasTC→SRCC TC;Cfree+previous-C-ready→Cready"
+    ]
+  },
+  {
+    "funct7": 37,
+    "name": "STORE_TARGETR",
+    "owner_core": 6,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "TARGETR TC→L0TF32 TC;intermediateready→Cready/free"
+    ]
+  },
+  {
+    "funct7": 38,
+    "name": "MAC_RUN",
+    "owner_core": 7,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "A/B/C/TARGETR TC;A/B/Cready+targetfree→resultready"
+    ]
+  },
+  {
+    "funct7": 39,
+    "name": "VEC_RUN",
+    "owner_core": 8,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "vectorTC+subopcode;finalready→L0FP32ready"
+    ]
+  },
+  {
+    "funct7": 40,
+    "name": "LUT_LOAD",
+    "owner_core": 8,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "L0LUTTC→vectorLUTbank;LUTfree→LUTready"
+    ]
+  },
+  {
+    "funct7": 41,
+    "name": "TF32_TO_FP32",
+    "owner_core": 8,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "TARGETR/L0TF32TC→L0FP32TC"
+    ]
+  },
+  {
+    "funct7": 42,
+    "name": "FP32_TO_TF32",
+    "owner_core": 8,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "FP32sourceTC→TF32destinationTC;bias/C 준비"
+    ]
+  },
+  {
+    "funct7": 43,
+    "name": "ACT_RUN",
+    "owner_core": 8,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "RELU/CLAMP/GELU_LUT/SILU_LUT;LUTready条件"
+    ]
+  },
+  {
+    "funct7": 44,
+    "name": "LUT_RUN",
+    "owner_core": 8,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "indexTC→LUTgather→destinationTC"
+    ]
+  },
+  {
+    "funct7": 45,
+    "name": "VEC_ALU",
+    "owner_core": 8,
+    "opcode": 11,
+    "funct3": 7,
+    "contract": [
+      "FP32/TF32 ADD/MUL/FMA 지원 subset 명시"
+    ]
+  }
+]

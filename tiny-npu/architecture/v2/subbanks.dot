@@ -1,0 +1,19 @@
+digraph subbanks {
+ graph [rankdir=TB,bgcolor="white",fontname="DejaVu Sans",label="L0: single-port subbank hierarchy / variable latency",labelloc=t];
+ node [shape=box,style="rounded,filled",fillcolor="#e0f2fe",fontname="DejaVu Sans"];
+ paths [label="DMA in/out | A/B/C loaders | TARGETR drain | vector R/W\nIndependent TC, epoch, request queues, slot/byte credits"];
+ router [label="Logical bank router -> per-subbank VOQ + arbitration\nR and W compete for ONE command port per physical macro"];
+ paths -> router;
+ subgraph cluster_C {
+ label="C region: 40 logical banks x 4 subbanks = 160 physical macros / 5 MiB";
+ sb0 [label="Subbank 0\n256b x 1024\nR OR W / issue"];
+ sb1 [label="Subbank 1\n256b x 1024\nR OR W / issue"];
+ sb2 [label="Subbank 2\n256b x 1024\nR OR W / issue"];
+ sb3 [label="Subbank 3\n256b x 1024\nR OR W / issue"];
+ }
+ router -> {sb0 sb1 sb2 sb3};
+ ret [label="Variable multicycle response / write commit\nPer-path latency, reorder IDs, vector completion bitmap\nDefault 16 cycles; size for 32; sweep 64/128/256"];
+ {sb0 sb1 sb2 sb3} -> ret;
+ ready [label="Complete slot only -> OIC publish / return credit\nConsumer issue: atomic waits + destination credits",fillcolor="#dcfce7"];
+ ret -> ready;
+}

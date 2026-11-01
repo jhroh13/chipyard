@@ -1,3 +1,5 @@
+> 이전 설계/구현 기록입니다. 최신 8-core·10 MiB single-port·LQ16/TF32 구조와 가변 경로 latency 계약은 [RevB HDD](../architecture/v2/HDD.md)를 참조하세요.
+
 > ARCHIVED: P0가 지속10TOPS로 변경되기 전의 피크10.24TOPS 사양입니다. 최신 문서는 TINY_NPU_HDD_AND_ROADMAP.md입니다.
 
 # MXFP4 × MXINT8 Matmul Accelerator — Hardware Design Document

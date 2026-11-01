@@ -1,0 +1,11 @@
+{'path_latency_cycles': 10, 'slot_policy': 'AUTO', 'register_slots': 8, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.942971825391506, 'serialized_vector_TOPS': 12.333556160320525}
+{'path_latency_cycles': 10, 'slot_policy': 'FIXED8', 'register_slots': 8, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.942971825391506, 'serialized_vector_TOPS': 12.333556160320525}
+{'path_latency_cycles': 16, 'slot_policy': 'AUTO', 'register_slots': 8, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.912969518545186, 'serialized_vector_TOPS': 12.30609810054831}
+{'path_latency_cycles': 16, 'slot_policy': 'FIXED8', 'register_slots': 8, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.912969518545186, 'serialized_vector_TOPS': 12.30609810054831}
+{'path_latency_cycles': 32, 'slot_policy': 'AUTO', 'register_slots': 8, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.833639199580903, 'serialized_vector_TOPS': 12.233470791689344}
+{'path_latency_cycles': 32, 'slot_policy': 'FIXED8', 'register_slots': 8, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.833639199580903, 'serialized_vector_TOPS': 12.233470791689344}
+{'path_latency_cycles': 64, 'slot_policy': 'AUTO', 'register_slots': 16, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.677867244746086, 'serialized_vector_TOPS': 12.090757934426493}
+{'path_latency_cycles': 64, 'slot_policy': 'FIXED8', 'register_slots': 8, 'MAC_group_II_cycles': 32.5, 'event_TOPS_without_vector': 12.554536785218723, 'serialized_vector_TOPS': 11.9785352384971}
+{'path_latency_cycles': 128, 'slot_policy': 'AUTO', 'register_slots': 16, 'MAC_group_II_cycles': 32.0, 'event_TOPS_without_vector': 12.37739883020412, 'serialized_vector_TOPS': 11.815093604037843}
+{'path_latency_cycles': 128, 'slot_policy': 'FIXED8', 'register_slots': 8, 'MAC_group_II_cycles': 64.5, 'event_TOPS_without_vector': 7.624371931588445, 'serialized_vector_TOPS': 7.407219422480745}
+Configurations: 560 capacity/credit/shared-port/AXI checks PASS; planning model only

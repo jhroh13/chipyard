@@ -1,0 +1,132 @@
+{
+  "status": "PASS",
+  "scope": "planning-model sensitivity only; not hardware timing closure",
+  "cases": [
+    {
+      "path": "SRCA",
+      "base_cycles": 16,
+      "changed_cycles": 80,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 12.163348919719033
+    },
+    {
+      "path": "SRCB",
+      "base_cycles": 16,
+      "changed_cycles": 80,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 12.163348919719033
+    },
+    {
+      "path": "SRCC",
+      "base_cycles": 16,
+      "changed_cycles": 80,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 12.163348919719033
+    },
+    {
+      "path": "TARGETR",
+      "base_cycles": 16,
+      "changed_cycles": 80,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 12.163348919719033
+    },
+    {
+      "path": "DMA_L0_COMMIT",
+      "base_cycles": 16,
+      "changed_cycles": 80,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 12.163348919719033
+    },
+    {
+      "path": "L0_AXI_READ",
+      "base_cycles": 16,
+      "changed_cycles": 80,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 12.304969887689856
+    },
+    {
+      "path": "VECTOR_READ",
+      "base_cycles": 16,
+      "changed_cycles": 80,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 12.304969887689856
+    },
+    {
+      "path": "VECTOR_WRITE",
+      "base_cycles": 16,
+      "changed_cycles": 80,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 12.304969887689856
+    },
+    {
+      "path": "TC",
+      "base_cycles": 2,
+      "changed_cycles": 66,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 12.163348919719033
+    },
+    {
+      "path": "OIC",
+      "base_cycles": 2,
+      "changed_cycles": 66,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 12.023873508447185
+    },
+    {
+      "path": "FMA",
+      "base_cycles": 4,
+      "changed_cycles": 68,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 1.1419811047617925
+    },
+    {
+      "path": "LUT",
+      "base_cycles": 4,
+      "changed_cycles": 68,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 12.304969887689856
+    },
+    {
+      "path": "FORMAT",
+      "base_cycles": 1,
+      "changed_cycles": 65,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 12.304969887689856
+    },
+    {
+      "path": "AXI_CDC",
+      "base_cycles": 4,
+      "changed_cycles": 68,
+      "base_TOPS": 12.30609810054831,
+      "changed_TOPS": 11.858572117647617
+    },
+    {
+      "clock": "mac_hz",
+      "changed_TOPS": 7.527802332952844
+    },
+    {
+      "clock": "l0_hz",
+      "changed_TOPS": 7.5952150947692605
+    },
+    {
+      "clock": "axi_hz",
+      "changed_TOPS": 9.201892989132748
+    },
+    {
+      "clock": "vector_hz",
+      "changed_TOPS": 11.754223194556458
+    },
+    {
+      "subbank_II": 2,
+      "changed_TOPS": 10.677111246402292
+    },
+    {
+      "subbank_II": 4,
+      "changed_TOPS": 6.424789518852069
+    },
+    {
+      "subbank_II": 8,
+      "changed_TOPS": 3.576220919044956
+    }
+  ]
+}
