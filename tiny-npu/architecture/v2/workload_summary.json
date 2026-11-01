@@ -1,0 +1,1007 @@
+{
+  "schema_version": 1,
+  "source": "/workspace/TINY-NPU/tiny-npu/build/workload/trace.jsonl.gz",
+  "meta": {
+    "type": "meta",
+    "schema_version": 1,
+    "configuration_sha256": "7bf4302ebcbe7c4c11750645dcf5290f43309de9778de016ea6a0648edb478d2",
+    "verification_run_sha256": "68ee829b31a27ddb6c0d5ad2c81402ed16b9a28c0779eeea2211b74120bf1286",
+    "seed": 27011,
+    "rocket_parameters": {
+      "ROCKET_CORES": 8,
+      "ROCKET_CLOCK_HZ": 1000000000,
+      "ROCKET_ICACHE_BYTES": 8192,
+      "ROCKET_DCACHE_BYTES": 8192,
+      "ROCKET_L2_BYTES": 65536
+    },
+    "cache_size_effect": "not predicted; fixture miss probability is an independent stimulus",
+    "provenance": {
+      "AXI": "behavioral AXI agents",
+      "rocket": "control/cache traffic agents, not Rocket RTL",
+      "MAC": "reduced scheduling fixture, not arithmetic RTL"
+    },
+    "latency_contract": {
+      "AR": "ARVALID&&ARREADY -> first RVALID&&RLAST",
+      "AW": "first AWVALID -> first WVALID; independent of AWREADY; accepted-AW latency also reported"
+    },
+    "tests_are_independent": "AXI and reduced local fixture overlap in the viewer but are not an end-to-end connected NPU"
+  },
+  "channels": {
+    "axi.p0.AR": {
+      "samples": 3147,
+      "observed_ps": 5035200,
+      "active_ps": 36800,
+      "valid_ps": 19200,
+      "handshakes": 12,
+      "blocked_ps": 0,
+      "bubble_ps": 17600,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 17600
+      },
+      "utilization": 0.0038131553860819827,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "axi.p0.AW": {
+      "samples": 3147,
+      "observed_ps": 5035200,
+      "active_ps": 36800,
+      "valid_ps": 19200,
+      "handshakes": 12,
+      "blocked_ps": 0,
+      "bubble_ps": 17600,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 17600
+      },
+      "utilization": 0.0038131553860819827,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "axi.p1.AR": {
+      "samples": 3147,
+      "observed_ps": 5035200,
+      "active_ps": 36800,
+      "valid_ps": 19200,
+      "handshakes": 12,
+      "blocked_ps": 0,
+      "bubble_ps": 17600,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 17600
+      },
+      "utilization": 0.0038131553860819827,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "axi.p1.AW": {
+      "samples": 3147,
+      "observed_ps": 5035200,
+      "active_ps": 36800,
+      "valid_ps": 19200,
+      "handshakes": 12,
+      "blocked_ps": 0,
+      "bubble_ps": 17600,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 17600
+      },
+      "utilization": 0.0038131553860819827,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "axi.p0.R": {
+      "samples": 3147,
+      "observed_ps": 5035200,
+      "active_ps": 2955200,
+      "valid_ps": 774400,
+      "handshakes": 408,
+      "blocked_ps": 121600,
+      "bubble_ps": 2302400,
+      "cache_miss_ps": 0,
+      "bytes": 13056,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "memory-wait": 2180800,
+        "consumer-stall": 121600
+      },
+      "primary_causes_ps": {
+        "memory-wait": 2180800,
+        "consumer-stall": 121600
+      },
+      "utilization": 0.12964728312678742,
+      "payload_GBs": 2.5929456625357483,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "axi.p0.W": {
+      "samples": 3147,
+      "observed_ps": 5035200,
+      "active_ps": 4302400,
+      "valid_ps": 4302400,
+      "handshakes": 408,
+      "blocked_ps": 3649600,
+      "bubble_ps": 3649600,
+      "cache_miss_ps": 0,
+      "bytes": 13056,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "consumer-stall": 3649600
+      },
+      "primary_causes_ps": {
+        "consumer-stall": 3649600
+      },
+      "utilization": 0.12964728312678742,
+      "payload_GBs": 2.5929456625357483,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "axi.p0.B": {
+      "samples": 3147,
+      "observed_ps": 5035200,
+      "active_ps": 267200,
+      "valid_ps": 20800,
+      "handshakes": 12,
+      "blocked_ps": 1600,
+      "bubble_ps": 248000,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 248000
+      },
+      "utilization": 0.0038131553860819827,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "axi.p1.R": {
+      "samples": 3147,
+      "observed_ps": 5035200,
+      "active_ps": 2987200,
+      "valid_ps": 1622400,
+      "handshakes": 864,
+      "blocked_ps": 240000,
+      "bubble_ps": 1604800,
+      "cache_miss_ps": 0,
+      "bytes": 27648,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "memory-wait": 1364800,
+        "consumer-stall": 240000
+      },
+      "primary_causes_ps": {
+        "memory-wait": 1364800,
+        "consumer-stall": 240000
+      },
+      "utilization": 0.27454718779790277,
+      "payload_GBs": 5.490943755958056,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "axi.p1.W": {
+      "samples": 3147,
+      "observed_ps": 5035200,
+      "active_ps": 3656000,
+      "valid_ps": 3656000,
+      "handshakes": 864,
+      "blocked_ps": 2273600,
+      "bubble_ps": 2273600,
+      "cache_miss_ps": 0,
+      "bytes": 27648,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "consumer-stall": 2273600
+      },
+      "primary_causes_ps": {
+        "consumer-stall": 2273600
+      },
+      "utilization": 0.27454718779790277,
+      "payload_GBs": 5.490943755958056,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "axi.p1.B": {
+      "samples": 3147,
+      "observed_ps": 5035200,
+      "active_ps": 368000,
+      "valid_ps": 24000,
+      "handshakes": 12,
+      "blocked_ps": 4800,
+      "bubble_ps": 348800,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 348800
+      },
+      "utilization": 0.0038131553860819827,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "l0.A": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 181000,
+      "valid_ps": 181000,
+      "handshakes": 116,
+      "blocked_ps": 65000,
+      "bubble_ps": 65000,
+      "cache_miss_ps": 0,
+      "bytes": 3712,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "bank-conflict": 53000,
+        "cache-miss": 12000
+      },
+      "primary_causes_ps": {
+        "bank-conflict": 53000,
+        "cache-miss": 12000
+      },
+      "utilization": 0.0283203125,
+      "payload_GBs": 0.90625,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "l0.B": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 403000,
+      "valid_ps": 403000,
+      "handshakes": 116,
+      "blocked_ps": 287000,
+      "bubble_ps": 287000,
+      "cache_miss_ps": 0,
+      "bytes": 3712,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "bank-conflict": 227000,
+        "cache-miss": 60000
+      },
+      "primary_causes_ps": {
+        "bank-conflict": 227000,
+        "cache-miss": 60000
+      },
+      "utilization": 0.0283203125,
+      "payload_GBs": 0.90625,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "l0.C": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 232000,
+      "valid_ps": 232000,
+      "handshakes": 116,
+      "blocked_ps": 116000,
+      "bubble_ps": 116000,
+      "cache_miss_ps": 0,
+      "bytes": 3712,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "bank-conflict": 68000,
+        "cache-miss": 48000
+      },
+      "primary_causes_ps": {
+        "bank-conflict": 68000,
+        "cache-miss": 48000
+      },
+      "utilization": 0.0283203125,
+      "payload_GBs": 0.90625,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "l0.T": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 148000,
+      "valid_ps": 148000,
+      "handshakes": 109,
+      "blocked_ps": 39000,
+      "bubble_ps": 39000,
+      "cache_miss_ps": 0,
+      "bytes": 3488,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "bank-conflict": 3000,
+        "cache-miss": 36000
+      },
+      "primary_causes_ps": {
+        "bank-conflict": 3000,
+        "cache-miss": 36000
+      },
+      "utilization": 0.026611328125,
+      "payload_GBs": 0.8515625,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "mac.issue": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 4096000,
+      "valid_ps": 4007000,
+      "handshakes": 3513,
+      "blocked_ps": 494000,
+      "bubble_ps": 583000,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 71946240,
+      "raw_causes_ps": {
+        "wait-data": 24000,
+        "consumer-stall": 494000,
+        "OIC-conflict": 9000,
+        "cache-miss": 56000
+      },
+      "primary_causes_ps": {
+        "wait-data": 24000,
+        "consumer-stall": 494000,
+        "OIC-conflict": 9000,
+        "cache-miss": 56000
+      },
+      "utilization": 0.857666015625,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 17.565
+    },
+    "rocket.h0.control": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 4096000,
+      "valid_ps": 4096000,
+      "handshakes": 116,
+      "blocked_ps": 3980000,
+      "bubble_ps": 3980000,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "cache-miss": 182000,
+        "no-credit": 3798000
+      },
+      "primary_causes_ps": {
+        "cache-miss": 182000,
+        "no-credit": 3798000
+      },
+      "utilization": 0.0283203125,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h0.icache": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 4096000,
+      "valid_ps": 4096000,
+      "handshakes": 3376,
+      "blocked_ps": 720000,
+      "bubble_ps": 720000,
+      "cache_miss_ps": 720000,
+      "bytes": 13504,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "cache-miss": 720000
+      },
+      "primary_causes_ps": {
+        "cache-miss": 720000
+      },
+      "utilization": 0.82421875,
+      "payload_GBs": 3.296875,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h0.descriptor": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 4096000,
+      "valid_ps": 116000,
+      "handshakes": 116,
+      "blocked_ps": 0,
+      "bubble_ps": 3980000,
+      "cache_miss_ps": 0,
+      "bytes": 928,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 3980000
+      },
+      "utilization": 0.0283203125,
+      "payload_GBs": 0.2265625,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h1.control": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 4018000,
+      "valid_ps": 4018000,
+      "handshakes": 3262,
+      "blocked_ps": 756000,
+      "bubble_ps": 756000,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "cache-miss": 756000
+      },
+      "primary_causes_ps": {
+        "cache-miss": 756000
+      },
+      "utilization": 0.79638671875,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h1.icache": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 4018000,
+      "valid_ps": 4018000,
+      "handshakes": 3262,
+      "blocked_ps": 756000,
+      "bubble_ps": 756000,
+      "cache_miss_ps": 756000,
+      "bytes": 13048,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "cache-miss": 756000
+      },
+      "primary_causes_ps": {
+        "cache-miss": 756000
+      },
+      "utilization": 0.79638671875,
+      "payload_GBs": 3.185546875,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h1.descriptor": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 4018000,
+      "valid_ps": 3262000,
+      "handshakes": 3262,
+      "blocked_ps": 0,
+      "bubble_ps": 756000,
+      "cache_miss_ps": 0,
+      "bytes": 26096,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 756000
+      },
+      "utilization": 0.79638671875,
+      "payload_GBs": 6.37109375,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h2.control": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 181000,
+      "valid_ps": 181000,
+      "handshakes": 116,
+      "blocked_ps": 65000,
+      "bubble_ps": 65000,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "bank-conflict": 53000,
+        "cache-miss": 12000
+      },
+      "primary_causes_ps": {
+        "bank-conflict": 53000,
+        "cache-miss": 12000
+      },
+      "utilization": 0.0283203125,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h2.icache": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 181000,
+      "valid_ps": 181000,
+      "handshakes": 169,
+      "blocked_ps": 12000,
+      "bubble_ps": 12000,
+      "cache_miss_ps": 12000,
+      "bytes": 676,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "cache-miss": 12000
+      },
+      "primary_causes_ps": {
+        "cache-miss": 12000
+      },
+      "utilization": 0.041259765625,
+      "payload_GBs": 0.1650390625,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h2.descriptor": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 181000,
+      "valid_ps": 116000,
+      "handshakes": 116,
+      "blocked_ps": 0,
+      "bubble_ps": 65000,
+      "cache_miss_ps": 0,
+      "bytes": 928,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 65000
+      },
+      "utilization": 0.0283203125,
+      "payload_GBs": 0.2265625,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h3.control": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 403000,
+      "valid_ps": 403000,
+      "handshakes": 116,
+      "blocked_ps": 287000,
+      "bubble_ps": 287000,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "bank-conflict": 227000,
+        "cache-miss": 60000
+      },
+      "primary_causes_ps": {
+        "bank-conflict": 227000,
+        "cache-miss": 60000
+      },
+      "utilization": 0.0283203125,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h3.icache": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 403000,
+      "valid_ps": 403000,
+      "handshakes": 343,
+      "blocked_ps": 60000,
+      "bubble_ps": 60000,
+      "cache_miss_ps": 60000,
+      "bytes": 1372,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "cache-miss": 60000
+      },
+      "primary_causes_ps": {
+        "cache-miss": 60000
+      },
+      "utilization": 0.083740234375,
+      "payload_GBs": 0.3349609375,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h3.descriptor": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 403000,
+      "valid_ps": 116000,
+      "handshakes": 116,
+      "blocked_ps": 0,
+      "bubble_ps": 287000,
+      "cache_miss_ps": 0,
+      "bytes": 928,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 287000
+      },
+      "utilization": 0.0283203125,
+      "payload_GBs": 0.2265625,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h4.control": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 232000,
+      "valid_ps": 232000,
+      "handshakes": 116,
+      "blocked_ps": 116000,
+      "bubble_ps": 116000,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "bank-conflict": 68000,
+        "cache-miss": 48000
+      },
+      "primary_causes_ps": {
+        "bank-conflict": 68000,
+        "cache-miss": 48000
+      },
+      "utilization": 0.0283203125,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h4.icache": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 232000,
+      "valid_ps": 232000,
+      "handshakes": 184,
+      "blocked_ps": 48000,
+      "bubble_ps": 48000,
+      "cache_miss_ps": 48000,
+      "bytes": 736,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "cache-miss": 48000
+      },
+      "primary_causes_ps": {
+        "cache-miss": 48000
+      },
+      "utilization": 0.044921875,
+      "payload_GBs": 0.1796875,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h4.descriptor": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 232000,
+      "valid_ps": 116000,
+      "handshakes": 116,
+      "blocked_ps": 0,
+      "bubble_ps": 116000,
+      "cache_miss_ps": 0,
+      "bytes": 928,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 116000
+      },
+      "utilization": 0.0283203125,
+      "payload_GBs": 0.2265625,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h5.control": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 148000,
+      "valid_ps": 148000,
+      "handshakes": 109,
+      "blocked_ps": 39000,
+      "bubble_ps": 39000,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "bank-conflict": 3000,
+        "cache-miss": 36000
+      },
+      "primary_causes_ps": {
+        "bank-conflict": 3000,
+        "cache-miss": 36000
+      },
+      "utilization": 0.026611328125,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h5.icache": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 148000,
+      "valid_ps": 148000,
+      "handshakes": 112,
+      "blocked_ps": 36000,
+      "bubble_ps": 36000,
+      "cache_miss_ps": 36000,
+      "bytes": 448,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "cache-miss": 36000
+      },
+      "primary_causes_ps": {
+        "cache-miss": 36000
+      },
+      "utilization": 0.02734375,
+      "payload_GBs": 0.109375,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h5.descriptor": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 148000,
+      "valid_ps": 109000,
+      "handshakes": 109,
+      "blocked_ps": 0,
+      "bubble_ps": 39000,
+      "cache_miss_ps": 0,
+      "bytes": 872,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 39000
+      },
+      "utilization": 0.026611328125,
+      "payload_GBs": 0.212890625,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h6.control": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 199000,
+      "valid_ps": 199000,
+      "handshakes": 110,
+      "blocked_ps": 89000,
+      "bubble_ps": 89000,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "wait-data": 24000,
+        "OIC-conflict": 9000,
+        "cache-miss": 56000
+      },
+      "primary_causes_ps": {
+        "wait-data": 24000,
+        "OIC-conflict": 9000,
+        "cache-miss": 56000
+      },
+      "utilization": 0.02685546875,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h6.icache": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 199000,
+      "valid_ps": 199000,
+      "handshakes": 139,
+      "blocked_ps": 60000,
+      "bubble_ps": 60000,
+      "cache_miss_ps": 60000,
+      "bytes": 556,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "cache-miss": 60000
+      },
+      "primary_causes_ps": {
+        "cache-miss": 60000
+      },
+      "utilization": 0.033935546875,
+      "payload_GBs": 0.1357421875,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h6.descriptor": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 199000,
+      "valid_ps": 110000,
+      "handshakes": 110,
+      "blocked_ps": 0,
+      "bubble_ps": 89000,
+      "cache_miss_ps": 0,
+      "bytes": 880,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 89000
+      },
+      "utilization": 0.02685546875,
+      "payload_GBs": 0.21484375,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h7.control": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 145000,
+      "valid_ps": 145000,
+      "handshakes": 109,
+      "blocked_ps": 36000,
+      "bubble_ps": 36000,
+      "cache_miss_ps": 0,
+      "bytes": 0,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "consumer-stall": 12000,
+        "cache-miss": 24000
+      },
+      "primary_causes_ps": {
+        "consumer-stall": 12000,
+        "cache-miss": 24000
+      },
+      "utilization": 0.026611328125,
+      "payload_GBs": 0.0,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h7.icache": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 145000,
+      "valid_ps": 145000,
+      "handshakes": 121,
+      "blocked_ps": 24000,
+      "bubble_ps": 24000,
+      "cache_miss_ps": 24000,
+      "bytes": 484,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {
+        "cache-miss": 24000
+      },
+      "primary_causes_ps": {
+        "cache-miss": 24000
+      },
+      "utilization": 0.029541015625,
+      "payload_GBs": 0.1181640625,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    },
+    "rocket.h7.descriptor": {
+      "samples": 4096,
+      "observed_ps": 4096000,
+      "active_ps": 145000,
+      "valid_ps": 109000,
+      "handshakes": 109,
+      "blocked_ps": 0,
+      "bubble_ps": 36000,
+      "cache_miss_ps": 0,
+      "bytes": 872,
+      "ops": 0,
+      "capacity_ops": 0,
+      "raw_causes_ps": {},
+      "primary_causes_ps": {
+        "unclassified": 36000
+      },
+      "utilization": 0.026611328125,
+      "payload_GBs": 0.212890625,
+      "useful_TOPS": 0.0,
+      "scheduler_capacity_TOPS": 0.0
+    }
+  },
+  "diagnoses": [
+    {
+      "cause": "consumer-stall",
+      "fraction_of_active": 0.12060546875,
+      "evidence_channel": "mac.issue",
+      "evidence_ps": 494000,
+      "recommendation": "Inspect TARGETR drain/vector/AXI consumer backpressure before adding producer resources.",
+      "status": "candidate_requires_counterfactual_or_RTL_confirmation"
+    },
+    {
+      "cause": "cache-miss",
+      "fraction_of_active": 0.013671875,
+      "evidence_channel": "mac.issue",
+      "evidence_ps": 56000,
+      "recommendation": "Check real I/D-cache miss counters and control instruction footprint; cache size benefit requires Rocket trace/cache sweep.",
+      "status": "candidate_requires_counterfactual_or_RTL_confirmation"
+    },
+    {
+      "cause": "wait-data",
+      "fraction_of_active": 0.005859375,
+      "evidence_channel": "mac.issue",
+      "evidence_ps": 24000,
+      "recommendation": "Trace upstream load completion and path latency; check request-ahead/slot reservation before increasing MAC count.",
+      "status": "candidate_requires_counterfactual_or_RTL_confirmation"
+    },
+    {
+      "cause": "OIC-conflict",
+      "fraction_of_active": 0.002197265625,
+      "evidence_channel": "mac.issue",
+      "evidence_ps": 9000,
+      "recommendation": "Inspect atomic multi-acquire, counter-bank aliases and event FIFO; sweep OIC ports/banking.",
+      "status": "candidate_requires_counterfactual_or_RTL_confirmation"
+    }
+  ],
+  "axi_latency": {
+    "AR_to_RLAST": {
+      "count": 24,
+      "min_ns": 729.6,
+      "p50_ns": 1918.4,
+      "p95_ns": 2953.6,
+      "max_ns": 2985.6
+    },
+    "AR_to_RLAST_accept": {
+      "count": 24,
+      "min_ns": 729.6,
+      "p50_ns": 1918.4,
+      "p95_ns": 2953.6,
+      "max_ns": 2985.6
+    },
+    "AW_to_WVALID": {
+      "count": 24,
+      "min_ns": 700.8,
+      "p50_ns": 3892.8,
+      "p95_ns": 4862.4,
+      "max_ns": 4865.6
+    },
+    "AW_accept_to_WVALID": {
+      "count": 24,
+      "min_ns": 700.8,
+      "p50_ns": 3892.8,
+      "p95_ns": 4862.4,
+      "max_ns": 4865.6
+    },
+    "issues": [],
+    "incomplete": 0,
+    "scope": "AR accepted request; AW first VALID and accepted-AW both recorded; WVALID independent of AWREADY"
+  },
+  "caveats": [
+    "Traffic-agent traces do not establish Rocket IPC/cache performance.",
+    "Bubble causes may overlap; primary uses documented bit priority, raw counts must not be summed.",
+    "Per-channel rates use that channel observation interval; no cross-domain cycle summation.",
+    "useful_TOPS applies only to explicitly tagged useful ops, not fabricated matmul output correctness."
+  ]
+}

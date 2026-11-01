@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "seed": 27011,
+  "axi": {
+    "latency_reference": {
+      "AR": "ARVALID&&ARREADY",
+      "AW": "first AWVALID; accepted-AW metric reported separately"
+    },
+    "ar_to_rlast_ns": null,
+    "aw_to_first_wvalid_ns": null,
+    "b_response_ns": null,
+    "bandwidth_mode": "effective",
+    "effective_shared_GBs": null,
+    "raw_shared_GBs": null,
+    "efficiency": null,
+    "turnaround_cycles": 4,
+    "read_jitter_ns": 96,
+    "response_reorder": true,
+    "consumer_stall_probability": 0.15,
+    "transactions_per_direction": 24,
+    "burst_bytes": [
+      128,
+      512,
+      2048,
+      4096
+    ],
+    "ports": null,
+    "read_mo": null,
+    "write_mo": null
+  },
+  "local": {
+    "cycles": 4096,
+    "path_latency_cycles": null,
+    "request_jitter_cycles": 16,
+    "subbanks": null,
+    "register_slots": null,
+    "consumer_stall_probability": 0.12,
+    "oic_conflict_probability": 0.06,
+    "icache_miss_probability": 0.02,
+    "icache_miss_cycles": 12
+  },
+  "provenance": "behavioral traffic agents, no Rocket or new MAC system RTL"
+}

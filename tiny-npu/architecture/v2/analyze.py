@@ -37,7 +37,7 @@ def main():
    peak_MAC_input_vector_bytes_per_clock=10*(16+32+2),
    peak_C_bytes_per_clock_each_direction=10*128,
    target_10TOPS_min_AI_at_10GBs=1000,target_10TOPS_min_AI_at_20GBs=500,
-   minimal_full_burst_MO_at_20GBs_700ns=math.ceil(1+20e9*700e-9/4096))
+   minimal_full_burst_MO_at_20GBs_700ns=math.ceil(20e9*700e-9/4096))
  (OUT/'profiles.json').write_text(json.dumps(ps,indent=2));(OUT/'analysis.json').write_text(json.dumps(dict(results=results,auxiliary=aux),indent=2))
  with (OUT/'performance.csv').open('w',newline='') as f:
   w=csv.DictWriter(f,fieldnames=results[0].keys(),lineterminator='\n');w.writeheader();w.writerows(results)

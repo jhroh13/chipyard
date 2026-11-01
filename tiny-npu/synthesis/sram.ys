@@ -1,0 +1,9 @@
+read_verilog -sv rtl/tiny_npu_sram_1rw_subbank.sv
+chparam -set WIDTH 256 -set DEPTH 1024 -set READ_LATENCY 16 tiny_npu_sram_1rw_subbank
+hierarchy -top tiny_npu_sram_1rw_subbank
+proc
+opt
+memory -nomap
+opt
+tee -o build/synthesis/sram_stats.json stat -json
+write_json build/synthesis/sram_netlist.json

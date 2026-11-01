@@ -44,3 +44,21 @@ check-revb:
 	$(PYTHON) tools/generate_revb.py --check
 	$(PYTHON) sim/test_revb_config.py
 	$(PYTHON) architecture/v2/test_path_sensitivity.py
+
+.PHONY: verify-environment workload trace-rtl numeric-prototype synth-initial
+verify-environment:
+	$(PYTHON) verification/test_environment.py
+	$(PYTHON) verification/sweep_workload.py
+
+workload:
+	$(PYTHON) verification/run_workload.py
+
+trace-rtl:
+	$(PYTHON) verification/run_rtl_trace.py
+
+numeric-prototype:
+	$(PYTHON) verification/test_lq16_fma.py
+	$(PYTHON) verification/test_lq16_tile.py
+
+synth-initial:
+	$(PYTHON) synthesis/run_synthesis.py

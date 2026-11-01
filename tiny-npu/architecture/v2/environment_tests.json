@@ -1,0 +1,126 @@
+{
+  "status": "PASS",
+  "tests": [
+    {
+      "test": "isolated_R",
+      "measured_ns": 700.8,
+      "status": "PASS"
+    },
+    {
+      "test": "isolated_W",
+      "measured_ns": 700.8,
+      "status": "PASS"
+    },
+    {
+      "test": "stress",
+      "seed": 1,
+      "status": "PASS",
+      "achieved_GBs": 15.924882629107982,
+      "cross_ID_overtakes": 21,
+      "read_beats": 1272,
+      "write_beats": 1272,
+      "stable_handshakes": true,
+      "per_port_W_order": true
+    },
+    {
+      "test": "stress",
+      "seed": 9,
+      "status": "PASS",
+      "achieved_GBs": 16.203821656050955,
+      "cross_ID_overtakes": 21,
+      "read_beats": 1272,
+      "write_beats": 1272,
+      "stable_handshakes": true,
+      "per_port_W_order": true
+    },
+    {
+      "test": "stress",
+      "seed": 27011,
+      "status": "PASS",
+      "achieved_GBs": 16.16777883698761,
+      "cross_ID_overtakes": 21,
+      "read_beats": 1272,
+      "write_beats": 1272,
+      "stable_handshakes": true,
+      "per_port_W_order": true
+    },
+    {
+      "test": "WVALID_independent_of_AWREADY",
+      "AW_to_WVALID_ns": 700.8,
+      "accepted_AW_to_WVALID_ns": -899.2,
+      "status": "PASS"
+    },
+    {
+      "test": "raw_vs_effective_no_double_efficiency",
+      "status": "PASS"
+    },
+    {
+      "test": "MO_sweep",
+      "read_mo": 1,
+      "achieved_GBs": 8.67075664621677,
+      "status": "PASS"
+    },
+    {
+      "test": "MO_sweep",
+      "read_mo": 4,
+      "achieved_GBs": 13.943546177034804,
+      "status": "PASS"
+    },
+    {
+      "test": "MO_sweep",
+      "read_mo": 32,
+      "achieved_GBs": 16.240025534631343,
+      "status": "PASS"
+    },
+    {
+      "test": "trace_exclusive_vs_overlapping_causes",
+      "status": "PASS"
+    },
+    {
+      "test": "local_latency_credit",
+      "latency": 10,
+      "jitter": 0,
+      "slots": 8,
+      "mapping": "linear",
+      "retired": 55,
+      "status": "PASS"
+    },
+    {
+      "test": "local_latency_credit",
+      "latency": 16,
+      "jitter": 16,
+      "slots": 8,
+      "mapping": "linear",
+      "retired": 54,
+      "status": "PASS"
+    },
+    {
+      "test": "local_latency_credit",
+      "latency": 64,
+      "jitter": 32,
+      "slots": 8,
+      "mapping": "skew",
+      "retired": 51,
+      "status": "PASS"
+    },
+    {
+      "test": "local_latency_credit",
+      "latency": 128,
+      "jitter": 32,
+      "slots": 8,
+      "mapping": "linear",
+      "retired": 41,
+      "status": "PASS"
+    },
+    {
+      "test": "local_latency_credit",
+      "latency": 128,
+      "jitter": 32,
+      "slots": 16,
+      "mapping": "skew",
+      "retired": 48,
+      "status": "PASS"
+    }
+  ],
+  "scope": "protocol/trace qualification; no system NPU performance proof"
+}

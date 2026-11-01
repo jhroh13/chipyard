@@ -1,0 +1,14 @@
+[
+  {
+    "status": "PASS",
+    "vectors": 6000,
+    "latency": 4,
+    "scope": "exact arithmetic plus transport pipeline; not timing-balanced arithmetic stages"
+  },
+  {
+    "status": "PASS",
+    "vectors": 6000,
+    "latency": 6,
+    "scope": "exact arithmetic plus transport pipeline; not timing-balanced arithmetic stages"
+  }
+]

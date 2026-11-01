@@ -53,13 +53,16 @@ DMA_RESPONSE_REORDER,true,RevB구성또는파생값. 변경시HDD의연관제약
 DMA_WRITE_BUFFER_BYTES,65536,용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.,기본값및파생관계참조;구현지원범위검증
 DMA_WRITE_CHANNELS,1,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
 DMA_WRITE_MO,32,동시메모리요청상한. ID/bytecredit/reorder와연동.,기본값및파생관계참조;구현지원범위검증
-DRAM_READ_LATENCY_NS,700,지연/실행cycle파라미터. 모델값과RTL실측을구분.,기본값및파생관계참조;구현지원범위검증
+DRAM_AW_TO_WVALID_NS,700,첫 AWVALID→첫 WVALID의 명목 준비 지연(ns). WVALID는 AWREADY와 독립. AW handshake 기준 지연도 별도 계측.,nonnegative integer ns; queue/backpressure measured separately
+DRAM_B_RESPONSE_NS,32,"DRAM 계약: AR handshake→첫 RVALID&&RLAST, AW handshake→첫 WVALID. B 응답은 별도.",nonnegative integer ns; queue/backpressure measured separately
+DRAM_LATENCY_MODE,"""AR_RLAST_AW_WVALID""","DRAM 계약: AR handshake→첫 RVALID&&RLAST, AW handshake→첫 WVALID. B 응답은 별도.",AR_RLAST_AW_WVALID; explicit request/last/launch contract
+DRAM_READ_LATENCY_NS,700,ARVALID&&ARREADY부터 첫 RVALID&&RLAST까지의 nominal 목표(ns). 경합·backpressure로 초과 가능; RLAST handshake는 별도 측정.,기본값및파생관계참조;구현지원범위검증
 FINAL_FP32_STRIP_ROWS,32,Core8 row-major scratchstrip높이;작은L0에서줄일수있음.,기본값및파생관계참조;구현지원범위검증
 FINAL_FP32_STRIP_SLOTS,2,Core8/Core2생산·소비의pingpongcredit수.,기본값및파생관계참조;구현지원범위검증
 FINAL_L0_FORMAT,"""FP32""",Core8이최종FP32로widen해scratchstrip에저장.,기본값및파생관계참조;구현지원범위검증
 FINAL_TARGETR_ROUTE,"""FINAL_VIA_L0""",기본Core6→L0TF32→Core8→L0FP32strip→Core2.,기본값및파생관계참조;구현지원범위검증
 FLOAT_VECTOR_OWNER_HART,7,Hart7=Core8만FP32/TF32 vector/변환명령소유.,기본값및파생관계참조;구현지원범위검증
-FULL_BURST_MIN_READ_MO,5,동시메모리요청상한. ID/bytecredit/reorder와연동.,기본값및파생관계참조;구현지원범위검증
+FULL_BURST_MIN_READ_MO,4,동시메모리요청상한. ID/bytecredit/reorder와연동.,기본값및파생관계참조;구현지원범위검증
 INTERNAL_ACC_FORMAT,"""LQ16_S1_E7_M8""","FP32내부누산금지. 기본LQ16 S1/E7/M8, 선택TF32.","LQ16_S1_E7_M8,TF32_S1_E8_M10"
 INTERNAL_ACC_LANES,320,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
 INTERNAL_EXP_BIAS,63,E7기본bias63. MXscale범위와overflow를검토.,기본값및파생관계참조;구현지원범위검증
@@ -160,7 +163,11 @@ REG_B_BANKS,32,병렬bank수. depth/폭/clock/port와실효BW계산.,기본값�
 REG_C_BANKS,32,병렬bank수. depth/폭/clock/port와실효BW계산.,기본값및파생관계참조;구현지원범위검증
 RESULT_BUFFER_SLOTS,2,slot/context개수. producer/consumercredit과일치.,기본값및파생관계참조;구현지원범위검증
 RESULT_ELASTIC_FIFO_BYTES,16384,용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.,기본값및파생관계참조;구현지원범위검증
+ROCKET_CLOCK_HZ,1000000000,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.,positive integer Hz; actual IPC/CDC require Rocket RTL
 ROCKET_CORES,8,기본8개 controller. 8역할의 ROLE_TO_HART 및 RoCC권한과 함께 변경.,"6,8 (기본8)"
+ROCKET_DCACHE_BYTES,8192,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.,power-of-two bytes >=1024; planned host-control cache parameter
+ROCKET_ICACHE_BYTES,8192,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.,power-of-two bytes >=1024; planned host-control cache parameter
+ROCKET_L2_BYTES,65536,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.,power-of-two bytes >=1024; planned host-control cache parameter
 ROLE_COUNT,8,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
 ROLE_TO_HART,"{""1"": 0, ""2"": 1, ""3"": 2, ""4"": 3, ""5"": 4, ""6"": 5, ""7"": 6, ""8"": 7}",1-basedCore역할에서0-basedHart로의매핑.,기본값및파생관계참조;구현지원범위검증
 ROUND_MODE,"""RNE""",동시메모리요청상한. ID/bytecredit/reorder와연동.,RNE
@@ -209,4 +216,4 @@ VECTOR_LUT_REPLICAS,32,LUT동시lookup용복제수. 용량·전력·포트동시
 VECTOR_LUT_STEADY_GATHER_LIMIT,"""one element/lane/cycle only if LUT has sufficient ports/replicas""",RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
 VECTOR_MODE,"""FP32_AND_TF32_ROUNDED_FP32""",동시메모리요청상한. ID/bytecredit/reorder와연동.,기본값및파생관계참조;구현지원범위검증
 VECTOR_PEAK_ELEMENTS_PER_SECOND,32000000000,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
-WRITE_RESPONSE_TAIL_NS,700,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증
+WRITE_RESPONSE_TAIL_NS,32,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.,기본값및파생관계참조;구현지원범위검증

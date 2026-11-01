@@ -22,6 +22,9 @@ jobs:
         run: |
           cd tiny-npu
           make check-revb
+          make verify-environment
+          python verification/run_rtl_trace.py --latencies 16
+          make numeric-prototype
           make model
           make sram
           make test
@@ -31,6 +34,9 @@ jobs:
         with:
           name: tiny-npu-compute-results
           path: |
+            tiny-npu/architecture/v2/environment_tests.json
+            tiny-npu/architecture/v2/rtl_trace_tests.json
+            tiny-npu/architecture/v2/lq16*_tests.json
             tiny-npu/architecture/v2/config_tests.json
             tiny-npu/generated-revb/**/manifest.json
             tiny-npu/generated-revb/**/lint.log

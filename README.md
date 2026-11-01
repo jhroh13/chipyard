@@ -6,6 +6,7 @@ Chipyard 기반 **MXFP4 × OCP MXINT8** matmul accelerator 연구·개발 환경
 
 **필수 설계 목표(P0): 지속 10 useful TOPS 이상.** 최신 RevB 계획은 8 Rocket / 10 MiB single-port L0 / 20.48 TOPS peak / 유효 20 GB/s DMA입니다. 내부 LQ16·선택 TF32, TF32 TARGETR를 사용합니다. 경로별 가변 multicycle latency와 II·credit을 구분합니다. 기존 4-core/FP32 R2 RTL 및 8 MiB 모델은 이전 구현으로 보존합니다.
 
+- [Workload waveform·bubble·DRAM·합성 검증](tiny-npu/architecture/v2/WORKLOAD_VERIFICATION.md) · [실행 결과와 판단](tiny-npu/architecture/v2/WORKLOAD_REPORT.md)
 - [순서별 Job List](tiny-npu/architecture/v2/JOB_LIST.md) · [Job 1 설정 생성 체계](tiny-npu/architecture/v2/CONFIGURATION_GENERATION.md)
 - [최신 RevB HDD와 구조도](tiny-npu/architecture/v2/HDD.md)
 - [Single-port subbank·경로 지연·BW 수식](tiny-npu/architecture/v2/SINGLE_PORT_LATENCY_BW.md)
@@ -21,6 +22,8 @@ Chipyard 기반 **MXFP4 × OCP MXINT8** matmul accelerator 연구·개발 환경
 - [원본 Chipyard README](tiny-npu/docs/CHIPYARD_README.md)
 
 ## 현재 구현 범위
+
+추가한 검증 기반은 passive performance monitor·offline workload 분석기, SRAM stall fixture, AXI traffic-agent model, LQ16 exact FMA 및 scalar feedback test입니다. 실제8-core/새 MAC array 통합과 PDK timing은 남아 있습니다.
 
 K=32 tile compute에 더해 **K=32/64/128/4096의 FP32 K-block 누산**, 실제4단계 FP32 가산 pipeline, C SRAM slice와 row scoreboard를 구현했습니다. DMA burst planner와 byte-credit/ID 예약 전단도 추가했습니다. 실제 AXI DMA·RoCC 연결, 전체8MiB SRAM banking, LLM 추론, STA와 지속10TOPS 실증은 남아 있습니다.
 

@@ -17,7 +17,7 @@ digraph tiny_npu_v2 {
   tc[label="Tensor-counter contexts\n32x32 tile / slot / context / bank addressing\n6D base / index / stride / bounds",fillcolor="#fef3c7"];
   oic[label="OIC / semaphore fabric\natomic multi-credit + ready sequence + epoch\n16 banks, persistent conditional issue",fillcolor="#fef3c7"];
  }
- dram[label="DRAM\n700 ns first-data latency",fillcolor="#e2e8f0"];
+ dram[label="DRAM\nAR accept -> RLAST: 700 ns nominal\nAW request -> first WVALID: 700 ns nominal",fillcolor="#e2e8f0"];
  dma[label="Dedicated AXI4 R/W + CDC + MO/byte credits\n2 ports x 256 bits x 625 MHz = 40 GB/s raw\n60% -> 24 GB/s available; target 20 GB/s aggregate",fillcolor="#e0f2fe"];
  l0[label="L0SRAM: 10 MiB x SCALE | single-port hierarchy\nA 1 | B 2 | C 5 | scratch 1 | scale/meta 1 MiB\n152 logical banks / 384 single-port subbanks\nR OR W per subbank; variable 16+ cycle paths\nNo Rocket L1/L2 payload path",fillcolor="#dcfce7"];
  subgraph cluster_near {

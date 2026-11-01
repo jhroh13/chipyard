@@ -1,5 +1,7 @@
 # Single-port L0 / multicycle paths / AXI比率 — 필수 수식 계약
 
+[최신 DRAM 지연 정의와 trace 검증](WORKLOAD_VERIFICATION.md)을 함께 적용한다.
+
 이 문서가이전1R1W·짧은고정지연가정보다우선한다. 모든성능값에는clock,latency,II,credit,bank효율가정을명시한다. 현재통합RTL측정은아니며,변경에따른계획모델이다.
 
 ## 1. Bank → sub-bank → single-port macro

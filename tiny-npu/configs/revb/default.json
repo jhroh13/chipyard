@@ -19,7 +19,6 @@
     "DMA_PAYLOAD_TARGET_GBS": 20,
     "MEM_EFFICIENCY": 0.6,
     "DRAM_READ_LATENCY_NS": 700,
-    "WRITE_RESPONSE_TAIL_NS": 700,
     "MACRO_M": 1024,
     "MACRO_N": 1024,
     "TILE_K": 32,
@@ -234,7 +233,14 @@
       "7": 6,
       "8": 7
     },
-    "VECTOR_LUT_STEADY_GATHER_LIMIT": "one element/lane/cycle only if LUT has sufficient ports/replicas"
+    "VECTOR_LUT_STEADY_GATHER_LIMIT": "one element/lane/cycle only if LUT has sufficient ports/replicas",
+    "ROCKET_CLOCK_HZ": 1000000000,
+    "ROCKET_ICACHE_BYTES": 8192,
+    "ROCKET_DCACHE_BYTES": 8192,
+    "ROCKET_L2_BYTES": 65536,
+    "DRAM_LATENCY_MODE": "AR_RLAST_AW_WVALID",
+    "DRAM_AW_TO_WVALID_NS": 700,
+    "DRAM_B_RESPONSE_NS": 32
   },
   "scale_overrides": {
     "1": {},
@@ -483,7 +489,7 @@
       "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
     },
     "DRAM_READ_LATENCY_NS": {
-      "description": "지연/실행cycle파라미터. 모델값과RTL실측을구분.",
+      "description": "ARVALID&&ARREADY부터 첫 RVALID&&RLAST까지의 nominal 목표(ns). 경합·backpressure로 초과 가능; RLAST handshake는 별도 측정.",
       "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
     },
     "WRITE_RESPONSE_TAIL_NS": {
@@ -1229,6 +1235,34 @@
     "VECTOR_LUT_STEADY_GATHER_LIMIT": {
       "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
       "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "ROCKET_CLOCK_HZ": {
+      "description": "Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.",
+      "allowed_or_rule": "positive integer Hz; actual IPC/CDC require Rocket RTL"
+    },
+    "ROCKET_ICACHE_BYTES": {
+      "description": "Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.",
+      "allowed_or_rule": "power-of-two bytes >=1024; planned host-control cache parameter"
+    },
+    "ROCKET_DCACHE_BYTES": {
+      "description": "Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.",
+      "allowed_or_rule": "power-of-two bytes >=1024; planned host-control cache parameter"
+    },
+    "ROCKET_L2_BYTES": {
+      "description": "Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.",
+      "allowed_or_rule": "power-of-two bytes >=1024; planned host-control cache parameter"
+    },
+    "DRAM_LATENCY_MODE": {
+      "description": "DRAM 계약: AR handshake→첫 RVALID&&RLAST, AW handshake→첫 WVALID. B 응답은 별도.",
+      "allowed_or_rule": "AR_RLAST_AW_WVALID; explicit request/last/launch contract"
+    },
+    "DRAM_AW_TO_WVALID_NS": {
+      "description": "첫 AWVALID→첫 WVALID의 명목 준비 지연(ns). WVALID는 AWREADY와 독립. AW handshake 기준 지연도 별도 계측.",
+      "allowed_or_rule": "nonnegative integer ns; queue/backpressure measured separately"
+    },
+    "DRAM_B_RESPONSE_NS": {
+      "description": "DRAM 계약: AR handshake→첫 RVALID&&RLAST, AW handshake→첫 WVALID. B 응답은 별도.",
+      "allowed_or_rule": "nonnegative integer ns; queue/backpressure measured separately"
     }
   }
 }

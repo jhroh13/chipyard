@@ -1,6 +1,6 @@
 # RevB generated configuration x1
 
-Config SHA256: `48b0002d97a1b554aafbde1b2430cb7079168fe27c29f5def401b59cbb1c2776`
+Config SHA256: `7bf4302ebcbe7c4c11750645dcf5290f43309de9778de016ea6a0648edb478d2`
 
 | Item | Resolved |
 |---|---:|
@@ -10,7 +10,7 @@ Config SHA256: `48b0002d97a1b554aafbde1b2430cb7079168fe27c29f5def401b59cbb1c2776
 | AXI ports x data bits | 2 x 256 |
 | Requested effective GB/s | 20 |
 | A/B/C/TARGETR slots | 8/8/8/8 |
-| Planning TOPS, serialized vector | 12.306098 |
+| Planning TOPS, serialized vector | 12.309145 |
 
 The model reads `model_input.json`, identical to `parameters.json`. `address_map.json` uses NPU-local byte offsets; CPU MMIO and system AXI mappings await integration. The generated SV package and C header carry the same resolved values and configuration hash. `rtl.f` builds only the configuration package and isolated single-port SRAM wrapper.
 

@@ -52,16 +52,16 @@ r = evaluate(10, latency=16, axi_ports=2,
 
 | Local latency cycles | Slot policy | Slots | MAC group II cycles | Vector 포함 예상 TOPS |
 |---:|---|---:|---:|---:|
-| 10 | AUTO | 8 | 32.00 | 12.334 |
-| 10 | FIXED8 | 8 | 32.00 | 12.334 |
-| 16 | AUTO | 8 | 32.00 | 12.306 |
-| 16 | FIXED8 | 8 | 32.00 | 12.306 |
-| 32 | AUTO | 8 | 32.00 | 12.233 |
-| 32 | FIXED8 | 8 | 32.00 | 12.233 |
-| 64 | AUTO | 16 | 32.00 | 12.091 |
-| 64 | FIXED8 | 8 | 32.50 | 11.979 |
-| 128 | AUTO | 16 | 32.00 | 11.815 |
-| 128 | FIXED8 | 8 | 64.50 | 7.407 |
+| 10 | AUTO | 8 | 32.00 | 12.337 |
+| 10 | FIXED8 | 8 | 32.00 | 12.337 |
+| 16 | AUTO | 8 | 32.00 | 12.309 |
+| 16 | FIXED8 | 8 | 32.00 | 12.309 |
+| 32 | AUTO | 8 | 32.00 | 12.236 |
+| 32 | FIXED8 | 8 | 32.00 | 12.236 |
+| 64 | AUTO | 16 | 32.00 | 12.094 |
+| 64 | FIXED8 | 8 | 32.50 | 11.981 |
+| 128 | AUTO | 16 | 32.00 | 11.818 |
+| 128 | FIXED8 | 8 | 64.50 | 7.408 |
 
 지연128cycles에서고정8slots는credit반환이늦어groupII가64.5cycles로증가한다. AUTO16slots는credit병목을숨길수있지만물리BW·counterarbitration은여전히검증해야한다.
 
@@ -69,13 +69,13 @@ r = evaluate(10, latency=16, axi_ports=2,
 
 | 요청L0MiB | 실제bytes | Macro | Vector포함예상TOPS |
 |---:|---:|---|---:|
-| 2 | 2088960 | 608×416 | 7.047 |
-| 4 | 4187136 | 1024×480 | 9.439 |
-| 6 | 6287360 | 1024×736 | 10.687 |
-| 8 | 8385536 | 1024×992 | 10.631 |
-| 10 | 10485760 | 1024×1024 | 12.306 |
-| 12 | 12574720 | 1024×1024 | 12.306 |
-| 16 | 16773120 | 1024×1024 | 12.306 |
+| 2 | 2088960 | 608×416 | 7.532 |
+| 4 | 4187136 | 1024×480 | 9.846 |
+| 6 | 6287360 | 1024×736 | 11.001 |
+| 8 | 8385536 | 1024×992 | 10.722 |
+| 10 | 10485760 | 1024×1024 | 12.309 |
+| 12 | 12574720 | 1024×1024 | 12.309 |
+| 16 | 16773120 | 1024×1024 | 12.309 |
 
 Capacity-only는banks/subbanks/width를고정하고depth만바꾼다. 용량이증가해도작업이이미수용되거나다른병목이있으면성능이증가하지않는다. 작은비단조결과는선택된macro와contextpadding의heuristic영향이며일반법칙이아니다.
 
@@ -84,3 +84,5 @@ Capacity-only는banks/subbanks/width를고정하고depth만바꾼다. 용량이�
 단순service효율·latency항목으로per-subbankqueue분포와atomicOIC중재를완전히대체하지않는다. 실제주소trace,read/write VOQ,TC/OIC,가변returnlatency와새LQ16FMA를RTL로연결해교정한다. Counter/semaphore는성능검증의핵심블록이며모델상BW가충분하다는이유로bubbleless를선언하지않는다.
 
 최종수용은결과정확도와RoCC수락→최종DRAMwriteB까지지속10TOPS를동시에통과해야한다. 기존FP32R2기능회귀나과거1cycle SRAMtest는이요건을대체하지않는다.
+
+현재 표는 새 AR→RLAST/AWVALID→WVALID DRAM 계약의 event 근사 모델이다. 실제 workload trace 검증·합성 결과는 [선행 검증](WORKLOAD_VERIFICATION.md)을 참조한다.

@@ -1,5 +1,7 @@
 # TINY NPU Architecture RevB — 8 Rocket Controllers / 10 MiB L0 / TF32 TARGETR
 
+> 최신 trace·DRAM 700ns 정의·초기 합성은 [검증 문서](WORKLOAD_VERIFICATION.md)와 [실행 결과](WORKLOAD_REPORT.md)를 우선 적용한다. 이전 성능 표는 계획 모델이며 실제 RTL 성능이 아니다.
+
 기준일: 2026-11-01(KST). 개발 위치: [jhroh13/chipyard, tiny-npu](https://github.com/jhroh13/chipyard/tree/tiny-npu).
 
 **상태: 새 구조의 HDD·명령 계약이다. 기존 4-core Rocket 설정과 R2 stream-GEMM RTL을 이 구조로 모두 교체·통합한 상태는 아니다.** TF32 format 및 single-port multicycle SRAM primitive를 별도 구현·검증하며, 기존 FP32 R2 테스트는 별도 기준으로 보존한다.
@@ -279,7 +281,7 @@ C는40logical×4singleportsubbank이다. 합산R+W상한은5120GB/sraw이며read
 
 ### 외부 DRAM
 
-기본은2ports×256bit@625MHz=합산방향별40GB/sraw이며,보수적sharedservice에서효율60%후24GB/s가용,**R+W합계유효20GB/s목표**를기본으로한다. DRAMlatency700ns,burst4096B,read/writeMO64/32이다. Fullburst최소readMO는ceil(1+20GB/s×700ns/4096)=5이나작은scale/충돌여유를고려한다.
+기본은2ports×256bit@625MHz=합산방향별40GB/sraw이며,보수적sharedservice에서효율60%후24GB/s가용,**R+W합계유효20GB/s목표**를기본으로한다. DRAMlatency700ns,burst4096B,read/writeMO64/32이다. AR→RLAST가700ns인Fullburst 최소readMO는ceil(20GB/s×700ns/4096)=4이나작은scale/충돌여유를고려한다.
 
 P0대표1024×1024×4096,C초기0,최종FP32출력의payload(숫자는DRAMbytes기준상한이며localcycle모델과구분):
 
@@ -361,7 +363,7 @@ E7은MX E8M0scale전체범위보다좁으므로overflow/underflow와calibration�
 
 ### 최신 재현 결과
 
-기본16cycle·8slots의 vector 직렬 pass 포함 계획값은 **12.306 TOPS**다. 128cycle·고정8slots에서는 **7.407 TOPS**, AUTO16slots에서는 **11.815 TOPS**다. 자세한 가정과 560개 구성 결과는 [sweep 가이드](PARAMETERS_AND_SWEEPS.md)에 있다. 이 수치는 통합 RTL 실증이 아니다. SRAM primitive는 10/16/32/64cycle 및 backpressure에서 검증했으며 TC/OIC·전체 fabric·새 MAC 통합 검증이 남아 있다.
+기본16cycle·8slots의 vector 직렬 pass 포함 계획값은 **12.309 TOPS**다. 128cycle·고정8slots에서는 **7.407 TOPS**, AUTO16slots에서는 **11.815 TOPS**다. 자세한 가정과 560개 구성 결과는 [sweep 가이드](PARAMETERS_AND_SWEEPS.md)에 있다. 이 수치는 통합 RTL 실증이 아니다. SRAM primitive는 10/16/32/64cycle 및 backpressure에서 검증했으며 TC/OIC·전체 fabric·새 MAC 통합 검증이 남아 있다.
 
 
 ## 17. 구현 Job 및 설정 생성

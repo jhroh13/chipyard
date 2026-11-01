@@ -89,11 +89,6 @@
     "C_header": true,
     "model_status": "consumed_or_derived"
   },
-  "WRITE_RESPONSE_TAIL_NS": {
-    "SV_package": true,
-    "C_header": true,
-    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
-  },
   "MACRO_M": {
     "SV_package": true,
     "C_header": true,
@@ -789,7 +784,47 @@
     "C_header": true,
     "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
   },
+  "ROCKET_CLOCK_HZ": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ROCKET_ICACHE_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ROCKET_DCACHE_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ROCKET_L2_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "DRAM_LATENCY_MODE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "DRAM_AW_TO_WVALID_NS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "DRAM_B_RESPONSE_NS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
   "SCALE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "WRITE_RESPONSE_TAIL_NS": {
     "SV_package": true,
     "C_header": true,
     "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"

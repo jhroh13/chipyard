@@ -1,5 +1,7 @@
 # Job 1 완료 보고
 
+> 이 보고서의 성능 수치는 당시 DRAM 지연 정의를 사용했다. 최신 계약·계측 결과는 [Workload 검증](WORKLOAD_VERIFICATION.md)을 참조한다.
+
 단일 원본 `configs/revb/default.json`과 `schema.json`, resolver, generator를 추가했다. RevB 모델의 이전 P0 profile 상속을 제거했고 JSON 입력을 모델·SV package·SW header·주소맵으로 함께 전파한다. 모든 생성물은 resolved configuration SHA256와 파일별 hash로 추적한다.
 
 | 검증 | 결과 |

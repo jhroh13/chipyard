@@ -201,6 +201,6 @@
     "peak_C_bytes_per_clock_each_direction": 1280,
     "target_10TOPS_min_AI_at_10GBs": 1000,
     "target_10TOPS_min_AI_at_20GBs": 500,
-    "minimal_full_burst_MO_at_20GBs_700ns": 5
+    "minimal_full_burst_MO_at_20GBs_700ns": 4
   }
 }

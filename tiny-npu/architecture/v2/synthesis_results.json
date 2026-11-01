@@ -1,0 +1,36 @@
+{
+  "status": "GENERIC_SYNTHESIS_COMPLETE_PHYSICAL_TIMING_OPEN",
+  "tool": "Yosys 0.70 (git sha1 28ba3cb92, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "fma": {
+    "unmapped_bit_cells": 18410,
+    "ABC_simple_bit_cells": 12821,
+    "logic_depth_simple_cells": 438,
+    "transport_latency_cycles": 4,
+    "functional_input_II_cycles": 1,
+    "arithmetic_pipeline_balanced": false,
+    "area_um2": null,
+    "critical_path_ns": null,
+    "Fmax_Hz": null
+  },
+  "sram": {
+    "parameters": {
+      "RD_CLK_ENABLE": 1,
+      "RD_PORTS": 1,
+      "SIZE": 1024,
+      "WIDTH": 256,
+      "WR_CLK_ENABLE": 1,
+      "WR_PORTS": 1
+    },
+    "memory_bits": 262144,
+    "transport_register_bits": 3856,
+    "single_port_condition": "read and write command mutually exclusive; logical 1R/1W ports are not simultaneous physical ports",
+    "macro_mapped": false,
+    "area_um2": null,
+    "critical_path_ns": null
+  },
+  "next_gate": "Optimize/balance FMA arithmetic pipeline, prove numerical equivalence, map real PDK liberty + SRAM timing models and run STA before claiming 1GHz/10TOPS.",
+  "source_sha256": {
+    "rtl/tiny_npu_lq16_fma_proto.sv": "2484ef9bce683ad3c3cf3c924d12965ff054abd1d3ebd7ad80eaf52b2cb2058a",
+    "rtl/tiny_npu_sram_1rw_subbank.sv": "589f6a2c55e51fc8f4bbe8ee2770703c3e3d57fcc99a023ebeee3307e7024467"
+  }
+}

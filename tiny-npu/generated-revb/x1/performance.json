@@ -1,5 +1,5 @@
 {
-  "configuration_sha256": "48b0002d97a1b554aafbde1b2430cb7079168fe27c29f5def401b59cbb1c2776",
+  "configuration_sha256": "7bf4302ebcbe7c4c11750645dcf5290f43309de9778de016ea6a0648edb478d2",
   "scope": "planning estimate, not integrated RTL throughput",
   "result": {
     "L0_requested_MiB": 10.0,
@@ -53,11 +53,11 @@
     "C_shared_RW_GBs": 4096.0,
     "local_slowdown": 1.0,
     "external_bytes": 10747904,
-    "event_TOPS_without_vector": 12.912969518545186,
-    "event_us_without_vector": 665.2176000000168,
+    "event_TOPS_without_vector": 12.916324722785266,
+    "event_us_without_vector": 665.0448000000168,
     "FP32_strip_rows": 32,
-    "serialized_vector_TOPS": 12.30609810054831,
-    "ideal_overlap_vector_TOPS": 12.892406557857004,
+    "serialized_vector_TOPS": 12.309145308918612,
+    "ideal_overlap_vector_TOPS": 12.895751083386127,
     "context": "LQ16 arithmetic assumed capable of II1 per interleaved PE; new TC/OIC/physical subbank scheduler not RTL-validated"
   }
 }

@@ -16,8 +16,7 @@ DMA_READ_BUFFER_BYTES,DMA,131072,262144,524288,기본값및파생관계참조;�
 DMA_WRITE_BUFFER_BYTES,DMA,65536,131072,262144,기본값및파생관계참조;구현지원범위검증,용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.
 DMA_PAYLOAD_TARGET_GBS,DMA,20,40,80,기본값및파생관계참조;구현지원범위검증,대역폭GB/s. raw/효율후가용/예약payload를구분.
 MEM_EFFICIENCY,System / derived,0.6,0.6,0.6,기본값및파생관계참조;구현지원범위검증,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.
-DRAM_READ_LATENCY_NS,System / derived,700,700,700,기본값및파생관계참조;구현지원범위검증,지연/실행cycle파라미터. 모델값과RTL실측을구분.
-WRITE_RESPONSE_TAIL_NS,System / derived,700,700,700,기본값및파생관계참조;구현지원범위검증,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.
+DRAM_READ_LATENCY_NS,System / derived,700,700,700,기본값및파생관계참조;구현지원범위검증,ARVALID&&ARREADY부터 첫 RVALID&&RLAST까지의 nominal 목표(ns). 경합·backpressure로 초과 가능; RLAST handshake는 별도 측정.
 MACRO_M,MAC,1024,1536,2048,기본값및파생관계참조;구현지원범위검증,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.
 MACRO_N,MAC,1024,1536,2048,기본값및파생관계참조;구현지원범위검증,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.
 TILE_K,System / derived,32,32,32,기본값및파생관계참조;구현지원범위검증,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.
@@ -157,7 +156,15 @@ ROUND_MODE,System / derived,RNE,RNE,RNE,RNE,동시메모리요청상한. ID/byte
 TARGETR_PACKED19_SUPPORTED,System / derived,false,false,false,기본값및파생관계참조;구현지원범위검증,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.
 ROLE_TO_HART,System / derived,"{""1"": 0, ""2"": 1, ""3"": 2, ""4"": 3, ""5"": 4, ""6"": 5, ""7"": 6, ""8"": 7}","{""1"": 0, ""2"": 1, ""3"": 2, ""4"": 3, ""5"": 4, ""6"": 5, ""7"": 6, ""8"": 7}","{""1"": 0, ""2"": 1, ""3"": 2, ""4"": 3, ""5"": 4, ""6"": 5, ""7"": 6, ""8"": 7}",기본값및파생관계참조;구현지원범위검증,1-basedCore역할에서0-basedHart로의매핑.
 VECTOR_LUT_STEADY_GATHER_LIMIT,VECTOR,one element/lane/cycle only if LUT has sufficient ports/replicas,one element/lane/cycle only if LUT has sufficient ports/replicas,one element/lane/cycle only if LUT has sufficient ports/replicas,기본값및파생관계참조;구현지원범위검증,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.
+ROCKET_CLOCK_HZ,System / derived,1000000000,1000000000,1000000000,positive integer Hz; actual IPC/CDC require Rocket RTL,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.
+ROCKET_ICACHE_BYTES,System / derived,8192,8192,8192,power-of-two bytes >=1024; planned host-control cache parameter,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.
+ROCKET_DCACHE_BYTES,System / derived,8192,8192,8192,power-of-two bytes >=1024; planned host-control cache parameter,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.
+ROCKET_L2_BYTES,System / derived,65536,65536,65536,power-of-two bytes >=1024; planned host-control cache parameter,Rocket 제어용 cache/clock. 실제 성능 효과는 Rocket 계측으로 검증; matmul payload는 cache를 우회.
+DRAM_LATENCY_MODE,System / derived,AR_RLAST_AW_WVALID,AR_RLAST_AW_WVALID,AR_RLAST_AW_WVALID,AR_RLAST_AW_WVALID; explicit request/last/launch contract,"DRAM 계약: AR handshake→첫 RVALID&&RLAST, AW handshake→첫 WVALID. B 응답은 별도."
+DRAM_AW_TO_WVALID_NS,System / derived,700,700,700,nonnegative integer ns; queue/backpressure measured separately,첫 AWVALID→첫 WVALID의 명목 준비 지연(ns). WVALID는 AWREADY와 독립. AW handshake 기준 지연도 별도 계측.
+DRAM_B_RESPONSE_NS,System / derived,32,32,32,nonnegative integer ns; queue/backpressure measured separately,"DRAM 계약: AR handshake→첫 RVALID&&RLAST, AW handshake→첫 WVALID. B 응답은 별도."
 SCALE,System / derived,1,2,4,"1,2,4",RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.
+WRITE_RESPONSE_TAIL_NS,System / derived,32,32,32,기본값및파생관계참조;구현지원범위검증,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.
 FLOAT_VECTOR_OWNER_HART,System / derived,7,7,7,기본값및파생관계참조;구현지원범위검증,Hart7=Core8만FP32/TF32 vector/변환명령소유.
 MAC_FMA_PIPE_CYCLES,MAC,4,4,4,PDK/STA로검증할정수,경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.
 OIC_RESPONSE_LATENCY_CYCLES,OIC,2,2,2,기본값및파생관계참조;구현지원범위검증,경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.
@@ -203,7 +210,7 @@ AXI_STRB_BITS,AXI,32,32,32,기본값및파생관계참조;구현지원범위검�
 AXI_RAW_GBS,AXI,40.0,80.0,160.0,기본값및파생관계참조;구현지원범위검증,대역폭GB/s. raw/효율후가용/예약payload를구분.
 AXI_AFTER_EFFICIENCY_GBS,AXI,24.0,48.0,96.0,기본값및파생관계참조;구현지원범위검증,대역폭GB/s. raw/효율후가용/예약payload를구분.
 MIN_RAW_GBS,System / derived,33.333333333333336,66.66666666666667,133.33333333333334,기본값및파생관계참조;구현지원범위검증,대역폭GB/s. raw/효율후가용/예약payload를구분.
-FULL_BURST_MIN_READ_MO,System / derived,5,8,15,기본값및파생관계참조;구현지원범위검증,동시메모리요청상한. ID/bytecredit/reorder와연동.
+FULL_BURST_MIN_READ_MO,System / derived,4,7,14,기본값및파생관계참조;구현지원범위검증,동시메모리요청상한. ID/bytecredit/reorder와연동.
 MAX_REFERENCE_LATENCY_NS,System / derived,858993.4592,966367.6416,858993.4592,기본값및파생관계참조;구현지원범위검증,지연/실행cycle파라미터. 모델값과RTL실측을구분.
 PEAK_GROUP_RATE_PER_SECOND,System / derived,31250000.0,31250000.0,31250000.0,기본값및파생관계참조;구현지원범위검증,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.
 L0_OPERAND_GBs_PEAK,L0,500.0,1000.0,2000.0,기본값및파생관계참조;구현지원범위검증,RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.

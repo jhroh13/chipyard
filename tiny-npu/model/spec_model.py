@@ -46,7 +46,9 @@ def simulate(m,n,k,p,read_mo=None,write_mo=None):
     assert all(x>0 and x%32==0 for x in (m,n,k))
     # Model at the guaranteed target, not at the 20% spare interface capacity.
     mem=Memory(p['DMA_PAYLOAD_TARGET_GBS']*1e9,p['DRAM_READ_LATENCY_NS'],
-        read_mo or p['DMA_READ_MO'],write_mo or p['DMA_WRITE_MO'],p['DMA_MAX_BURST_BYTES'])
+        read_mo or p['DMA_READ_MO'],write_mo or p['DMA_WRITE_MO'],p['DMA_MAX_BURST_BYTES'],
+        latency_mode=p.get('DRAM_LATENCY_MODE','LEGACY_FIRST_R_B_TAIL'),
+        write_launch_ns=p.get('DRAM_AW_TO_WVALID_NS',700),b_response_ns=p.get('DRAM_B_RESPONSE_NS',0))
     now=0.; macros=0
     for mi in range(0,m,p['MACRO_M']):
         for ni in range(0,n,p['MACRO_N']):

@@ -1,0 +1,214 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "baseline",
+      "stimulus_overrides": {},
+      "profile_overrides": {},
+      "retired_tokens": 108,
+      "MAC_scheduling_utilization": 0.857666015625,
+      "raw_MAC_causes": {
+        "wait-data": 24,
+        "consumer-stall": 494,
+        "OIC-conflict": 9,
+        "cache-miss": 56
+      },
+      "source_bank_conflicts": 351,
+      "scope": "reduced traffic fixture; not chip performance prediction"
+    },
+    {
+      "case": "latency64_slots2",
+      "stimulus_overrides": {
+        "path_latency_cycles": 64,
+        "register_slots": 2
+      },
+      "profile_overrides": {},
+      "retired_tokens": 42,
+      "MAC_scheduling_utilization": 0.33740234375,
+      "raw_MAC_causes": {
+        "wait-data": 2528,
+        "OIC-conflict": 3,
+        "consumer-stall": 183
+      },
+      "source_bank_conflicts": 126,
+      "scope": "reduced traffic fixture; not chip performance prediction"
+    },
+    {
+      "case": "latency64_slots8",
+      "stimulus_overrides": {
+        "path_latency_cycles": 64,
+        "register_slots": 8
+      },
+      "profile_overrides": {},
+      "retired_tokens": 107,
+      "MAC_scheduling_utilization": 0.859375,
+      "raw_MAC_causes": {
+        "wait-data": 72,
+        "consumer-stall": 451,
+        "cache-miss": 46,
+        "OIC-conflict": 7
+      },
+      "source_bank_conflicts": 338,
+      "scope": "reduced traffic fixture; not chip performance prediction"
+    },
+    {
+      "case": "latency128_slots8",
+      "stimulus_overrides": {
+        "path_latency_cycles": 128,
+        "register_slots": 8
+      },
+      "profile_overrides": {},
+      "retired_tokens": 95,
+      "MAC_scheduling_utilization": 0.770751953125,
+      "raw_MAC_causes": {
+        "wait-data": 532,
+        "consumer-stall": 404,
+        "OIC-conflict": 3
+      },
+      "source_bank_conflicts": 299,
+      "scope": "reduced traffic fixture; not chip performance prediction"
+    },
+    {
+      "case": "latency128_slots16",
+      "stimulus_overrides": {
+        "path_latency_cycles": 128,
+        "register_slots": 16
+      },
+      "profile_overrides": {},
+      "retired_tokens": 103,
+      "MAC_scheduling_utilization": 0.84228515625,
+      "raw_MAC_causes": {
+        "wait-data": 136,
+        "consumer-stall": 464,
+        "cache-miss": 32,
+        "OIC-conflict": 14
+      },
+      "source_bank_conflicts": 373,
+      "scope": "reduced traffic fixture; not chip performance prediction"
+    },
+    {
+      "case": "bank_skew",
+      "stimulus_overrides": {
+        "bank_mapping": "skew"
+      },
+      "profile_overrides": {},
+      "retired_tokens": 109,
+      "MAC_scheduling_utilization": 0.863037109375,
+      "raw_MAC_causes": {
+        "wait-data": 29,
+        "consumer-stall": 501,
+        "cache-miss": 23,
+        "OIC-conflict": 8
+      },
+      "source_bank_conflicts": 0,
+      "scope": "reduced traffic fixture; not chip performance prediction"
+    },
+    {
+      "case": "subbanks8_linear",
+      "stimulus_overrides": {
+        "subbanks": 8
+      },
+      "profile_overrides": {},
+      "retired_tokens": 108,
+      "MAC_scheduling_utilization": 0.857666015625,
+      "raw_MAC_causes": {
+        "wait-data": 24,
+        "consumer-stall": 494,
+        "OIC-conflict": 9,
+        "cache-miss": 56
+      },
+      "source_bank_conflicts": 351,
+      "scope": "reduced traffic fixture; not chip performance prediction"
+    },
+    {
+      "case": "rocket_half_clock",
+      "stimulus_overrides": {},
+      "profile_overrides": {
+        "ROCKET_CLOCK_HZ": 500000000
+      },
+      "retired_tokens": 107,
+      "MAC_scheduling_utilization": 0.845703125,
+      "raw_MAC_causes": {
+        "wait-data": 36,
+        "control-starved": 59,
+        "consumer-stall": 458,
+        "OIC-conflict": 13,
+        "cache-miss": 66
+      },
+      "source_bank_conflicts": 346,
+      "scope": "reduced traffic fixture; not chip performance prediction"
+    },
+    {
+      "case": "rocket_double_clock",
+      "stimulus_overrides": {},
+      "profile_overrides": {
+        "ROCKET_CLOCK_HZ": 2000000000
+      },
+      "retired_tokens": 108,
+      "MAC_scheduling_utilization": 0.857666015625,
+      "raw_MAC_causes": {
+        "wait-data": 24,
+        "consumer-stall": 494,
+        "OIC-conflict": 9,
+        "cache-miss": 56
+      },
+      "source_bank_conflicts": 351,
+      "scope": "reduced traffic fixture; not chip performance prediction"
+    },
+    {
+      "case": "icache16KiB_same_miss_trace",
+      "stimulus_overrides": {},
+      "profile_overrides": {
+        "ROCKET_ICACHE_BYTES": 16384
+      },
+      "retired_tokens": 108,
+      "MAC_scheduling_utilization": 0.857666015625,
+      "raw_MAC_causes": {
+        "wait-data": 24,
+        "consumer-stall": 494,
+        "OIC-conflict": 9,
+        "cache-miss": 56
+      },
+      "source_bank_conflicts": 351,
+      "scope": "reduced traffic fixture; not chip performance prediction"
+    },
+    {
+      "case": "ideal_no_cache_miss",
+      "stimulus_overrides": {
+        "icache_miss_probability": 0
+      },
+      "profile_overrides": {},
+      "retired_tokens": 111,
+      "MAC_scheduling_utilization": 0.87353515625,
+      "raw_MAC_causes": {
+        "wait-data": 47,
+        "consumer-stall": 464,
+        "OIC-conflict": 7
+      },
+      "source_bank_conflicts": 366,
+      "scope": "reduced traffic fixture; not chip performance prediction"
+    },
+    {
+      "case": "ideal_no_consumer_stall",
+      "stimulus_overrides": {
+        "consumer_stall_probability": 0
+      },
+      "profile_overrides": {},
+      "retired_tokens": 124,
+      "MAC_scheduling_utilization": 0.980712890625,
+      "raw_MAC_causes": {
+        "wait-data": 24,
+        "OIC-conflict": 11,
+        "cache-miss": 44
+      },
+      "source_bank_conflicts": 410,
+      "scope": "reduced traffic fixture; not chip performance prediction"
+    }
+  ],
+  "caveats": [
+    "Frequency is control-agent service opportunity, not Rocket IPC.",
+    "Cache capacity has no invented miss-rate model; real Rocket trace is required.",
+    "Changing subbank count alone may preserve stride aliases.",
+    "More registers cannot cure a service bandwidth or consumer bottleneck."
+  ]
+}

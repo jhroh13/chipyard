@@ -6,13 +6,17 @@ import csv, heapq, json, math
 from model import Config
 
 class Memory:
-    def __init__(self, bw, latency_ns, read_mo, write_mo, burst):
+    def __init__(self, bw, latency_ns, read_mo, write_mo, burst, latency_mode="LEGACY_FIRST_R_B_TAIL", write_launch_ns=700, b_response_ns=0):
         self.bw=bw; self.lat=latency_ns*1e-9
+        self.latency_mode=latency_mode;self.write_launch=write_launch_ns*1e-9;self.b_tail=b_response_ns*1e-9
         self.mo={'R':read_mo,'W':write_mo}; self.ids={'R':[],'W':[]}
         self.issue={'R':0.,'W':0.}; self.bus=0.
         self.burst=burst; self.bytes={'R':0,'W':0}; self.requests={'R':0,'W':0}
     def transfer(self, size, ready, kind):
-        """Aligned contiguous stream; 4KiB splits. R latency precedes data;
+        """Aligned contiguous stream; 4KiB splits. New mode: AR->RLAST nominal
+        includes burst service; AW->WVALID is a separate launch delay; B tail
+        independent. Legacy mode below remains only for historical profiles.
+        R latency precedes data;
         W data may start immediately, B completion follows data by latency.
         Shared payload bus, 1ns issue interval per direction, in-order service.
         IDs are held until final R beat / B completion. No response reorder.
@@ -25,10 +29,12 @@ class Memory:
             if len(active)>=self.mo[kind]:
                 issue=max(issue,heapq.heappop(active))
                 while active and active[0]<=issue: heapq.heappop(active)
-            available=issue+(self.lat if kind=='R' else 0.)
+            if self.latency_mode=='AR_RLAST_AW_WVALID':
+                available=issue+(max(0.,self.lat-length/self.bw) if kind=='R' else self.write_launch)
+            else:available=issue+(self.lat if kind=='R' else 0.)
             data_end=max(self.bus,available)+length/self.bw
             self.bus=data_end
-            end=data_end+(self.lat if kind=='W' else 0.)
+            end=data_end+((self.b_tail if self.latency_mode=='AR_RLAST_AW_WVALID' else self.lat) if kind=='W' else 0.)
             heapq.heappush(active,end)
             self.issue[kind]=issue+1e-9
             completed=max(completed,end)

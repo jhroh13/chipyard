@@ -1,0 +1,26 @@
+[
+  {
+    "capture_window_mask_test": "PASS",
+    "latency": 16,
+    "status": "PASS",
+    "log": "BUBBLE_TRACE_PASS latency=16 reads=650 writes=342 wait=624 credit=468 bank=172 oic=109\n- /workspace/TINY-NPU/tiny-npu/sim/tb_bubble_trace.sv:85: Verilog $finish",
+    "channels": 51,
+    "scope": "actual single-port SRAM/arbitration fixture; hart/MAC agents; AXI unconnected"
+  },
+  {
+    "capture_window_mask_test": "PASS",
+    "latency": 64,
+    "status": "PASS",
+    "log": "BUBBLE_TRACE_PASS latency=64 reads=235 writes=114 wait=1070 credit=825 bank=65 oic=163\n- /workspace/TINY-NPU/tiny-npu/sim/tb_bubble_trace.sv:85: Verilog $finish",
+    "channels": 51,
+    "scope": "actual single-port SRAM/arbitration fixture; hart/MAC agents; AXI unconnected"
+  },
+  {
+    "capture_window_mask_test": "PASS",
+    "latency": 128,
+    "status": "PASS",
+    "log": "BUBBLE_TRACE_PASS latency=128 reads=116 writes=72 wait=1239 credit=914 bank=50 oic=163\n- /workspace/TINY-NPU/tiny-npu/sim/tb_bubble_trace.sv:85: Verilog $finish",
+    "channels": 51,
+    "scope": "actual single-port SRAM/arbitration fixture; hart/MAC agents; AXI unconnected"
+  }
+]

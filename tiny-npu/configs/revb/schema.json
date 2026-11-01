@@ -33,7 +33,6 @@
         "DMA_PAYLOAD_TARGET_GBS",
         "MEM_EFFICIENCY",
         "DRAM_READ_LATENCY_NS",
-        "WRITE_RESPONSE_TAIL_NS",
         "MACRO_M",
         "MACRO_N",
         "TILE_K",
@@ -172,7 +171,14 @@
         "ROUND_MODE",
         "TARGETR_PACKED19_SUPPORTED",
         "ROLE_TO_HART",
-        "VECTOR_LUT_STEADY_GATHER_LIMIT"
+        "VECTOR_LUT_STEADY_GATHER_LIMIT",
+        "ROCKET_CLOCK_HZ",
+        "ROCKET_ICACHE_BYTES",
+        "ROCKET_DCACHE_BYTES",
+        "ROCKET_L2_BYTES",
+        "DRAM_LATENCY_MODE",
+        "DRAM_AW_TO_WVALID_NS",
+        "DRAM_B_RESPONSE_NS"
       ],
       "properties": {
         "ARRAY_COUNT": {
@@ -227,9 +233,6 @@
           "type": "number"
         },
         "DRAM_READ_LATENCY_NS": {
-          "type": "integer"
-        },
-        "WRITE_RESPONSE_TAIL_NS": {
           "type": "integer"
         },
         "MACRO_M": {
@@ -783,6 +786,27 @@
         },
         "VECTOR_LUT_STEADY_GATHER_LIMIT": {
           "type": "string"
+        },
+        "ROCKET_CLOCK_HZ": {
+          "type": "integer"
+        },
+        "ROCKET_ICACHE_BYTES": {
+          "type": "integer"
+        },
+        "ROCKET_DCACHE_BYTES": {
+          "type": "integer"
+        },
+        "ROCKET_L2_BYTES": {
+          "type": "integer"
+        },
+        "DRAM_LATENCY_MODE": {
+          "type": "string"
+        },
+        "DRAM_AW_TO_WVALID_NS": {
+          "type": "integer"
+        },
+        "DRAM_B_RESPONSE_NS": {
+          "type": "integer"
         }
       }
     },
@@ -853,9 +877,6 @@
             "DRAM_READ_LATENCY_NS": {
               "type": "integer"
             },
-            "WRITE_RESPONSE_TAIL_NS": {
-              "type": "integer"
-            },
             "MACRO_M": {
               "type": "integer"
             },
@@ -1407,6 +1428,27 @@
             },
             "VECTOR_LUT_STEADY_GATHER_LIMIT": {
               "type": "string"
+            },
+            "ROCKET_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "ROCKET_ICACHE_BYTES": {
+              "type": "integer"
+            },
+            "ROCKET_DCACHE_BYTES": {
+              "type": "integer"
+            },
+            "ROCKET_L2_BYTES": {
+              "type": "integer"
+            },
+            "DRAM_LATENCY_MODE": {
+              "type": "string"
+            },
+            "DRAM_AW_TO_WVALID_NS": {
+              "type": "integer"
+            },
+            "DRAM_B_RESPONSE_NS": {
+              "type": "integer"
             }
           }
         },
@@ -1468,9 +1510,6 @@
             "DRAM_READ_LATENCY_NS": {
               "type": "integer"
             },
-            "WRITE_RESPONSE_TAIL_NS": {
-              "type": "integer"
-            },
             "MACRO_M": {
               "type": "integer"
             },
@@ -2022,6 +2061,27 @@
             },
             "VECTOR_LUT_STEADY_GATHER_LIMIT": {
               "type": "string"
+            },
+            "ROCKET_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "ROCKET_ICACHE_BYTES": {
+              "type": "integer"
+            },
+            "ROCKET_DCACHE_BYTES": {
+              "type": "integer"
+            },
+            "ROCKET_L2_BYTES": {
+              "type": "integer"
+            },
+            "DRAM_LATENCY_MODE": {
+              "type": "string"
+            },
+            "DRAM_AW_TO_WVALID_NS": {
+              "type": "integer"
+            },
+            "DRAM_B_RESPONSE_NS": {
+              "type": "integer"
             }
           }
         },
@@ -2083,9 +2143,6 @@
             "DRAM_READ_LATENCY_NS": {
               "type": "integer"
             },
-            "WRITE_RESPONSE_TAIL_NS": {
-              "type": "integer"
-            },
             "MACRO_M": {
               "type": "integer"
             },
@@ -2637,6 +2694,27 @@
             },
             "VECTOR_LUT_STEADY_GATHER_LIMIT": {
               "type": "string"
+            },
+            "ROCKET_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "ROCKET_ICACHE_BYTES": {
+              "type": "integer"
+            },
+            "ROCKET_DCACHE_BYTES": {
+              "type": "integer"
+            },
+            "ROCKET_L2_BYTES": {
+              "type": "integer"
+            },
+            "DRAM_LATENCY_MODE": {
+              "type": "string"
+            },
+            "DRAM_AW_TO_WVALID_NS": {
+              "type": "integer"
+            },
+            "DRAM_B_RESPONSE_NS": {
+              "type": "integer"
             }
           }
         }
@@ -2862,7 +2940,14 @@
         "ROUND_MODE",
         "TARGETR_PACKED19_SUPPORTED",
         "ROLE_TO_HART",
-        "VECTOR_LUT_STEADY_GATHER_LIMIT"
+        "VECTOR_LUT_STEADY_GATHER_LIMIT",
+        "ROCKET_CLOCK_HZ",
+        "ROCKET_ICACHE_BYTES",
+        "ROCKET_DCACHE_BYTES",
+        "ROCKET_L2_BYTES",
+        "DRAM_LATENCY_MODE",
+        "DRAM_AW_TO_WVALID_NS",
+        "DRAM_B_RESPONSE_NS"
       ],
       "properties": {
         "SCALE": {
@@ -6322,6 +6407,118 @@
           }
         },
         "VECTOR_LUT_STEADY_GATHER_LIMIT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ROCKET_CLOCK_HZ": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ROCKET_ICACHE_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ROCKET_DCACHE_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ROCKET_L2_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DRAM_LATENCY_MODE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DRAM_AW_TO_WVALID_NS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DRAM_B_RESPONSE_NS": {
           "type": "object",
           "additionalProperties": false,
           "required": [
