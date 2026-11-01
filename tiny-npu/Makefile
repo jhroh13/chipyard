@@ -35,3 +35,12 @@ lint-gemm:
 .PHONY: dma-frontend
 dma-frontend:
 	$(PYTHON) -c "import sys,shutil;sys.path.insert(0,'sim');from run_extended import dma_frontend;dma_frontend(shutil.which('verilator'))"
+
+.PHONY: generate-revb check-revb
+generate-revb:
+	$(PYTHON) tools/generate_revb.py --lint
+
+check-revb:
+	$(PYTHON) tools/generate_revb.py --check
+	$(PYTHON) sim/test_revb_config.py
+	$(PYTHON) architecture/v2/test_path_sensitivity.py

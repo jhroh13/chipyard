@@ -1,0 +1,193 @@
+{
+  "scope": "configuration and isolated primitive consumers; not system NPU simulation",
+  "profiles": [
+    {
+      "scale": 1,
+      "L0_bytes": 10485760,
+      "peak_TOPS": 20.48
+    },
+    {
+      "scale": 2,
+      "L0_bytes": 20971520,
+      "peak_TOPS": 40.96
+    },
+    {
+      "scale": 4,
+      "L0_bytes": 41943040,
+      "peak_TOPS": 81.92
+    }
+  ],
+  "rejected": [
+    {
+      "override": {
+        "UNKNOWN": 1
+      },
+      "reason": "UNKNOWN: unknown, obsolete, or derived parameter; edit its source instead"
+    },
+    {
+      "override": {
+        "L0_BYTES": 123
+      },
+      "reason": "L0_BYTES: unknown, obsolete, or derived parameter; edit its source instead"
+    },
+    {
+      "override": {
+        "AXI_DATA_BITS": 512
+      },
+      "reason": "Current RevB model/primitive generator supports 256-bit AXI only"
+    },
+    {
+      "override": {
+        "AXI_ID_BITS": 4
+      },
+      "reason": "Insufficient AXI IDs for conservative shared read/write MO partition"
+    },
+    {
+      "override": {
+        "AXI_MAX_BURST_BEATS": 8
+      },
+      "reason": "DMA burst exceeds AXI beat or 4KiB limit"
+    },
+    {
+      "override": {
+        "DMA_MAX_BURST_BYTES": 4097
+      },
+      "reason": "DMA burst exceeds AXI beat or 4KiB limit"
+    },
+    {
+      "override": {
+        "DMA_READ_BUFFER_BYTES": 1024
+      },
+      "reason": "DMA READ buffer cannot reserve one full burst"
+    },
+    {
+      "override": {
+        "AXI_PORTS": 0
+      },
+      "reason": "AXI_PORTS: must be positive"
+    },
+    {
+      "override": {
+        "MEM_EFFICIENCY": 0
+      },
+      "reason": "Efficiencies must be in (0,1]"
+    },
+    {
+      "override": {
+        "MEM_EFFICIENCY": 1.1
+      },
+      "reason": "Efficiencies must be in (0,1]"
+    },
+    {
+      "override": {
+        "ROCKET_CORES": 6
+      },
+      "reason": "Role mapped outside configured Rocket harts"
+    },
+    {
+      "override": {
+        "SRAM_PORT": "1R1W"
+      },
+      "reason": "L0 must be single-port R OR W"
+    },
+    {
+      "override": {
+        "MAC_ACC_CONTEXTS": 2
+      },
+      "reason": "FMA feedback latency exceeds interleaved contexts for II1"
+    },
+    {
+      "override": {
+        "PATH_LATENCIES_CYCLES": {
+          "SRCA": -1
+        }
+      },
+      "reason": "Path latencies must be nonnegative integer cycles"
+    },
+    {
+      "override": {
+        "PATH_LATENCIES_CYCLES": {
+          "UNKNOWN": 1
+        }
+      },
+      "reason": "PATH_LATENCIES_CYCLES.UNKNOWN: unknown, obsolete, or derived parameter; edit its source instead"
+    },
+    {
+      "override": {
+        "PATH_LATENCIES_CYCLES": {
+          "SRCA": 128
+        },
+        "SRCA_SLOTS": 8
+      },
+      "reason": "SRCA: slots cannot hide configured credit RTT"
+    },
+    {
+      "override": {
+        "LOCAL_MAX_INFLIGHT_VECTORS": 256
+      },
+      "reason": "Local vector ID space smaller than in-flight limit"
+    },
+    {
+      "override": {
+        "INTERNAL_ACC_FORMAT": "FP32"
+      },
+      "reason": "Unsupported internal numeric format"
+    },
+    {
+      "override": {
+        "L0_REGIONS": [
+          {
+            "name": "A"
+          }
+        ]
+      },
+      "reason": "L0_REGIONS: five ordered regions required"
+    },
+    {
+      "override": {
+        "AXI_PORTS": true
+      },
+      "reason": "AXI_PORTS: expected int"
+    },
+    {
+      "override": {
+        "L0_CLOCK_HZ": 0
+      },
+      "reason": "L0_CLOCK_HZ: must be positive"
+    },
+    {
+      "override": {
+        "DMA_PAYLOAD_TARGET_GBS": 25
+      },
+      "reason": "Requested payload exceeds conservative shared AXI service"
+    },
+    {
+      "override": {
+        "OIC_BITS": 32
+      },
+      "reason": "OIC sequence/epoch must be 64 bits"
+    }
+  ],
+  "rtl": [
+    {
+      "configuration": "default",
+      "L0_bytes": 10485760,
+      "latency": 16,
+      "result": "REVB_CONFIG_PASS read_latency=16 L0_bytes=10485760\n- tb.sv:19: Verilog $finish"
+    },
+    {
+      "configuration": "long",
+      "L0_bytes": 10485760,
+      "latency": 128,
+      "result": "REVB_CONFIG_PASS read_latency=128 L0_bytes=10485760\n- tb.sv:19: Verilog $finish"
+    },
+    {
+      "configuration": "capacity",
+      "L0_bytes": 20971520,
+      "latency": 16,
+      "result": "REVB_CONFIG_PASS read_latency=16 L0_bytes=20971520\n- tb.sv:19: Verilog $finish"
+    }
+  ],
+  "schema_unknown_default_rejected": true,
+  "status": "PASS"
+}

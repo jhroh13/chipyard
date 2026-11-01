@@ -196,7 +196,7 @@
   "auxiliary": {
     "default_vector_pass_ns": 32805,
     "vector_required_elements_per_second_at_10TOPS": 1220703125.0,
-    "vector_peak_elements_per_second": 32000000000.0,
+    "vector_peak_elements_per_second": 32000000000,
     "peak_MAC_input_vector_bytes_per_clock": 500,
     "peak_C_bytes_per_clock_each_direction": 1280,
     "target_10TOPS_min_AI_at_10GBs": 1000,

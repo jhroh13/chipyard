@@ -1,0 +1,1234 @@
+{
+  "schema_version": 1,
+  "defaults": {
+    "ARRAY_COUNT": 10,
+    "ARRAY_ROWS": 32,
+    "ARRAY_COLS": 32,
+    "ACCEL_CLOCK_HZ": 1000000000,
+    "SRAM_PORT": "1RW",
+    "AXI_DATA_BITS": 256,
+    "AXI_CLOCK_HZ": 625000000,
+    "AXI_ADDR_BITS": 40,
+    "AXI_ID_BITS": 6,
+    "AXI_MAX_BURST_BEATS": 128,
+    "DMA_MAX_BURST_BYTES": 4096,
+    "DMA_READ_MO": 64,
+    "DMA_WRITE_MO": 32,
+    "DMA_READ_BUFFER_BYTES": 131072,
+    "DMA_WRITE_BUFFER_BYTES": 65536,
+    "DMA_PAYLOAD_TARGET_GBS": 20,
+    "MEM_EFFICIENCY": 0.6,
+    "DRAM_READ_LATENCY_NS": 700,
+    "WRITE_RESPONSE_TAIL_NS": 700,
+    "MACRO_M": 1024,
+    "MACRO_N": 1024,
+    "TILE_K": 32,
+    "TASK_QUEUE_DEPTH": 16,
+    "CDC_AR_DEPTH": 16,
+    "CDC_AW_DEPTH": 16,
+    "CDC_R_DEPTH": 64,
+    "CDC_W_DEPTH": 64,
+    "CDC_B_DEPTH": 16,
+    "AXI_PORTS": 2,
+    "SUSTAINED_TOPS_TARGET": 10,
+    "PROFILE_NAME": "P0_REVB_8CTRL_LQ16",
+    "PROFILE_STATUS": "architecture_not_integrated_RTL",
+    "PERFORMANCE_REQUIREMENT": "SUSTAINED_USEFUL_TOPS",
+    "P0_MANDATORY": true,
+    "REFERENCE_M": 1024,
+    "REFERENCE_N": 1024,
+    "REFERENCE_K": 4096,
+    "MEASUREMENT_SCOPE": "RoCC_accept_to_final_DMA_write_response",
+    "RTL_SUSTAINED_TARGET_VERIFIED": false,
+    "DATA_PIPELINING_REQUIRED": true,
+    "OPERAND_BUFFER_SLOTS": 2,
+    "RESULT_BUFFER_SLOTS": 2,
+    "DMA_CREDIT_CONTROL_REQUIRED": true,
+    "ARCHITECTURE_REV": "B2_SINGLE_PORT",
+    "ROCKET_CORES": 8,
+    "ROLE_COUNT": 8,
+    "CORE_COUNT_STATUS": "8 confirmed by user; six-core mapping is optional",
+    "MAC_ACC_CONTEXTS": 4,
+    "SRCA_SLOTS": 0,
+    "SRCB_SLOTS": 0,
+    "SRCC_SLOTS": 0,
+    "TARGETR_SLOTS": 0,
+    "L0_REG_LATENCY_ENUM": [
+      10,
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "L0_REG_LATENCY_MAX_CYCLES": 32,
+    "LOCAL_VECTOR_ID_BITS": 7,
+    "LOCAL_MAX_INFLIGHT_VECTORS": 128,
+    "SRCA_DATA_BITS": 4,
+    "SRCB_DATA_BITS": 8,
+    "SRCC_DATA_BITS": 32,
+    "TARGETR_DATA_BITS": 32,
+    "SRCC_FORMAT": "TF32_CONTAINER32",
+    "TARGETR_FORMAT": "TF32_CONTAINER32",
+    "FINAL_L0_FORMAT": "FP32",
+    "INTERNAL_ACC_FORMAT": "LQ16_S1_E7_M8",
+    "INTERNAL_MODE_ENUM": [
+      "LQ16_S1_E7_M8",
+      "TF32_S1_E8_M10"
+    ],
+    "MAC_ARITHMETIC": "FMA_RNE_PER_MAC",
+    "TF32_STORE_ROUNDING": "RNE",
+    "TF32_MANTISSA_BITS": 10,
+    "TF32_CONTAINER_BITS": 32,
+    "TC_CONTEXTS_PER_ENGINE": 8,
+    "TC_DIMENSIONS": 6,
+    "TC_ADDRESS_BITS": 64,
+    "TC_INDEX_BITS": 32,
+    "OIC_COUNT": 256,
+    "OIC_BITS": 64,
+    "COMMAND_QUEUE_DEPTH": 16,
+    "VECTOR_LANES": 32,
+    "VECTOR_CLOCK_HZ": 1000000000,
+    "VECTOR_ISSUE_II_CYCLES": 1,
+    "VECTOR_MODE": "FP32_AND_TF32_ROUNDED_FP32",
+    "C_RESIDENCY_MODE": "L0_KBLOCK_TF32_SPILL",
+    "COMMAND_DISPATCH": "PERSISTENT_HARDWARE_LOOPS",
+    "L0_REGIONS": [
+      {
+        "name": "A",
+        "banks": 16,
+        "subbanks": 2,
+        "width": 256,
+        "depth": 1024
+      },
+      {
+        "name": "B",
+        "banks": 32,
+        "subbanks": 2,
+        "width": 256,
+        "depth": 1024
+      },
+      {
+        "name": "C",
+        "banks": 40,
+        "subbanks": 4,
+        "width": 256,
+        "depth": 1024
+      },
+      {
+        "name": "scratch",
+        "banks": 32,
+        "subbanks": 2,
+        "width": 256,
+        "depth": 512
+      },
+      {
+        "name": "scale_metadata",
+        "banks": 32,
+        "subbanks": 2,
+        "width": 128,
+        "depth": 1024
+      }
+    ],
+    "L0_BANK_MAPPING": "WORD_INTERLEAVED",
+    "C_LAYOUT": "GROUP_ROW_ARRAY_COL",
+    "AB_LAYOUT": "K_PANEL_MAJOR",
+    "REG_A_BANKS": 32,
+    "REG_B_BANKS": 32,
+    "REG_C_BANKS": 32,
+    "VECTOR_LUT_ENTRIES": 1024,
+    "VECTOR_LUT_PORTS": 32,
+    "VECTOR_LUT_REPLICAS": 32,
+    "OIC_BANKS": 16,
+    "OIC_REQUEST_PORTS": 16,
+    "OIC_EVENT_FIFO_DEPTH": 32,
+    "OIC_MAX_WAIT_CONDITIONS": 4,
+    "OIC_MAX_CREDIT_CONDITIONS": 4,
+    "OIC_MAX_SIGNALS": 4,
+    "OIC_OPERATION_BUDGET_PER_GROUP": 32,
+    "TC_ISSUE_II_CYCLES": 1,
+    "FINAL_FP32_STRIP_ROWS": 32,
+    "FINAL_FP32_STRIP_SLOTS": 2,
+    "FINAL_TARGETR_ROUTE": "FINAL_VIA_L0",
+    "ROW_MAJOR_DDR_OUTPUT": true,
+    "STATUS": "architecture_reference_not_integrated_RTL",
+    "RESULT_ELASTIC_FIFO_BYTES": 16384,
+    "AXI_PROTOCOL": "AXI4",
+    "AXI_BURST": "INCR",
+    "AXI_4K_SPLIT": true,
+    "AXI_ARCACHE": 2,
+    "AXI_AWCACHE": 2,
+    "AXI_ARPROT": 0,
+    "AXI_AWPROT": 0,
+    "AXI_QOS": 0,
+    "AXI_USER_BITS": 0,
+    "DMA_READ_CHANNELS": 2,
+    "DMA_WRITE_CHANNELS": 1,
+    "DMA_RESPONSE_REORDER": true,
+    "TC_STRIDE_BITS": 64,
+    "TC_UNIT_BITS_ENUM": [
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "TC_COMMIT_TRACKING": true,
+    "OIC_EPOCH_BITS": 64,
+    "OIC_ATOMIC_MULTI_ACQUIRE": true,
+    "OIC_READY_COMPARE": "GE",
+    "OIC_STALE_EPOCH_POLICY": "REJECT",
+    "JOB_ID_BITS": 64,
+    "DESCRIPTOR_BYTES": 256,
+    "DESCRIPTOR_ALIGNMENT_BYTES": 64,
+    "CPU_COMMAND_MODE": "ASYNC_TICKET",
+    "REGISTER_STORAGE_IMPLEMENTATION": "DISTRIBUTED_BANKED_REGFILE",
+    "JOB_DISPATCH_CYCLES": 64,
+    "L0_CLOCK_HZ": 1000000000,
+    "L0_CONFLICT_EFFICIENCY": 0.8,
+    "SLOT_SIZING_POLICY": "AUTO",
+    "L0_PORTS_PER_SUBBANK": 1,
+    "L0_SIMULTANEOUS_RW_SAME_SUBBANK": false,
+    "L0_ECC": "OFF",
+    "L0_ARBITRATION": "PER_SUBBANK_VOQ_CREDIT",
+    "L0_RETURN_REORDER": true,
+    "L0_REQUEST_QUEUE_DEPTH_PER_SUBBANK": 8,
+    "L0_STARVATION_BOUND_CYCLES": 32,
+    "L0_C_READ_WRITE_PHASE_OFFSET": 1,
+    "L0_SRAM_MACRO_READ_CYCLES": 2,
+    "L0_XBAR_PIPE_CYCLES": 4,
+    "L0_REGISTER_INGRESS_PIPE_CYCLES": 4,
+    "PATH_LATENCIES_CYCLES": {
+      "SRCA": 16,
+      "SRCB": 16,
+      "SRCC": 16,
+      "TARGETR": 16,
+      "DMA_L0_COMMIT": 16,
+      "L0_AXI_READ": 16,
+      "VECTOR_READ": 16,
+      "VECTOR_WRITE": 16,
+      "TC": 2,
+      "OIC": 2,
+      "FMA": 4,
+      "LUT": 4,
+      "FORMAT": 1,
+      "AXI_CDC": 4
+    },
+    "SUBBANK_ISSUE_II_CYCLES": 1,
+    "PATH_LATENCY_DOMAIN": "L0:SRCA/SRCB/SRCC/TARGETR/DMA/VECTOR_READ_WRITE/TC/OIC;MAC:FMA;VECTOR:LUT/FORMAT;AXI:CDC",
+    "LOCAL_BOUNDS_LATENCY_POLICY": "CREDIT_BACKPRESSURE_NO_DATA_LOSS",
+    "L0_ARBITER_PIPE_CYCLES": 2,
+    "L0_REQUEST_QUEUE_TARGET_CYCLES": 2,
+    "L0_ACK_PIPE_CYCLES": 2,
+    "NUMERIC_FAULT_POLICY": "REPORT_AND_PROPAGATE",
+    "LQ16_SUBNORMAL": "GRADUAL",
+    "ROUND_MODE": "RNE",
+    "TARGETR_PACKED19_SUPPORTED": false,
+    "ROLE_TO_HART": {
+      "1": 0,
+      "2": 1,
+      "3": 2,
+      "4": 3,
+      "5": 4,
+      "6": 5,
+      "7": 6,
+      "8": 7
+    },
+    "VECTOR_LUT_STEADY_GATHER_LIMIT": "one element/lane/cycle only if LUT has sufficient ports/replicas"
+  },
+  "scale_overrides": {
+    "1": {},
+    "2": {
+      "ARRAY_COUNT": 20,
+      "DMA_READ_MO": 128,
+      "DMA_WRITE_MO": 64,
+      "DMA_READ_BUFFER_BYTES": 262144,
+      "DMA_WRITE_BUFFER_BYTES": 131072,
+      "DMA_PAYLOAD_TARGET_GBS": 40,
+      "MACRO_M": 1536,
+      "MACRO_N": 1536,
+      "TASK_QUEUE_DEPTH": 32,
+      "CDC_AR_DEPTH": 32,
+      "CDC_AW_DEPTH": 32,
+      "CDC_R_DEPTH": 128,
+      "CDC_W_DEPTH": 128,
+      "CDC_B_DEPTH": 32,
+      "AXI_PORTS": 4,
+      "SUSTAINED_TOPS_TARGET": 20,
+      "REFERENCE_M": 1536,
+      "REFERENCE_N": 1536,
+      "VECTOR_LANES": 64,
+      "L0_REGIONS": [
+        {
+          "name": "A",
+          "banks": 32,
+          "subbanks": 2,
+          "width": 256,
+          "depth": 1024
+        },
+        {
+          "name": "B",
+          "banks": 64,
+          "subbanks": 2,
+          "width": 256,
+          "depth": 1024
+        },
+        {
+          "name": "C",
+          "banks": 80,
+          "subbanks": 4,
+          "width": 256,
+          "depth": 1024
+        },
+        {
+          "name": "scratch",
+          "banks": 64,
+          "subbanks": 2,
+          "width": 256,
+          "depth": 512
+        },
+        {
+          "name": "scale_metadata",
+          "banks": 64,
+          "subbanks": 2,
+          "width": 128,
+          "depth": 1024
+        }
+      ],
+      "VECTOR_LUT_PORTS": 64,
+      "VECTOR_LUT_REPLICAS": 64,
+      "RESULT_ELASTIC_FIFO_BYTES": 32768
+    },
+    "4": {
+      "ARRAY_COUNT": 40,
+      "DMA_READ_MO": 256,
+      "DMA_WRITE_MO": 128,
+      "DMA_READ_BUFFER_BYTES": 524288,
+      "DMA_WRITE_BUFFER_BYTES": 262144,
+      "DMA_PAYLOAD_TARGET_GBS": 80,
+      "MACRO_M": 2048,
+      "MACRO_N": 2048,
+      "TASK_QUEUE_DEPTH": 64,
+      "CDC_AR_DEPTH": 64,
+      "CDC_AW_DEPTH": 64,
+      "CDC_R_DEPTH": 256,
+      "CDC_W_DEPTH": 256,
+      "CDC_B_DEPTH": 64,
+      "AXI_PORTS": 8,
+      "SUSTAINED_TOPS_TARGET": 40,
+      "REFERENCE_M": 2048,
+      "REFERENCE_N": 2048,
+      "VECTOR_LANES": 128,
+      "L0_REGIONS": [
+        {
+          "name": "A",
+          "banks": 64,
+          "subbanks": 2,
+          "width": 256,
+          "depth": 1024
+        },
+        {
+          "name": "B",
+          "banks": 128,
+          "subbanks": 2,
+          "width": 256,
+          "depth": 1024
+        },
+        {
+          "name": "C",
+          "banks": 160,
+          "subbanks": 4,
+          "width": 256,
+          "depth": 1024
+        },
+        {
+          "name": "scratch",
+          "banks": 128,
+          "subbanks": 2,
+          "width": 256,
+          "depth": 512
+        },
+        {
+          "name": "scale_metadata",
+          "banks": 128,
+          "subbanks": 2,
+          "width": 128,
+          "depth": 1024
+        }
+      ],
+      "VECTOR_LUT_PORTS": 128,
+      "VECTOR_LUT_REPLICAS": 128,
+      "RESULT_ELASTIC_FIFO_BYTES": 65536
+    }
+  },
+  "metadata": {
+    "SCALE": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "1,2,4"
+    },
+    "ARRAY_COUNT": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "ARRAY_ROWS": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "ARRAY_COLS": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "ACCEL_CLOCK_HZ": {
+      "description": "clock목표(Hz). 실제타이밍/CDC검증필요.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "SRAM_TOTAL_BYTES": {
+      "description": "용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OPERAND_BYTES": {
+      "description": "용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "C_BYTES": {
+      "description": "용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "PARTIAL_BYTES": {
+      "description": "용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "META_BYTES": {
+      "description": "용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OPERAND_BANKS": {
+      "description": "병렬bank수. depth/폭/clock/port와실효BW계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "C_BANKS": {
+      "description": "병렬bank수. depth/폭/clock/port와실효BW계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "PARTIAL_BANKS": {
+      "description": "병렬bank수. depth/폭/clock/port와실효BW계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "META_BANKS": {
+      "description": "병렬bank수. depth/폭/clock/port와실효BW계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "MAIN_BANK_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "META_BANK_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "SRAM_PORT": {
+      "description": "물리 sub-bank당 read 또는 write 하나를 수락하는 single port. R/W 합산 BW로 계산.",
+      "allowed_or_rule": "1RW"
+    },
+    "SRAM_READ_LATENCY": {
+      "description": "지연/실행cycle파라미터. 모델값과RTL실측을구분.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_DATA_BITS": {
+      "description": "AXI4 RDATA/WDATA 폭. 기본256bit이며 port 수·clock과 함께 방향별 BW 계산.",
+      "allowed_or_rule": "256 현재 지원; 128/512는 모델·RTL 확장 후 지원"
+    },
+    "AXI_CLOCK_HZ": {
+      "description": "clock목표(Hz). 실제타이밍/CDC검증필요.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_ADDR_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_ID_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_MAX_BURST_BEATS": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DMA_MAX_BURST_BYTES": {
+      "description": "용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DMA_READ_MO": {
+      "description": "동시메모리요청상한. ID/bytecredit/reorder와연동.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DMA_WRITE_MO": {
+      "description": "동시메모리요청상한. ID/bytecredit/reorder와연동.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DMA_READ_BUFFER_BYTES": {
+      "description": "용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DMA_WRITE_BUFFER_BYTES": {
+      "description": "용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DMA_PAYLOAD_TARGET_GBS": {
+      "description": "대역폭GB/s. raw/효율후가용/예약payload를구분.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "MEM_EFFICIENCY": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DRAM_READ_LATENCY_NS": {
+      "description": "지연/실행cycle파라미터. 모델값과RTL실측을구분.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "WRITE_RESPONSE_TAIL_NS": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "MACRO_M": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "MACRO_N": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TILE_K": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TASK_QUEUE_DEPTH": {
+      "description": "bank당word깊이. 용량=bank수×depth×width/8.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "CDC_AR_DEPTH": {
+      "description": "bank당word깊이. 용량=bank수×depth×width/8.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "CDC_AW_DEPTH": {
+      "description": "bank당word깊이. 용량=bank수×depth×width/8.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "CDC_R_DEPTH": {
+      "description": "bank당word깊이. 용량=bank수×depth×width/8.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "CDC_W_DEPTH": {
+      "description": "bank당word깊이. 용량=bank수×depth×width/8.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "CDC_B_DEPTH": {
+      "description": "bank당word깊이. 용량=bank수×depth×width/8.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "MACS_PER_CLOCK": {
+      "description": "clock목표(Hz). 실제타이밍/CDC검증필요.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "PEAK_TOPS": {
+      "description": "1MAC=2operations기준. peak/지속목표/검증여부구분.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_RAW_GBS": {
+      "description": "대역폭GB/s. raw/효율후가용/예약payload를구분.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_AFTER_EFFICIENCY_GBS": {
+      "description": "대역폭GB/s. raw/효율후가용/예약payload를구분.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "MIN_RAW_GBS": {
+      "description": "대역폭GB/s. raw/효율후가용/예약payload를구분.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "FULL_BURST_MIN_READ_MO": {
+      "description": "동시메모리요청상한. ID/bytecredit/reorder와연동.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OPERAND_BANK_DEPTH": {
+      "description": "bank당word깊이. 용량=bank수×depth×width/8.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "C_BANK_DEPTH": {
+      "description": "bank당word깊이. 용량=bank수×depth×width/8.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "PARTIAL_BANK_DEPTH": {
+      "description": "bank당word깊이. 용량=bank수×depth×width/8.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "META_BANK_DEPTH": {
+      "description": "bank당word깊이. 용량=bank수×depth×width/8.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_PORTS": {
+      "description": "독립 AXI port 수. DRAM 공유 BW는 별도 제약.",
+      "allowed_or_rule": "1,2,4,8; bandwidth/QoS constrained"
+    },
+    "SUSTAINED_TOPS_TARGET": {
+      "description": "1MAC=2operations기준. peak/지속목표/검증여부구분.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "PROFILE_NAME": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "PROFILE_STATUS": {
+      "description": "계획/검증상태표시;성능달성주장이아님.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "PERFORMANCE_REQUIREMENT": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "P0_MANDATORY": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "REFERENCE_M": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "REFERENCE_N": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "REFERENCE_K": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "MEASUREMENT_SCOPE": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "RTL_SUSTAINED_TARGET_VERIFIED": {
+      "description": "계획/검증상태표시;성능달성주장이아님.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DATA_PIPELINING_REQUIRED": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OPERAND_BUFFER_SLOTS": {
+      "description": "slot/context개수. producer/consumercredit과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "RESULT_BUFFER_SLOTS": {
+      "description": "slot/context개수. producer/consumercredit과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "SRAM_READ_PIPE_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DECODE_PIPE_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "PRODUCT_PIPE_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "PE_ACC_FEEDBACK_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "SCALE_CONVERT_PIPE_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "C_WRITE_PIPE_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DMA_CREDIT_CONTROL_REQUIRED": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "PANEL_PIPELINE_OVERHEAD_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "MAX_REFERENCE_LATENCY_NS": {
+      "description": "지연/실행cycle파라미터. 모델값과RTL실측을구분.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "ARCHITECTURE_REV": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "ROCKET_CORES": {
+      "description": "기본8개 controller. 8역할의 ROLE_TO_HART 및 RoCC권한과 함께 변경.",
+      "allowed_or_rule": "6,8 (기본8)"
+    },
+    "ROLE_COUNT": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "CORE_COUNT_STATUS": {
+      "description": "계획/검증상태표시;성능달성주장이아님.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "L0_BYTES": {
+      "description": "L0 capacity byte수. Near-register/PE/LUT/FIFO는별도예산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "MAC_FMA_PIPE_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "PDK/STA로검증할정수"
+    },
+    "MAC_ACC_CONTEXTS": {
+      "description": "FMAfeedbacklatency이상독립context가필요. tailpadding과저장소증가.",
+      "allowed_or_rule": "1,2,4,8; >= FMA latency"
+    },
+    "SRCA_SLOTS": {
+      "description": "slot/context개수. producer/consumercredit과일치.",
+      "allowed_or_rule": "authoring 0=AUTO; resolved positive slots; RTT/context constraints checked"
+    },
+    "SRCB_SLOTS": {
+      "description": "slot/context개수. producer/consumercredit과일치.",
+      "allowed_or_rule": "authoring 0=AUTO; resolved positive slots; RTT/context constraints checked"
+    },
+    "SRCC_SLOTS": {
+      "description": "C 입력 슬롯 수. multicycle 왕복과 4-context 완료 burst 흡수.",
+      "allowed_or_rule": "authoring 0=AUTO; resolved positive slots; RTT/context constraints checked"
+    },
+    "TARGETR_SLOTS": {
+      "description": "slot/context개수. producer/consumercredit과일치.",
+      "allowed_or_rule": "authoring 0=AUTO; resolved positive slots; RTT/context constraints checked"
+    },
+    "L0_REG_PATH_LATENCY_CYCLES": {
+      "description": "L0↔register 명목 지연. slot/credit은 최대 설계 지연으로 sizing.",
+      "allowed_or_rule": "10,16,32,64,128,256; arbitrary supported integer"
+    },
+    "L0_REG_LATENCY_ENUM": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_REG_LATENCY_MAX_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_REG_CREDIT_RTT_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "LOCAL_VECTOR_ID_BITS": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "LOCAL_MAX_INFLIGHT_VECTORS": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "SRCA_DATA_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "SRCB_DATA_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "SRCC_DATA_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TARGETR_DATA_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "SRCC_FORMAT": {
+      "description": "초기C/bias의opaque TF32입력. 준비·변환은Core8.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TARGETR_FORMAT": {
+      "description": "TF32 32-bit container; low13bits0. 저장량4B.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "FINAL_L0_FORMAT": {
+      "description": "Core8이최종FP32로widen해scratchstrip에저장.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "FLOAT_VECTOR_OWNER_HART": {
+      "description": "Hart7=Core8만FP32/TF32 vector/변환명령소유.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "INTERNAL_ACC_FORMAT": {
+      "description": "FP32내부누산금지. 기본LQ16 S1/E7/M8, 선택TF32.",
+      "allowed_or_rule": "LQ16_S1_E7_M8,TF32_S1_E8_M10"
+    },
+    "INTERNAL_MODE_ENUM": {
+      "description": "동시메모리요청상한. ID/bytecredit/reorder와연동.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "INTERNAL_EXP_BIAS": {
+      "description": "E7기본bias63. MXscale범위와overflow를검토.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "INTERNAL_MANTISSA_BITS": {
+      "description": "숨은비트를제외한fraction비트.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "INTERNAL_EXP_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "MAC_ARITHMETIC": {
+      "description": "각MAC마다fusedmultiply-add를선택형식으로RNE.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TF32_STORE_ROUNDING": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TF32_MANTISSA_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TF32_CONTAINER_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TC_CONTEXTS_PER_ENGINE": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TC_DIMENSIONS": {
+      "description": "최대nestedloop차원;context/slot/mt/nt/kt/row/col을mapping.",
+      "allowed_or_rule": "1..6"
+    },
+    "TC_ADDRESS_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TC_INDEX_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_COUNT": {
+      "description": "SEQ_EVENT/CREDIT의공유논리counter수.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_BITS": {
+      "description": "readysequence/credit폭. overflow/underflow검사.",
+      "allowed_or_rule": "64"
+    },
+    "COMMAND_QUEUE_DEPTH": {
+      "description": "bank당word깊이. 용량=bank수×depth×width/8.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "VECTOR_LANES": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "8,16,32,64,128"
+    },
+    "VECTOR_CLOCK_HZ": {
+      "description": "clock목표(Hz). 실제타이밍/CDC검증필요.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "VECTOR_ISSUE_II_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "VECTOR_MODE": {
+      "description": "동시메모리요청상한. ID/bytecredit/reorder와연동.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "C_RESIDENCY_MODE": {
+      "description": "동시메모리요청상한. ID/bytecredit/reorder와연동.",
+      "allowed_or_rule": "L0_KBLOCK_TF32_SPILL,REGISTER_KLOOP"
+    },
+    "COMMAND_DISPATCH": {
+      "description": "CPU per-tile polling대신persistenthardwareloops.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "NEAR_MAC_REGFILE_BYTES": {
+      "description": "용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "NEAR_MAC_REGFILE_TOTAL_BYTES": {
+      "description": "SRCA/B/C/TARGETR용량합계. L0외부추가면적.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "PE_ACC_CONTEXT_BYTES": {
+      "description": "모든PE의LQ16contextstate용량.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "SINGLE_CONTEXT_K32_LATENCY_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "L0_REGIONS": {
+      "description": "A/B/C/scratch/scale의 bank/width/depth/용량; 구조화JSON참조.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "C_SUBBANKS": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "A_SUBBANKS": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "B_SUBBANKS": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "SCRATCH_SUBBANKS": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "META_SUBBANKS": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_TOTAL_SUBBANKS": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_ADDRESS_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "L0_TOTAL_BANKS": {
+      "description": "병렬bank수. depth/폭/clock/port와실효BW계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "L0_BANK_MAPPING": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "C_LAYOUT": {
+      "description": "GROUP_ROW_ARRAY_COL로기본C40bank의rowchunk를무충돌배치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AB_LAYOUT": {
+      "description": "K-panel-major패킹으로DMA연속burst확보.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "REG_A_BANKS": {
+      "description": "병렬bank수. depth/폭/clock/port와실효BW계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "REG_B_BANKS": {
+      "description": "병렬bank수. depth/폭/clock/port와실효BW계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "REG_C_BANKS": {
+      "description": "병렬bank수. depth/폭/clock/port와실효BW계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "VECTOR_LUT_ENTRIES": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "VECTOR_LUT_PORTS": {
+      "description": "활성lane수이상포트없으면LUTgather가stall할수있음.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "VECTOR_LUT_REPLICAS": {
+      "description": "LUT동시lookup용복제수. 용량·전력·포트동시증가.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_BANKS": {
+      "description": "counterhotspot과multi-conditionatomic중재를검토.",
+      "allowed_or_rule": "1,4,8,16,32"
+    },
+    "OIC_REQUEST_PORTS": {
+      "description": "논리request port목표; bank충돌시실효처리량감소.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_RESPONSE_LATENCY_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_EVENT_FIFO_DEPTH": {
+      "description": "FMAcontext완료burst의signal대기저장소.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_MAX_WAIT_CONDITIONS": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_MAX_CREDIT_CONDITIONS": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_MAX_SIGNALS": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_OPERATION_BUDGET_PER_GROUP": {
+      "description": "모든엔진의group당counter-op예산; bubble검토용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TC_ISSUE_II_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "FINAL_FP32_STRIP_ROWS": {
+      "description": "Core8 row-major scratchstrip높이;작은L0에서줄일수있음.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "FINAL_FP32_STRIP_SLOTS": {
+      "description": "Core8/Core2생산·소비의pingpongcredit수.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "FINAL_TARGETR_ROUTE": {
+      "description": "기본Core6→L0TF32→Core8→L0FP32strip→Core2.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "ROW_MAJOR_DDR_OUTPUT": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "STATUS": {
+      "description": "계획/검증상태표시;성능달성주장이아님.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "PEAK_GROUP_RATE_PER_SECOND": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "L0_OPERAND_GBs_PEAK": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "L0_C_READ_GBs_PEAK": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "L0_C_WRITE_GBs_PEAK": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "VECTOR_PEAK_ELEMENTS_PER_SECOND": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "INTERNAL_ACC_LANES": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "RESULT_ELASTIC_FIFO_BYTES": {
+      "description": "용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_PROTOCOL": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_BURST": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_4K_SPLIT": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_STRB_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_ARCACHE": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_AWCACHE": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_ARPROT": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_AWPROT": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_QOS": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "AXI_USER_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DMA_READ_CHANNELS": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DMA_WRITE_CHANNELS": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DMA_RESPONSE_REORDER": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TC_STRIDE_BITS": {
+      "description": "signedstride. 확장폭overflow와localwindow검사필수.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TC_UNIT_BITS_ENUM": {
+      "description": "nibble주소4bit부터byte/word단위까지선택.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "TC_COMMIT_TRACKING": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_EPOCH_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_ATOMIC_MULTI_ACQUIRE": {
+      "description": "모든조건·credit을동시에예약하거나아무것도예약하지않음.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_READY_COMPARE": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "OIC_STALE_EPOCH_POLICY": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "JOB_ID_BITS": {
+      "description": "인터페이스/데이터비트폭. 연관주소·ID·packing폭과일치.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DESCRIPTOR_BYTES": {
+      "description": "작업/TCdescriptorABI기본256B.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "DESCRIPTOR_ALIGNMENT_BYTES": {
+      "description": "용량(bytes). bank/slot/FIFO주소범위및전체예산과동시검사.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "CPU_COMMAND_MODE": {
+      "description": "동시메모리요청상한. ID/bytecredit/reorder와연동.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "REGISTER_STORAGE_IMPLEMENTATION": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "JOB_DISPATCH_CYCLES": {
+      "description": "명령 수락·dispatch 고정 비용. MAC clock domain.",
+      "allowed_or_rule": "nonnegative integer"
+    },
+    "L0_CLOCK_HZ": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_CONFLICT_EFFICIENCY": {
+      "description": "Sub-bank 충돌·중재 실효율. 기본0.8은 trace 검증 전의 계획 가정.",
+      "allowed_or_rule": "0 < eta <= 1; trace calibration required"
+    },
+    "SLOT_SIZING_POLICY": {
+      "description": "Credit RTT로 슬롯 재계산. FIXED8은 슬롯 부족에 따른 stall 검토.",
+      "allowed_or_rule": "AUTO,FIXED8"
+    },
+    "L0_PORTS_PER_SUBBANK": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_SIMULTANEOUS_RW_SAME_SUBBANK": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_ECC": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "OFF,PARITY,SECDED"
+    },
+    "L0_ARBITRATION": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_RETURN_REORDER": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_REQUEST_QUEUE_DEPTH_PER_SUBBANK": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_STARVATION_BOUND_CYCLES": {
+      "description": "경로 또는 기능 지연(cycles). clock domain·II·credit을 구분하고 변경 시 성능 재계산.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_C_READ_WRITE_PHASE_OFFSET": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_SRAM_MACRO_READ_CYCLES": {
+      "allowed_or_rule": "nonnegative stage planning value; aggregate path latencies configured independently",
+      "description": "단계별 구현 계획값. 현재 timing 모델은 PATH_LATENCIES_CYCLES의 경로 총지연을 사용하며 이 값을 자동 합산하지 않음."
+    },
+    "L0_XBAR_PIPE_CYCLES": {
+      "allowed_or_rule": "nonnegative stage planning value; aggregate path latencies configured independently",
+      "description": "단계별 구현 계획값. 현재 timing 모델은 PATH_LATENCIES_CYCLES의 경로 총지연을 사용하며 이 값을 자동 합산하지 않음."
+    },
+    "L0_REGISTER_INGRESS_PIPE_CYCLES": {
+      "allowed_or_rule": "nonnegative stage planning value; aggregate path latencies configured independently",
+      "description": "단계별 구현 계획값. 현재 timing 모델은 PATH_LATENCIES_CYCLES의 경로 총지연을 사용하며 이 값을 자동 합산하지 않음."
+    },
+    "PATH_LATENCIES_CYCLES": {
+      "description": "경로별 독립 latency. L0/MAC/vector/AXI domain을 구분해 ns로 환산.",
+      "allowed_or_rule": "per-path nonnegative integers; independent clocks"
+    },
+    "SUBBANK_ISSUE_II_CYCLES": {
+      "description": "Single-port macro 요청 간격. 응답 latency와 독립.",
+      "allowed_or_rule": "1,2,4,8,16; PDK constrained"
+    },
+    "PATH_LATENCY_DOMAIN": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "LOCAL_BOUNDS_LATENCY_POLICY": {
+      "description": "RevB 구성 또는 파생값. 연관 제약·모델/RTL 검증을 적용.",
+      "allowed_or_rule": "기본값·파생 관계 참조; 구현 지원 범위와 연관 제약 검증"
+    },
+    "L0_ARBITER_PIPE_CYCLES": {
+      "allowed_or_rule": "nonnegative stage planning value; aggregate path latencies configured independently",
+      "description": "단계별 구현 계획값. 현재 timing 모델은 PATH_LATENCIES_CYCLES의 경로 총지연을 사용하며 이 값을 자동 합산하지 않음."
+    },
+    "L0_REQUEST_QUEUE_TARGET_CYCLES": {
+      "allowed_or_rule": "nonnegative stage planning value; aggregate path latencies configured independently",
+      "description": "단계별 구현 계획값. 현재 timing 모델은 PATH_LATENCIES_CYCLES의 경로 총지연을 사용하며 이 값을 자동 합산하지 않음."
+    },
+    "L0_ACK_PIPE_CYCLES": {
+      "allowed_or_rule": "nonnegative stage planning value; aggregate path latencies configured independently",
+      "description": "단계별 구현 계획값. 현재 timing 모델은 PATH_LATENCIES_CYCLES의 경로 총지연을 사용하며 이 값을 자동 합산하지 않음."
+    },
+    "NUMERIC_FAULT_POLICY": {
+      "description": "Inf/NaN/overflow상태보고와데이터전파정책.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "LQ16_SUBNORMAL": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "ROUND_MODE": {
+      "description": "동시메모리요청상한. ID/bytecredit/reorder와연동.",
+      "allowed_or_rule": "RNE"
+    },
+    "TARGETR_PACKED19_SUPPORTED": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "ROLE_TO_HART": {
+      "description": "1-basedCore역할에서0-basedHart로의매핑.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    },
+    "VECTOR_LUT_STEADY_GATHER_LIMIT": {
+      "description": "RevB구성또는파생값. 변경시HDD의연관제약·모델/RTL검증을적용.",
+      "allowed_or_rule": "기본값및파생관계참조;구현지원범위검증"
+    }
+  }
+}

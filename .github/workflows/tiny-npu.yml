@@ -21,6 +21,7 @@ jobs:
         shell: bash -el {0}
         run: |
           cd tiny-npu
+          make check-revb
           make model
           make sram
           make test
@@ -30,6 +31,9 @@ jobs:
         with:
           name: tiny-npu-compute-results
           path: |
+            tiny-npu/architecture/v2/config_tests.json
+            tiny-npu/generated-revb/**/manifest.json
+            tiny-npu/generated-revb/**/lint.log
             tiny-npu/build/**/summary.json
             tiny-npu/build/**/simulation.log
             tiny-npu/build/**/compile.log

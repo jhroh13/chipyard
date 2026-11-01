@@ -1,0 +1,59 @@
+{
+  "address_space": "NPU_LOCAL_BYTE_OFFSET",
+  "cpu_mmio_base": null,
+  "AXI_system_mapping": "integration_pending",
+  "L0_bytes": 10485760,
+  "bounds_check_required": true,
+  "regions": [
+    {
+      "name": "A",
+      "base": 0,
+      "size_bytes": 1048576,
+      "limit_exclusive": 1048576,
+      "logical_banks": 16,
+      "subbanks_per_bank": 2,
+      "word_bytes": 32,
+      "depth": 1024
+    },
+    {
+      "name": "B",
+      "base": 1048576,
+      "size_bytes": 2097152,
+      "limit_exclusive": 3145728,
+      "logical_banks": 32,
+      "subbanks_per_bank": 2,
+      "word_bytes": 32,
+      "depth": 1024
+    },
+    {
+      "name": "C",
+      "base": 3145728,
+      "size_bytes": 5242880,
+      "limit_exclusive": 8388608,
+      "logical_banks": 40,
+      "subbanks_per_bank": 4,
+      "word_bytes": 32,
+      "depth": 1024
+    },
+    {
+      "name": "scratch",
+      "base": 8388608,
+      "size_bytes": 1048576,
+      "limit_exclusive": 9437184,
+      "logical_banks": 32,
+      "subbanks_per_bank": 2,
+      "word_bytes": 32,
+      "depth": 512
+    },
+    {
+      "name": "scale_metadata",
+      "base": 9437184,
+      "size_bytes": 1048576,
+      "limit_exclusive": 10485760,
+      "logical_banks": 32,
+      "subbanks_per_bank": 2,
+      "word_bytes": 16,
+      "depth": 1024
+    }
+  ]
+}

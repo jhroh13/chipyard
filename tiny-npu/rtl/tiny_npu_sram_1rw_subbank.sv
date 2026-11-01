@@ -26,8 +26,13 @@ module tiny_npu_sram_1rw_subbank #(
      for(integer b=0;b<WIDTH/8;b=b+1)if(cmd_mask[b])mem[cmd_addr][b*8+:8]<=cmd_data[b*8+:8];
     end else data_pipe[0]<=mem[cmd_addr];
    end
-   for(integer i=1;i<READ_LATENCY;i=i+1)begin valid_pipe[i]<=valid_pipe[i-1];data_pipe[i]<=data_pipe[i-1];end
+   for(integer i=1;i<READ_LATENCY;i=i+1)valid_pipe[i]<=valid_pipe[i-1];
   end
+ end
+ // Elaborate transport stages explicitly so long (>64-cycle) paths are portable
+ // across simulators that limit nonblocking assignments to arrays in procedural loops.
+ for(genvar stage=1;stage<READ_LATENCY;stage=stage+1)begin: g_transport
+  always_ff @(posedge clk)if(!reset&&advance)data_pipe[stage]<=data_pipe[stage-1];
  end
  initial if(READ_LATENCY<1||WIDTH%8!=0)$fatal(1,"Invalid single-port subbank parameters");
 endmodule

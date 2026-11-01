@@ -1,0 +1,1057 @@
+{
+  "ARRAY_COUNT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "ARRAY_ROWS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ARRAY_COLS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ACCEL_CLOCK_HZ": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "SRAM_PORT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_DATA_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "AXI_CLOCK_HZ": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "AXI_ADDR_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_ID_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_MAX_BURST_BEATS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "DMA_MAX_BURST_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "DMA_READ_MO": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "DMA_WRITE_MO": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "DMA_READ_BUFFER_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "DMA_WRITE_BUFFER_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "DMA_PAYLOAD_TARGET_GBS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "MEM_EFFICIENCY": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "DRAM_READ_LATENCY_NS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "WRITE_RESPONSE_TAIL_NS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "MACRO_M": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "MACRO_N": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TILE_K": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TASK_QUEUE_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "CDC_AR_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "CDC_AW_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "CDC_R_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "CDC_W_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "CDC_B_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_PORTS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "SUSTAINED_TOPS_TARGET": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "PROFILE_NAME": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "PROFILE_STATUS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "PERFORMANCE_REQUIREMENT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "P0_MANDATORY": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "REFERENCE_M": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "REFERENCE_N": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "REFERENCE_K": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "MEASUREMENT_SCOPE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "RTL_SUSTAINED_TARGET_VERIFIED": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "DATA_PIPELINING_REQUIRED": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OPERAND_BUFFER_SLOTS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "RESULT_BUFFER_SLOTS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "DMA_CREDIT_CONTROL_REQUIRED": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ARCHITECTURE_REV": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ROCKET_CORES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ROLE_COUNT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "CORE_COUNT_STATUS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "MAC_ACC_CONTEXTS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "SRCA_SLOTS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "SRCB_SLOTS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "SRCC_SLOTS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "TARGETR_SLOTS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "L0_REG_LATENCY_ENUM": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_REG_LATENCY_MAX_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "LOCAL_VECTOR_ID_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "LOCAL_MAX_INFLIGHT_VECTORS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "SRCA_DATA_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "SRCB_DATA_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "SRCC_DATA_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TARGETR_DATA_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "SRCC_FORMAT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TARGETR_FORMAT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "FINAL_L0_FORMAT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "INTERNAL_ACC_FORMAT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "INTERNAL_MODE_ENUM": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "MAC_ARITHMETIC": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TF32_STORE_ROUNDING": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TF32_MANTISSA_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TF32_CONTAINER_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TC_CONTEXTS_PER_ENGINE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TC_DIMENSIONS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TC_ADDRESS_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TC_INDEX_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_COUNT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "COMMAND_QUEUE_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "VECTOR_LANES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "VECTOR_CLOCK_HZ": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "VECTOR_ISSUE_II_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "VECTOR_MODE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "C_RESIDENCY_MODE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "COMMAND_DISPATCH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_REGIONS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "L0_BANK_MAPPING": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "C_LAYOUT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AB_LAYOUT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "REG_A_BANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "REG_B_BANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "REG_C_BANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "VECTOR_LUT_ENTRIES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "VECTOR_LUT_PORTS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "VECTOR_LUT_REPLICAS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_BANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_REQUEST_PORTS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "OIC_EVENT_FIFO_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_MAX_WAIT_CONDITIONS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_MAX_CREDIT_CONDITIONS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_MAX_SIGNALS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_OPERATION_BUDGET_PER_GROUP": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "TC_ISSUE_II_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "FINAL_FP32_STRIP_ROWS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "FINAL_FP32_STRIP_SLOTS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "FINAL_TARGETR_ROUTE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ROW_MAJOR_DDR_OUTPUT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "STATUS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "RESULT_ELASTIC_FIFO_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_PROTOCOL": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_BURST": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_4K_SPLIT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_ARCACHE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_AWCACHE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_ARPROT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_AWPROT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_QOS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_USER_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "DMA_READ_CHANNELS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "DMA_WRITE_CHANNELS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "DMA_RESPONSE_REORDER": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TC_STRIDE_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TC_UNIT_BITS_ENUM": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TC_COMMIT_TRACKING": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_EPOCH_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_ATOMIC_MULTI_ACQUIRE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_READY_COMPARE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_STALE_EPOCH_POLICY": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "JOB_ID_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "DESCRIPTOR_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "DESCRIPTOR_ALIGNMENT_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "CPU_COMMAND_MODE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "REGISTER_STORAGE_IMPLEMENTATION": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "JOB_DISPATCH_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "L0_CLOCK_HZ": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "L0_CONFLICT_EFFICIENCY": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "SLOT_SIZING_POLICY": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "L0_PORTS_PER_SUBBANK": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_SIMULTANEOUS_RW_SAME_SUBBANK": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_ECC": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_ARBITRATION": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_RETURN_REORDER": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_REQUEST_QUEUE_DEPTH_PER_SUBBANK": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_STARVATION_BOUND_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_C_READ_WRITE_PHASE_OFFSET": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_SRAM_MACRO_READ_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_XBAR_PIPE_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_REGISTER_INGRESS_PIPE_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "PATH_LATENCIES_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "SUBBANK_ISSUE_II_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "PATH_LATENCY_DOMAIN": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "LOCAL_BOUNDS_LATENCY_POLICY": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_ARBITER_PIPE_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_REQUEST_QUEUE_TARGET_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_ACK_PIPE_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "NUMERIC_FAULT_POLICY": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "LQ16_SUBNORMAL": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ROUND_MODE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "TARGETR_PACKED19_SUPPORTED": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "ROLE_TO_HART": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "VECTOR_LUT_STEADY_GATHER_LIMIT": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "SCALE": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "FLOAT_VECTOR_OWNER_HART": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "MAC_FMA_PIPE_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OIC_RESPONSE_LATENCY_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_REG_PATH_LATENCY_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_REG_CREDIT_RTT_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "consumed_or_derived"
+  },
+  "OPERAND_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "C_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "PARTIAL_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "META_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OPERAND_BANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "C_BANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "PARTIAL_BANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "META_BANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "MAIN_BANK_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "META_BANK_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "OPERAND_BANK_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "C_BANK_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "PARTIAL_BANK_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "META_BANK_DEPTH": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "A_SUBBANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "B_SUBBANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "C_SUBBANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "SCRATCH_SUBBANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "META_SUBBANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "SRAM_TOTAL_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_ADDRESS_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_TOTAL_SUBBANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_TOTAL_BANKS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "SRAM_READ_LATENCY": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "MACS_PER_CLOCK": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "PEAK_TOPS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "INTERNAL_EXP_BIAS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "INTERNAL_EXP_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "INTERNAL_MANTISSA_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "NEAR_MAC_REGFILE_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "NEAR_MAC_REGFILE_TOTAL_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "PE_ACC_CONTEXT_BYTES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "SINGLE_CONTEXT_K32_LATENCY_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "PANEL_PIPELINE_OVERHEAD_CYCLES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "INTERNAL_ACC_LANES": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_STRB_BITS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_RAW_GBS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "AXI_AFTER_EFFICIENCY_GBS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "MIN_RAW_GBS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "FULL_BURST_MIN_READ_MO": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "MAX_REFERENCE_LATENCY_NS": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "PEAK_GROUP_RATE_PER_SECOND": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_OPERAND_GBs_PEAK": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_C_READ_GBs_PEAK": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "L0_C_WRITE_GBs_PEAK": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  },
+  "VECTOR_PEAK_ELEMENTS_PER_SECOND": {
+    "SV_package": true,
+    "C_header": true,
+    "model_status": "contract_validation_or_planned_only; no independent timing sensitivity claimed"
+  }
+}

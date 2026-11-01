@@ -1,0 +1,6345 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "defaults",
+    "scale_overrides",
+    "metadata"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer"
+    },
+    "defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ARRAY_COUNT",
+        "ARRAY_ROWS",
+        "ARRAY_COLS",
+        "ACCEL_CLOCK_HZ",
+        "SRAM_PORT",
+        "AXI_DATA_BITS",
+        "AXI_CLOCK_HZ",
+        "AXI_ADDR_BITS",
+        "AXI_ID_BITS",
+        "AXI_MAX_BURST_BEATS",
+        "DMA_MAX_BURST_BYTES",
+        "DMA_READ_MO",
+        "DMA_WRITE_MO",
+        "DMA_READ_BUFFER_BYTES",
+        "DMA_WRITE_BUFFER_BYTES",
+        "DMA_PAYLOAD_TARGET_GBS",
+        "MEM_EFFICIENCY",
+        "DRAM_READ_LATENCY_NS",
+        "WRITE_RESPONSE_TAIL_NS",
+        "MACRO_M",
+        "MACRO_N",
+        "TILE_K",
+        "TASK_QUEUE_DEPTH",
+        "CDC_AR_DEPTH",
+        "CDC_AW_DEPTH",
+        "CDC_R_DEPTH",
+        "CDC_W_DEPTH",
+        "CDC_B_DEPTH",
+        "AXI_PORTS",
+        "SUSTAINED_TOPS_TARGET",
+        "PROFILE_NAME",
+        "PROFILE_STATUS",
+        "PERFORMANCE_REQUIREMENT",
+        "P0_MANDATORY",
+        "REFERENCE_M",
+        "REFERENCE_N",
+        "REFERENCE_K",
+        "MEASUREMENT_SCOPE",
+        "RTL_SUSTAINED_TARGET_VERIFIED",
+        "DATA_PIPELINING_REQUIRED",
+        "OPERAND_BUFFER_SLOTS",
+        "RESULT_BUFFER_SLOTS",
+        "DMA_CREDIT_CONTROL_REQUIRED",
+        "ARCHITECTURE_REV",
+        "ROCKET_CORES",
+        "ROLE_COUNT",
+        "CORE_COUNT_STATUS",
+        "MAC_ACC_CONTEXTS",
+        "SRCA_SLOTS",
+        "SRCB_SLOTS",
+        "SRCC_SLOTS",
+        "TARGETR_SLOTS",
+        "L0_REG_LATENCY_ENUM",
+        "L0_REG_LATENCY_MAX_CYCLES",
+        "LOCAL_VECTOR_ID_BITS",
+        "LOCAL_MAX_INFLIGHT_VECTORS",
+        "SRCA_DATA_BITS",
+        "SRCB_DATA_BITS",
+        "SRCC_DATA_BITS",
+        "TARGETR_DATA_BITS",
+        "SRCC_FORMAT",
+        "TARGETR_FORMAT",
+        "FINAL_L0_FORMAT",
+        "INTERNAL_ACC_FORMAT",
+        "INTERNAL_MODE_ENUM",
+        "MAC_ARITHMETIC",
+        "TF32_STORE_ROUNDING",
+        "TF32_MANTISSA_BITS",
+        "TF32_CONTAINER_BITS",
+        "TC_CONTEXTS_PER_ENGINE",
+        "TC_DIMENSIONS",
+        "TC_ADDRESS_BITS",
+        "TC_INDEX_BITS",
+        "OIC_COUNT",
+        "OIC_BITS",
+        "COMMAND_QUEUE_DEPTH",
+        "VECTOR_LANES",
+        "VECTOR_CLOCK_HZ",
+        "VECTOR_ISSUE_II_CYCLES",
+        "VECTOR_MODE",
+        "C_RESIDENCY_MODE",
+        "COMMAND_DISPATCH",
+        "L0_REGIONS",
+        "L0_BANK_MAPPING",
+        "C_LAYOUT",
+        "AB_LAYOUT",
+        "REG_A_BANKS",
+        "REG_B_BANKS",
+        "REG_C_BANKS",
+        "VECTOR_LUT_ENTRIES",
+        "VECTOR_LUT_PORTS",
+        "VECTOR_LUT_REPLICAS",
+        "OIC_BANKS",
+        "OIC_REQUEST_PORTS",
+        "OIC_EVENT_FIFO_DEPTH",
+        "OIC_MAX_WAIT_CONDITIONS",
+        "OIC_MAX_CREDIT_CONDITIONS",
+        "OIC_MAX_SIGNALS",
+        "OIC_OPERATION_BUDGET_PER_GROUP",
+        "TC_ISSUE_II_CYCLES",
+        "FINAL_FP32_STRIP_ROWS",
+        "FINAL_FP32_STRIP_SLOTS",
+        "FINAL_TARGETR_ROUTE",
+        "ROW_MAJOR_DDR_OUTPUT",
+        "STATUS",
+        "RESULT_ELASTIC_FIFO_BYTES",
+        "AXI_PROTOCOL",
+        "AXI_BURST",
+        "AXI_4K_SPLIT",
+        "AXI_ARCACHE",
+        "AXI_AWCACHE",
+        "AXI_ARPROT",
+        "AXI_AWPROT",
+        "AXI_QOS",
+        "AXI_USER_BITS",
+        "DMA_READ_CHANNELS",
+        "DMA_WRITE_CHANNELS",
+        "DMA_RESPONSE_REORDER",
+        "TC_STRIDE_BITS",
+        "TC_UNIT_BITS_ENUM",
+        "TC_COMMIT_TRACKING",
+        "OIC_EPOCH_BITS",
+        "OIC_ATOMIC_MULTI_ACQUIRE",
+        "OIC_READY_COMPARE",
+        "OIC_STALE_EPOCH_POLICY",
+        "JOB_ID_BITS",
+        "DESCRIPTOR_BYTES",
+        "DESCRIPTOR_ALIGNMENT_BYTES",
+        "CPU_COMMAND_MODE",
+        "REGISTER_STORAGE_IMPLEMENTATION",
+        "JOB_DISPATCH_CYCLES",
+        "L0_CLOCK_HZ",
+        "L0_CONFLICT_EFFICIENCY",
+        "SLOT_SIZING_POLICY",
+        "L0_PORTS_PER_SUBBANK",
+        "L0_SIMULTANEOUS_RW_SAME_SUBBANK",
+        "L0_ECC",
+        "L0_ARBITRATION",
+        "L0_RETURN_REORDER",
+        "L0_REQUEST_QUEUE_DEPTH_PER_SUBBANK",
+        "L0_STARVATION_BOUND_CYCLES",
+        "L0_C_READ_WRITE_PHASE_OFFSET",
+        "L0_SRAM_MACRO_READ_CYCLES",
+        "L0_XBAR_PIPE_CYCLES",
+        "L0_REGISTER_INGRESS_PIPE_CYCLES",
+        "PATH_LATENCIES_CYCLES",
+        "SUBBANK_ISSUE_II_CYCLES",
+        "PATH_LATENCY_DOMAIN",
+        "LOCAL_BOUNDS_LATENCY_POLICY",
+        "L0_ARBITER_PIPE_CYCLES",
+        "L0_REQUEST_QUEUE_TARGET_CYCLES",
+        "L0_ACK_PIPE_CYCLES",
+        "NUMERIC_FAULT_POLICY",
+        "LQ16_SUBNORMAL",
+        "ROUND_MODE",
+        "TARGETR_PACKED19_SUPPORTED",
+        "ROLE_TO_HART",
+        "VECTOR_LUT_STEADY_GATHER_LIMIT"
+      ],
+      "properties": {
+        "ARRAY_COUNT": {
+          "type": "integer"
+        },
+        "ARRAY_ROWS": {
+          "type": "integer"
+        },
+        "ARRAY_COLS": {
+          "type": "integer"
+        },
+        "ACCEL_CLOCK_HZ": {
+          "type": "integer"
+        },
+        "SRAM_PORT": {
+          "type": "string"
+        },
+        "AXI_DATA_BITS": {
+          "type": "integer"
+        },
+        "AXI_CLOCK_HZ": {
+          "type": "integer"
+        },
+        "AXI_ADDR_BITS": {
+          "type": "integer"
+        },
+        "AXI_ID_BITS": {
+          "type": "integer"
+        },
+        "AXI_MAX_BURST_BEATS": {
+          "type": "integer"
+        },
+        "DMA_MAX_BURST_BYTES": {
+          "type": "integer"
+        },
+        "DMA_READ_MO": {
+          "type": "integer"
+        },
+        "DMA_WRITE_MO": {
+          "type": "integer"
+        },
+        "DMA_READ_BUFFER_BYTES": {
+          "type": "integer"
+        },
+        "DMA_WRITE_BUFFER_BYTES": {
+          "type": "integer"
+        },
+        "DMA_PAYLOAD_TARGET_GBS": {
+          "type": "integer"
+        },
+        "MEM_EFFICIENCY": {
+          "type": "number"
+        },
+        "DRAM_READ_LATENCY_NS": {
+          "type": "integer"
+        },
+        "WRITE_RESPONSE_TAIL_NS": {
+          "type": "integer"
+        },
+        "MACRO_M": {
+          "type": "integer"
+        },
+        "MACRO_N": {
+          "type": "integer"
+        },
+        "TILE_K": {
+          "type": "integer"
+        },
+        "TASK_QUEUE_DEPTH": {
+          "type": "integer"
+        },
+        "CDC_AR_DEPTH": {
+          "type": "integer"
+        },
+        "CDC_AW_DEPTH": {
+          "type": "integer"
+        },
+        "CDC_R_DEPTH": {
+          "type": "integer"
+        },
+        "CDC_W_DEPTH": {
+          "type": "integer"
+        },
+        "CDC_B_DEPTH": {
+          "type": "integer"
+        },
+        "AXI_PORTS": {
+          "type": "integer"
+        },
+        "SUSTAINED_TOPS_TARGET": {
+          "type": "integer"
+        },
+        "PROFILE_NAME": {
+          "type": "string"
+        },
+        "PROFILE_STATUS": {
+          "type": "string"
+        },
+        "PERFORMANCE_REQUIREMENT": {
+          "type": "string"
+        },
+        "P0_MANDATORY": {
+          "type": "boolean"
+        },
+        "REFERENCE_M": {
+          "type": "integer"
+        },
+        "REFERENCE_N": {
+          "type": "integer"
+        },
+        "REFERENCE_K": {
+          "type": "integer"
+        },
+        "MEASUREMENT_SCOPE": {
+          "type": "string"
+        },
+        "RTL_SUSTAINED_TARGET_VERIFIED": {
+          "type": "boolean"
+        },
+        "DATA_PIPELINING_REQUIRED": {
+          "type": "boolean"
+        },
+        "OPERAND_BUFFER_SLOTS": {
+          "type": "integer"
+        },
+        "RESULT_BUFFER_SLOTS": {
+          "type": "integer"
+        },
+        "DMA_CREDIT_CONTROL_REQUIRED": {
+          "type": "boolean"
+        },
+        "ARCHITECTURE_REV": {
+          "type": "string"
+        },
+        "ROCKET_CORES": {
+          "type": "integer"
+        },
+        "ROLE_COUNT": {
+          "type": "integer"
+        },
+        "CORE_COUNT_STATUS": {
+          "type": "string"
+        },
+        "MAC_ACC_CONTEXTS": {
+          "type": "integer"
+        },
+        "SRCA_SLOTS": {
+          "type": "integer"
+        },
+        "SRCB_SLOTS": {
+          "type": "integer"
+        },
+        "SRCC_SLOTS": {
+          "type": "integer"
+        },
+        "TARGETR_SLOTS": {
+          "type": "integer"
+        },
+        "L0_REG_LATENCY_ENUM": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "L0_REG_LATENCY_MAX_CYCLES": {
+          "type": "integer"
+        },
+        "LOCAL_VECTOR_ID_BITS": {
+          "type": "integer"
+        },
+        "LOCAL_MAX_INFLIGHT_VECTORS": {
+          "type": "integer"
+        },
+        "SRCA_DATA_BITS": {
+          "type": "integer"
+        },
+        "SRCB_DATA_BITS": {
+          "type": "integer"
+        },
+        "SRCC_DATA_BITS": {
+          "type": "integer"
+        },
+        "TARGETR_DATA_BITS": {
+          "type": "integer"
+        },
+        "SRCC_FORMAT": {
+          "type": "string"
+        },
+        "TARGETR_FORMAT": {
+          "type": "string"
+        },
+        "FINAL_L0_FORMAT": {
+          "type": "string"
+        },
+        "INTERNAL_ACC_FORMAT": {
+          "type": "string"
+        },
+        "INTERNAL_MODE_ENUM": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "MAC_ARITHMETIC": {
+          "type": "string"
+        },
+        "TF32_STORE_ROUNDING": {
+          "type": "string"
+        },
+        "TF32_MANTISSA_BITS": {
+          "type": "integer"
+        },
+        "TF32_CONTAINER_BITS": {
+          "type": "integer"
+        },
+        "TC_CONTEXTS_PER_ENGINE": {
+          "type": "integer"
+        },
+        "TC_DIMENSIONS": {
+          "type": "integer"
+        },
+        "TC_ADDRESS_BITS": {
+          "type": "integer"
+        },
+        "TC_INDEX_BITS": {
+          "type": "integer"
+        },
+        "OIC_COUNT": {
+          "type": "integer"
+        },
+        "OIC_BITS": {
+          "type": "integer"
+        },
+        "COMMAND_QUEUE_DEPTH": {
+          "type": "integer"
+        },
+        "VECTOR_LANES": {
+          "type": "integer"
+        },
+        "VECTOR_CLOCK_HZ": {
+          "type": "integer"
+        },
+        "VECTOR_ISSUE_II_CYCLES": {
+          "type": "integer"
+        },
+        "VECTOR_MODE": {
+          "type": "string"
+        },
+        "C_RESIDENCY_MODE": {
+          "type": "string"
+        },
+        "COMMAND_DISPATCH": {
+          "type": "string"
+        },
+        "L0_REGIONS": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "banks",
+              "subbanks",
+              "width",
+              "depth"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "banks": {
+                "type": "integer"
+              },
+              "subbanks": {
+                "type": "integer"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "depth": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "L0_BANK_MAPPING": {
+          "type": "string"
+        },
+        "C_LAYOUT": {
+          "type": "string"
+        },
+        "AB_LAYOUT": {
+          "type": "string"
+        },
+        "REG_A_BANKS": {
+          "type": "integer"
+        },
+        "REG_B_BANKS": {
+          "type": "integer"
+        },
+        "REG_C_BANKS": {
+          "type": "integer"
+        },
+        "VECTOR_LUT_ENTRIES": {
+          "type": "integer"
+        },
+        "VECTOR_LUT_PORTS": {
+          "type": "integer"
+        },
+        "VECTOR_LUT_REPLICAS": {
+          "type": "integer"
+        },
+        "OIC_BANKS": {
+          "type": "integer"
+        },
+        "OIC_REQUEST_PORTS": {
+          "type": "integer"
+        },
+        "OIC_EVENT_FIFO_DEPTH": {
+          "type": "integer"
+        },
+        "OIC_MAX_WAIT_CONDITIONS": {
+          "type": "integer"
+        },
+        "OIC_MAX_CREDIT_CONDITIONS": {
+          "type": "integer"
+        },
+        "OIC_MAX_SIGNALS": {
+          "type": "integer"
+        },
+        "OIC_OPERATION_BUDGET_PER_GROUP": {
+          "type": "integer"
+        },
+        "TC_ISSUE_II_CYCLES": {
+          "type": "integer"
+        },
+        "FINAL_FP32_STRIP_ROWS": {
+          "type": "integer"
+        },
+        "FINAL_FP32_STRIP_SLOTS": {
+          "type": "integer"
+        },
+        "FINAL_TARGETR_ROUTE": {
+          "type": "string"
+        },
+        "ROW_MAJOR_DDR_OUTPUT": {
+          "type": "boolean"
+        },
+        "STATUS": {
+          "type": "string"
+        },
+        "RESULT_ELASTIC_FIFO_BYTES": {
+          "type": "integer"
+        },
+        "AXI_PROTOCOL": {
+          "type": "string"
+        },
+        "AXI_BURST": {
+          "type": "string"
+        },
+        "AXI_4K_SPLIT": {
+          "type": "boolean"
+        },
+        "AXI_ARCACHE": {
+          "type": "integer"
+        },
+        "AXI_AWCACHE": {
+          "type": "integer"
+        },
+        "AXI_ARPROT": {
+          "type": "integer"
+        },
+        "AXI_AWPROT": {
+          "type": "integer"
+        },
+        "AXI_QOS": {
+          "type": "integer"
+        },
+        "AXI_USER_BITS": {
+          "type": "integer"
+        },
+        "DMA_READ_CHANNELS": {
+          "type": "integer"
+        },
+        "DMA_WRITE_CHANNELS": {
+          "type": "integer"
+        },
+        "DMA_RESPONSE_REORDER": {
+          "type": "boolean"
+        },
+        "TC_STRIDE_BITS": {
+          "type": "integer"
+        },
+        "TC_UNIT_BITS_ENUM": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "TC_COMMIT_TRACKING": {
+          "type": "boolean"
+        },
+        "OIC_EPOCH_BITS": {
+          "type": "integer"
+        },
+        "OIC_ATOMIC_MULTI_ACQUIRE": {
+          "type": "boolean"
+        },
+        "OIC_READY_COMPARE": {
+          "type": "string"
+        },
+        "OIC_STALE_EPOCH_POLICY": {
+          "type": "string"
+        },
+        "JOB_ID_BITS": {
+          "type": "integer"
+        },
+        "DESCRIPTOR_BYTES": {
+          "type": "integer"
+        },
+        "DESCRIPTOR_ALIGNMENT_BYTES": {
+          "type": "integer"
+        },
+        "CPU_COMMAND_MODE": {
+          "type": "string"
+        },
+        "REGISTER_STORAGE_IMPLEMENTATION": {
+          "type": "string"
+        },
+        "JOB_DISPATCH_CYCLES": {
+          "type": "integer"
+        },
+        "L0_CLOCK_HZ": {
+          "type": "integer"
+        },
+        "L0_CONFLICT_EFFICIENCY": {
+          "type": "number"
+        },
+        "SLOT_SIZING_POLICY": {
+          "type": "string"
+        },
+        "L0_PORTS_PER_SUBBANK": {
+          "type": "integer"
+        },
+        "L0_SIMULTANEOUS_RW_SAME_SUBBANK": {
+          "type": "boolean"
+        },
+        "L0_ECC": {
+          "type": "string"
+        },
+        "L0_ARBITRATION": {
+          "type": "string"
+        },
+        "L0_RETURN_REORDER": {
+          "type": "boolean"
+        },
+        "L0_REQUEST_QUEUE_DEPTH_PER_SUBBANK": {
+          "type": "integer"
+        },
+        "L0_STARVATION_BOUND_CYCLES": {
+          "type": "integer"
+        },
+        "L0_C_READ_WRITE_PHASE_OFFSET": {
+          "type": "integer"
+        },
+        "L0_SRAM_MACRO_READ_CYCLES": {
+          "type": "integer"
+        },
+        "L0_XBAR_PIPE_CYCLES": {
+          "type": "integer"
+        },
+        "L0_REGISTER_INGRESS_PIPE_CYCLES": {
+          "type": "integer"
+        },
+        "PATH_LATENCIES_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "SRCA",
+            "SRCB",
+            "SRCC",
+            "TARGETR",
+            "DMA_L0_COMMIT",
+            "L0_AXI_READ",
+            "VECTOR_READ",
+            "VECTOR_WRITE",
+            "TC",
+            "OIC",
+            "FMA",
+            "LUT",
+            "FORMAT",
+            "AXI_CDC"
+          ],
+          "properties": {
+            "SRCA": {
+              "type": "integer"
+            },
+            "SRCB": {
+              "type": "integer"
+            },
+            "SRCC": {
+              "type": "integer"
+            },
+            "TARGETR": {
+              "type": "integer"
+            },
+            "DMA_L0_COMMIT": {
+              "type": "integer"
+            },
+            "L0_AXI_READ": {
+              "type": "integer"
+            },
+            "VECTOR_READ": {
+              "type": "integer"
+            },
+            "VECTOR_WRITE": {
+              "type": "integer"
+            },
+            "TC": {
+              "type": "integer"
+            },
+            "OIC": {
+              "type": "integer"
+            },
+            "FMA": {
+              "type": "integer"
+            },
+            "LUT": {
+              "type": "integer"
+            },
+            "FORMAT": {
+              "type": "integer"
+            },
+            "AXI_CDC": {
+              "type": "integer"
+            }
+          }
+        },
+        "SUBBANK_ISSUE_II_CYCLES": {
+          "type": "integer"
+        },
+        "PATH_LATENCY_DOMAIN": {
+          "type": "string"
+        },
+        "LOCAL_BOUNDS_LATENCY_POLICY": {
+          "type": "string"
+        },
+        "L0_ARBITER_PIPE_CYCLES": {
+          "type": "integer"
+        },
+        "L0_REQUEST_QUEUE_TARGET_CYCLES": {
+          "type": "integer"
+        },
+        "L0_ACK_PIPE_CYCLES": {
+          "type": "integer"
+        },
+        "NUMERIC_FAULT_POLICY": {
+          "type": "string"
+        },
+        "LQ16_SUBNORMAL": {
+          "type": "string"
+        },
+        "ROUND_MODE": {
+          "type": "string"
+        },
+        "TARGETR_PACKED19_SUPPORTED": {
+          "type": "boolean"
+        },
+        "ROLE_TO_HART": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "properties": {
+            "1": {
+              "type": "integer"
+            },
+            "2": {
+              "type": "integer"
+            },
+            "3": {
+              "type": "integer"
+            },
+            "4": {
+              "type": "integer"
+            },
+            "5": {
+              "type": "integer"
+            },
+            "6": {
+              "type": "integer"
+            },
+            "7": {
+              "type": "integer"
+            },
+            "8": {
+              "type": "integer"
+            }
+          }
+        },
+        "VECTOR_LUT_STEADY_GATHER_LIMIT": {
+          "type": "string"
+        }
+      }
+    },
+    "scale_overrides": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "1",
+        "2",
+        "4"
+      ],
+      "properties": {
+        "1": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ARRAY_COUNT": {
+              "type": "integer"
+            },
+            "ARRAY_ROWS": {
+              "type": "integer"
+            },
+            "ARRAY_COLS": {
+              "type": "integer"
+            },
+            "ACCEL_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "SRAM_PORT": {
+              "type": "string"
+            },
+            "AXI_DATA_BITS": {
+              "type": "integer"
+            },
+            "AXI_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "AXI_ADDR_BITS": {
+              "type": "integer"
+            },
+            "AXI_ID_BITS": {
+              "type": "integer"
+            },
+            "AXI_MAX_BURST_BEATS": {
+              "type": "integer"
+            },
+            "DMA_MAX_BURST_BYTES": {
+              "type": "integer"
+            },
+            "DMA_READ_MO": {
+              "type": "integer"
+            },
+            "DMA_WRITE_MO": {
+              "type": "integer"
+            },
+            "DMA_READ_BUFFER_BYTES": {
+              "type": "integer"
+            },
+            "DMA_WRITE_BUFFER_BYTES": {
+              "type": "integer"
+            },
+            "DMA_PAYLOAD_TARGET_GBS": {
+              "type": "integer"
+            },
+            "MEM_EFFICIENCY": {
+              "type": "number"
+            },
+            "DRAM_READ_LATENCY_NS": {
+              "type": "integer"
+            },
+            "WRITE_RESPONSE_TAIL_NS": {
+              "type": "integer"
+            },
+            "MACRO_M": {
+              "type": "integer"
+            },
+            "MACRO_N": {
+              "type": "integer"
+            },
+            "TILE_K": {
+              "type": "integer"
+            },
+            "TASK_QUEUE_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_AR_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_AW_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_R_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_W_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_B_DEPTH": {
+              "type": "integer"
+            },
+            "AXI_PORTS": {
+              "type": "integer"
+            },
+            "SUSTAINED_TOPS_TARGET": {
+              "type": "integer"
+            },
+            "PROFILE_NAME": {
+              "type": "string"
+            },
+            "PROFILE_STATUS": {
+              "type": "string"
+            },
+            "PERFORMANCE_REQUIREMENT": {
+              "type": "string"
+            },
+            "P0_MANDATORY": {
+              "type": "boolean"
+            },
+            "REFERENCE_M": {
+              "type": "integer"
+            },
+            "REFERENCE_N": {
+              "type": "integer"
+            },
+            "REFERENCE_K": {
+              "type": "integer"
+            },
+            "MEASUREMENT_SCOPE": {
+              "type": "string"
+            },
+            "RTL_SUSTAINED_TARGET_VERIFIED": {
+              "type": "boolean"
+            },
+            "DATA_PIPELINING_REQUIRED": {
+              "type": "boolean"
+            },
+            "OPERAND_BUFFER_SLOTS": {
+              "type": "integer"
+            },
+            "RESULT_BUFFER_SLOTS": {
+              "type": "integer"
+            },
+            "DMA_CREDIT_CONTROL_REQUIRED": {
+              "type": "boolean"
+            },
+            "ARCHITECTURE_REV": {
+              "type": "string"
+            },
+            "ROCKET_CORES": {
+              "type": "integer"
+            },
+            "ROLE_COUNT": {
+              "type": "integer"
+            },
+            "CORE_COUNT_STATUS": {
+              "type": "string"
+            },
+            "MAC_ACC_CONTEXTS": {
+              "type": "integer"
+            },
+            "SRCA_SLOTS": {
+              "type": "integer"
+            },
+            "SRCB_SLOTS": {
+              "type": "integer"
+            },
+            "SRCC_SLOTS": {
+              "type": "integer"
+            },
+            "TARGETR_SLOTS": {
+              "type": "integer"
+            },
+            "L0_REG_LATENCY_ENUM": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "L0_REG_LATENCY_MAX_CYCLES": {
+              "type": "integer"
+            },
+            "LOCAL_VECTOR_ID_BITS": {
+              "type": "integer"
+            },
+            "LOCAL_MAX_INFLIGHT_VECTORS": {
+              "type": "integer"
+            },
+            "SRCA_DATA_BITS": {
+              "type": "integer"
+            },
+            "SRCB_DATA_BITS": {
+              "type": "integer"
+            },
+            "SRCC_DATA_BITS": {
+              "type": "integer"
+            },
+            "TARGETR_DATA_BITS": {
+              "type": "integer"
+            },
+            "SRCC_FORMAT": {
+              "type": "string"
+            },
+            "TARGETR_FORMAT": {
+              "type": "string"
+            },
+            "FINAL_L0_FORMAT": {
+              "type": "string"
+            },
+            "INTERNAL_ACC_FORMAT": {
+              "type": "string"
+            },
+            "INTERNAL_MODE_ENUM": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "MAC_ARITHMETIC": {
+              "type": "string"
+            },
+            "TF32_STORE_ROUNDING": {
+              "type": "string"
+            },
+            "TF32_MANTISSA_BITS": {
+              "type": "integer"
+            },
+            "TF32_CONTAINER_BITS": {
+              "type": "integer"
+            },
+            "TC_CONTEXTS_PER_ENGINE": {
+              "type": "integer"
+            },
+            "TC_DIMENSIONS": {
+              "type": "integer"
+            },
+            "TC_ADDRESS_BITS": {
+              "type": "integer"
+            },
+            "TC_INDEX_BITS": {
+              "type": "integer"
+            },
+            "OIC_COUNT": {
+              "type": "integer"
+            },
+            "OIC_BITS": {
+              "type": "integer"
+            },
+            "COMMAND_QUEUE_DEPTH": {
+              "type": "integer"
+            },
+            "VECTOR_LANES": {
+              "type": "integer"
+            },
+            "VECTOR_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "VECTOR_ISSUE_II_CYCLES": {
+              "type": "integer"
+            },
+            "VECTOR_MODE": {
+              "type": "string"
+            },
+            "C_RESIDENCY_MODE": {
+              "type": "string"
+            },
+            "COMMAND_DISPATCH": {
+              "type": "string"
+            },
+            "L0_REGIONS": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "banks",
+                  "subbanks",
+                  "width",
+                  "depth"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "banks": {
+                    "type": "integer"
+                  },
+                  "subbanks": {
+                    "type": "integer"
+                  },
+                  "width": {
+                    "type": "integer"
+                  },
+                  "depth": {
+                    "type": "integer"
+                  }
+                }
+              }
+            },
+            "L0_BANK_MAPPING": {
+              "type": "string"
+            },
+            "C_LAYOUT": {
+              "type": "string"
+            },
+            "AB_LAYOUT": {
+              "type": "string"
+            },
+            "REG_A_BANKS": {
+              "type": "integer"
+            },
+            "REG_B_BANKS": {
+              "type": "integer"
+            },
+            "REG_C_BANKS": {
+              "type": "integer"
+            },
+            "VECTOR_LUT_ENTRIES": {
+              "type": "integer"
+            },
+            "VECTOR_LUT_PORTS": {
+              "type": "integer"
+            },
+            "VECTOR_LUT_REPLICAS": {
+              "type": "integer"
+            },
+            "OIC_BANKS": {
+              "type": "integer"
+            },
+            "OIC_REQUEST_PORTS": {
+              "type": "integer"
+            },
+            "OIC_EVENT_FIFO_DEPTH": {
+              "type": "integer"
+            },
+            "OIC_MAX_WAIT_CONDITIONS": {
+              "type": "integer"
+            },
+            "OIC_MAX_CREDIT_CONDITIONS": {
+              "type": "integer"
+            },
+            "OIC_MAX_SIGNALS": {
+              "type": "integer"
+            },
+            "OIC_OPERATION_BUDGET_PER_GROUP": {
+              "type": "integer"
+            },
+            "TC_ISSUE_II_CYCLES": {
+              "type": "integer"
+            },
+            "FINAL_FP32_STRIP_ROWS": {
+              "type": "integer"
+            },
+            "FINAL_FP32_STRIP_SLOTS": {
+              "type": "integer"
+            },
+            "FINAL_TARGETR_ROUTE": {
+              "type": "string"
+            },
+            "ROW_MAJOR_DDR_OUTPUT": {
+              "type": "boolean"
+            },
+            "STATUS": {
+              "type": "string"
+            },
+            "RESULT_ELASTIC_FIFO_BYTES": {
+              "type": "integer"
+            },
+            "AXI_PROTOCOL": {
+              "type": "string"
+            },
+            "AXI_BURST": {
+              "type": "string"
+            },
+            "AXI_4K_SPLIT": {
+              "type": "boolean"
+            },
+            "AXI_ARCACHE": {
+              "type": "integer"
+            },
+            "AXI_AWCACHE": {
+              "type": "integer"
+            },
+            "AXI_ARPROT": {
+              "type": "integer"
+            },
+            "AXI_AWPROT": {
+              "type": "integer"
+            },
+            "AXI_QOS": {
+              "type": "integer"
+            },
+            "AXI_USER_BITS": {
+              "type": "integer"
+            },
+            "DMA_READ_CHANNELS": {
+              "type": "integer"
+            },
+            "DMA_WRITE_CHANNELS": {
+              "type": "integer"
+            },
+            "DMA_RESPONSE_REORDER": {
+              "type": "boolean"
+            },
+            "TC_STRIDE_BITS": {
+              "type": "integer"
+            },
+            "TC_UNIT_BITS_ENUM": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "TC_COMMIT_TRACKING": {
+              "type": "boolean"
+            },
+            "OIC_EPOCH_BITS": {
+              "type": "integer"
+            },
+            "OIC_ATOMIC_MULTI_ACQUIRE": {
+              "type": "boolean"
+            },
+            "OIC_READY_COMPARE": {
+              "type": "string"
+            },
+            "OIC_STALE_EPOCH_POLICY": {
+              "type": "string"
+            },
+            "JOB_ID_BITS": {
+              "type": "integer"
+            },
+            "DESCRIPTOR_BYTES": {
+              "type": "integer"
+            },
+            "DESCRIPTOR_ALIGNMENT_BYTES": {
+              "type": "integer"
+            },
+            "CPU_COMMAND_MODE": {
+              "type": "string"
+            },
+            "REGISTER_STORAGE_IMPLEMENTATION": {
+              "type": "string"
+            },
+            "JOB_DISPATCH_CYCLES": {
+              "type": "integer"
+            },
+            "L0_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "L0_CONFLICT_EFFICIENCY": {
+              "type": "number"
+            },
+            "SLOT_SIZING_POLICY": {
+              "type": "string"
+            },
+            "L0_PORTS_PER_SUBBANK": {
+              "type": "integer"
+            },
+            "L0_SIMULTANEOUS_RW_SAME_SUBBANK": {
+              "type": "boolean"
+            },
+            "L0_ECC": {
+              "type": "string"
+            },
+            "L0_ARBITRATION": {
+              "type": "string"
+            },
+            "L0_RETURN_REORDER": {
+              "type": "boolean"
+            },
+            "L0_REQUEST_QUEUE_DEPTH_PER_SUBBANK": {
+              "type": "integer"
+            },
+            "L0_STARVATION_BOUND_CYCLES": {
+              "type": "integer"
+            },
+            "L0_C_READ_WRITE_PHASE_OFFSET": {
+              "type": "integer"
+            },
+            "L0_SRAM_MACRO_READ_CYCLES": {
+              "type": "integer"
+            },
+            "L0_XBAR_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "L0_REGISTER_INGRESS_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "PATH_LATENCIES_CYCLES": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "SRCA",
+                "SRCB",
+                "SRCC",
+                "TARGETR",
+                "DMA_L0_COMMIT",
+                "L0_AXI_READ",
+                "VECTOR_READ",
+                "VECTOR_WRITE",
+                "TC",
+                "OIC",
+                "FMA",
+                "LUT",
+                "FORMAT",
+                "AXI_CDC"
+              ],
+              "properties": {
+                "SRCA": {
+                  "type": "integer"
+                },
+                "SRCB": {
+                  "type": "integer"
+                },
+                "SRCC": {
+                  "type": "integer"
+                },
+                "TARGETR": {
+                  "type": "integer"
+                },
+                "DMA_L0_COMMIT": {
+                  "type": "integer"
+                },
+                "L0_AXI_READ": {
+                  "type": "integer"
+                },
+                "VECTOR_READ": {
+                  "type": "integer"
+                },
+                "VECTOR_WRITE": {
+                  "type": "integer"
+                },
+                "TC": {
+                  "type": "integer"
+                },
+                "OIC": {
+                  "type": "integer"
+                },
+                "FMA": {
+                  "type": "integer"
+                },
+                "LUT": {
+                  "type": "integer"
+                },
+                "FORMAT": {
+                  "type": "integer"
+                },
+                "AXI_CDC": {
+                  "type": "integer"
+                }
+              }
+            },
+            "SUBBANK_ISSUE_II_CYCLES": {
+              "type": "integer"
+            },
+            "PATH_LATENCY_DOMAIN": {
+              "type": "string"
+            },
+            "LOCAL_BOUNDS_LATENCY_POLICY": {
+              "type": "string"
+            },
+            "L0_ARBITER_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "L0_REQUEST_QUEUE_TARGET_CYCLES": {
+              "type": "integer"
+            },
+            "L0_ACK_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "NUMERIC_FAULT_POLICY": {
+              "type": "string"
+            },
+            "LQ16_SUBNORMAL": {
+              "type": "string"
+            },
+            "ROUND_MODE": {
+              "type": "string"
+            },
+            "TARGETR_PACKED19_SUPPORTED": {
+              "type": "boolean"
+            },
+            "ROLE_TO_HART": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+              ],
+              "properties": {
+                "1": {
+                  "type": "integer"
+                },
+                "2": {
+                  "type": "integer"
+                },
+                "3": {
+                  "type": "integer"
+                },
+                "4": {
+                  "type": "integer"
+                },
+                "5": {
+                  "type": "integer"
+                },
+                "6": {
+                  "type": "integer"
+                },
+                "7": {
+                  "type": "integer"
+                },
+                "8": {
+                  "type": "integer"
+                }
+              }
+            },
+            "VECTOR_LUT_STEADY_GATHER_LIMIT": {
+              "type": "string"
+            }
+          }
+        },
+        "2": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ARRAY_COUNT": {
+              "type": "integer"
+            },
+            "ARRAY_ROWS": {
+              "type": "integer"
+            },
+            "ARRAY_COLS": {
+              "type": "integer"
+            },
+            "ACCEL_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "SRAM_PORT": {
+              "type": "string"
+            },
+            "AXI_DATA_BITS": {
+              "type": "integer"
+            },
+            "AXI_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "AXI_ADDR_BITS": {
+              "type": "integer"
+            },
+            "AXI_ID_BITS": {
+              "type": "integer"
+            },
+            "AXI_MAX_BURST_BEATS": {
+              "type": "integer"
+            },
+            "DMA_MAX_BURST_BYTES": {
+              "type": "integer"
+            },
+            "DMA_READ_MO": {
+              "type": "integer"
+            },
+            "DMA_WRITE_MO": {
+              "type": "integer"
+            },
+            "DMA_READ_BUFFER_BYTES": {
+              "type": "integer"
+            },
+            "DMA_WRITE_BUFFER_BYTES": {
+              "type": "integer"
+            },
+            "DMA_PAYLOAD_TARGET_GBS": {
+              "type": "integer"
+            },
+            "MEM_EFFICIENCY": {
+              "type": "number"
+            },
+            "DRAM_READ_LATENCY_NS": {
+              "type": "integer"
+            },
+            "WRITE_RESPONSE_TAIL_NS": {
+              "type": "integer"
+            },
+            "MACRO_M": {
+              "type": "integer"
+            },
+            "MACRO_N": {
+              "type": "integer"
+            },
+            "TILE_K": {
+              "type": "integer"
+            },
+            "TASK_QUEUE_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_AR_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_AW_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_R_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_W_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_B_DEPTH": {
+              "type": "integer"
+            },
+            "AXI_PORTS": {
+              "type": "integer"
+            },
+            "SUSTAINED_TOPS_TARGET": {
+              "type": "integer"
+            },
+            "PROFILE_NAME": {
+              "type": "string"
+            },
+            "PROFILE_STATUS": {
+              "type": "string"
+            },
+            "PERFORMANCE_REQUIREMENT": {
+              "type": "string"
+            },
+            "P0_MANDATORY": {
+              "type": "boolean"
+            },
+            "REFERENCE_M": {
+              "type": "integer"
+            },
+            "REFERENCE_N": {
+              "type": "integer"
+            },
+            "REFERENCE_K": {
+              "type": "integer"
+            },
+            "MEASUREMENT_SCOPE": {
+              "type": "string"
+            },
+            "RTL_SUSTAINED_TARGET_VERIFIED": {
+              "type": "boolean"
+            },
+            "DATA_PIPELINING_REQUIRED": {
+              "type": "boolean"
+            },
+            "OPERAND_BUFFER_SLOTS": {
+              "type": "integer"
+            },
+            "RESULT_BUFFER_SLOTS": {
+              "type": "integer"
+            },
+            "DMA_CREDIT_CONTROL_REQUIRED": {
+              "type": "boolean"
+            },
+            "ARCHITECTURE_REV": {
+              "type": "string"
+            },
+            "ROCKET_CORES": {
+              "type": "integer"
+            },
+            "ROLE_COUNT": {
+              "type": "integer"
+            },
+            "CORE_COUNT_STATUS": {
+              "type": "string"
+            },
+            "MAC_ACC_CONTEXTS": {
+              "type": "integer"
+            },
+            "SRCA_SLOTS": {
+              "type": "integer"
+            },
+            "SRCB_SLOTS": {
+              "type": "integer"
+            },
+            "SRCC_SLOTS": {
+              "type": "integer"
+            },
+            "TARGETR_SLOTS": {
+              "type": "integer"
+            },
+            "L0_REG_LATENCY_ENUM": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "L0_REG_LATENCY_MAX_CYCLES": {
+              "type": "integer"
+            },
+            "LOCAL_VECTOR_ID_BITS": {
+              "type": "integer"
+            },
+            "LOCAL_MAX_INFLIGHT_VECTORS": {
+              "type": "integer"
+            },
+            "SRCA_DATA_BITS": {
+              "type": "integer"
+            },
+            "SRCB_DATA_BITS": {
+              "type": "integer"
+            },
+            "SRCC_DATA_BITS": {
+              "type": "integer"
+            },
+            "TARGETR_DATA_BITS": {
+              "type": "integer"
+            },
+            "SRCC_FORMAT": {
+              "type": "string"
+            },
+            "TARGETR_FORMAT": {
+              "type": "string"
+            },
+            "FINAL_L0_FORMAT": {
+              "type": "string"
+            },
+            "INTERNAL_ACC_FORMAT": {
+              "type": "string"
+            },
+            "INTERNAL_MODE_ENUM": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "MAC_ARITHMETIC": {
+              "type": "string"
+            },
+            "TF32_STORE_ROUNDING": {
+              "type": "string"
+            },
+            "TF32_MANTISSA_BITS": {
+              "type": "integer"
+            },
+            "TF32_CONTAINER_BITS": {
+              "type": "integer"
+            },
+            "TC_CONTEXTS_PER_ENGINE": {
+              "type": "integer"
+            },
+            "TC_DIMENSIONS": {
+              "type": "integer"
+            },
+            "TC_ADDRESS_BITS": {
+              "type": "integer"
+            },
+            "TC_INDEX_BITS": {
+              "type": "integer"
+            },
+            "OIC_COUNT": {
+              "type": "integer"
+            },
+            "OIC_BITS": {
+              "type": "integer"
+            },
+            "COMMAND_QUEUE_DEPTH": {
+              "type": "integer"
+            },
+            "VECTOR_LANES": {
+              "type": "integer"
+            },
+            "VECTOR_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "VECTOR_ISSUE_II_CYCLES": {
+              "type": "integer"
+            },
+            "VECTOR_MODE": {
+              "type": "string"
+            },
+            "C_RESIDENCY_MODE": {
+              "type": "string"
+            },
+            "COMMAND_DISPATCH": {
+              "type": "string"
+            },
+            "L0_REGIONS": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "banks",
+                  "subbanks",
+                  "width",
+                  "depth"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "banks": {
+                    "type": "integer"
+                  },
+                  "subbanks": {
+                    "type": "integer"
+                  },
+                  "width": {
+                    "type": "integer"
+                  },
+                  "depth": {
+                    "type": "integer"
+                  }
+                }
+              }
+            },
+            "L0_BANK_MAPPING": {
+              "type": "string"
+            },
+            "C_LAYOUT": {
+              "type": "string"
+            },
+            "AB_LAYOUT": {
+              "type": "string"
+            },
+            "REG_A_BANKS": {
+              "type": "integer"
+            },
+            "REG_B_BANKS": {
+              "type": "integer"
+            },
+            "REG_C_BANKS": {
+              "type": "integer"
+            },
+            "VECTOR_LUT_ENTRIES": {
+              "type": "integer"
+            },
+            "VECTOR_LUT_PORTS": {
+              "type": "integer"
+            },
+            "VECTOR_LUT_REPLICAS": {
+              "type": "integer"
+            },
+            "OIC_BANKS": {
+              "type": "integer"
+            },
+            "OIC_REQUEST_PORTS": {
+              "type": "integer"
+            },
+            "OIC_EVENT_FIFO_DEPTH": {
+              "type": "integer"
+            },
+            "OIC_MAX_WAIT_CONDITIONS": {
+              "type": "integer"
+            },
+            "OIC_MAX_CREDIT_CONDITIONS": {
+              "type": "integer"
+            },
+            "OIC_MAX_SIGNALS": {
+              "type": "integer"
+            },
+            "OIC_OPERATION_BUDGET_PER_GROUP": {
+              "type": "integer"
+            },
+            "TC_ISSUE_II_CYCLES": {
+              "type": "integer"
+            },
+            "FINAL_FP32_STRIP_ROWS": {
+              "type": "integer"
+            },
+            "FINAL_FP32_STRIP_SLOTS": {
+              "type": "integer"
+            },
+            "FINAL_TARGETR_ROUTE": {
+              "type": "string"
+            },
+            "ROW_MAJOR_DDR_OUTPUT": {
+              "type": "boolean"
+            },
+            "STATUS": {
+              "type": "string"
+            },
+            "RESULT_ELASTIC_FIFO_BYTES": {
+              "type": "integer"
+            },
+            "AXI_PROTOCOL": {
+              "type": "string"
+            },
+            "AXI_BURST": {
+              "type": "string"
+            },
+            "AXI_4K_SPLIT": {
+              "type": "boolean"
+            },
+            "AXI_ARCACHE": {
+              "type": "integer"
+            },
+            "AXI_AWCACHE": {
+              "type": "integer"
+            },
+            "AXI_ARPROT": {
+              "type": "integer"
+            },
+            "AXI_AWPROT": {
+              "type": "integer"
+            },
+            "AXI_QOS": {
+              "type": "integer"
+            },
+            "AXI_USER_BITS": {
+              "type": "integer"
+            },
+            "DMA_READ_CHANNELS": {
+              "type": "integer"
+            },
+            "DMA_WRITE_CHANNELS": {
+              "type": "integer"
+            },
+            "DMA_RESPONSE_REORDER": {
+              "type": "boolean"
+            },
+            "TC_STRIDE_BITS": {
+              "type": "integer"
+            },
+            "TC_UNIT_BITS_ENUM": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "TC_COMMIT_TRACKING": {
+              "type": "boolean"
+            },
+            "OIC_EPOCH_BITS": {
+              "type": "integer"
+            },
+            "OIC_ATOMIC_MULTI_ACQUIRE": {
+              "type": "boolean"
+            },
+            "OIC_READY_COMPARE": {
+              "type": "string"
+            },
+            "OIC_STALE_EPOCH_POLICY": {
+              "type": "string"
+            },
+            "JOB_ID_BITS": {
+              "type": "integer"
+            },
+            "DESCRIPTOR_BYTES": {
+              "type": "integer"
+            },
+            "DESCRIPTOR_ALIGNMENT_BYTES": {
+              "type": "integer"
+            },
+            "CPU_COMMAND_MODE": {
+              "type": "string"
+            },
+            "REGISTER_STORAGE_IMPLEMENTATION": {
+              "type": "string"
+            },
+            "JOB_DISPATCH_CYCLES": {
+              "type": "integer"
+            },
+            "L0_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "L0_CONFLICT_EFFICIENCY": {
+              "type": "number"
+            },
+            "SLOT_SIZING_POLICY": {
+              "type": "string"
+            },
+            "L0_PORTS_PER_SUBBANK": {
+              "type": "integer"
+            },
+            "L0_SIMULTANEOUS_RW_SAME_SUBBANK": {
+              "type": "boolean"
+            },
+            "L0_ECC": {
+              "type": "string"
+            },
+            "L0_ARBITRATION": {
+              "type": "string"
+            },
+            "L0_RETURN_REORDER": {
+              "type": "boolean"
+            },
+            "L0_REQUEST_QUEUE_DEPTH_PER_SUBBANK": {
+              "type": "integer"
+            },
+            "L0_STARVATION_BOUND_CYCLES": {
+              "type": "integer"
+            },
+            "L0_C_READ_WRITE_PHASE_OFFSET": {
+              "type": "integer"
+            },
+            "L0_SRAM_MACRO_READ_CYCLES": {
+              "type": "integer"
+            },
+            "L0_XBAR_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "L0_REGISTER_INGRESS_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "PATH_LATENCIES_CYCLES": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "SRCA",
+                "SRCB",
+                "SRCC",
+                "TARGETR",
+                "DMA_L0_COMMIT",
+                "L0_AXI_READ",
+                "VECTOR_READ",
+                "VECTOR_WRITE",
+                "TC",
+                "OIC",
+                "FMA",
+                "LUT",
+                "FORMAT",
+                "AXI_CDC"
+              ],
+              "properties": {
+                "SRCA": {
+                  "type": "integer"
+                },
+                "SRCB": {
+                  "type": "integer"
+                },
+                "SRCC": {
+                  "type": "integer"
+                },
+                "TARGETR": {
+                  "type": "integer"
+                },
+                "DMA_L0_COMMIT": {
+                  "type": "integer"
+                },
+                "L0_AXI_READ": {
+                  "type": "integer"
+                },
+                "VECTOR_READ": {
+                  "type": "integer"
+                },
+                "VECTOR_WRITE": {
+                  "type": "integer"
+                },
+                "TC": {
+                  "type": "integer"
+                },
+                "OIC": {
+                  "type": "integer"
+                },
+                "FMA": {
+                  "type": "integer"
+                },
+                "LUT": {
+                  "type": "integer"
+                },
+                "FORMAT": {
+                  "type": "integer"
+                },
+                "AXI_CDC": {
+                  "type": "integer"
+                }
+              }
+            },
+            "SUBBANK_ISSUE_II_CYCLES": {
+              "type": "integer"
+            },
+            "PATH_LATENCY_DOMAIN": {
+              "type": "string"
+            },
+            "LOCAL_BOUNDS_LATENCY_POLICY": {
+              "type": "string"
+            },
+            "L0_ARBITER_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "L0_REQUEST_QUEUE_TARGET_CYCLES": {
+              "type": "integer"
+            },
+            "L0_ACK_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "NUMERIC_FAULT_POLICY": {
+              "type": "string"
+            },
+            "LQ16_SUBNORMAL": {
+              "type": "string"
+            },
+            "ROUND_MODE": {
+              "type": "string"
+            },
+            "TARGETR_PACKED19_SUPPORTED": {
+              "type": "boolean"
+            },
+            "ROLE_TO_HART": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+              ],
+              "properties": {
+                "1": {
+                  "type": "integer"
+                },
+                "2": {
+                  "type": "integer"
+                },
+                "3": {
+                  "type": "integer"
+                },
+                "4": {
+                  "type": "integer"
+                },
+                "5": {
+                  "type": "integer"
+                },
+                "6": {
+                  "type": "integer"
+                },
+                "7": {
+                  "type": "integer"
+                },
+                "8": {
+                  "type": "integer"
+                }
+              }
+            },
+            "VECTOR_LUT_STEADY_GATHER_LIMIT": {
+              "type": "string"
+            }
+          }
+        },
+        "4": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ARRAY_COUNT": {
+              "type": "integer"
+            },
+            "ARRAY_ROWS": {
+              "type": "integer"
+            },
+            "ARRAY_COLS": {
+              "type": "integer"
+            },
+            "ACCEL_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "SRAM_PORT": {
+              "type": "string"
+            },
+            "AXI_DATA_BITS": {
+              "type": "integer"
+            },
+            "AXI_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "AXI_ADDR_BITS": {
+              "type": "integer"
+            },
+            "AXI_ID_BITS": {
+              "type": "integer"
+            },
+            "AXI_MAX_BURST_BEATS": {
+              "type": "integer"
+            },
+            "DMA_MAX_BURST_BYTES": {
+              "type": "integer"
+            },
+            "DMA_READ_MO": {
+              "type": "integer"
+            },
+            "DMA_WRITE_MO": {
+              "type": "integer"
+            },
+            "DMA_READ_BUFFER_BYTES": {
+              "type": "integer"
+            },
+            "DMA_WRITE_BUFFER_BYTES": {
+              "type": "integer"
+            },
+            "DMA_PAYLOAD_TARGET_GBS": {
+              "type": "integer"
+            },
+            "MEM_EFFICIENCY": {
+              "type": "number"
+            },
+            "DRAM_READ_LATENCY_NS": {
+              "type": "integer"
+            },
+            "WRITE_RESPONSE_TAIL_NS": {
+              "type": "integer"
+            },
+            "MACRO_M": {
+              "type": "integer"
+            },
+            "MACRO_N": {
+              "type": "integer"
+            },
+            "TILE_K": {
+              "type": "integer"
+            },
+            "TASK_QUEUE_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_AR_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_AW_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_R_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_W_DEPTH": {
+              "type": "integer"
+            },
+            "CDC_B_DEPTH": {
+              "type": "integer"
+            },
+            "AXI_PORTS": {
+              "type": "integer"
+            },
+            "SUSTAINED_TOPS_TARGET": {
+              "type": "integer"
+            },
+            "PROFILE_NAME": {
+              "type": "string"
+            },
+            "PROFILE_STATUS": {
+              "type": "string"
+            },
+            "PERFORMANCE_REQUIREMENT": {
+              "type": "string"
+            },
+            "P0_MANDATORY": {
+              "type": "boolean"
+            },
+            "REFERENCE_M": {
+              "type": "integer"
+            },
+            "REFERENCE_N": {
+              "type": "integer"
+            },
+            "REFERENCE_K": {
+              "type": "integer"
+            },
+            "MEASUREMENT_SCOPE": {
+              "type": "string"
+            },
+            "RTL_SUSTAINED_TARGET_VERIFIED": {
+              "type": "boolean"
+            },
+            "DATA_PIPELINING_REQUIRED": {
+              "type": "boolean"
+            },
+            "OPERAND_BUFFER_SLOTS": {
+              "type": "integer"
+            },
+            "RESULT_BUFFER_SLOTS": {
+              "type": "integer"
+            },
+            "DMA_CREDIT_CONTROL_REQUIRED": {
+              "type": "boolean"
+            },
+            "ARCHITECTURE_REV": {
+              "type": "string"
+            },
+            "ROCKET_CORES": {
+              "type": "integer"
+            },
+            "ROLE_COUNT": {
+              "type": "integer"
+            },
+            "CORE_COUNT_STATUS": {
+              "type": "string"
+            },
+            "MAC_ACC_CONTEXTS": {
+              "type": "integer"
+            },
+            "SRCA_SLOTS": {
+              "type": "integer"
+            },
+            "SRCB_SLOTS": {
+              "type": "integer"
+            },
+            "SRCC_SLOTS": {
+              "type": "integer"
+            },
+            "TARGETR_SLOTS": {
+              "type": "integer"
+            },
+            "L0_REG_LATENCY_ENUM": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "L0_REG_LATENCY_MAX_CYCLES": {
+              "type": "integer"
+            },
+            "LOCAL_VECTOR_ID_BITS": {
+              "type": "integer"
+            },
+            "LOCAL_MAX_INFLIGHT_VECTORS": {
+              "type": "integer"
+            },
+            "SRCA_DATA_BITS": {
+              "type": "integer"
+            },
+            "SRCB_DATA_BITS": {
+              "type": "integer"
+            },
+            "SRCC_DATA_BITS": {
+              "type": "integer"
+            },
+            "TARGETR_DATA_BITS": {
+              "type": "integer"
+            },
+            "SRCC_FORMAT": {
+              "type": "string"
+            },
+            "TARGETR_FORMAT": {
+              "type": "string"
+            },
+            "FINAL_L0_FORMAT": {
+              "type": "string"
+            },
+            "INTERNAL_ACC_FORMAT": {
+              "type": "string"
+            },
+            "INTERNAL_MODE_ENUM": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "MAC_ARITHMETIC": {
+              "type": "string"
+            },
+            "TF32_STORE_ROUNDING": {
+              "type": "string"
+            },
+            "TF32_MANTISSA_BITS": {
+              "type": "integer"
+            },
+            "TF32_CONTAINER_BITS": {
+              "type": "integer"
+            },
+            "TC_CONTEXTS_PER_ENGINE": {
+              "type": "integer"
+            },
+            "TC_DIMENSIONS": {
+              "type": "integer"
+            },
+            "TC_ADDRESS_BITS": {
+              "type": "integer"
+            },
+            "TC_INDEX_BITS": {
+              "type": "integer"
+            },
+            "OIC_COUNT": {
+              "type": "integer"
+            },
+            "OIC_BITS": {
+              "type": "integer"
+            },
+            "COMMAND_QUEUE_DEPTH": {
+              "type": "integer"
+            },
+            "VECTOR_LANES": {
+              "type": "integer"
+            },
+            "VECTOR_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "VECTOR_ISSUE_II_CYCLES": {
+              "type": "integer"
+            },
+            "VECTOR_MODE": {
+              "type": "string"
+            },
+            "C_RESIDENCY_MODE": {
+              "type": "string"
+            },
+            "COMMAND_DISPATCH": {
+              "type": "string"
+            },
+            "L0_REGIONS": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "banks",
+                  "subbanks",
+                  "width",
+                  "depth"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "banks": {
+                    "type": "integer"
+                  },
+                  "subbanks": {
+                    "type": "integer"
+                  },
+                  "width": {
+                    "type": "integer"
+                  },
+                  "depth": {
+                    "type": "integer"
+                  }
+                }
+              }
+            },
+            "L0_BANK_MAPPING": {
+              "type": "string"
+            },
+            "C_LAYOUT": {
+              "type": "string"
+            },
+            "AB_LAYOUT": {
+              "type": "string"
+            },
+            "REG_A_BANKS": {
+              "type": "integer"
+            },
+            "REG_B_BANKS": {
+              "type": "integer"
+            },
+            "REG_C_BANKS": {
+              "type": "integer"
+            },
+            "VECTOR_LUT_ENTRIES": {
+              "type": "integer"
+            },
+            "VECTOR_LUT_PORTS": {
+              "type": "integer"
+            },
+            "VECTOR_LUT_REPLICAS": {
+              "type": "integer"
+            },
+            "OIC_BANKS": {
+              "type": "integer"
+            },
+            "OIC_REQUEST_PORTS": {
+              "type": "integer"
+            },
+            "OIC_EVENT_FIFO_DEPTH": {
+              "type": "integer"
+            },
+            "OIC_MAX_WAIT_CONDITIONS": {
+              "type": "integer"
+            },
+            "OIC_MAX_CREDIT_CONDITIONS": {
+              "type": "integer"
+            },
+            "OIC_MAX_SIGNALS": {
+              "type": "integer"
+            },
+            "OIC_OPERATION_BUDGET_PER_GROUP": {
+              "type": "integer"
+            },
+            "TC_ISSUE_II_CYCLES": {
+              "type": "integer"
+            },
+            "FINAL_FP32_STRIP_ROWS": {
+              "type": "integer"
+            },
+            "FINAL_FP32_STRIP_SLOTS": {
+              "type": "integer"
+            },
+            "FINAL_TARGETR_ROUTE": {
+              "type": "string"
+            },
+            "ROW_MAJOR_DDR_OUTPUT": {
+              "type": "boolean"
+            },
+            "STATUS": {
+              "type": "string"
+            },
+            "RESULT_ELASTIC_FIFO_BYTES": {
+              "type": "integer"
+            },
+            "AXI_PROTOCOL": {
+              "type": "string"
+            },
+            "AXI_BURST": {
+              "type": "string"
+            },
+            "AXI_4K_SPLIT": {
+              "type": "boolean"
+            },
+            "AXI_ARCACHE": {
+              "type": "integer"
+            },
+            "AXI_AWCACHE": {
+              "type": "integer"
+            },
+            "AXI_ARPROT": {
+              "type": "integer"
+            },
+            "AXI_AWPROT": {
+              "type": "integer"
+            },
+            "AXI_QOS": {
+              "type": "integer"
+            },
+            "AXI_USER_BITS": {
+              "type": "integer"
+            },
+            "DMA_READ_CHANNELS": {
+              "type": "integer"
+            },
+            "DMA_WRITE_CHANNELS": {
+              "type": "integer"
+            },
+            "DMA_RESPONSE_REORDER": {
+              "type": "boolean"
+            },
+            "TC_STRIDE_BITS": {
+              "type": "integer"
+            },
+            "TC_UNIT_BITS_ENUM": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "TC_COMMIT_TRACKING": {
+              "type": "boolean"
+            },
+            "OIC_EPOCH_BITS": {
+              "type": "integer"
+            },
+            "OIC_ATOMIC_MULTI_ACQUIRE": {
+              "type": "boolean"
+            },
+            "OIC_READY_COMPARE": {
+              "type": "string"
+            },
+            "OIC_STALE_EPOCH_POLICY": {
+              "type": "string"
+            },
+            "JOB_ID_BITS": {
+              "type": "integer"
+            },
+            "DESCRIPTOR_BYTES": {
+              "type": "integer"
+            },
+            "DESCRIPTOR_ALIGNMENT_BYTES": {
+              "type": "integer"
+            },
+            "CPU_COMMAND_MODE": {
+              "type": "string"
+            },
+            "REGISTER_STORAGE_IMPLEMENTATION": {
+              "type": "string"
+            },
+            "JOB_DISPATCH_CYCLES": {
+              "type": "integer"
+            },
+            "L0_CLOCK_HZ": {
+              "type": "integer"
+            },
+            "L0_CONFLICT_EFFICIENCY": {
+              "type": "number"
+            },
+            "SLOT_SIZING_POLICY": {
+              "type": "string"
+            },
+            "L0_PORTS_PER_SUBBANK": {
+              "type": "integer"
+            },
+            "L0_SIMULTANEOUS_RW_SAME_SUBBANK": {
+              "type": "boolean"
+            },
+            "L0_ECC": {
+              "type": "string"
+            },
+            "L0_ARBITRATION": {
+              "type": "string"
+            },
+            "L0_RETURN_REORDER": {
+              "type": "boolean"
+            },
+            "L0_REQUEST_QUEUE_DEPTH_PER_SUBBANK": {
+              "type": "integer"
+            },
+            "L0_STARVATION_BOUND_CYCLES": {
+              "type": "integer"
+            },
+            "L0_C_READ_WRITE_PHASE_OFFSET": {
+              "type": "integer"
+            },
+            "L0_SRAM_MACRO_READ_CYCLES": {
+              "type": "integer"
+            },
+            "L0_XBAR_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "L0_REGISTER_INGRESS_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "PATH_LATENCIES_CYCLES": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "SRCA",
+                "SRCB",
+                "SRCC",
+                "TARGETR",
+                "DMA_L0_COMMIT",
+                "L0_AXI_READ",
+                "VECTOR_READ",
+                "VECTOR_WRITE",
+                "TC",
+                "OIC",
+                "FMA",
+                "LUT",
+                "FORMAT",
+                "AXI_CDC"
+              ],
+              "properties": {
+                "SRCA": {
+                  "type": "integer"
+                },
+                "SRCB": {
+                  "type": "integer"
+                },
+                "SRCC": {
+                  "type": "integer"
+                },
+                "TARGETR": {
+                  "type": "integer"
+                },
+                "DMA_L0_COMMIT": {
+                  "type": "integer"
+                },
+                "L0_AXI_READ": {
+                  "type": "integer"
+                },
+                "VECTOR_READ": {
+                  "type": "integer"
+                },
+                "VECTOR_WRITE": {
+                  "type": "integer"
+                },
+                "TC": {
+                  "type": "integer"
+                },
+                "OIC": {
+                  "type": "integer"
+                },
+                "FMA": {
+                  "type": "integer"
+                },
+                "LUT": {
+                  "type": "integer"
+                },
+                "FORMAT": {
+                  "type": "integer"
+                },
+                "AXI_CDC": {
+                  "type": "integer"
+                }
+              }
+            },
+            "SUBBANK_ISSUE_II_CYCLES": {
+              "type": "integer"
+            },
+            "PATH_LATENCY_DOMAIN": {
+              "type": "string"
+            },
+            "LOCAL_BOUNDS_LATENCY_POLICY": {
+              "type": "string"
+            },
+            "L0_ARBITER_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "L0_REQUEST_QUEUE_TARGET_CYCLES": {
+              "type": "integer"
+            },
+            "L0_ACK_PIPE_CYCLES": {
+              "type": "integer"
+            },
+            "NUMERIC_FAULT_POLICY": {
+              "type": "string"
+            },
+            "LQ16_SUBNORMAL": {
+              "type": "string"
+            },
+            "ROUND_MODE": {
+              "type": "string"
+            },
+            "TARGETR_PACKED19_SUPPORTED": {
+              "type": "boolean"
+            },
+            "ROLE_TO_HART": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+              ],
+              "properties": {
+                "1": {
+                  "type": "integer"
+                },
+                "2": {
+                  "type": "integer"
+                },
+                "3": {
+                  "type": "integer"
+                },
+                "4": {
+                  "type": "integer"
+                },
+                "5": {
+                  "type": "integer"
+                },
+                "6": {
+                  "type": "integer"
+                },
+                "7": {
+                  "type": "integer"
+                },
+                "8": {
+                  "type": "integer"
+                }
+              }
+            },
+            "VECTOR_LUT_STEADY_GATHER_LIMIT": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "SCALE",
+        "ARRAY_COUNT",
+        "ARRAY_ROWS",
+        "ARRAY_COLS",
+        "ACCEL_CLOCK_HZ",
+        "SRAM_TOTAL_BYTES",
+        "OPERAND_BYTES",
+        "C_BYTES",
+        "PARTIAL_BYTES",
+        "META_BYTES",
+        "OPERAND_BANKS",
+        "C_BANKS",
+        "PARTIAL_BANKS",
+        "META_BANKS",
+        "MAIN_BANK_BITS",
+        "META_BANK_BITS",
+        "SRAM_PORT",
+        "SRAM_READ_LATENCY",
+        "AXI_DATA_BITS",
+        "AXI_CLOCK_HZ",
+        "AXI_ADDR_BITS",
+        "AXI_ID_BITS",
+        "AXI_MAX_BURST_BEATS",
+        "DMA_MAX_BURST_BYTES",
+        "DMA_READ_MO",
+        "DMA_WRITE_MO",
+        "DMA_READ_BUFFER_BYTES",
+        "DMA_WRITE_BUFFER_BYTES",
+        "DMA_PAYLOAD_TARGET_GBS",
+        "MEM_EFFICIENCY",
+        "DRAM_READ_LATENCY_NS",
+        "WRITE_RESPONSE_TAIL_NS",
+        "MACRO_M",
+        "MACRO_N",
+        "TILE_K",
+        "TASK_QUEUE_DEPTH",
+        "CDC_AR_DEPTH",
+        "CDC_AW_DEPTH",
+        "CDC_R_DEPTH",
+        "CDC_W_DEPTH",
+        "CDC_B_DEPTH",
+        "MACS_PER_CLOCK",
+        "PEAK_TOPS",
+        "AXI_RAW_GBS",
+        "AXI_AFTER_EFFICIENCY_GBS",
+        "MIN_RAW_GBS",
+        "FULL_BURST_MIN_READ_MO",
+        "OPERAND_BANK_DEPTH",
+        "C_BANK_DEPTH",
+        "PARTIAL_BANK_DEPTH",
+        "META_BANK_DEPTH",
+        "AXI_PORTS",
+        "SUSTAINED_TOPS_TARGET",
+        "PROFILE_NAME",
+        "PROFILE_STATUS",
+        "PERFORMANCE_REQUIREMENT",
+        "P0_MANDATORY",
+        "REFERENCE_M",
+        "REFERENCE_N",
+        "REFERENCE_K",
+        "MEASUREMENT_SCOPE",
+        "RTL_SUSTAINED_TARGET_VERIFIED",
+        "DATA_PIPELINING_REQUIRED",
+        "OPERAND_BUFFER_SLOTS",
+        "RESULT_BUFFER_SLOTS",
+        "SRAM_READ_PIPE_CYCLES",
+        "DECODE_PIPE_CYCLES",
+        "PRODUCT_PIPE_CYCLES",
+        "PE_ACC_FEEDBACK_CYCLES",
+        "SCALE_CONVERT_PIPE_CYCLES",
+        "C_WRITE_PIPE_CYCLES",
+        "DMA_CREDIT_CONTROL_REQUIRED",
+        "PANEL_PIPELINE_OVERHEAD_CYCLES",
+        "MAX_REFERENCE_LATENCY_NS",
+        "ARCHITECTURE_REV",
+        "ROCKET_CORES",
+        "ROLE_COUNT",
+        "CORE_COUNT_STATUS",
+        "L0_BYTES",
+        "MAC_FMA_PIPE_CYCLES",
+        "MAC_ACC_CONTEXTS",
+        "SRCA_SLOTS",
+        "SRCB_SLOTS",
+        "SRCC_SLOTS",
+        "TARGETR_SLOTS",
+        "L0_REG_PATH_LATENCY_CYCLES",
+        "L0_REG_LATENCY_ENUM",
+        "L0_REG_LATENCY_MAX_CYCLES",
+        "L0_REG_CREDIT_RTT_CYCLES",
+        "LOCAL_VECTOR_ID_BITS",
+        "LOCAL_MAX_INFLIGHT_VECTORS",
+        "SRCA_DATA_BITS",
+        "SRCB_DATA_BITS",
+        "SRCC_DATA_BITS",
+        "TARGETR_DATA_BITS",
+        "SRCC_FORMAT",
+        "TARGETR_FORMAT",
+        "FINAL_L0_FORMAT",
+        "FLOAT_VECTOR_OWNER_HART",
+        "INTERNAL_ACC_FORMAT",
+        "INTERNAL_MODE_ENUM",
+        "INTERNAL_EXP_BIAS",
+        "INTERNAL_MANTISSA_BITS",
+        "INTERNAL_EXP_BITS",
+        "MAC_ARITHMETIC",
+        "TF32_STORE_ROUNDING",
+        "TF32_MANTISSA_BITS",
+        "TF32_CONTAINER_BITS",
+        "TC_CONTEXTS_PER_ENGINE",
+        "TC_DIMENSIONS",
+        "TC_ADDRESS_BITS",
+        "TC_INDEX_BITS",
+        "OIC_COUNT",
+        "OIC_BITS",
+        "COMMAND_QUEUE_DEPTH",
+        "VECTOR_LANES",
+        "VECTOR_CLOCK_HZ",
+        "VECTOR_ISSUE_II_CYCLES",
+        "VECTOR_MODE",
+        "C_RESIDENCY_MODE",
+        "COMMAND_DISPATCH",
+        "NEAR_MAC_REGFILE_BYTES",
+        "NEAR_MAC_REGFILE_TOTAL_BYTES",
+        "PE_ACC_CONTEXT_BYTES",
+        "SINGLE_CONTEXT_K32_LATENCY_CYCLES",
+        "L0_REGIONS",
+        "C_SUBBANKS",
+        "A_SUBBANKS",
+        "B_SUBBANKS",
+        "SCRATCH_SUBBANKS",
+        "META_SUBBANKS",
+        "L0_TOTAL_SUBBANKS",
+        "L0_ADDRESS_BITS",
+        "L0_TOTAL_BANKS",
+        "L0_BANK_MAPPING",
+        "C_LAYOUT",
+        "AB_LAYOUT",
+        "REG_A_BANKS",
+        "REG_B_BANKS",
+        "REG_C_BANKS",
+        "VECTOR_LUT_ENTRIES",
+        "VECTOR_LUT_PORTS",
+        "VECTOR_LUT_REPLICAS",
+        "OIC_BANKS",
+        "OIC_REQUEST_PORTS",
+        "OIC_RESPONSE_LATENCY_CYCLES",
+        "OIC_EVENT_FIFO_DEPTH",
+        "OIC_MAX_WAIT_CONDITIONS",
+        "OIC_MAX_CREDIT_CONDITIONS",
+        "OIC_MAX_SIGNALS",
+        "OIC_OPERATION_BUDGET_PER_GROUP",
+        "TC_ISSUE_II_CYCLES",
+        "FINAL_FP32_STRIP_ROWS",
+        "FINAL_FP32_STRIP_SLOTS",
+        "FINAL_TARGETR_ROUTE",
+        "ROW_MAJOR_DDR_OUTPUT",
+        "STATUS",
+        "PEAK_GROUP_RATE_PER_SECOND",
+        "L0_OPERAND_GBs_PEAK",
+        "L0_C_READ_GBs_PEAK",
+        "L0_C_WRITE_GBs_PEAK",
+        "VECTOR_PEAK_ELEMENTS_PER_SECOND",
+        "INTERNAL_ACC_LANES",
+        "RESULT_ELASTIC_FIFO_BYTES",
+        "AXI_PROTOCOL",
+        "AXI_BURST",
+        "AXI_4K_SPLIT",
+        "AXI_STRB_BITS",
+        "AXI_ARCACHE",
+        "AXI_AWCACHE",
+        "AXI_ARPROT",
+        "AXI_AWPROT",
+        "AXI_QOS",
+        "AXI_USER_BITS",
+        "DMA_READ_CHANNELS",
+        "DMA_WRITE_CHANNELS",
+        "DMA_RESPONSE_REORDER",
+        "TC_STRIDE_BITS",
+        "TC_UNIT_BITS_ENUM",
+        "TC_COMMIT_TRACKING",
+        "OIC_EPOCH_BITS",
+        "OIC_ATOMIC_MULTI_ACQUIRE",
+        "OIC_READY_COMPARE",
+        "OIC_STALE_EPOCH_POLICY",
+        "JOB_ID_BITS",
+        "DESCRIPTOR_BYTES",
+        "DESCRIPTOR_ALIGNMENT_BYTES",
+        "CPU_COMMAND_MODE",
+        "REGISTER_STORAGE_IMPLEMENTATION",
+        "JOB_DISPATCH_CYCLES",
+        "L0_CLOCK_HZ",
+        "L0_CONFLICT_EFFICIENCY",
+        "SLOT_SIZING_POLICY",
+        "L0_PORTS_PER_SUBBANK",
+        "L0_SIMULTANEOUS_RW_SAME_SUBBANK",
+        "L0_ECC",
+        "L0_ARBITRATION",
+        "L0_RETURN_REORDER",
+        "L0_REQUEST_QUEUE_DEPTH_PER_SUBBANK",
+        "L0_STARVATION_BOUND_CYCLES",
+        "L0_C_READ_WRITE_PHASE_OFFSET",
+        "L0_SRAM_MACRO_READ_CYCLES",
+        "L0_XBAR_PIPE_CYCLES",
+        "L0_REGISTER_INGRESS_PIPE_CYCLES",
+        "PATH_LATENCIES_CYCLES",
+        "SUBBANK_ISSUE_II_CYCLES",
+        "PATH_LATENCY_DOMAIN",
+        "LOCAL_BOUNDS_LATENCY_POLICY",
+        "L0_ARBITER_PIPE_CYCLES",
+        "L0_REQUEST_QUEUE_TARGET_CYCLES",
+        "L0_ACK_PIPE_CYCLES",
+        "NUMERIC_FAULT_POLICY",
+        "LQ16_SUBNORMAL",
+        "ROUND_MODE",
+        "TARGETR_PACKED19_SUPPORTED",
+        "ROLE_TO_HART",
+        "VECTOR_LUT_STEADY_GATHER_LIMIT"
+      ],
+      "properties": {
+        "SCALE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ARRAY_COUNT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ARRAY_ROWS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ARRAY_COLS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ACCEL_CLOCK_HZ": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SRAM_TOTAL_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OPERAND_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "C_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PARTIAL_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "META_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OPERAND_BANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "C_BANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PARTIAL_BANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "META_BANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MAIN_BANK_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "META_BANK_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SRAM_PORT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SRAM_READ_LATENCY": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_DATA_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_CLOCK_HZ": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_ADDR_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_ID_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_MAX_BURST_BEATS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DMA_MAX_BURST_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DMA_READ_MO": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DMA_WRITE_MO": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DMA_READ_BUFFER_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DMA_WRITE_BUFFER_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DMA_PAYLOAD_TARGET_GBS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MEM_EFFICIENCY": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DRAM_READ_LATENCY_NS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "WRITE_RESPONSE_TAIL_NS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MACRO_M": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MACRO_N": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TILE_K": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TASK_QUEUE_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "CDC_AR_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "CDC_AW_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "CDC_R_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "CDC_W_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "CDC_B_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MACS_PER_CLOCK": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PEAK_TOPS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_RAW_GBS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_AFTER_EFFICIENCY_GBS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MIN_RAW_GBS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "FULL_BURST_MIN_READ_MO": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OPERAND_BANK_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "C_BANK_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PARTIAL_BANK_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "META_BANK_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_PORTS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SUSTAINED_TOPS_TARGET": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PROFILE_NAME": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PROFILE_STATUS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PERFORMANCE_REQUIREMENT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "P0_MANDATORY": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "REFERENCE_M": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "REFERENCE_N": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "REFERENCE_K": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MEASUREMENT_SCOPE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "RTL_SUSTAINED_TARGET_VERIFIED": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DATA_PIPELINING_REQUIRED": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OPERAND_BUFFER_SLOTS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "RESULT_BUFFER_SLOTS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SRAM_READ_PIPE_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DECODE_PIPE_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PRODUCT_PIPE_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PE_ACC_FEEDBACK_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SCALE_CONVERT_PIPE_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "C_WRITE_PIPE_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DMA_CREDIT_CONTROL_REQUIRED": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PANEL_PIPELINE_OVERHEAD_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MAX_REFERENCE_LATENCY_NS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ARCHITECTURE_REV": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ROCKET_CORES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ROLE_COUNT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "CORE_COUNT_STATUS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MAC_FMA_PIPE_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MAC_ACC_CONTEXTS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SRCA_SLOTS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SRCB_SLOTS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SRCC_SLOTS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TARGETR_SLOTS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_REG_PATH_LATENCY_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_REG_LATENCY_ENUM": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_REG_LATENCY_MAX_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_REG_CREDIT_RTT_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "LOCAL_VECTOR_ID_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "LOCAL_MAX_INFLIGHT_VECTORS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SRCA_DATA_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SRCB_DATA_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SRCC_DATA_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TARGETR_DATA_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SRCC_FORMAT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TARGETR_FORMAT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "FINAL_L0_FORMAT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "FLOAT_VECTOR_OWNER_HART": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "INTERNAL_ACC_FORMAT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "INTERNAL_MODE_ENUM": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "INTERNAL_EXP_BIAS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "INTERNAL_MANTISSA_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "INTERNAL_EXP_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "MAC_ARITHMETIC": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TF32_STORE_ROUNDING": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TF32_MANTISSA_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TF32_CONTAINER_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TC_CONTEXTS_PER_ENGINE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TC_DIMENSIONS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TC_ADDRESS_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TC_INDEX_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_COUNT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "COMMAND_QUEUE_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "VECTOR_LANES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "VECTOR_CLOCK_HZ": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "VECTOR_ISSUE_II_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "VECTOR_MODE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "C_RESIDENCY_MODE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "COMMAND_DISPATCH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "NEAR_MAC_REGFILE_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "NEAR_MAC_REGFILE_TOTAL_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PE_ACC_CONTEXT_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SINGLE_CONTEXT_K32_LATENCY_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_REGIONS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "C_SUBBANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "A_SUBBANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "B_SUBBANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SCRATCH_SUBBANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "META_SUBBANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_TOTAL_SUBBANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_ADDRESS_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_TOTAL_BANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_BANK_MAPPING": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "C_LAYOUT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AB_LAYOUT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "REG_A_BANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "REG_B_BANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "REG_C_BANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "VECTOR_LUT_ENTRIES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "VECTOR_LUT_PORTS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "VECTOR_LUT_REPLICAS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_BANKS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_REQUEST_PORTS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_RESPONSE_LATENCY_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_EVENT_FIFO_DEPTH": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_MAX_WAIT_CONDITIONS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_MAX_CREDIT_CONDITIONS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_MAX_SIGNALS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_OPERATION_BUDGET_PER_GROUP": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TC_ISSUE_II_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "FINAL_FP32_STRIP_ROWS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "FINAL_FP32_STRIP_SLOTS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "FINAL_TARGETR_ROUTE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ROW_MAJOR_DDR_OUTPUT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "STATUS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PEAK_GROUP_RATE_PER_SECOND": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_OPERAND_GBs_PEAK": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_C_READ_GBs_PEAK": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_C_WRITE_GBs_PEAK": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "VECTOR_PEAK_ELEMENTS_PER_SECOND": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "INTERNAL_ACC_LANES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "RESULT_ELASTIC_FIFO_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_PROTOCOL": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_BURST": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_4K_SPLIT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_STRB_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_ARCACHE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_AWCACHE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_ARPROT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_AWPROT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_QOS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "AXI_USER_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DMA_READ_CHANNELS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DMA_WRITE_CHANNELS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DMA_RESPONSE_REORDER": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TC_STRIDE_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TC_UNIT_BITS_ENUM": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TC_COMMIT_TRACKING": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_EPOCH_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_ATOMIC_MULTI_ACQUIRE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_READY_COMPARE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "OIC_STALE_EPOCH_POLICY": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "JOB_ID_BITS": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DESCRIPTOR_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "DESCRIPTOR_ALIGNMENT_BYTES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "CPU_COMMAND_MODE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "REGISTER_STORAGE_IMPLEMENTATION": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "JOB_DISPATCH_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_CLOCK_HZ": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_CONFLICT_EFFICIENCY": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SLOT_SIZING_POLICY": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_PORTS_PER_SUBBANK": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_SIMULTANEOUS_RW_SAME_SUBBANK": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_ECC": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_ARBITRATION": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_RETURN_REORDER": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_REQUEST_QUEUE_DEPTH_PER_SUBBANK": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_STARVATION_BOUND_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_C_READ_WRITE_PHASE_OFFSET": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_SRAM_MACRO_READ_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_XBAR_PIPE_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_REGISTER_INGRESS_PIPE_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PATH_LATENCIES_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "SUBBANK_ISSUE_II_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "PATH_LATENCY_DOMAIN": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "LOCAL_BOUNDS_LATENCY_POLICY": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_ARBITER_PIPE_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_REQUEST_QUEUE_TARGET_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "L0_ACK_PIPE_CYCLES": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "NUMERIC_FAULT_POLICY": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "LQ16_SUBNORMAL": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ROUND_MODE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "TARGETR_PACKED19_SUPPORTED": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "ROLE_TO_HART": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        },
+        "VECTOR_LUT_STEADY_GATHER_LIMIT": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "allowed_or_rule"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "allowed_or_rule": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TINY NPU RevB authoring configuration v1"
+}
