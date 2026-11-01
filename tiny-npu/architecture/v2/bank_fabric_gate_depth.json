@@ -130,7 +130,9 @@
     "source_sha256": {
       "tiny_npu_bank_hash.sv": "922c84e6dac24058ec512c45ec61a9a6858ececfe613a2df2ea3c4ef988297c7"
     },
-    "scope": "mapper at160 banks; representative fabric at8 ingress/8 banks with32-bit payload; full256-bit/12-bit-row8-bank fabric also audited; full160-bank fabric gate proof pending"
+    "scope": "mapper at160 banks; representative fabric at8 ingress/8 banks with32-bit payload; full256-bit/12-bit-row8-bank fabric also audited; full160-bank fabric gate proof pending",
+    "netlist_sha256": "42854736d7966d52632e1d055dfe5695d0de0b56e4cd7ed8c2d1707ea3b84940",
+    "converted_sha256": null
   },
   {
     "status": "PASS",
@@ -322,7 +324,9 @@
       "tiny_npu_bank_voq.sv": "e8e0b3de0880a13028dd942cbcbdb4f01773f23dc2180969bcf36f6e891f3657",
       "tiny_npu_hashed_bank_fabric.sv": "b94135e4a3a8e232a2bef2ba2407d08e7ff5e193f32aad73eed5e1decc995a20"
     },
-    "scope": "mapper at160 banks; representative fabric at8 ingress/8 banks with32-bit payload; full256-bit/12-bit-row8-bank fabric also audited; full160-bank fabric gate proof pending"
+    "scope": "mapper at160 banks; representative fabric at8 ingress/8 banks with32-bit payload; full256-bit/12-bit-row8-bank fabric also audited; full160-bank fabric gate proof pending",
+    "netlist_sha256": "094ad9d482c0c4bf2463eacb6502c9526313d8af2dc527986d6b65cbca759009",
+    "converted_sha256": "c0ab547ddc9aaa6cc0ac33c5e9b89be770090f6ba450312a829dd0a13207046e"
   },
   {
     "status": "PASS",
@@ -519,6 +523,8 @@
       "tiny_npu_bank_voq.sv": "e8e0b3de0880a13028dd942cbcbdb4f01773f23dc2180969bcf36f6e891f3657",
       "tiny_npu_hashed_bank_fabric.sv": "b94135e4a3a8e232a2bef2ba2407d08e7ff5e193f32aad73eed5e1decc995a20"
     },
-    "scope": "mapper at160 banks; representative fabric at8 ingress/8 banks with32-bit payload; full256-bit/12-bit-row8-bank fabric also audited; full160-bank fabric gate proof pending"
+    "scope": "mapper at160 banks; representative fabric at8 ingress/8 banks with32-bit payload; full256-bit/12-bit-row8-bank fabric also audited; full160-bank fabric gate proof pending",
+    "netlist_sha256": "1edbad5e71b0dc3356c8605c81199e2a1cea66107535329733495a84d18b5201",
+    "converted_sha256": "5cca36de775f05f58f87518ecf9f67cb0e9048b24a601aeb89bfaae3e07a3b66"
   }
 ]
